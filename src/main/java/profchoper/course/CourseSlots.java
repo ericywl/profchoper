@@ -1,13 +1,18 @@
 package profchoper.course;
 
 import profchoper.slot.Slot;
+import profchoper.slot.SlotPeriod;
 import profchoper.user.Professor;
 import profchoper.user.Student;
 
-import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static profchoper.Constant.*;
 
 public class CourseSlots {
     private final Course course;
@@ -25,46 +30,31 @@ public class CourseSlots {
         profSlotsMap.remove(prof);
     }
 
-    // Check if the timing is valid ie. within 8am to 5pm
-    // For every 30 minutes interval, addSlot
-    public void addSlotPeriod(Professor prof, DayOfWeek day, LocalTime periodStart, LocalTime periodEnd) {
-        if (!periodStart.isBefore(periodEnd)) {
-            System.out.println("Error: Start time cannot be before end time.");
-            return;
-        }
-
-        if (periodStart.isBefore(LocalTime.of(8, 0)) || periodStart.isAfter(LocalTime.of(17, 0))
-                || periodEnd.isAfter(LocalTime.of(17, 0))) {
-            System.out.println("Error: Slots can only be from 8am to 5pm.");
-            return;
-        }
-
-        long minutesBetween = ChronoUnit.MINUTES.between(periodStart, periodEnd);
-        for (int i = 0; i < minutesBetween; i += 30) {
-            LocalTime startTime = periodStart.plus(i, ChronoUnit.MINUTES);
-            Slot slot = new Slot(day, startTime);
-            addSlot(prof, slot);
-        }
-    }
-
-    // Adds the slot to the map if prof exist in map and slot does not exist list
-    private void addSlot(Professor prof, Slot slot) {
+    public boolean addSlotPeriod(Professor prof, SlotPeriod period) {
         List<Slot> slotList = profSlotsMap.getOrDefault(prof, null);
         if (slotList == null) {
             System.out.println("Error: Slot list for " + prof + " is null.");
-            return;
+            return false;
         }
 
-        if (slotList.contains(slot)) {
-            System.out.println("Error: Slot already exists in " + prof + "'s list.");
-            return;
+        // For every 30 minutes interval, add slot to list if it is not already in list
+        for (int i = 0; i < period.getDuration(); i += SLOT_TIME) {
+            LocalTime slotStart = period.getStartTime().plus(i, ChronoUnit.MINUTES);
+            Slot slot = new Slot(period.getDay(), slotStart);
+            if (slotList.contains(slot)) {
+                System.out.println("Error: Slot already in " + prof + "'s list.");
+                continue;
+            }
+
+            slotList.add(slot);
         }
 
-        slotList.add(slot);
+        profSlotsMap.replace(prof, slotList);
+        return true;
     }
 
     // Book a particular slot from the prof
-    private boolean addBooking(Professor prof, Student student, Slot bookSlot) {
+    private boolean addBooking(Student student, Professor prof, Slot bookSlot) {
         List<Slot> slotList = profSlotsMap.getOrDefault(prof, null);
         if (slotList == null) {
             System.out.println("Error: Slot list for " + prof + " is null.");

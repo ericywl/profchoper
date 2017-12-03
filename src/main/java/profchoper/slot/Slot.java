@@ -2,9 +2,13 @@ package profchoper.slot;
 
 import profchoper.user.Student;
 
+import java.time.DayOfWeek;
+import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
-import java.util.*;
-import java.time.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import static profchoper.Constant.SLOT_TIME;
 
 public class Slot {
     private final DayOfWeek day;
@@ -15,7 +19,7 @@ public class Slot {
     public Slot(DayOfWeek day, LocalTime startTime) {
         this.day = day;
         this.startTime = startTime;
-        this.endTime = startTime.plus(30, ChronoUnit.MINUTES);
+        this.endTime = startTime.plus(SLOT_TIME, ChronoUnit.MINUTES);
     }
 
     public void addBooking(Student student) {
@@ -32,7 +36,7 @@ public class Slot {
     }
 
     @Override
-    // Slots are equal if they have the same day and startTime
+    // Slots are considered equal if they have the same day and startTime
     public boolean equals(Object obj) {
         if (obj.getClass() != this.getClass())
             return false;

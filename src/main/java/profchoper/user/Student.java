@@ -23,8 +23,6 @@ public class Student {
         enrolledCourses.remove(course);
     }
 
-    
-
     public String getStudentName() {
         return studentName;
     }
