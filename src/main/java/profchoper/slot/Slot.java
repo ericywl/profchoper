@@ -32,6 +32,7 @@ public class Slot {
     }
 
     @Override
+    // Slots are equal if they have the same day and startTime
     public boolean equals(Object obj) {
         if (obj.getClass() != this.getClass())
             return false;

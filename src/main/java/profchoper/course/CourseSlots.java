@@ -21,6 +21,12 @@ public class CourseSlots {
         profSlotsMap.putIfAbsent(prof, new ArrayList<>());
     }
 
+    public void removeProf(Professor prof) {
+        profSlotsMap.remove(prof);
+    }
+
+    // Check if the timing is valid ie. within 8am to 5pm
+    // For every 30 minutes interval, addSlot
     public void addSlotPeriod(Professor prof, DayOfWeek day, LocalTime periodStart, LocalTime periodEnd) {
         if (!periodStart.isBefore(periodEnd)) {
             System.out.println("Error: Start time cannot be before end time.");
@@ -41,6 +47,7 @@ public class CourseSlots {
         }
     }
 
+    // Adds the slot to the map if prof exist in map and slot does not exist list
     private void addSlot(Professor prof, Slot slot) {
         List<Slot> slotList = profSlotsMap.getOrDefault(prof, null);
         if (slotList == null) {
@@ -56,7 +63,8 @@ public class CourseSlots {
         slotList.add(slot);
     }
 
-    public boolean addBooking(Professor prof, Student student, Slot bookSlot) {
+    // Book a particular slot from the prof
+    private boolean addBooking(Professor prof, Student student, Slot bookSlot) {
         List<Slot> slotList = profSlotsMap.getOrDefault(prof, null);
         if (slotList == null) {
             System.out.println("Error: Slot list for " + prof + " is null.");
@@ -72,6 +80,10 @@ public class CourseSlots {
 
         System.out.println("Error: Slot not found in " + prof + "'s list.");
         return false;
+    }
+
+    public Course getCourse() {
+        return course;
     }
 
     public Map<Professor, List<Slot>> getProfSlotsMap() {
