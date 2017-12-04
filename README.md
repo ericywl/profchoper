@@ -1,3 +1,2 @@
-# InfoSys-1D
-ProfChoper App
+# ProfChoper App
 No, we are not choping our profs.
