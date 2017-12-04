@@ -13,7 +13,6 @@ import java.util.Map;
 
 @Controller
 public class DBTest {
-/*    @Qualifier("dataSource")
     @Autowired
     private DataSource dataSource;
 
@@ -21,22 +20,12 @@ public class DBTest {
     String index(Map<String, Object> model) {
         try (Connection connection = dataSource.getConnection()) {
             Statement stmt = connection.createStatement();
-            stmt.executeUpdate("DROP TABLE IF EXISTS students");
-            stmt.executeUpdate("CREATE TABLE students (id INTEGER PRIMARY KEY, name TEXT)");
-
-            Student eric = new Student(1002394, "Eric");
-            Student wentat = new Student(1002323, "Wen Tat");
-            insertStudent(connection, eric);
-            insertStudent(connection, eric);
-            insertStudent(connection, wentat);
-            insertStudent(connection, wentat);
-
             ResultSet rs = stmt.executeQuery("SELECT * FROM students");
 
             ArrayList<String> output = new ArrayList<>();
             while (rs.next()) {
-                output.add("Read from DB: " + rs.getInt("id")
-                        + " " + rs.getString("name"));
+                output.add(+ rs.getInt("id")
+                        + ": " + rs.getString("name"));
             }
 
             model.put("students", output);
@@ -46,13 +35,4 @@ public class DBTest {
             return "error";
         }
     }
-
-    private void insertStudent(Connection connection, Student student) throws SQLException {
-        String insertStudentSQL = "INSERT INTO students (id, name) VALUES (?, ?) ON CONFLICT (id) DO NOTHING";
-
-        PreparedStatement pstmt = connection.prepareStatement(insertStudentSQL);
-        pstmt.setInt(1, student.getId());
-        pstmt.setString(2, student.getName());
-        pstmt.execute();
-    }*/
 }
