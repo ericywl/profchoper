@@ -4,20 +4,20 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
 
+@Repository
 public class DBContract {
     @Value("${spring.datasource.url}")
-    public static String dbUrl;
-
-    @Autowired
-    public static DataSource dataSource;
+    public String dbUrl;
 
     @Bean
-    public static DataSource dataSource() throws SQLException {
+    public DataSource dataSource() throws SQLException {
         if (dbUrl == null || dbUrl.isEmpty()) {
             return new HikariDataSource();
         } else {

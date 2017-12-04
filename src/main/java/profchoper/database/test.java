@@ -17,6 +17,9 @@ import java.util.Map;
 
 @Controller
 public class test {
+    @Autowired
+    private DataSource dataSource;
+
     @RequestMapping("/db")
     String db(Map<String, Object> model) {
         try (Connection connection = dataSource.getConnection()) {
