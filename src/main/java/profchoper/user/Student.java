@@ -15,11 +15,11 @@ public class Student {
         this.studentId = studentId;
     }
 
-    public void enrollCourse(Course course) {
+    protected void enrollCourse(Course course) {
         enrolledCourses.add(course);
     }
 
-    public void dropCourse(Course course) {
+    protected void dropCourse(Course course) {
         enrolledCourses.remove(course);
     }
 

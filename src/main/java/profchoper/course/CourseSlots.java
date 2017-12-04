@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static profchoper.Constant.*;
+import static profchoper._misc.Constant.*;
 
 public class CourseSlots {
     private final Course course;

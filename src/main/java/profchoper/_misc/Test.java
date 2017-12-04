@@ -1,4 +1,4 @@
-package profchoper;
+package profchoper._misc;
 
 import profchoper.user.Professor;
 import profchoper.user.Student;

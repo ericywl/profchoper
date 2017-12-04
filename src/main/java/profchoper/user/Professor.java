@@ -1,13 +1,9 @@
 package profchoper.user;
 
-import profchoper.slot.SlotPeriod;
-
-import java.util.List;
 
 public class Professor {
     private final String profName;
     private String officeLocation;
-    private List<SlotPeriod> availablePeriods;
 
     public Professor(String profName, String officeLoc) {
         this.profName = profName;

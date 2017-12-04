@@ -4,7 +4,7 @@ import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 
-import static profchoper.Constant.*;
+import static profchoper._misc.Constant.*;
 
 public final class SlotPeriod {
     private DayOfWeek day;
@@ -13,14 +13,14 @@ public final class SlotPeriod {
     private long duration;
 
     public SlotPeriod(DayOfWeek day, LocalTime startTime, LocalTime endTime)
-            throws SlotPeriodErrorException {
+            throws SlotPeriodException {
         if (!startTime.isBefore(endTime)) {
-            throw new SlotPeriodErrorException("Start time cannot be before end time.");
+            throw new SlotPeriodException("Start time cannot be before end time.");
         }
 
         if (startTime.isBefore(DAY_START_TIME) || startTime.isAfter(DAY_END_TIME)
                 || endTime.isAfter(DAY_END_TIME)) {
-            throw new SlotPeriodErrorException("Error: Slots not within boundaries.");
+            throw new SlotPeriodException("Error: Slots not within boundaries.");
         }
 
         this.day = day;

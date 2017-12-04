@@ -8,7 +8,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
-import static profchoper.Constant.SLOT_TIME;
+import static profchoper._misc.Constant.SLOT_TIME;
 
 public class Slot {
     private final DayOfWeek day;
