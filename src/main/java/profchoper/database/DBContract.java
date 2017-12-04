@@ -17,7 +17,7 @@ public class DBContract {
     public static DataSource dataSource;
 
     @Bean
-    public DataSource dataSource() throws SQLException {
+    public static DataSource dataSource() throws SQLException {
         if (dbUrl == null || dbUrl.isEmpty()) {
             return new HikariDataSource();
         } else {
