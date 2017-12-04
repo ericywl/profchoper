@@ -1,6 +1,7 @@
 package profchoper.database;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import profchoper.user.Student;
@@ -11,12 +12,13 @@ import java.util.ArrayList;
 import java.util.Map;
 
 @Controller
-public class test {
+public class DBTest {
+    @Qualifier("dataSource")
     @Autowired
     private DataSource dataSource;
 
-    @RequestMapping("/db")
-    String db(Map<String, Object> model) {
+    @RequestMapping("/")
+    String index(Map<String, Object> model) {
         try (Connection connection = dataSource.getConnection()) {
             Statement stmt = connection.createStatement();
             stmt.executeUpdate("DROP TABLE IF EXISTS students");
@@ -37,8 +39,8 @@ public class test {
                         + " " + rs.getString("name"));
             }
 
-            model.put("records", output);
-            return "db";
+            model.put("students", output);
+            return "index";
         } catch (SQLException ex) {
             model.put("message", ex.getMessage());
             return "error";
@@ -49,9 +51,8 @@ public class test {
         String insertStudentSQL = "INSERT INTO students (id, name) VALUES (?, ?) ON CONFLICT (id) DO NOTHING";
 
         PreparedStatement pstmt = connection.prepareStatement(insertStudentSQL);
-        pstmt.setInt(1, student.getStudentId());
-        pstmt.setString(2, student.getStudentName());
+        pstmt.setInt(1, student.getId());
+        pstmt.setString(2, student.getName());
         pstmt.execute();
-
     }
 }

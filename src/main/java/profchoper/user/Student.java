@@ -2,33 +2,29 @@ package profchoper.user;
 
 import profchoper.course.Course;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "student")
 public class Student {
-    private final int studentId;
-    private final String studentName;
+    private final int id;
+    private final String name;
     private List<Course> enrolledCourses = new ArrayList<>();
 
-    public Student(int studentId, String studentName) {
-        this.studentName = studentName;
-        this.studentId = studentId;
+    public Student(int id, String name) {
+        this.name = name;
+        this.id = id;
     }
 
-    public void enrollCourse(Course course) {
-        enrolledCourses.add(course);
+    public String getName() {
+        return name;
     }
 
-    public void dropCourse(Course course) {
-        enrolledCourses.remove(course);
-    }
-
-    public String getStudentName() {
-        return studentName;
-    }
-
-    public int getStudentId() {
-        return studentId;
+    public int getId() {
+        return id;
     }
 
     public List<Course> getEnrolledCourses() {
@@ -37,6 +33,6 @@ public class Student {
 
     @Override
     public String toString() {
-        return studentName;
+        return name;
     }
 }
