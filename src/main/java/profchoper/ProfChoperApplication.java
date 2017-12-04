@@ -25,12 +25,8 @@ public class ProfChoperApplication {
     @Value("${spring.datasource.url}")
     private String dbUrl;
 
-    private final DataSource dataSource;
-
     @Autowired
-    public ProfChoperApplication(DataSource dataSource) {
-        this.dataSource = dataSource;
-    }
+    private DataSource dataSource;
 
     public static void main(String[] args) throws Exception {
         SpringApplication.run(ProfChoperApplication.class, args);
