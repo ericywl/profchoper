@@ -41,12 +41,8 @@ public class ProfChoper {
     @Value("${spring.datasource.url}")
     private String dbUrl;
 
-    private final DataSource dataSource;
-
     @Autowired
-    public ProfChoper(DataSource dataSource) {
-        this.dataSource = dataSource;
-    }
+    private DataSource dataSource;
 
     public static void main(String[] args) throws Exception {
         SpringApplication.run(ProfChoper.class, args);
