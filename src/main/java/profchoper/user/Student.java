@@ -2,33 +2,36 @@ package profchoper.user;
 
 import profchoper.course.Course;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "student")
-public class Student {
-    private final int id;
-    private final String name;
-    private List<Course> enrolledCourses = new ArrayList<>();
+public class Student implements Serializable {
+    private int id;
+    private String name;
+    private List<Course> enrolledCourses;
 
-    public Student(int id, String name) {
-        this.name = name;
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
+    @Id
+    @Column(name = "id", unique = true)
     public int getId() {
         return id;
     }
 
+    @Column(name = "name")
+    public String getName() {
+        return name;
+    }
+
+    @OneToMany(mappedBy = "student")
     public List<Course> getEnrolledCourses() {
         return enrolledCourses;
+    }
+
+    public void setEnrolledCourses(List<Course> enrolledCourses) {
+        this.enrolledCourses = enrolledCourses;
     }
 
     @Override

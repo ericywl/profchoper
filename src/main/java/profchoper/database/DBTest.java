@@ -13,7 +13,7 @@ import java.util.Map;
 
 @Controller
 public class DBTest {
-    @Qualifier("dataSource")
+/*    @Qualifier("dataSource")
     @Autowired
     private DataSource dataSource;
 
@@ -54,5 +54,5 @@ public class DBTest {
         pstmt.setInt(1, student.getId());
         pstmt.setString(2, student.getName());
         pstmt.execute();
-    }
+    }*/
 }

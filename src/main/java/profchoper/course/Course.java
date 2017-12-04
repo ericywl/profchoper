@@ -26,12 +26,10 @@ public class Course {
     }
 
     public void enrollStudent(Student student) {
-        student.enrollCourse(this);
         enrolledStudents.add(student);
     }
 
     public void dropStudent(Student student) {
-        student.dropCourse(this);
         enrolledStudents.remove(student);
     }
 
