@@ -12,7 +12,7 @@ import javax.sql.DataSource;
 import java.sql.SQLException;
 
 @Repository
-public class DBContract {
+public class DataSourceInit {
     @Value("${spring.datasource.url}")
     public String dbUrl;
 
