@@ -35,13 +35,18 @@ public class test {
 
     @RequestMapping("/db")
     String db(Map<String, Object> model) {
-        try (Connection connection = dataSource.getConnection();) {
+        try (Connection connection = dataSource.getConnection()) {
+            Statement stmt = connection.createStatement();
+            stmt.executeUpdate("DROP TABLE IF EXISTS students");
+            stmt.executeUpdate("CREATE TABLE students (id INTEGER, name TEXT)");
+
             Student eric = new Student(1002394, "Eric");
             Student wentat = new Student(1002323, "Wen Tat");
             insertStudent(connection, eric);
             insertStudent(connection, eric);
+            insertStudent(connection, wentat);
+            insertStudent(connection, wentat);
 
-            Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM students");
 
             ArrayList<String> output = new ArrayList<>();
@@ -59,7 +64,7 @@ public class test {
     }
 
     private void insertStudent(Connection connection, Student student) throws SQLException {
-        String insertStudentSQL = "INSERT INTO students (id, name) VALUES (?, ?) ON CONFLICT DO NOTHING ";
+        String insertStudentSQL = "INSERT INTO students (id, name) VALUES (?, ?) ON CONFLICT (id) DO NOTHING ";
 
         PreparedStatement pstmt = connection.prepareStatement(insertStudentSQL);
         pstmt.setInt(1, student.getStudentId());
