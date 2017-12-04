@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.sql.DataSource;
@@ -17,23 +18,34 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Map;
 
+@Controller
 @SpringBootApplication
-public class ProfchoperApplication {
+public class ProfChoperApplication {
 
     @Value("${spring.datasource.url}")
     private String dbUrl;
+
     private final DataSource dataSource;
 
     @Autowired
-    public ProfchoperApplication(DataSource dataSource) {
+    public ProfChoperApplication(DataSource dataSource) {
         this.dataSource = dataSource;
+    }
+
+    public static void main(String[] args) throws Exception {
+        SpringApplication.run(ProfChoperApplication.class, args);
+    }
+
+    @RequestMapping("/")
+    String index() {
+        return "index";
     }
 
     @RequestMapping("/db")
     String db(Map<String, Object> model) {
         try (Connection connection = dataSource.getConnection()) {
             Statement stmt = connection.createStatement();
-            stmt.executeUpdate("CREATE TABLE IF NOT EXISTS ticks (tick timestamp)");
+            stmt.executeUpdate("CREATE TABLE IF NOT EXISTS ticks (tick TIMESTAMP)");
             stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
             ResultSet rs = stmt.executeQuery("SELECT tick FROM ticks");
 
@@ -50,10 +62,6 @@ public class ProfchoperApplication {
         }
     }
 
-    public static void main(String[] args) {
-		SpringApplication.run(ProfchoperApplication.class, args);
-	}
-
     @Bean
     public DataSource dataSource() throws SQLException {
         if (dbUrl == null || dbUrl.isEmpty()) {
@@ -64,4 +72,5 @@ public class ProfchoperApplication {
             return new HikariDataSource(config);
         }
     }
+
 }
