@@ -12,11 +12,11 @@ import javax.sql.DataSource;
 import java.sql.SQLException;
 
 @Repository
-public class DataSourceInit {
+public class DataSourceConfig {
     @Value("${spring.datasource.url}")
     public String dbUrl;
 
-    @Bean
+    @Bean(name = "profChoperDataSource")
     public DataSource dataSource() throws SQLException {
         if (dbUrl == null || dbUrl.isEmpty()) {
             return new HikariDataSource();
