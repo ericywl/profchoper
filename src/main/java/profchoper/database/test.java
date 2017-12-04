@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import profchoper.user.Student;
+import static profchoper.database.DBContract.*;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -16,23 +17,6 @@ import java.util.Map;
 
 @Controller
 public class test {
-    @Value("${spring.datasource.url}")
-    private String dbUrl;
-
-    @Autowired
-    private DataSource dataSource;
-
-    @Bean
-    public DataSource dataSource() throws SQLException {
-        if (dbUrl == null || dbUrl.isEmpty()) {
-            return new HikariDataSource();
-        } else {
-            HikariConfig config = new HikariConfig();
-            config.setJdbcUrl(dbUrl);
-            return new HikariDataSource(config);
-        }
-    }
-
     @RequestMapping("/db")
     String db(Map<String, Object> model) {
         try (Connection connection = dataSource.getConnection()) {
@@ -52,7 +36,7 @@ public class test {
             ArrayList<String> output = new ArrayList<>();
             while (rs.next()) {
                 output.add("Read from DB: " + rs.getInt("id")
-                        + " " +  rs.getString("name"));
+                        + " " + rs.getString("name"));
             }
 
             model.put("records", output);
