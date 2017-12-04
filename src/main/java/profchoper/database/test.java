@@ -38,7 +38,7 @@ public class test {
         try (Connection connection = dataSource.getConnection()) {
             Statement stmt = connection.createStatement();
             stmt.executeUpdate("DROP TABLE IF EXISTS students");
-            stmt.executeUpdate("CREATE TABLE students (id INTEGER PRIMARY KEY, name TEXT UNIQUE)");
+            stmt.executeUpdate("CREATE TABLE students (id INTEGER PRIMARY KEY, name TEXT)");
 
             Student eric = new Student(1002394, "Eric");
             Student wentat = new Student(1002323, "Wen Tat");
