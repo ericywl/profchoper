@@ -36,16 +36,20 @@ import java.util.Map;
 
 @Controller
 @SpringBootApplication
-public class Main {
+public class ProfChoper {
 
     @Value("${spring.datasource.url}")
     private String dbUrl;
 
+    private final DataSource dataSource;
+
     @Autowired
-    private DataSource dataSource;
+    public ProfChoper(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
 
     public static void main(String[] args) throws Exception {
-        SpringApplication.run(Main.class, args);
+        SpringApplication.run(ProfChoper.class, args);
     }
 
     @RequestMapping("/")
