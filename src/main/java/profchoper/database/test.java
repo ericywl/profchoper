@@ -7,12 +7,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import profchoper.user.Student;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -24,27 +22,6 @@ public class test {
     @Autowired
     private DataSource dataSource;
 
-    @RequestMapping("/db")
-    String db(Map<String, Object> model) {
-        try (Connection connection = dataSource.getConnection()) {
-            Statement stmt = connection.createStatement();
-            stmt.executeUpdate("CREATE TABLE IF NOT EXISTS ticks (tick TIMESTAMP)");
-            stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
-            ResultSet rs = stmt.executeQuery("SELECT tick FROM ticks");
-
-            ArrayList<String> output = new ArrayList<>();
-            while (rs.next()) {
-                output.add("Read from DB: " + rs.getTimestamp("tick"));
-            }
-
-            model.put("records", output);
-            return "db";
-        } catch (Exception e) {
-            model.put("message", e.getMessage());
-            return "error";
-        }
-    }
-
     @Bean
     public DataSource dataSource() throws SQLException {
         if (dbUrl == null || dbUrl.isEmpty()) {
@@ -54,5 +31,40 @@ public class test {
             config.setJdbcUrl(dbUrl);
             return new HikariDataSource(config);
         }
+    }
+
+    @RequestMapping("/db")
+    String db(Map<String, Object> model) {
+        try (Connection connection = dataSource.getConnection();) {
+            Student eric = new Student(1002394, "Eric");
+            Student wentat = new Student(1002323, "Wen Tat");
+            insertStudent(connection, eric);
+            insertStudent(connection, eric);
+
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM students");
+
+            ArrayList<String> output = new ArrayList<>();
+            while (rs.next()) {
+                output.add("Read from DB: " + rs.getInt("id")
+                        + " " +  rs.getString("name"));
+            }
+
+            model.put("records", output);
+            return "db";
+        } catch (SQLException ex) {
+            model.put("message", ex.getMessage());
+            return "error";
+        }
+    }
+
+    private void insertStudent(Connection connection, Student student) throws SQLException {
+        String insertStudentSQL = "INSERT INTO students (id, name) VALUES (?, ?) ON CONFLICT DO NOTHING ";
+
+        PreparedStatement pstmt = connection.prepareStatement(insertStudentSQL);
+        pstmt.setInt(1, student.getStudentId());
+        pstmt.setString(2, student.getStudentName());
+        pstmt.execute();
+
     }
 }
