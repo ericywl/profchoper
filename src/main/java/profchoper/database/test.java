@@ -64,7 +64,7 @@ public class test {
     }
 
     private void insertStudent(Connection connection, Student student) throws SQLException {
-        String insertStudentSQL = "INSERT INTO students (id, name) VALUES (?, ?) ON CONFLICT DO NOTHING";
+        String insertStudentSQL = "INSERT INTO students (id, name) VALUES (?, ?) ON CONFLICT (id) DO NOTHING";
 
         PreparedStatement pstmt = connection.prepareStatement(insertStudentSQL);
         pstmt.setInt(1, student.getStudentId());
