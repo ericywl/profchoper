@@ -34,7 +34,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Map;
 
-@Controller
 @SpringBootApplication
 public class ProfChoper {
     public static void main(String[] args) throws Exception {
