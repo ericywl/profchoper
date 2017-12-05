@@ -52,7 +52,7 @@ public class StudentRepository {
         Connection connection = dataSource.getConnection();
         Student student = null;
 
-        String selectSQL = "SELECT * FROM students WHERE " + selection + " = " + arg;
+        String selectSQL = "SELECT * FROM students WHERE " + selection + " = '" + arg + "'";
         PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
         ResultSet rs = preparedStatement.executeQuery();
 

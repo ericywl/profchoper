@@ -8,7 +8,9 @@ import profchoper.booking.BookingSlot;
 import profchoper.booking.BookingSlotException;
 import profchoper.course.Course;
 import profchoper.repository.CourseRepository;
+import profchoper.repository.StudentRepository;
 import profchoper.user.Professor;
+import profchoper.user.Student;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -23,13 +25,20 @@ public class DBTest {
     @Autowired
     CourseRepository courseRepository;
 
+    @Autowired
+    StudentRepository studentRepository;
+
     @RequestMapping("/")
     String index(Map<String, Object> model) {
         try {
             List<Course> courseList = new ArrayList<>();
             courseList.add(courseRepository.findBy("id", "50.001"));
 
+            List<Student> studentList = new ArrayList<>();
+            studentList.add(studentRepository.findBy("id", "1001111"));
+
             model.put("courses", courseList);
+            model.put("students", studentList);
             return "index";
         } catch (Exception ex) {
             model.put("message", ex.getMessage());

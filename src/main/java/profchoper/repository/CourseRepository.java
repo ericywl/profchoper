@@ -43,7 +43,7 @@ public class CourseRepository {
         Connection connection = dataSource.getConnection();
         Course course = null;
 
-        String selectSQL = "SELECT * FROM courses WHERE " + selection + " = " + arg;
+        String selectSQL = "SELECT * FROM courses WHERE " + selection + " = '" + arg + "'";
         PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
         ResultSet rs = preparedStatement.executeQuery();
 
