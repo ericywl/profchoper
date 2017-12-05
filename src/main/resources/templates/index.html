@@ -5,11 +5,17 @@
 
 
 <div class="container">
-    <h1>Database Output</h1>
+    <h1>Students</h1>
     <!--/*@thymesVar id="students" type="java.util.ArrayList"*/-->
     <ul th:each="student : ${students}">
-        <!--/*@thymesVar id="student" type="profchoper.user.Student"*/-->
-        <li th:text="${student}"></li>
+        <li th:text="${student}">
+            <!--/*@thymesVar id="courses" type="java.util.ArrayList"*/-->
+            <ul th:each="courseList: ${courses}">
+                <ul th:each="course : ${courseList}">
+                    <li th:text="${course}"></li>
+                </ul>
+            </ul>
+        </li>
     </ul>
 </div>
 
