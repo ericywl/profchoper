@@ -20,35 +20,6 @@ public class StudentService {
     @Qualifier("profChoperDataSource")
     private DataSource dataSource;
 
-    @Autowired
-    private CourseRepository courseService;
-
-    public List<Student> findAll() throws SQLException {
-        Connection connection = dataSource.getConnection();
-        List<Student> studentList = new ArrayList<>();
-
-        String selectSQL = "SELECT * FROM students ORDER BY id";
-        PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
-        ResultSet rs = preparedStatement.executeQuery();
-
-        while (rs.next()) {
-            int studentId = rs.getInt("id");
-            String studentName = rs.getString("name");
-            String studentEmail = rs.getString("email");
-            List<Course> courseList = new ArrayList<>();
-
-            for (int i = 1; i < 5; i++) {
-                String courseId = rs.getString("course" + i + "_id");
-                // courseList.add(courseService.findById(courseId));
-            }
-
-            Student student = new Student(studentId, studentName, studentEmail, courseList);
-            studentList.add(student);
-        }
-
-        return studentList;
-    }
-
     public Student findById(int id) throws SQLException {
         Connection connection = dataSource.getConnection();
 

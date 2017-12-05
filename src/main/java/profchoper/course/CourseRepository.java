@@ -19,16 +19,16 @@ public class CourseRepository {
 
     public List<Course> findAll() throws SQLException {
         JdbcTemplate select = new JdbcTemplate(dataSource);
-        String sql = "SELECT * FROM courses ORDER BY id";
+        String selectSQL = "SELECT * FROM courses ORDER BY id";
 
-        return select.query(sql, new CourseRowMapper());
+        return select.query(selectSQL, new CourseRowMapper());
     }
 
     public Course findById(String id) throws SQLException {
         JdbcTemplate select = new JdbcTemplate(dataSource);
-        String sql = "SELECT * FROM courses WHERE id = ?";
+        String selectSQL = "SELECT * FROM courses WHERE id = ?";
 
-        return (Course) select.queryForObject(sql, new Object[]{id},
+        return (Course) select.queryForObject(selectSQL, new Object[]{id},
                 new BeanPropertyRowMapper(Course.class));
     }
 }

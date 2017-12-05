@@ -7,28 +7,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import profchoper.course.Course;
 import profchoper.course.CourseRepository;
 import profchoper.student.Student;
+import profchoper.student.StudentRepository;
 import profchoper.student.StudentService;
 
 import java.util.*;
 
 @Controller
 public class DBTest {
-    @Autowired
-    private CourseRepository courseRepo;
+    // @Autowired
+    // private CourseRepository courseRepo;
 
-    /*@Autowired
-    @Qualifier("courseRepo")
-    private CourseService courseRepo;*/
+    @Autowired
+    private StudentRepository studentRepo;
 
     @RequestMapping("/")
     String index(Map<String, Object> model) {
         try {
-            List<Course> courseList = new ArrayList<>();
-            courseList.add(courseRepo.findById("50.001"));
-            // List<Student> studentList = studentRepo.findAll();
+            // List<Course> courseList = new ArrayList<>();
+            // courseList.add(courseRepo.findById("50.001"));
+            List<Student> studentList = studentRepo.findAll();
 
-            model.put("courses", courseList);
-            // model.put("students", studentList);
+            // model.put("courses", courseList);
+            model.put("students", studentList);
             return "index";
         } catch (Exception ex) {
             model.put("message", ex.getMessage());
