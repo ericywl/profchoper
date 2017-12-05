@@ -25,18 +25,12 @@ public class DBTest {
     @Autowired
     CourseRepository courseRepository;
 
-    @Autowired
-    StudentRepository studentRepository;
-
     @RequestMapping("/")
     String index(Map<String, Object> model) {
         try {
             List<Course> courseList = courseRepository.findAll();
 
-            List<Student> studentList = studentRepository.findAll();
-
             model.put("courses", courseList);
-            model.put("students", studentList);
             return "index";
         } catch (Exception ex) {
             model.put("message", ex.getMessage());
