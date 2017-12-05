@@ -13,8 +13,7 @@ CREATE TABLE IF NOT EXISTS public.students
 
 CREATE TABLE IF NOT EXISTS public.professors
 (
-  alias TEXT PRIMARY KEY,
-  name TEXT UNIQUE NOT NULL,
+  name TEXT PRIMARY KEY ,
   office TEXT NOT NULL,
   course TEXT
 );
