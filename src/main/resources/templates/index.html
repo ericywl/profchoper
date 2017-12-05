@@ -16,6 +16,10 @@
         <tr th:each="entry : ${students}">
             <td th:text="${entry.key}"></td>
             <td th:text="${entry.value[0]}"></td>
+            <td th:text="${entry.value[1]}"></td>
+            <td th:text="${entry.value[2]}"></td>
+            <td th:text="${entry.value[3]}"></td>
+            <td th:text="${entry.value[4]}"></td>
         </tr>
     </table>
 </div>

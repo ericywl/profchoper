@@ -24,15 +24,15 @@ public class DBTest {
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM students ORDER BY id");
 
-            Map<String, ArrayList<String>> students = new HashMap<>();
+            Map<Integer, ArrayList<String>> students = new HashMap<>();
             while (rs.next()) {
                 ArrayList<String> temp = new ArrayList<>();
+                temp.add(rs.getString("name"));
                 temp.add(rs.getString("course1"));
                 temp.add(rs.getString("course2"));
                 temp.add(rs.getString("course3"));
 
-                students.put(rs.getInt("id")
-                        + ": " + rs.getString("name"), temp);
+                students.put(rs.getInt("id"), temp);
             }
 
             model.put("students", students);
