@@ -9,7 +9,7 @@ import java.util.List;
 
 import static profchoper._misc.Constant.*;
 
-
+// For inserting into database
 public class BookingSlotPeriod {
     private List<BookingSlot> bookingSlots = new ArrayList<>();
 
