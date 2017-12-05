@@ -62,7 +62,9 @@ public class DBTest {
                 courses.add(course_temp);
             }
 
-            String bookingSelect = "SELECT * FROM bookings INNER JOIN professors " +
+            String bookingSelect = "SELECT id, start_time, " +
+                    "professors.name as professor_name, booked, student_id FROM bookings " +
+                    "INNER JOIN professors " +
                     "ON bookings.professor_alias = professors.alias " +
                     "WHERE course_id = '50.001'";
             ResultSet bookingRs = stmt.executeQuery(bookingSelect);
@@ -73,14 +75,10 @@ public class DBTest {
                 SimpleDateFormat date = new SimpleDateFormat("dd.MM.yyyy");
                 SimpleDateFormat time = new SimpleDateFormat("HH:mm");
 
-                // String profAlias = bookingRs.getString("professor_alias");
-                // String profNameSelect = "SELECT name FROM professors WHERE alias=" + profAlias;
-                // ResultSet profNameRs = stmt.executeQuery(profNameSelect);
-
                 booking_temp.add(String.valueOf(bookingRs.getInt("id")));
                 booking_temp.add(date.format(timestamp));
                 booking_temp.add(time.format(timestamp));
-                booking_temp.add(String.valueOf(bookingRs.getString("professor_alias")));
+                booking_temp.add(String.valueOf(bookingRs.getString("professor_name")));
                 booking_temp.add(String.valueOf(bookingRs.getBoolean("booked")));
                 booking_temp.add(String.valueOf(bookingRs.getInt("student_id")));
 
