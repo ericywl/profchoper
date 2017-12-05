@@ -33,7 +33,7 @@ ON CONFLICT (name)
     office    = EXCLUDED.office,
     course_id = EXCLUDED.course_id;
 
-INSERT INTO bookings (professor_name, start_time) VALUES
+INSERT INTO bookings (professor_alias, start_time) VALUES
   ('OKA', make_timestamp(2017, 12, 5, 8, 0, 0)),
   ('OKA', make_timestamp(2017, 12, 5, 8, 30, 0)),
   ('OKA', make_timestamp(2017, 12, 5, 9, 0, 0)),
