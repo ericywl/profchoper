@@ -23,29 +23,31 @@ public class DBTest {
         try (Connection connection = dataSource.getConnection()) {
             Statement stmt = connection.createStatement();
 
-            String studentSelect = "SELECT * FROM students ORDER BY cast(id as INTEGER)";
+            String studentSelect = "SELECT * FROM students ORDER BY id";
             ResultSet studentRs = stmt.executeQuery(studentSelect);
-            Map<Integer, ArrayList<String>> students = new HashMap<>();
+            ArrayList<ArrayList<String>> students = new ArrayList<>();
             while (studentRs.next()) {
-                ArrayList<String> temp = new ArrayList<>();
-                temp.add(studentRs.getString("name"));
-                temp.add(studentRs.getString("course1_id"));
-                temp.add(studentRs.getString("course2_id"));
-                temp.add(studentRs.getString("course3_id"));
-                temp.add(studentRs.getString("course4_id"));
+                ArrayList<String> student_temp = new ArrayList<>();
+                student_temp.add(String.valueOf(studentRs.getInt("id")));
+                student_temp.add(studentRs.getString("name"));
+                student_temp.add(studentRs.getString("course1_id"));
+                student_temp.add(studentRs.getString("course2_id"));
+                student_temp.add(studentRs.getString("course3_id"));
+                student_temp.add(studentRs.getString("course4_id"));
 
-                students.put(studentRs.getInt("id"), temp);
+                students.add(student_temp);
             }
 
             String profSelect = "SELECT * FROM professors ORDER BY cast(course_id as REAL)";
             ResultSet profRs = stmt.executeQuery(profSelect);
-            Map<String, ArrayList<String>> professors = new HashMap<>();
+            ArrayList<ArrayList<String>> professors = new ArrayList<>();
             while (profRs.next()) {
-                ArrayList<String> temp = new ArrayList<>();
-                temp.add(profRs.getString("office"));
-                temp.add(profRs.getString("course_id"));
+                ArrayList<String> prof_temp = new ArrayList<>();
+                prof_temp.add(profRs.getString("name"));
+                prof_temp.add(profRs.getString("office"));
+                prof_temp.add(profRs.getString("course_id"));
 
-                professors.put(profRs.getString("name"), temp);
+                professors.add(prof_temp);
             }
 
             model.put("students", students);
