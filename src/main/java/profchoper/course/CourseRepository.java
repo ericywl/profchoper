@@ -2,64 +2,31 @@ package profchoper.course;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
-@Repository("courseRepo")
+@Repository
+@SuppressWarnings("unchecked")
 public class CourseRepository {
     @Autowired
     @Qualifier("profChoperDataSource")
     private DataSource dataSource;
 
     public List<Course> findAll() throws SQLException {
-        Connection connection = dataSource.getConnection();
-        List<Course> courseList = new ArrayList<>();
+        JdbcTemplate select = new JdbcTemplate(dataSource);
+        String sql = "SELECT * FROM courses ORDER BY id";
 
-        String selectSQL = "SELECT * FROM courses ORDER BY id";
-        PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
-        ResultSet rs = preparedStatement.executeQuery();
-
-        while (rs.next()) {
-            String courseId = rs.getString("id");
-            String courseName = rs.getString("name");
-            String courseAlias = rs.getString("alias");
-
-            Course course = new Course(courseId, courseName, courseAlias);
-            courseList.add(course);
-        }
-
-        return courseList;
+        return select.query(sql, new CourseRowMapper());
     }
 
-    public Course findById(String id) throws SQLException {
-        Connection connection = dataSource.getConnection();
+    public List<Course> findById(String id) throws SQLException {
+        JdbcTemplate select = new JdbcTemplate(dataSource);
+        String sql = "SELECT * FROM courses WHERE id = ?";
 
-        String selectSQL = "SELECT * FROM courses WHERE id = ?";
-        PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
-        preparedStatement.setString(1, id);
-        ResultSet rs = preparedStatement.executeQuery();
-
-        return findBy(rs);
-    }
-
-    private Course findBy(ResultSet rs) throws SQLException {
-        Course course = null;
-
-        if (rs.next()) {
-            String courseId = rs.getString("id");
-            String courseName = rs.getString("name");
-            String courseAlias = rs.getString("alias");
-
-            course = new Course(courseId, courseName, courseAlias);
-        }
-
-        return course;
+        return select.query(sql, new Object[]{id}, new CourseRowMapper());
     }
 }

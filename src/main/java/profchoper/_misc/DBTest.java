@@ -4,10 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import profchoper.course.Course;
-import profchoper.course.CourseRepository;
 import profchoper.student.Student;
-import profchoper.student.StudentRepository;
+import profchoper.student.StudentService;
 
 import java.util.*;
 
@@ -15,11 +13,11 @@ import java.util.*;
 public class DBTest {
     @Autowired
     @Qualifier("studentRepo")
-    private StudentRepository studentRepo;
+    private StudentService studentRepo;
 
     /*@Autowired
     @Qualifier("courseRepo")
-    private CourseRepository courseRepo;*/
+    private CourseService courseRepo;*/
 
     @RequestMapping("/")
     String index(Map<String, Object> model) {
