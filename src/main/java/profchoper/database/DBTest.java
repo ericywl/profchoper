@@ -1,10 +1,8 @@
 package profchoper.database;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import profchoper.user.Student;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -14,11 +12,11 @@ import java.util.Map;
 @Controller
 public class DBTest {
     @Autowired
-    private DataSource dataSource;
+    private DataSource profChoperDataSource;
 
     @RequestMapping("/")
     String index(Map<String, Object> model) {
-        try (Connection connection = dataSource.getConnection()) {
+        try (Connection connection = profChoperDataSource.getConnection()) {
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM students");
 
