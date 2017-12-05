@@ -47,7 +47,6 @@ public class DBTest {
             String profAlias = bookingRs.getString("prof_alias");
             String profEmail = bookingRs.getString("prof_email");
             String profOffice = bookingRs.getString("prof_office");
-            String profCourse = bookingRs.getString("prof_course");
 
             Professor prof = new Professor(profName, profAlias, profEmail, profOffice);
             BookingSlot bookingSlot = new BookingSlot(prof, timestamp);
