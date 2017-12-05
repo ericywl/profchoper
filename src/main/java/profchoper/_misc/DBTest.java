@@ -23,7 +23,8 @@ public class DBTest {
     @RequestMapping("/")
     String index(Map<String, Object> model) {
         try {
-            List<Course> courseList = courseRepo.findAll();
+            List<Course> courseList = new ArrayList<>();
+            courseList.add(courseRepo.findById("50.001"));
             // List<Student> studentList = studentRepo.findAll();
 
             model.put("courses", courseList);
