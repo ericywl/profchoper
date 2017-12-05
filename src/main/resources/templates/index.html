@@ -6,8 +6,7 @@
 
 <div class="container">
     <!--/*@thymesVar id="bookings" type="java.util.List"*/-->
-    <!--
-    <div th:if="not ${bookings.isEmpty()}">
+<!--    <div th:if="not ${bookings.isEmpty()}">
         <h1>Bookings</h1>
         <table class="table table-striped">
             <tr>
@@ -28,12 +27,11 @@
                 <td th:if="!${booking.getStudent()}">N/A</td>
             </tr>
         </table>
-    </div>
-    -->
+    </div>-->
 
 
     <!--/*@thymesVar id="courses" type="java.util.List"*/-->
-    <div th:if="not ${courses.isEmpty()}">
+<!--    <div th:if="not ${courses.isEmpty()}">
         <h1>Courses</h1>
         <table class="table table-striped">
             <tr>
@@ -42,17 +40,17 @@
                 <th>Alias</th>
             </tr>
 
-            <!--/*@thymesVar id="course" type="profchoper.course.Course"*/-->
+            &lt;!&ndash;/*@thymesVar id="course" type="profchoper.course.Course"*/&ndash;&gt;
             <tr th:each="course : ${courses}">
                 <td th:text="${course.getId()}"></td>
                 <td th:text="${course.getName()}"></td>
                 <td th:text="${course.getAlias()}"></td>
             </tr>
         </table>
-    </div>
+    </div>-->
 
     <!--/*@thymesVar id="students" type="java.util.List"*/-->
-<!--    <div th:if="not ${students.isEmpty()}">
+    <div th:if="not ${students.isEmpty()}">
         <h1>Students</h1>
         <table class="table table-striped">
             <tr>
@@ -61,7 +59,7 @@
                 <th>Email</th>
             </tr>
 
-            &lt;!&ndash;/*@thymesVar id="student" type="profchoper.student.Student"*/&ndash;&gt;
+            <!--/*@thymesVar id="student" type="profchoper.student.Student"*/-->
             <tr th:each="student : ${students}">
                 <td th:text="${student.getId()}"></td>
                 <td th:text="${student.getName()}"></td>
@@ -69,7 +67,7 @@
             </tr>
 
         </table>
-    </div>-->
+    </div>
 </div>
 
 </body>

@@ -6,21 +6,30 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import profchoper.course.Course;
 import profchoper.course.CourseRepository;
+import profchoper.student.Student;
+import profchoper.student.StudentRepository;
 
 import java.util.*;
 
 @Controller
 public class DBTest {
     @Autowired
+    @Qualifier("studentRepo")
+    private StudentRepository studentRepo;
+
+    /*@Autowired
     @Qualifier("courseRepo")
-    private CourseRepository courseRepo;
+    private CourseRepository courseRepo;*/
 
     @RequestMapping("/")
     String index(Map<String, Object> model) {
         try {
-            List<Course> courseList = courseRepo.findAll();
+            // List<Course> courseList = courseRepo.findAll();
+            List<Student> studentList = studentRepo.findAll();
 
-            model.put("courses", courseList);
+
+            // model.put("courses", courseList);
+            model.put("students", studentList);
             return "index";
         } catch (Exception ex) {
             model.put("message", ex.getMessage());
