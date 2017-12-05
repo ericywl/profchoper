@@ -1,6 +1,6 @@
 package profchoper.booking;
 
-import profchoper.user.Professor;
+import profchoper.professor.Professor;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;

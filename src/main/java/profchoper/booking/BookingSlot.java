@@ -1,7 +1,7 @@
 package profchoper.booking;
 
 import profchoper._misc.Constant;
-import profchoper.user.Professor;
+import profchoper.professor.Professor;
 import profchoper.student.Student;
 
 import java.sql.Timestamp;

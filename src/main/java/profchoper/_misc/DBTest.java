@@ -1,14 +1,12 @@
 package profchoper._misc;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import profchoper.course.Course;
-import profchoper.course.CourseRepository;
+import profchoper.professor.Professor;
+import profchoper.professor.ProfessorDAO;
 import profchoper.student.Student;
-import profchoper.student.StudentRepository;
-import profchoper.student.StudentService;
+import profchoper.student.StudentDAO;
 
 import java.util.*;
 
@@ -18,17 +16,20 @@ public class DBTest {
     // private CourseRepository courseRepo;
 
     @Autowired
-    private StudentRepository studentRepo;
+    private ProfessorDAO professorDAO;
 
     @RequestMapping("/")
     String index(Map<String, Object> model) {
         try {
             // List<Course> courseList = new ArrayList<>();
-            // courseList.add(courseRepo.findById("50.001"));
-            List<Student> studentList = studentRepo.findAll();
+            // courseList.add(courseDAO.findById("50.001"));
+            // List<Student> studentList = new ArrayList<>();
+            // studentList.add(studentDAO.findById(1001111));
+            List<Professor> profList = professorDAO.findByCourseId("50.002");
 
             // model.put("courses", courseList);
-            model.put("students", studentList);
+            // model.put("students", studentList);
+            model.put("professors", profList);
             return "index";
         } catch (Exception ex) {
             model.put("message", ex.getMessage());

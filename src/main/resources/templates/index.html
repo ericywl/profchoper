@@ -50,7 +50,7 @@
     </div>-->
 
     <!--/*@thymesVar id="students" type="java.util.List"*/-->
-    <div th:if="not ${students.isEmpty()}">
+<!--    <div th:if="not ${students.isEmpty()}">
         <h1>Students</h1>
         <table class="table table-striped">
             <tr>
@@ -63,7 +63,7 @@
                 <th>Course 4</th>
             </tr>
 
-            <!--/*@thymesVar id="student" type="profchoper.student.Student"*/-->
+            &lt;!&ndash;/*@thymesVar id="student" type="profchoper.student.Student"*/&ndash;&gt;
             <tr th:each="student : ${students}">
                 <td th:text="${student.getId()}"></td>
                 <td th:text="${student.getName()}"></td>
@@ -72,6 +72,28 @@
                 <td th:text="${student.getEnrolledCourses()[1].toString()}"></td>
                 <td th:text="${student.getEnrolledCourses()[2].toString()}"></td>
                 <td th:text="${student.getEnrolledCourses()[3].toString()}"></td>
+            </tr>
+
+        </table>
+    </div>-->
+
+    <!--/*@thymesVar id="professors" type="java.util.List"*/-->
+    <div th:if="not ${professors.isEmpty()}">
+        <h1>Students</h1>
+        <table class="table table-striped">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Office Location</th>
+                <th>Course</th>
+            </tr>
+
+            <!--/*@thymesVar id="prof" type="profchoper.professor.Professor"*/-->
+            <tr th:each="prof : ${professors}">
+                <td th:text="${prof.getName()}"></td>
+                <td th:text="${prof.getEmail()}"></td>
+                <td th:text="${prof.getOfficeLocation()}"></td>
+                <td th:text="${prof.getCourse()}"></td>
             </tr>
 
         </table>

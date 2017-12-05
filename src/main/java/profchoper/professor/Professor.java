@@ -1,14 +1,18 @@
-package profchoper.user;
+package profchoper.professor;
 
 
 import profchoper.course.Course;
 
 public class Professor {
-    private final String name;
-    private final String email;
-    private final String alias;
+    private String name;
+    private String email;
+    private String alias;
     private String officeLocation;
     private Course course = null;
+
+    public Professor() {
+        // empty constructor
+    }
 
     public Professor(String name, String alias, String email, String officeLocation) {
         this.name = name;
@@ -52,6 +56,18 @@ public class Professor {
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setAlias(String alias) {
+        this.alias = alias;
     }
 
     public String getOfficeLocation() {

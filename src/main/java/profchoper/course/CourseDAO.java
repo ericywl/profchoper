@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 @SuppressWarnings("unchecked")
-public class CourseRepository {
+public class CourseDAO {
     @Autowired
     @Qualifier("profChoperDataSource")
     private DataSource dataSource;

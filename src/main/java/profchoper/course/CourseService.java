@@ -8,7 +8,7 @@ import java.util.List;
 @Service
 public class CourseService {
     @Autowired
-    CourseRepository courseRepo;
+    CourseDAO courseRepo;
 
     public List<Course> getAllCourses() {
         return courseRepo.findAll();
