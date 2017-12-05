@@ -50,8 +50,20 @@ public class DBTest {
                 professors.add(prof_temp);
             }
 
+            String courseSelect = "SELECT * FROM courses ORDER BY cast(id as REAL)";
+            ResultSet courseRs = stmt.executeQuery(courseSelect);
+            ArrayList<ArrayList<String>> courses = new ArrayList<>();
+            while (courseRs.next()) {
+                ArrayList<String> course_temp = new ArrayList<>();
+                course_temp.add(courseRs.getString("id"));
+                course_temp.add(courseRs.getString("name"));
+
+                courses.add(course_temp);
+            }
+
             model.put("students", students);
             model.put("professors", professors);
+            model.put("courses", courses);
             return "index";
         } catch (SQLException ex) {
             model.put("message", ex.getMessage());

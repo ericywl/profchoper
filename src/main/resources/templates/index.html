@@ -46,6 +46,23 @@
             </tr>
         </table>
     </div>
+
+    <!--/*@thymesVar id="courses" type="java.util.ArrayList"*/-->
+    <div th:if="not ${courses.isEmpty()}">
+        <h1>Professors</h1>
+        <table class="table table-striped">
+            <tr>
+                <th>Name</th>
+                <th>Office</th>
+                <th>Course</th>
+            </tr>
+
+            <tr th:each="course : ${courses}">
+                <td th:text="${course[0]}"></td>
+                <td th:text="${course[1]}"></td>
+            </tr>
+        </table>
+    </div>
 </div>
 
 </body>
