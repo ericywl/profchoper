@@ -30,7 +30,6 @@ public class DBTest {
                 temp.add(rs.getString("course1"));
                 temp.add(rs.getString("course2"));
                 temp.add(rs.getString("course3"));
-                temp.add(rs.getString("course4"));
 
                 students.put(rs.getInt("id")
                         + ": " + rs.getString("name"), temp);
