@@ -1,6 +1,7 @@
 package profchoper._misc;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import profchoper.student.Student;
@@ -11,6 +12,7 @@ import java.util.*;
 @Controller
 public class DBTest {
     @Autowired
+    @Qualifier("studentService")
     private StudentService studentService;
 
     @RequestMapping("/")

@@ -21,6 +21,7 @@ public class StudentRepository {
     private DataSource dataSource;
 
     @Autowired
+    @Qualifier("courseRepo")
     private CourseRepository courseRepo;
 
     public List<Student> findAll() throws SQLException {
