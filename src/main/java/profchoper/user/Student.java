@@ -3,11 +3,13 @@ package profchoper.user;
 
 import profchoper.course.Course;
 
+import java.util.List;
+
 public class Student {
     private final int id;
     private final String name;
     private final String email;
-    private Course[] enrolledCourses;
+    private List<Course> enrolledCourses;
 
     public Student(int id, String name, String email) {
         this.id = id;
@@ -15,7 +17,7 @@ public class Student {
         this.email = email;
     }
 
-    public Student(int id, String name, String email, Course[] enrolledCourses) {
+    public Student(int id, String name, String email, List<Course> enrolledCourses) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -30,12 +32,16 @@ public class Student {
         return name;
     }
 
-    public void setEnrolledCourses(Course[] enrolledCourses) {
-        this.enrolledCourses = enrolledCourses;
+    public String getEmail() {
+        return email;
     }
 
-    public Course[] getEnrolledCourses() {
+    public List<Course> getEnrolledCourses() {
         return enrolledCourses;
+    }
+
+    public void setEnrolledCourses(List<Course> enrolledCourses) {
+        this.enrolledCourses = enrolledCourses;
     }
 
     @Override

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import profchoper.booking.BookingSlot;
 import profchoper.booking.BookingSlotException;
 import profchoper.course.Course;
+import profchoper.repository.CourseRepository;
 import profchoper.user.Professor;
 
 import javax.sql.DataSource;
@@ -27,10 +28,9 @@ public class DBTest {
     @RequestMapping("/")
     String index(Map<String, Object> model) {
         try {
-            connection = dataSource.getConnection();
+            List<Course> courseList = new CourseRepository().findAll();
 
-            ResultSet courseBookingRs = filterBookingSlots("prof_name", OKA);
-            model.put("bookings", modelGen(courseBookingRs));
+            model.put("courses", courseList);
             return "index";
         } catch (Exception ex) {
             model.put("message", ex.getMessage());
