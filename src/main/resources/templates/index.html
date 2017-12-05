@@ -5,68 +5,6 @@
 
 
 <div class="container">
-    <!--/*@thymesVar id="students" type="java.util.ArrayList"*/-->
-    <div th:if="not ${students.isEmpty()}">
-        <h1>Students</h1>
-        <table class="table table-striped">
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Course 1</th>
-                <th>Course 2</th>
-                <th>Course 3</th>
-                <th>Course 4</th>
-            </tr>
-
-            <tr th:each="student : ${students}">
-                <td th:text="${student[0]}"></td>
-                <td th:text="${student[1]}"></td>
-                <td th:text="${student[2]}"></td>
-                <td th:text="${student[3]}"></td>
-                <td th:text="${student[4]}"></td>
-                <td th:text="${student[5]}"></td>
-                <td th:text="${student[6]}"></td>
-            </tr>
-        </table>
-    </div>
-
-    <!--/*@thymesVar id="professors" type="java.util.ArrayList"*/-->
-    <div th:if="not ${professors.isEmpty()}">
-        <h1>Professors</h1>
-        <table class="table table-striped">
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Office</th>
-                <th>Course</th>
-            </tr>
-
-            <tr th:each="prof : ${professors}">
-                <td th:text="${prof[0]}"></td>
-                <td th:text="${prof[1]}"></td>
-                <td th:text="${prof[2]}"></td>
-                <td th:text="${prof[3]}"></td>
-            </tr>
-        </table>
-    </div>
-
-    <!--/*@thymesVar id="courses" type="java.util.ArrayList"*/-->
-    <div th:if="not ${courses.isEmpty()}">
-        <h1>Courses</h1>
-        <table class="table table-striped">
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-            </tr>
-
-            <tr th:each="course : ${courses}">
-                <td th:text="${course[0]}"></td>
-                <td th:text="${course[1]}"></td>
-            </tr>
-        </table>
-    </div>
-
     <!--/*@thymesVar id="bookings" type="java.util.ArrayList"*/-->
     <div th:if="not ${bookings.isEmpty()}">
         <h1>Bookings</h1>
