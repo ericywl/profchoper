@@ -1,7 +1,4 @@
-DROP TABLE IF EXISTS public.students;
-DROP TABLE IF EXISTS public.professors;
 DROP TABLE IF EXISTS public.bookings;
-DROP TABLE IF EXISTS public.courses;
 
 CREATE TABLE IF NOT EXISTS public.courses
 (

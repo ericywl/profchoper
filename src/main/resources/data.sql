@@ -38,3 +38,4 @@ INSERT INTO bookings (professor_name, start_time) VALUES
   ('Oka Kurniawan', make_timestamp(2017, 12, 5, 8, 30, 0)),
   ('Oka Kurniawan', make_timestamp(2017, 12, 5, 9, 0, 0));
 
+
