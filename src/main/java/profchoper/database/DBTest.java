@@ -62,7 +62,8 @@ public class DBTest {
                 courses.add(course_temp);
             }
 
-            String bookingSelect = "SELECT * FROM bookings ORDER BY id";
+            String bookingSelect = "SELECT * FROM bookings " +
+                    "WHERE professor_alias=(SELECT alias FROM professors WHERE course_id='50.001')";
             ResultSet bookingRs = stmt.executeQuery(bookingSelect);
             ArrayList<ArrayList<String>> bookings = new ArrayList<>();
             while (bookingRs.next()) {

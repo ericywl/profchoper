@@ -34,8 +34,11 @@ ON CONFLICT (name)
     course_id = EXCLUDED.course_id;
 
 INSERT INTO bookings (professor_name, start_time) VALUES
-  ('Oka Kurniawan', make_timestamp(2017, 12, 5, 8, 0, 0)),
-  ('Oka Kurniawan', make_timestamp(2017, 12, 5, 8, 30, 0)),
-  ('Oka Kurniawan', make_timestamp(2017, 12, 5, 9, 0, 0));
+  ('OKA', make_timestamp(2017, 12, 5, 8, 0, 0)),
+  ('OKA', make_timestamp(2017, 12, 5, 8, 30, 0)),
+  ('OKA', make_timestamp(2017, 12, 5, 9, 0, 0)),
+  ('DATTA', make_timestamp(2017, 12, 6, 13, 0, 0)),
+  ('NORMAN', make_timestamp(2017, 12, 6, 16, 0, 0)),
+  ('JIT', make_timestamp(2017, 12, 5, 15, 30, 0));
 
 

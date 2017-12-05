@@ -28,7 +28,8 @@ CREATE TABLE IF NOT EXISTS public.bookings
 (
   id SERIAL PRIMARY KEY,
   start_time TIMESTAMP NOT NULL,
-  professor_name TEXT NOT NULL REFERENCES professors(name),
+  professor_alias TEXT NOT NULL REFERENCES professors(alias),
   booked BOOLEAN DEFAULT FALSE,
-  student_id INTEGER DEFAULT NULL REFERENCES students(id)
+  student_id INTEGER DEFAULT NULL REFERENCES students(id),
+  UNIQUE (professor_alias, start_time)
 );
