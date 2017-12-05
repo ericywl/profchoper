@@ -6,12 +6,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import profchoper.student.Student;
 import profchoper.student.StudentService;
 
-import javax.annotation.Resource;
 import java.util.*;
 
 @Controller
 public class DBTest {
-    @Resource(name = "studentService")
+    @Autowired
     private StudentService studentService;
 
     @RequestMapping("/")
