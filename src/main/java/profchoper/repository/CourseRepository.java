@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository(value = "courseRepository")
+@Repository("courseRepo")
 public class CourseRepository {
     @Autowired
     @Qualifier("profChoperDataSource")

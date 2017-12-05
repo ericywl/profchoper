@@ -1,45 +1,25 @@
 package profchoper._misc;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import profchoper.booking.BookingSlot;
-import profchoper.booking.BookingSlotException;
-import profchoper.course.Course;
-import profchoper.repository.CourseRepository;
-import profchoper.repository.StudentRepository;
-import profchoper.user.Professor;
-import profchoper.user.Student;
+import profchoper.student.Student;
+import profchoper.student.StudentService;
 
-import javax.sql.DataSource;
-import java.sql.*;
-import java.text.SimpleDateFormat;
+import javax.annotation.Resource;
 import java.util.*;
-
-import static profchoper._misc.Constant.INFOSYS;
-import static profchoper._misc.Constant.OKA;
 
 @Controller
 public class DBTest {
-    @Autowired
-    @Qualifier("courseRepository")
-    private CourseRepository courseRepository;
-
-    @Autowired
-    @Qualifier("studentRepository")
-    private StudentRepository studentRepository;
+    @Resource(name = "studentService")
+    private StudentService studentService;
 
     @RequestMapping("/")
     String index(Map<String, Object> model) {
         try {
-            List<Course> courseList = new ArrayList<>();
-            courseList.add(courseRepository.findById("50.001"));
+            List<Student> studentList = studentService.getAllStudents();
 
-            List<Student> studentList = studentRepository.findAll();
-
-            model.put("courses", courseList);
-            model.put("students", studentList);
+            model.put("students",  studentList);
             return "index";
         } catch (Exception ex) {
             model.put("message", ex.getMessage());

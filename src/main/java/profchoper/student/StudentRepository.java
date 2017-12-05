@@ -1,10 +1,10 @@
-package profchoper.repository;
+package profchoper.student;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import profchoper.course.Course;
-import profchoper.user.Student;
+import profchoper.repository.CourseRepository;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -14,13 +14,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository(value = "studentRepository")
+@Repository("studentRepo")
 public class StudentRepository {
     @Autowired
     @Qualifier("profChoperDataSource")
     private DataSource dataSource;
 
-    private CourseRepository courseRepository = new CourseRepository();
+    @Autowired
+    private CourseRepository courseRepo;
 
     public List<Student> findAll() throws SQLException {
         Connection connection = dataSource.getConnection();
@@ -38,7 +39,7 @@ public class StudentRepository {
 
             for (int i = 1; i < 5; i++) {
                 String courseId = rs.getString("course" + i + "_id");
-                courseList.add(courseRepository.findById(courseId));
+                courseList.add(courseRepo.findById(courseId));
             }
 
             Student student = new Student(studentId, studentName, studentEmail, courseList);
@@ -81,7 +82,7 @@ public class StudentRepository {
 
             for (int i = 1; i < 5; i++) {
                 String courseId = rs.getString("course" + i + "_id");
-                courseList.add(courseRepository.findById(courseId));
+                courseList.add(courseRepo.findById(courseId));
             }
 
             student = new Student(studentId, studentName, studentEmail, courseList);

@@ -2,7 +2,7 @@ package profchoper.booking;
 
 import profchoper._misc.Constant;
 import profchoper.user.Professor;
-import profchoper.user.Student;
+import profchoper.student.Student;
 
 import java.sql.Timestamp;
 import java.time.DayOfWeek;

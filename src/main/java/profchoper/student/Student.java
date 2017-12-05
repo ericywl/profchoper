@@ -1,4 +1,4 @@
-package profchoper.user;
+package profchoper.student;
 
 
 import profchoper.course.Course;
