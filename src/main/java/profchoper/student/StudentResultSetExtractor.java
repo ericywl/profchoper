@@ -13,9 +13,9 @@ public class StudentResultSetExtractor implements ResultSetExtractor {
     @Override
     public Object extractData(ResultSet resultSet) throws SQLException, DataAccessException {
         Student student = new Student();
-        student.setId(resultSet.getInt("id"));
-        student.setName(resultSet.getString("name"));
-        student.setEmail(resultSet.getString("email"));
+        student.setId(resultSet.getInt("s_id"));
+        student.setName(resultSet.getString("s_name"));
+        student.setEmail(resultSet.getString("s_email"));
 
         List<Course> courseList = new ArrayList<>();
         for (int i = 1; i < 5; i++) {
