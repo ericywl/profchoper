@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import profchoper.course.Course;
-import profchoper.repository.CourseRepository;
+import profchoper.course.CourseRepository;
 
 import javax.sql.DataSource;
 import java.sql.Connection;

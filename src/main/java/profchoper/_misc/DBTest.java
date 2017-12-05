@@ -4,23 +4,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import profchoper.student.Student;
-import profchoper.student.StudentService;
+import profchoper.course.Course;
+import profchoper.course.CourseRepository;
 
 import java.util.*;
 
 @Controller
 public class DBTest {
     @Autowired
-    @Qualifier("studentService")
-    private StudentService studentService;
+    @Qualifier("courseRepo")
+    private CourseRepository courseRepo;
 
     @RequestMapping("/")
     String index(Map<String, Object> model) {
         try {
-            List<Student> studentList = studentService.getAllStudents();
+            List<Course> courseList = courseRepo.findAll();
 
-            model.put("students",  studentList);
+            model.put("courses", courseList);
             return "index";
         } catch (Exception ex) {
             model.put("message", ex.getMessage());
