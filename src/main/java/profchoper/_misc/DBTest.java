@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import profchoper.professor.Professor;
 import profchoper.professor.ProfessorDAO;
+import profchoper.professor.ProfessorService;
 import profchoper.student.Student;
 import profchoper.student.StudentDAO;
 
@@ -16,7 +17,7 @@ public class DBTest {
     // private CourseRepository courseRepo;
 
     @Autowired
-    private ProfessorDAO professorDAO;
+    private ProfessorService professorService;
 
     @RequestMapping("/")
     String index(Map<String, Object> model) {
@@ -25,7 +26,7 @@ public class DBTest {
             // courseList.add(courseDAO.findById("50.001"));
             // List<Student> studentList = new ArrayList<>();
             // studentList.add(studentDAO.findById(1001111));
-            List<Professor> profList = professorDAO.findByCourseId("50.002");
+            List<Professor> profList = professorService.getProfessorsByCourseId("50.002");
 
             // model.put("courses", courseList);
             // model.put("students", studentList);
