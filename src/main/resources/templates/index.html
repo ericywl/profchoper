@@ -23,7 +23,8 @@
                 <td th:text="${booking.getStartTime().toString()}"></td>
                 <td th:text="${booking.getProfessor().toString()}"></td>
                 <td th:text="${booking.getBookStatus()}"></td>
-                <td th:text="${booking.getStudent().toString()}"></td>
+                <td th:text="${booking.getStudent().toString()}"
+                    th:if="${booking.getStudent() != null}"></td>
             </tr>
         </table>
     </div>
