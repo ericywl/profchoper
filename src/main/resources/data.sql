@@ -23,7 +23,7 @@ ON CONFLICT (id)
     course4_id = EXCLUDED.course4_id;
 
 INSERT INTO professors (name, alias, email, office, course_id) VALUES
-  ('Oka Kurniawan', 'OKA', 'oka_kurniawan@sutd.edu.sg', NULL , '50.002'),
+  ('Oka Kurniawan', 'OKA', 'oka_kurniawan@sutd.edu.sg', '1.502-27', '50.002'),
   ('Zhang Yue', 'ZY', 'yue_zhang@sutd.edu.sg', '1.702-34', '50.002'),
   ('Yuen Chau', 'YC', 'yuenchau@sutd.edu.sg', '3.301-07', '50.002'),
   ('Zhou Jianying', 'JY', 'jianying_zhou@sutd.edu.sg', '1.302-03', '50.002'),
