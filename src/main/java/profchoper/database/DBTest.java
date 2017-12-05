@@ -79,7 +79,7 @@ public class DBTest {
                 booking_temp.add(String.valueOf(bookingRs.getInt("id")));
                 booking_temp.add(date.format(timestamp));
                 booking_temp.add(time.format(timestamp));
-                booking_temp.add(profNameRs.getString("name"));
+                booking_temp.add(String.valueOf(bookingRs.getString("professor_alias")));
                 booking_temp.add(String.valueOf(bookingRs.getBoolean("booked")));
                 booking_temp.add(String.valueOf(bookingRs.getInt("student_id")));
 
