@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS public.students
 CREATE TABLE IF NOT EXISTS public.professors
 (
   name TEXT PRIMARY KEY,
-  office TEXT NOT NULL,
+  office TEXT UNIQUE,
   course_id TEXT
 );
 
