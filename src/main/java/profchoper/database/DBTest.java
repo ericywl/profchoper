@@ -37,7 +37,7 @@ public class DBTest {
                 students.put(studentRs.getInt("id"), temp);
             }
 
-            String profSelect = "SELECT * FROM professors ORDER BY cast(course_id as INTEGER)";
+            String profSelect = "SELECT * FROM professors ORDER BY cast(course_id as REAL)";
             ResultSet profRs = stmt.executeQuery(profSelect);
             Map<String, ArrayList<String>> professors = new HashMap<>();
             while (profRs.next()) {
