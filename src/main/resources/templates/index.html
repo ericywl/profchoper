@@ -6,16 +6,11 @@
 
 <div class="container">
     <h1>Students</h1>
-    <!--/*@thymesVar id="students" type="java.util.ArrayList"*/-->
-    <ul th:each="student : ${students}">
+    <!--/*@thymesVar id="students" type="java.util.Map"*/-->
+    <ul th:each="student : ${students.keySet()}">
         <li th:text="${student}">
-            <!--/*@thymesVar id="courses" type="java.util.ArrayList"*/-->
-            <ul th:each="courseList: ${courses}">
-                <li th:each="course : ${courseList}">
-                    <ul>
-                        <li th:text="${course}"></li>
-                    </ul>
-                </li>
+            <ul th:each="course : ${students.get(student)}">
+                <li th:text="${course}"></li>
             </ul>
         </li>
     </ul>
