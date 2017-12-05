@@ -7,10 +7,10 @@ CREATE TABLE IF NOT EXISTS public.students
 (
   id INTEGER PRIMARY KEY,
   name TEXT NOT NULL,
-  course1_id TEXT,
-  course2_id TEXT,
-  course3_id TEXT,
-  course4_id TEXT
+  course1_id TEXT REFERENCES courses(id),
+  course2_id TEXT REFERENCES courses(id),
+  course3_id TEXT REFERENCES courses(id),
+  course4_id TEXT REFERENCES courses(id)
 );
 
 CREATE TABLE IF NOT EXISTS public.professors
@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS public.professors
   name TEXT PRIMARY KEY,
   alias TEXT UNIQUE,
   office TEXT UNIQUE,
-  course_id TEXT
+  course_id TEXT REFERENCES courses(id)
 );
 
 CREATE TABLE IF NOT EXISTS public.courses
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS public.bookings
 (
   id SERIAL PRIMARY KEY,
   start_time TIMESTAMP NOT NULL,
-  professor_name TEXT NOT NULL,
+  professor_name TEXT NOT NULL REFERENCES professors(name),
   booked BOOLEAN DEFAULT FALSE,
-  student_id INTEGER DEFAULT NULL
+  student_id INTEGER DEFAULT NULL REFERENCES students(id)
 );

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.sql.DataSource;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -66,8 +67,13 @@ public class DBTest {
             ArrayList<ArrayList<String>> bookings = new ArrayList<>();
             while (bookingRs.next()) {
                 ArrayList<String> booking_temp = new ArrayList<>();
+                Timestamp timestamp = bookingRs.getTimestamp("start_time");
+                SimpleDateFormat date = new SimpleDateFormat("dd.MM.yyyy");
+                SimpleDateFormat time = new SimpleDateFormat("HH:mm");
+
                 booking_temp.add(String.valueOf(bookingRs.getInt("id")));
-                booking_temp.add(bookingRs.getTimestamp("start_time").toString());
+                booking_temp.add(date.format(timestamp));
+                booking_temp.add(time.format(timestamp));
                 booking_temp.add(bookingRs.getString("professor_name"));
                 booking_temp.add(String.valueOf(bookingRs.getBoolean("booked")));
                 booking_temp.add(String.valueOf(bookingRs.getInt("student_id")));

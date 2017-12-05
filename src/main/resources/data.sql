@@ -13,12 +13,12 @@ ON CONFLICT (id)
     course4_id = EXCLUDED.course4_id;
 
 INSERT INTO professors (name, alias, office, course_id) VALUES
-  ('Oka Kurniawan', 'oka', '1.307', '50.002'),
-  ('Zhang Yue', 'zy', '1.703', '50.002'),
-  ('Yuen Chau', 'yc', '3.513', '50.002'),
-  ('Norman Lee', 'norman', '1.407', '50.001'),
-  ('Jit Biswas', 'jit', '1.503', '50.001'),
-  ('Subhajit Datta', 'datta', '1.304', '50.004')
+  ('Oka Kurniawan', 'OKA', '1.307', '50.002'),
+  ('Zhang Yue', 'ZY', '1.703', '50.002'),
+  ('Yuen Chau', 'YC', '3.513', '50.002'),
+  ('Norman Lee', 'NORMAN', '1.407', '50.001'),
+  ('Jit Biswas', 'JIT', '1.503', '50.001'),
+  ('Subhajit Datta', 'DATTA', '1.304', '50.004')
 ON CONFLICT (name)
   DO
   UPDATE SET
