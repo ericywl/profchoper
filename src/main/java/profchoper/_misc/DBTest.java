@@ -26,7 +26,8 @@ public class DBTest {
     @RequestMapping("/")
     String index(Map<String, Object> model) {
         try {
-            List<Course> courseList = courseRepository.findAll();
+            List<Course> courseList = new ArrayList<>();
+            courseList.add(courseRepository.findBy("id", "50.001"));
 
             model.put("courses", courseList);
             return "index";

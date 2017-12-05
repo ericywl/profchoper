@@ -6,6 +6,7 @@
 
 <div class="container">
     <!--/*@thymesVar id="bookings" type="java.util.List"*/-->
+    <!--
     <div>
         <h1>Bookings</h1>
         <table class="table table-striped">
@@ -17,7 +18,7 @@
                 <th>Student</th>
             </tr>
 
-            <!--/*@thymesVar id="booking" type="profchoper.booking.BookingSlot"*/-->
+            &lt;!&ndash;/*@thymesVar id="booking" type="profchoper.booking.BookingSlot"*/&ndash;&gt;
             <tr th:each="booking : ${bookings}">
                 <td th:text="${booking.getDate().toString()}"></td>
                 <td th:text="${booking.getStartTime().toString()}"></td>
@@ -28,6 +29,7 @@
             </tr>
         </table>
     </div>
+    -->
 
 
     <!--/*@thymesVar id="courses" type="java.util.List"*/-->
