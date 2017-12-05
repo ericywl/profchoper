@@ -29,9 +29,9 @@ public class DBTest {
             Professor oka = new Professor("Oka Kurniawan", "a", "a");
 
             ResultSet courseBookingRs = stmt.executeQuery(selectBookingSlotsByCourse(infoSys));
-            ResultSet profBookingRs = stmt.executeQuery(selectBookingSlotsByProf(oka));
-
             model.put("courseBookings", modelGen(courseBookingRs));
+
+            ResultSet profBookingRs = stmt.executeQuery(selectBookingSlotsByProf(oka));
             model.put("profBookings", modelGen(profBookingRs));
             return "index";
         } catch (SQLException ex) {
