@@ -20,10 +20,13 @@ import static profchoper._misc.Constant.OKA;
 
 @Controller
 public class DBTest {
+    @Autowired
+    CourseRepository courseRepository;
+
     @RequestMapping("/")
     String index(Map<String, Object> model) {
         try {
-            List<Course> courseList = new CourseRepository().findAll();
+            List<Course> courseList = courseRepository.findAll();
 
             model.put("courses", courseList);
             return "index";
