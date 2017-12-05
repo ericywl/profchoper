@@ -29,7 +29,7 @@ public class DBTest {
         try {
             connection = dataSource.getConnection();
 
-            ResultSet courseBookingRs = filterBookingSlots("course_id", INFOSYS);
+            ResultSet courseBookingRs = filterBookingSlots("prof_name", OKA);
             model.put("bookings", modelGen(courseBookingRs));
             return "index";
         } catch (Exception ex) {
@@ -68,7 +68,7 @@ public class DBTest {
                 "book_status, student_id FROM bookings " +
                 "INNER JOIN professors ON bookings.professor_alias = professors.alias " +
                 "WHERE " + selection + " = ?" +
-                "ORDER BY prof_name, start_time";
+                "ORDER BY start_time, prof_name";
 
         PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
         preparedStatement.setString(1, arg);
