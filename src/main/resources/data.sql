@@ -1,3 +1,10 @@
+INSERT INTO courses (id, name) VALUES
+  ('50.001', 'Introduction to Information System & Programming'),
+  ('50.002', 'Computation Structures'),
+  ('50.004', 'Introduction to Algorithms')
+ON CONFLICT (id)
+  DO NOTHING;
+
 INSERT INTO students (id, name, course1_id, course2_id, course3_id, course4_id) VALUES
   (1001111, 'Eric', '50.001', '50.002', '50.004', '02.125'),
   (1002222, 'Thanh', '50.001', '50.002', '50.004', '02.125'),
@@ -25,13 +32,6 @@ ON CONFLICT (name)
     alias     = EXCLUDED.alias,
     office    = EXCLUDED.office,
     course_id = EXCLUDED.course_id;
-
-INSERT INTO courses (id, name) VALUES
-  ('50.001', 'Introduction to Information System & Programming'),
-  ('50.002', 'Computation Structures'),
-  ('50.004', 'Introduction to Algorithms')
-ON CONFLICT (id)
-  DO NOTHING;
 
 INSERT INTO bookings (professor_name, start_time) VALUES
   ('Oka Kurniawan', make_timestamp(2017, 12, 5, 8, 0, 0)),
