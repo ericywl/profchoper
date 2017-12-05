@@ -62,8 +62,8 @@ public class DBTest {
                 courses.add(course_temp);
             }
 
-            String bookingSelect = "SELECT * FROM bookings WHERE bookings.professor_alias IN (" +
-                    "SELECT professors.alias FROM professors WHERE professors.course_id='50.001')";
+            String bookingSelect = "SELECT * FROM bookings WHERE professor_alias IN (" +
+                    "SELECT alias FROM professors WHERE course_id='50.001')";
             ResultSet bookingRs = stmt.executeQuery(bookingSelect);
             ArrayList<ArrayList<String>> bookings = new ArrayList<>();
             while (bookingRs.next()) {
@@ -72,10 +72,14 @@ public class DBTest {
                 SimpleDateFormat date = new SimpleDateFormat("dd.MM.yyyy");
                 SimpleDateFormat time = new SimpleDateFormat("HH:mm");
 
+                String profAlias = bookingRs.getString("professor_alias");
+                String profNameSelect = "SELECT name FROM professors WHERE alias=" + profAlias;
+                ResultSet profNameRs = stmt.executeQuery(profNameSelect);
+
                 booking_temp.add(String.valueOf(bookingRs.getInt("id")));
                 booking_temp.add(date.format(timestamp));
                 booking_temp.add(time.format(timestamp));
-                booking_temp.add(bookingRs.getString("professor_name"));
+                booking_temp.add(profNameRs.getString("name"));
                 booking_temp.add(String.valueOf(bookingRs.getBoolean("booked")));
                 booking_temp.add(String.valueOf(bookingRs.getInt("student_id")));
 
