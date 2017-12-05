@@ -49,7 +49,6 @@ public class DBTest {
             SimpleDateFormat date = new SimpleDateFormat("dd.MM.yyyy");
             SimpleDateFormat time = new SimpleDateFormat("HH:mm");
 
-            booking_temp.add(String.valueOf(bookingRs.getInt("id")));
             booking_temp.add(date.format(timestamp));
             booking_temp.add(time.format(timestamp));
             booking_temp.add(String.valueOf(bookingRs.getString("professor_name")));
@@ -63,20 +62,20 @@ public class DBTest {
     }
 
     private String selectBookingSlotsByCourse(Course course) {
-        return "SELECT id, start_time, " +
+        return "SELECT start_time, " +
                 "professors.name as professor_name, book_status, student_id FROM bookings " +
                 "INNER JOIN professors " +
                 "ON bookings.professor_alias = professors.alias " +
                 "WHERE course_id = '" + course.getId() + "'" +
-                "ORDER BY id";
+                "ORDER BY professor_name, timestamp";
     }
 
     private String selectBookingSlotsByProf(Professor professor) {
-        return "SELECT id, start_time, " +
+        return "SELECT start_time, " +
                 "professors.name as professor_name, book_status, student_id FROM bookings " +
                 "INNER JOIN professors " +
                 "ON bookings.professor_alias = professors.alias " +
                 "WHERE name = '" + professor.getName() + "'" +
-                "ORDER BY id";
+                "ORDER BY professor_name, timestamp";
     }
 }
