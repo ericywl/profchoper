@@ -1,17 +1,19 @@
 INSERT INTO courses (id, name, alias) VALUES
   ('50.001', 'Introduction to Information System & Programming', 'InfoSys'),
   ('50.002', 'Computation Structures', 'CompStruct'),
-  ('50.004', 'Introduction to Algorithms', 'Algo')
+  ('50.004', 'Introduction to Algorithms', 'Algo'),
+  ('02.125', 'Normalcy and Deviance: Philosophical Approaches to Sexuality', 'NormalcyDeviance'),
+  ('02.113', 'The Laboratory of the Mind', 'LabOfMind')
 ON CONFLICT (id)
   DO NOTHING;
 
 INSERT INTO students (id, name, email, course1_id, course2_id, course3_id, course4_id) VALUES
-  (1001111, 'Eric', 'eric@mymail.sutd.edu.sg', '50.001', '50.002', '50.004', NULL),
-  (1002222, 'Thanh', 'thanh@mymail.sutd.edu.sg', '50.001', '50.002', '50.004', NULL),
-  (1003333, 'Kok', 'kok@mymail.sutd.edu.sg', '50.001', '50.002', '50.004', NULL),
-  (1002423, 'Wen Tat', 'wentat@mymail.sutd.edu.sg', '50.001', '50.002', '50.004', NULL),
-  (1002523, 'Roshni', 'roshni@mymail.sutd.edu.sg', '50.001', '50.002', '50.004', NULL),
-  (1002859, 'Ragini', 'ragini@mymail.sutd.edu.sg', '50.001', '50.002', '50.004', NULL)
+  (1001111, 'Eric', 'eric@mymail.sutd.edu.sg', '50.001', '50.002', '50.004', '02.125'),
+  (1002222, 'Thanh', 'thanh@mymail.sutd.edu.sg', '50.001', '50.002', '50.004', '02.125'),
+  (1003333, 'Kok', 'kok@mymail.sutd.edu.sg', '50.001', '50.002', '50.004', '02.113'),
+  (1002423, 'Wen Tat', 'wentat@mymail.sutd.edu.sg', '50.001', '50.002', '50.004', '02.125'),
+  (1002523, 'Roshni', 'roshni@mymail.sutd.edu.sg', '50.001', '50.002', '50.004', '02.113'),
+  (1002859, 'Ragini', 'ragini@mymail.sutd.edu.sg', '50.001', '50.002', '50.004', '02.113')
 ON CONFLICT (id)
   DO
   UPDATE SET

@@ -58,6 +58,9 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>Course 1</th>
+                <th>Course 2</th>
+                <th>Course 3</th>
+                <th>Course 4</th>
             </tr>
 
             <!--/*@thymesVar id="student" type="profchoper.student.Student"*/-->
@@ -66,6 +69,9 @@
                 <td th:text="${student.getName()}"></td>
                 <td th:text="${student.getEmail()}"></td>
                 <td th:text="${student.getEnrolledCourses()[0].toString()}"></td>
+                <td th:text="${student.getEnrolledCourses()[1].toString()}"></td>
+                <td th:text="${student.getEnrolledCourses()[2].toString()}"></td>
+                <td th:text="${student.getEnrolledCourses()[3].toString()}"></td>
             </tr>
 
         </table>
