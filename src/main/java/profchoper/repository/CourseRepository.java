@@ -23,7 +23,7 @@ public class CourseRepository {
         Connection connection = dataSource.getConnection();
         List<Course> courseList = new ArrayList<>();
 
-        String selectSQL = "SELECT * FROM courses";
+        String selectSQL = "SELECT * FROM courses ORDER BY id";
         PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
         ResultSet rs = preparedStatement.executeQuery();
 
@@ -39,11 +39,20 @@ public class CourseRepository {
         return courseList;
     }
 
-    public <T> Course findBy(String selection, T arg) throws SQLException {
+    public Course findById(String id) throws SQLException {
+        return findBy("id", "TEXT", id);
+    }
+
+    public Course findByName(String name) throws SQLException {
+        return findBy("name", "TEXT", name);
+    }
+
+    private <T> Course findBy(String selection, String type, T arg) throws SQLException {
         Connection connection = dataSource.getConnection();
         Course course = null;
 
-        String selectSQL = "SELECT * FROM courses WHERE " + selection + " = '" + arg + "'";
+        String selectSQL = "SELECT * FROM courses " +
+                "WHERE " + selection + " = " + arg + "::" + type;
         PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
         ResultSet rs = preparedStatement.executeQuery();
 

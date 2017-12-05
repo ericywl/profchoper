@@ -26,7 +26,7 @@ public class StudentRepository {
         Connection connection = dataSource.getConnection();
         List<Student> studentList = new ArrayList<>();
 
-        String selectSQL = "SELECT * FROM students";
+        String selectSQL = "SELECT * FROM students ORDER BY id";
         PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
         ResultSet rs = preparedStatement.executeQuery();
 
@@ -38,7 +38,7 @@ public class StudentRepository {
 
             for (int i = 1; i < 5; i++) {
                 String courseId = rs.getString("course" + i);
-                courseList.add(courseRepository.findBy("id", courseId));
+                courseList.add(courseRepository.findById(courseId));
             }
 
             Student student = new Student(studentId, studentName, studentEmail, courseList);
@@ -48,11 +48,16 @@ public class StudentRepository {
         return studentList;
     }
 
-    public <T> Student findBy(String selection, T arg) throws SQLException {
+    public Student findById(int id) throws SQLException {
+        return findBy("id", "INTEGER", id);
+    }
+
+    private <T> Student findBy(String selection, String type, T arg) throws SQLException {
         Connection connection = dataSource.getConnection();
         Student student = null;
 
-        String selectSQL = "SELECT * FROM students WHERE " + selection + " = '" + arg + "'";
+        String selectSQL = "SELECT * FROM students " +
+                "WHERE " + selection + " = " + arg + "::" + type;
         PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
         ResultSet rs = preparedStatement.executeQuery();
 
@@ -64,7 +69,7 @@ public class StudentRepository {
 
             for (int i = 1; i < 5; i++) {
                 String courseId = rs.getString("course" + i);
-                courseList.add(courseRepository.findBy("id", courseId));
+                courseList.add(courseRepository.findById(courseId));
             }
 
             student = new Student(studentId, studentName, studentEmail, courseList);
