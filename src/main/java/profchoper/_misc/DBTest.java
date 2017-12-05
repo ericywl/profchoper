@@ -67,7 +67,7 @@ public class DBTest {
                 "INNER JOIN professors " +
                 "ON bookings.professor_alias = professors.alias " +
                 "WHERE course_id = '" + course.getId() + "'" +
-                "ORDER BY professor_name, timestamp";
+                "ORDER BY professor_name, start_time";
     }
 
     private String selectBookingSlotsByProf(Professor professor) {
@@ -76,6 +76,6 @@ public class DBTest {
                 "INNER JOIN professors " +
                 "ON bookings.professor_alias = professors.alias " +
                 "WHERE name = '" + professor.getName() + "'" +
-                "ORDER BY professor_name, timestamp";
+                "ORDER BY professor_name, start_time";
     }
 }
