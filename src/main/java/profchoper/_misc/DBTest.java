@@ -23,9 +23,11 @@ import static profchoper._misc.Constant.OKA;
 @Controller
 public class DBTest {
     @Autowired
+    @Qualifier("courseRepository")
     private CourseRepository courseRepository;
 
     @Autowired
+    @Qualifier("studentRepository")
     private StudentRepository studentRepository;
 
     @RequestMapping("/")
