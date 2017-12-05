@@ -39,7 +39,7 @@ public class DBTest {
                 students.add(student_temp);
             }
 
-            String profSelect = "SELECT * FROM professors ORDER BY cast(course_id as REAL)";
+            String profSelect = "SELECT * FROM professors ORDER BY cast(course_id AS REAL)";
             ResultSet profRs = stmt.executeQuery(profSelect);
             ArrayList<ArrayList<String>> professors = new ArrayList<>();
             while (profRs.next()) {
@@ -51,7 +51,7 @@ public class DBTest {
                 professors.add(prof_temp);
             }
 
-            String courseSelect = "SELECT * FROM courses ORDER BY cast(id as REAL)";
+            String courseSelect = "SELECT * FROM courses ORDER BY cast(id AS REAL)";
             ResultSet courseRs = stmt.executeQuery(courseSelect);
             ArrayList<ArrayList<String>> courses = new ArrayList<>();
             while (courseRs.next()) {
@@ -62,8 +62,8 @@ public class DBTest {
                 courses.add(course_temp);
             }
 
-            String bookingSelect = "SELECT * FROM bookings " +
-                    "WHERE professor_alias=(SELECT alias FROM professors WHERE course_id='50.001')";
+            String bookingSelect = "SELECT * FROM bookings WHERE bookings.professor_alias IN (" +
+                    "SELECT professors.alias FROM professors WHERE professors.course_id='50.001')";
             ResultSet bookingRs = stmt.executeQuery(bookingSelect);
             ArrayList<ArrayList<String>> bookings = new ArrayList<>();
             while (bookingRs.next()) {
