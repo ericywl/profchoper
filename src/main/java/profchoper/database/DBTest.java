@@ -62,8 +62,9 @@ public class DBTest {
                 courses.add(course_temp);
             }
 
-            String bookingSelect = "SELECT * FROM bookings WHERE professor_alias IN (" +
-                    "SELECT alias FROM professors WHERE course_id='50.001')";
+            String bookingSelect = "SELECT * FROM bookings INNER JOIN professors " +
+                    "ON bookings.professor_alias = professors.alias " +
+                    "WHERE course_id = '50.001'";
             ResultSet bookingRs = stmt.executeQuery(bookingSelect);
             ArrayList<ArrayList<String>> bookings = new ArrayList<>();
             while (bookingRs.next()) {
