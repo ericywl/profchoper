@@ -41,6 +41,7 @@ public class DBTest {
             }
 
             model.put("students", studentOutput);
+            model.put("courses", courseOutput);
             return "index";
         } catch (SQLException ex) {
             model.put("message", ex.getMessage());
