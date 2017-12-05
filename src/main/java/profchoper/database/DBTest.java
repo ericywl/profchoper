@@ -62,7 +62,7 @@ public class DBTest {
             }
 
             String bookingSelect = "SELECT * FROM bookings ORDER BY id";
-            ResultSet bookingRs = stmt.executeQuery(courseSelect);
+            ResultSet bookingRs = stmt.executeQuery(bookingSelect);
             ArrayList<ArrayList<String>> bookings = new ArrayList<>();
             while (bookingRs.next()) {
                 ArrayList<String> booking_temp = new ArrayList<>();
