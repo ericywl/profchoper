@@ -1,4 +1,4 @@
-CREATE TABLE public.students
+CREATE TABLE IF NOT EXISTS public.students
 (
   id INTEGER PRIMARY KEY,
   name TEXT NOT NULL,
