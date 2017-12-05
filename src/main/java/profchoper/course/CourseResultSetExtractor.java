@@ -9,11 +9,10 @@ import java.sql.SQLException;
 public class CourseResultSetExtractor implements ResultSetExtractor{
     @Override
     public Object extractData(ResultSet resultSet) throws SQLException, DataAccessException {
-        Course course = new Course();
-        course.setId(resultSet.getString("id"));
-        course.setName(resultSet.getString("name"));
-        course.setAlias(resultSet.getString("alias"));
+        String courseId = resultSet.getString("id");
+        String courseName = resultSet.getString("name");
+        String courseAlias = resultSet.getString("alias");
 
-        return course;
+        return new Course(courseId, courseName, courseAlias);
     }
 }

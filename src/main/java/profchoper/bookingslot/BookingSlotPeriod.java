@@ -1,4 +1,4 @@
-package profchoper.booking;
+package profchoper.bookingslot;
 
 import profchoper.professor.Professor;
 

@@ -6,14 +6,10 @@ import profchoper.course.Course;
 import java.util.List;
 
 public class Student {
-    private int id;
-    private String name;
-    private String email;
+    private final int id;
+    private final String name;
+    private final String email;
     private List<Course> enrolledCourses;
-
-    public Student() {
-        // empty constructor
-    }
 
     public Student(int id, String name, String email) {
         this.id = id;
@@ -31,18 +27,6 @@ public class Student {
     @Override
     public String toString() {
         return name + " (" + id + ")";
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public int getId() {

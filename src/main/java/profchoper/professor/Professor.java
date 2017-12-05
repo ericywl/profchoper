@@ -10,10 +10,6 @@ public class Professor {
     private String officeLocation;
     private Course course = null;
 
-    public Professor() {
-        // empty constructor
-    }
-
     public Professor(String name, String alias, String email, String officeLocation) {
         this.name = name;
         this.alias = alias;
