@@ -23,12 +23,7 @@ import static profchoper._misc.Constant.OKA;
 @Controller
 public class DBTest {
     @Autowired
-    @Qualifier(value = "courseRepository")
     private CourseRepository courseRepository;
-
-    @Autowired
-    @Qualifier(value = "studentRepository")
-    private StudentRepository studentRepository;
 
     @RequestMapping("/")
     String index(Map<String, Object> model) {
@@ -36,11 +31,7 @@ public class DBTest {
             List<Course> courseList = new ArrayList<>();
             courseList.add(courseRepository.findById("50.001"));
 
-            List<Student> studentList = new ArrayList<>();
-            studentList.add(studentRepository.findById(1001111));
-
             model.put("courses", courseList);
-            model.put("students", studentList);
             return "index";
         } catch (Exception ex) {
             model.put("message", ex.getMessage());
