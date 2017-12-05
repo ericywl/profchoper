@@ -73,9 +73,9 @@ public class DBTest {
                 SimpleDateFormat date = new SimpleDateFormat("dd.MM.yyyy");
                 SimpleDateFormat time = new SimpleDateFormat("HH:mm");
 
-                String profAlias = bookingRs.getString("professor_alias");
-                String profNameSelect = "SELECT name FROM professors WHERE alias=" + profAlias;
-                ResultSet profNameRs = stmt.executeQuery(profNameSelect);
+                // String profAlias = bookingRs.getString("professor_alias");
+                // String profNameSelect = "SELECT name FROM professors WHERE alias=" + profAlias;
+                // ResultSet profNameRs = stmt.executeQuery(profNameSelect);
 
                 booking_temp.add(String.valueOf(bookingRs.getInt("id")));
                 booking_temp.add(date.format(timestamp));
