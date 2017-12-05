@@ -28,7 +28,7 @@ public class DBTest {
             while (rs.next()) {
                 studentOutput.add(rs.getInt("id")
                         + ": " + rs.getString("name"));
-                
+
                 String course1 = "" + rs.getDouble("course1");
                 String course2 = "" + rs.getDouble("course2");
                 String course3 = "" + rs.getDouble("course3");
