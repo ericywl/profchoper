@@ -7,7 +7,7 @@ import java.util.List;
 
 @Service
 public class ProfessorService {
-/*    @Autowired
+    @Autowired
     private ProfessorDAO professorDAO;
 
     public List<Professor> getAllProfessors() {
@@ -20,5 +20,5 @@ public class ProfessorService {
 
     public Professor getProfessorByAlias(String alias) {
         return professorDAO.findByAlias(alias);
-    }*/
+    }
 }

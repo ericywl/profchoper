@@ -14,12 +14,12 @@ import java.util.*;
 @Controller
 public class DBTest {
     @Autowired
-    private ProfessorDAO professorDAO;
+    private ProfessorService professorService;
 
     @RequestMapping("/")
     String index(Map<String, Object> model) {
         try {
-            List<Professor> profList = professorDAO.findByCourseId("50.002");
+            List<Professor> profList = professorService.getProfessorsByCourseId("50.002");
 
             model.put("professors", profList);
             return "index";
