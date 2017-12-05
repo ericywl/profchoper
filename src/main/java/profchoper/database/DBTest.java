@@ -22,7 +22,7 @@ public class DBTest {
     String index(Map<String, Object> model) {
         try (Connection connection = dataSource.getConnection()) {
             Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM students");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM students ORDER BY id");
 
             Map<String, ArrayList<String>> students = new HashMap<>();
             while (rs.next()) {
