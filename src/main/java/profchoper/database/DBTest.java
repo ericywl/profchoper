@@ -61,9 +61,24 @@ public class DBTest {
                 courses.add(course_temp);
             }
 
+            String bookingSelect = "SELECT * FROM bookings ORDER BY id";
+            ResultSet bookingRs = stmt.executeQuery(courseSelect);
+            ArrayList<ArrayList<String>> bookings = new ArrayList<>();
+            while (bookingRs.next()) {
+                ArrayList<String> booking_temp = new ArrayList<>();
+                booking_temp.add(String.valueOf(bookingRs.getInt("id")));
+                booking_temp.add(bookingRs.getTimestamp("start_time").toString());
+                booking_temp.add(bookingRs.getString("professor_name"));
+                booking_temp.add(String.valueOf(bookingRs.getBoolean("booked")));
+                booking_temp.add(String.valueOf(bookingRs.getInt("student_id")));
+
+                bookings.add(booking_temp);
+            }
+
             model.put("students", students);
             model.put("professors", professors);
             model.put("courses", courses);
+            model.put("bookings", bookings);
             return "index";
         } catch (SQLException ex) {
             model.put("message", ex.getMessage());

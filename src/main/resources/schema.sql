@@ -16,19 +16,22 @@ CREATE TABLE IF NOT EXISTS public.students
 CREATE TABLE IF NOT EXISTS public.professors
 (
   name TEXT PRIMARY KEY,
+  alias TEXT UNIQUE,
   office TEXT UNIQUE,
   course_id TEXT
-);
-
-CREATE TABLE IF NOT EXISTS public.bookings
-(
-  student_id INTEGER PRIMARY KEY,
-  professor_name TEXT NOT NULL,
-  start_time TIMESTAMP NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS public.courses
 (
   id TEXT PRIMARY KEY,
   name TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS public.bookings
+(
+  id SERIAL PRIMARY KEY,
+  start_time TIMESTAMP NOT NULL,
+  professor_name TEXT NOT NULL,
+  booked BOOLEAN DEFAULT FALSE,
+  student_id INTEGER DEFAULT NULL
 );
