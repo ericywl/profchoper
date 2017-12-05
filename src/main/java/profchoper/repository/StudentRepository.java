@@ -48,7 +48,7 @@ public class StudentRepository {
         return studentList;
     }
 
-    private Student findById(int id) throws SQLException {
+    public Student findById(int id) throws SQLException {
         Connection connection = dataSource.getConnection();
         Student student = null;
 

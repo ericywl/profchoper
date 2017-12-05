@@ -32,10 +32,10 @@ public class DBTest {
     String index(Map<String, Object> model) {
         try {
             List<Course> courseList = new ArrayList<>();
-            courseList.add(courseRepository.findBy("id", "50.001"));
+            courseList.add(courseRepository.findById("50.001"));
 
             List<Student> studentList = new ArrayList<>();
-            studentList.add(studentRepository.findBy("id", "1001111"));
+            studentList.add(studentRepository.findById(1001111));
 
             model.put("courses", courseList);
             model.put("students", studentList);
