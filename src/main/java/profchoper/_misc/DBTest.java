@@ -34,8 +34,7 @@ public class DBTest {
             List<Course> courseList = new ArrayList<>();
             courseList.add(courseRepository.findById("50.001"));
 
-            List<Student> studentList = new ArrayList<>();
-            studentList.add(studentRepository.findById(1001111));
+            List<Student> studentList = studentRepository.findAll();
 
             model.put("courses", courseList);
             model.put("students", studentList);
