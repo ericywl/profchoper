@@ -27,7 +27,6 @@ public class DBTest {
             // List<Course> courseList = courseRepo.findAll();
             List<Student> studentList = studentRepo.findAll();
 
-
             // model.put("courses", courseList);
             model.put("students", studentList);
             return "index";

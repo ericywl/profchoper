@@ -19,8 +19,13 @@ public class StudentRepository {
     @Autowired
     @Qualifier("profChoperDataSource")
     private DataSource dataSource;
-    
-    private CourseRepository courseRepo = new CourseRepository();
+
+    private CourseRepository courseRepo;
+
+    @Autowired
+    public StudentRepository(CourseRepository courseRepository) {
+        courseRepo = courseRepository;
+    }
 
     public List<Student> findAll() throws SQLException {
         Connection connection = dataSource.getConnection();
