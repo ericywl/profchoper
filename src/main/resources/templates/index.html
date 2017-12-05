@@ -5,9 +5,9 @@
 
 
 <div class="container">
-    <!--/*@thymesVar id="bookings" type="java.util.ArrayList"*/-->
-    <div th:if="not ${bookings.isEmpty()}">
-        <h1>Bookings</h1>
+    <!--/*@thymesVar id="courseBookings" type="java.util.ArrayList"*/-->
+    <div th:if="not ${courseBookings.isEmpty()}">
+        <h1>Bookings By Course</h1>
         <table class="table table-striped">
             <tr>
                 <th>ID</th>
@@ -18,7 +18,31 @@
                 <th>Student ID</th>
             </tr>
 
-            <tr th:each="booking : ${bookings}">
+            <tr th:each="booking : ${courseBookings}">
+                <td th:text="${booking[0]}"></td>
+                <td th:text="${booking[1]}"></td>
+                <td th:text="${booking[2]}"></td>
+                <td th:text="${booking[3]}"></td>
+                <td th:text="${booking[4]}"></td>
+                <td th:text="${booking[5]}"></td>
+            </tr>
+        </table>
+    </div>
+
+    <!--/*@thymesVar id="profBookings" type="java.util.ArrayList"*/-->
+    <div th:if="not ${profBookings.isEmpty()}">
+        <h1>Bookings By Professor</h1>
+        <table class="table table-striped">
+            <tr>
+                <th>ID</th>
+                <th>Date</th>
+                <th>Start Time</th>
+                <th>Professor</th>
+                <th>Booked</th>
+                <th>Student ID</th>
+            </tr>
+
+            <tr th:each="booking : ${profBookings}">
                 <td th:text="${booking[0]}"></td>
                 <td th:text="${booking[1]}"></td>
                 <td th:text="${booking[2]}"></td>

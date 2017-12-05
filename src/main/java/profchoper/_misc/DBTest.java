@@ -1,4 +1,4 @@
-package profchoper.database;
+package profchoper._misc;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -26,27 +26,13 @@ public class DBTest {
         try (Connection connection = dataSource.getConnection()) {
             Statement stmt = connection.createStatement();
             Course infoSys = new Course("50.001", "a", "a");
-            Professor professor = new Professor("Oka Kurniawan", "a", "a");
+            Professor oka = new Professor("Oka Kurniawan", "a", "a");
 
-            ResultSet bookingRs = stmt.executeQuery(selectBookingSlotsByCourse(infoSys));
-            ArrayList<ArrayList<String>> bookings = new ArrayList<>();
-            while (bookingRs.next()) {
-                ArrayList<String> booking_temp = new ArrayList<>();
-                Timestamp timestamp = bookingRs.getTimestamp("start_time");
-                SimpleDateFormat date = new SimpleDateFormat("dd.MM.yyyy");
-                SimpleDateFormat time = new SimpleDateFormat("HH:mm");
+            ResultSet courseBookingRs = stmt.executeQuery(selectBookingSlotsByCourse(infoSys));
+            ResultSet profBookingRs = stmt.executeQuery(selectBookingSlotsByProf(oka));
 
-                booking_temp.add(String.valueOf(bookingRs.getInt("id")));
-                booking_temp.add(date.format(timestamp));
-                booking_temp.add(time.format(timestamp));
-                booking_temp.add(String.valueOf(bookingRs.getString("professor_name")));
-                booking_temp.add(String.valueOf(bookingRs.getString("book_status")));
-                booking_temp.add(String.valueOf(bookingRs.getInt("student_id")));
-
-                bookings.add(booking_temp);
-            }
-
-            model.put("bookings", bookings);
+            model.put("courseBookings", modelGen(courseBookingRs));
+            model.put("profBookings", modelGen(profBookingRs));
             return "index";
         } catch (SQLException ex) {
             model.put("message", ex.getMessage());
@@ -54,12 +40,35 @@ public class DBTest {
         }
     }
 
+    private ArrayList<ArrayList<String>> modelGen(ResultSet bookingRs) throws SQLException {
+        ArrayList<ArrayList<String>> bookings = new ArrayList<>();
+
+        while (bookingRs.next()) {
+            ArrayList<String> booking_temp = new ArrayList<>();
+            Timestamp timestamp = bookingRs.getTimestamp("start_time");
+            SimpleDateFormat date = new SimpleDateFormat("dd.MM.yyyy");
+            SimpleDateFormat time = new SimpleDateFormat("HH:mm");
+
+            booking_temp.add(String.valueOf(bookingRs.getInt("id")));
+            booking_temp.add(date.format(timestamp));
+            booking_temp.add(time.format(timestamp));
+            booking_temp.add(String.valueOf(bookingRs.getString("professor_name")));
+            booking_temp.add(String.valueOf(bookingRs.getString("book_status")));
+            booking_temp.add(String.valueOf(bookingRs.getInt("student_id")));
+
+            bookings.add(booking_temp);
+        }
+
+        return bookings;
+    }
+
     private String selectBookingSlotsByCourse(Course course) {
         return "SELECT id, start_time, " +
                 "professors.name as professor_name, book_status, student_id FROM bookings " +
                 "INNER JOIN professors " +
                 "ON bookings.professor_alias = professors.alias " +
-                "WHERE course_id = '" + course.getId() + "'";
+                "WHERE course_id = '" + course.getId() + "'" +
+                "ORDER BY id";
     }
 
     private String selectBookingSlotsByProf(Professor professor) {
@@ -67,6 +76,7 @@ public class DBTest {
                 "professors.name as professor_name, book_status, student_id FROM bookings " +
                 "INNER JOIN professors " +
                 "ON bookings.professor_alias = professors.alias " +
-                "WHERE name = '" + professor.getName() + "'";
+                "WHERE name = '" + professor.getName() + "'" +
+                "ORDER BY id";
     }
 }
