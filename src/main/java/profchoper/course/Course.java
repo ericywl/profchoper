@@ -16,6 +16,11 @@ public class Course {
         this.alias = alias;
     }
 
+    @Override
+    public String toString() {
+        return alias;
+    }
+
     public void setId(String id) {
         this.id = id;
     }

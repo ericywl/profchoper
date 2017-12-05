@@ -7,7 +7,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.sql.SQLException;
 import java.util.List;
 
 @Repository
@@ -17,14 +16,14 @@ public class CourseRepository {
     @Qualifier("profChoperDataSource")
     private DataSource dataSource;
 
-    public List<Course> findAll() throws SQLException {
+    public List<Course> findAll() {
         JdbcTemplate select = new JdbcTemplate(dataSource);
         String selectSQL = "SELECT * FROM courses ORDER BY id";
 
         return select.query(selectSQL, new CourseRowMapper());
     }
 
-    public Course findById(String id) throws SQLException {
+    public Course findById(String id) {
         JdbcTemplate select = new JdbcTemplate(dataSource);
         String selectSQL = "SELECT * FROM courses WHERE id = ?";
 
