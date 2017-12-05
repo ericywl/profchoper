@@ -20,11 +20,6 @@ import static profchoper._misc.Constant.OKA;
 
 @Controller
 public class DBTest {
-    @Autowired
-    @Qualifier("profChoperDataSource")
-    private DataSource dataSource;
-    private Connection connection;
-
     @RequestMapping("/")
     String index(Map<String, Object> model) {
         try {
@@ -38,7 +33,7 @@ public class DBTest {
         }
     }
 
-    private List<BookingSlot> modelGen(ResultSet bookingRs) throws SQLException, BookingSlotException {
+    /*private List<BookingSlot> modelGen(ResultSet bookingRs) throws SQLException, BookingSlotException {
         List<BookingSlot> bookings = new ArrayList<>();
 
         while (bookingRs.next()) {
@@ -74,5 +69,5 @@ public class DBTest {
         preparedStatement.setString(1, arg);
 
         return preparedStatement.executeQuery();
-    }
+    }*/
 }
