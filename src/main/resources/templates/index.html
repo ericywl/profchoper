@@ -6,13 +6,18 @@
 
 <div class="container">
     <h1>Students</h1>
-    <!--/*@thymesVar id="students" type="java.util.Map"*/-->
-    <th:block th:each="entry : ${students}">
+    <table>
         <tr>
-            <td th:text="${entry.key}">Test</td>
-            <td th:text="${entry.value[0]}">Course 1</td>
+            <th>Test</th>
+            <th>Course 1</th>
         </tr>
-    </th:block>
+
+        <!--/*@thymesVar id="students" type="java.util.Map"*/-->
+        <tr th:each="entry : ${students}">
+            <td th:text="${entry.key}"></td>
+            <td th:text="${entry.value[0]}"></td>
+        </tr>
+    </table>
 </div>
 
 </body>
