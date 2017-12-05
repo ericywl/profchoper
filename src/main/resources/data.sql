@@ -1,7 +1,7 @@
-INSERT INTO courses (id, name) VALUES
-  ('50.001', 'Introduction to Information System & Programming'),
-  ('50.002', 'Computation Structures'),
-  ('50.004', 'Introduction to Algorithms')
+INSERT INTO courses (id, name, alias) VALUES
+  ('50.001', 'Introduction to Information System & Programming', 'InfoSys'),
+  ('50.002', 'Computation Structures', 'CompStruct'),
+  ('50.004', 'Introduction to Algorithms', 'Algo')
 ON CONFLICT (id)
   DO NOTHING;
 

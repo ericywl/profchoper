@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import profchoper.course.Course;
+import profchoper.user.Professor;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -23,53 +25,10 @@ public class DBTest {
     String index(Map<String, Object> model) {
         try (Connection connection = dataSource.getConnection()) {
             Statement stmt = connection.createStatement();
+            Course infoSys = new Course("50.001", "a", "a");
+            Professor professor = new Professor("Oka Kurniawan", "a", "a");
 
-            String studentSelect = "SELECT * FROM students ORDER BY id";
-            ResultSet studentRs = stmt.executeQuery(studentSelect);
-            ArrayList<ArrayList<String>> students = new ArrayList<>();
-            while (studentRs.next()) {
-                ArrayList<String> student_temp = new ArrayList<>();
-                student_temp.add(String.valueOf(studentRs.getInt("id")));
-                student_temp.add(studentRs.getString("name"));
-                student_temp.add(studentRs.getString("email"));
-                student_temp.add(studentRs.getString("course1_id"));
-                student_temp.add(studentRs.getString("course2_id"));
-                student_temp.add(studentRs.getString("course3_id"));
-                student_temp.add(studentRs.getString("course4_id"));
-
-                students.add(student_temp);
-            }
-
-            String profSelect = "SELECT * FROM professors ORDER BY cast(course_id AS REAL)";
-            ResultSet profRs = stmt.executeQuery(profSelect);
-            ArrayList<ArrayList<String>> professors = new ArrayList<>();
-            while (profRs.next()) {
-                ArrayList<String> prof_temp = new ArrayList<>();
-                prof_temp.add(profRs.getString("name"));
-                prof_temp.add(profRs.getString("email"));
-                prof_temp.add(profRs.getString("office"));
-                prof_temp.add(profRs.getString("course_id"));
-
-                professors.add(prof_temp);
-            }
-
-            String courseSelect = "SELECT * FROM courses ORDER BY cast(id AS REAL)";
-            ResultSet courseRs = stmt.executeQuery(courseSelect);
-            ArrayList<ArrayList<String>> courses = new ArrayList<>();
-            while (courseRs.next()) {
-                ArrayList<String> course_temp = new ArrayList<>();
-                course_temp.add(courseRs.getString("id"));
-                course_temp.add(courseRs.getString("name"));
-
-                courses.add(course_temp);
-            }
-
-            String bookingSelect = "SELECT id, start_time, " +
-                    "professors.name as professor_name, book_status, student_id FROM bookings " +
-                    "INNER JOIN professors " +
-                    "ON bookings.professor_alias = professors.alias " +
-                    "WHERE course_id = '50.001'";
-            ResultSet bookingRs = stmt.executeQuery(bookingSelect);
+            ResultSet bookingRs = stmt.executeQuery(selectBookingSlotsByCourse(infoSys));
             ArrayList<ArrayList<String>> bookings = new ArrayList<>();
             while (bookingRs.next()) {
                 ArrayList<String> booking_temp = new ArrayList<>();
@@ -87,14 +46,27 @@ public class DBTest {
                 bookings.add(booking_temp);
             }
 
-            model.put("students", students);
-            model.put("professors", professors);
-            model.put("courses", courses);
             model.put("bookings", bookings);
             return "index";
         } catch (SQLException ex) {
             model.put("message", ex.getMessage());
             return "error";
         }
+    }
+
+    private String selectBookingSlotsByCourse(Course course) {
+        return "SELECT id, start_time, " +
+                "professors.name as professor_name, book_status, student_id FROM bookings " +
+                "INNER JOIN professors " +
+                "ON bookings.professor_alias = professors.alias " +
+                "WHERE course_id = '" + course.getId() + "'";
+    }
+
+    private String selectBookingSlotsByProf(Professor professor) {
+        return "SELECT id, start_time, " +
+                "professors.name as professor_name, book_status, student_id FROM bookings " +
+                "INNER JOIN professors " +
+                "ON bookings.professor_alias = professors.alias " +
+                "WHERE name = '" + professor.getName() + "'";
     }
 }
