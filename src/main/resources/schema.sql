@@ -18,7 +18,8 @@ CREATE TABLE IF NOT EXISTS public.professors
 (
   name TEXT PRIMARY KEY,
   alias TEXT UNIQUE,
-  office TEXT UNIQUE
+  office TEXT UNIQUE,
+  course_id TEXT REFERENCES courses(id)
 );
 
 DROP TABLE IF EXISTS public.bookings;
@@ -28,7 +29,6 @@ CREATE TABLE IF NOT EXISTS public.bookings
   id SERIAL PRIMARY KEY,
   start_time TIMESTAMP NOT NULL,
   professor_name TEXT NOT NULL REFERENCES professors(name),
-  course_id TEXT REFERENCES courses(id),
   booked BOOLEAN DEFAULT FALSE,
   student_id INTEGER DEFAULT NULL REFERENCES students(id)
 );
