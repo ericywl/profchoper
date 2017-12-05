@@ -27,9 +27,10 @@ public class DBTest {
             while (studentRs.next()) {
                 ArrayList<String> temp = new ArrayList<>();
                 temp.add(studentRs.getString("name"));
-                temp.add(studentRs.getString("course1"));
-                temp.add(studentRs.getString("course2"));
-                temp.add(studentRs.getString("course3"));
+                temp.add(studentRs.getString("course1_id"));
+                temp.add(studentRs.getString("course2_id"));
+                temp.add(studentRs.getString("course3_id"));
+                temp.add(studentRs.getString("course4_id"));
 
                 students.put(studentRs.getInt("id"), temp);
             }
@@ -39,7 +40,7 @@ public class DBTest {
             while (profRs.next()) {
                 ArrayList<String> temp = new ArrayList<>();
                 temp.add(profRs.getString("office"));
-                temp.add(profRs.getString("course"));
+                temp.add(profRs.getString("course_id"));
 
                 professors.put(profRs.getString("name"), temp);
             }

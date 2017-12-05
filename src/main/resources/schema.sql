@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS public.professors
 (
   name TEXT PRIMARY KEY,
   office TEXT NOT NULL,
-  course TEXT
+  course_id TEXT
 );
 
 CREATE TABLE IF NOT EXISTS public.bookings
