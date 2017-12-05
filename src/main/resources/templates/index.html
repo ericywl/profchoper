@@ -9,12 +9,12 @@
     <!--/*@thymesVar id="students" type="java.util.Map"*/-->
     <ul th:each="entry : ${students}">
         <li th:text="${entry.key}">
-            <ul>
+            <ol>
                 <li th:text="${entry.value[0]}"></li>
                 <li th:text="${entry.value[1]}"></li>
                 <li th:text="${entry.value[2]}"></li>
                 <li th:text="${entry.value[3]}"></li>
-            </ul>
+            </ol>
         </li>
     </ul>
 </div>
