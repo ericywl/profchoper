@@ -3,7 +3,7 @@ INSERT INTO students (id, name, course1_id, course2_id, course3_id, course4_id) 
   (1002222, 'Thanh', '50.001', '50.002', '50.004', '02.125'),
   (1003333, 'Kok', '50.001', '50.002', '50.004', '02.123'),
   (1002423, 'Tat', '50.001', '50.002', '50.004', '02.125'),
-  (1002423, 'Rosh', '50.001', '50.002', '50.004', '02.113')
+  (1002523, 'Rosh', '50.001', '50.002', '50.004', '02.113')
   ON CONFLICT (id) DO
   UPDATE SET
       course1_id = EXCLUDED.course1_id,
