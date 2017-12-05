@@ -41,11 +41,17 @@ public class CourseRepository {
 
     public Course findById(String id) throws SQLException {
         Connection connection = dataSource.getConnection();
-        Course course = null;
 
-        String selectSQL = "SELECT * FROM courses WHERE id = ''" + id + "''";
+        String selectSQL = "SELECT * FROM courses WHERE id = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
+        preparedStatement.setString(1, id);
         ResultSet rs = preparedStatement.executeQuery();
+
+        return findBy(rs);
+    }
+
+    private Course findBy(ResultSet rs) throws SQLException {
+        Course course = null;
 
         if (rs.next()) {
             String courseId = rs.getString("id");

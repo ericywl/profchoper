@@ -50,11 +50,28 @@ public class StudentRepository {
 
     public Student findById(int id) throws SQLException {
         Connection connection = dataSource.getConnection();
-        Student student = null;
 
-        String selectSQL = "SELECT * FROM students WHERE id = " + id;
+        String selectSQL = "SELECT * FROM students WHERE id = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
+        preparedStatement.setInt(1, id);
         ResultSet rs = preparedStatement.executeQuery();
+
+        return findBy(rs);
+    }
+
+    public Student findByName(String name) throws SQLException {
+        Connection connection = dataSource.getConnection();
+
+        String selectSQL = "SELECT * FROM students WHERE name = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
+        preparedStatement.setString(1, name);
+        ResultSet rs = preparedStatement.executeQuery();
+
+        return findBy(rs);
+    }
+
+    private Student findBy(ResultSet rs) throws SQLException {
+        Student student = null;
 
         if (rs.next()) {
             int studentId = rs.getInt("id");
