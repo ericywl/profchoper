@@ -1,4 +1,5 @@
-DROP TABLE public.students;
+DROP TABLE IF EXISTS public.students;
+DROP TABLE IF EXISTS public.professors;
 
 CREATE TABLE IF NOT EXISTS public.students
 (
@@ -8,4 +9,12 @@ CREATE TABLE IF NOT EXISTS public.students
   course2 TEXT,
   course3 TEXT,
   course4 TEXT
+);
+
+CREATE TABLE IF NOT EXISTS public.professors
+(
+  alias TEXT PRIMARY KEY,
+  name TEXT NOT NULL,
+  office TEXT NOT NULL,
+  course TEXT
 );

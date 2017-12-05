@@ -16,6 +16,13 @@
             </ul>
         </li>
     </ul>
+
+    <table>
+        <tr th:each="entry : ${students}">
+            <td th:text="${entry.key}">Name, ID</td>
+            <td th:text="${entry.value[0]}">Course 1</td>
+        </tr>
+    </table>
 </div>
 
 </body>
