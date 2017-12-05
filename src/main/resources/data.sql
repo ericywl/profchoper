@@ -7,7 +7,8 @@ INSERT INTO students (id, name, course1, course2, course3, course4) VALUES
 INSERT INTO professors (name, office, course) VALUES
   ('Oka Kurniawan', '1.307', '50.002'),
   ('Zhang Yue', '1.703', '50.002'),
-  ('Norman Lee', '1.407', '50.001'),
-  ('Oka Kurniawan', '1.305', '50.002')
-  ON CONFLICT (name) DO UPDATE
-  SET office = EXCLUDED.office, course = EXCLUDED.course;
+  ('Norman Lee', '1.407', '50.001')
+  ON CONFLICT (name) DO
+  UPDATE SET
+      office = EXCLUDED.office,
+      course = EXCLUDED.course;
