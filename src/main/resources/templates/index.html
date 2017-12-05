@@ -7,9 +7,9 @@
 <div class="container">
     <h1>Students</h1>
     <!--/*@thymesVar id="students" type="java.util.Map"*/-->
-    <ul th:each="student : ${students.keySet()}">
-        <li th:text="${student}">
-            <ul th:each="course : ${students.get(student)}">
+    <ul th:each="entry : ${students}">
+        <li th:text="${entry.key}">
+            <ul th:each="course : ${entry.value}">
                 <li th:text="${course}"></li>
             </ul>
         </li>
