@@ -13,23 +13,14 @@ import java.util.*;
 
 @Controller
 public class DBTest {
-    // @Autowired
-    // private CourseRepository courseRepo;
-
     @Autowired
-    private ProfessorService professorService;
+    private ProfessorDAO professorDAO;
 
     @RequestMapping("/")
     String index(Map<String, Object> model) {
         try {
-            // List<Course> courseList = new ArrayList<>();
-            // courseList.add(courseDAO.findById("50.001"));
-            // List<Student> studentList = new ArrayList<>();
-            // studentList.add(studentDAO.findById(1001111));
-            List<Professor> profList = professorService.getProfessorsByCourseId("50.002");
+            List<Professor> profList = professorDAO.findByCourseId("50.002");
 
-            // model.put("courses", courseList);
-            // model.put("students", studentList);
             model.put("professors", profList);
             return "index";
         } catch (Exception ex) {
