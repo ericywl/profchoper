@@ -40,10 +40,14 @@ ON CONFLICT (name)
 
 INSERT INTO bookings (professor_alias, start_time) VALUES
   ('ZY', make_timestamp(2017, 12, 5, 8, 0, 0)),
-  ('OKA', make_timestamp(2017, 12, 5, 8, 30, 0)),
+  ('OKA', make_timestamp(2017, 12, 5, 16, 00, 0)),
+  ('OKA', make_timestamp(2017, 12, 5, 16, 30, 0)),
+  ('OKA', make_timestamp(2017, 12, 5, 17, 30, 0)),
   ('MAN', make_timestamp(2017, 12, 5, 9, 0, 0)),
   ('DATTA', make_timestamp(2017, 12, 6, 13, 0, 0)),
+  ('DATTA', make_timestamp(2017, 12, 6, 13, 30, 0)),
   ('NORMAN', make_timestamp(2017, 12, 6, 16, 0, 0)),
+  ('NORMAN', make_timestamp(2017, 12, 6, 16, 30, 0)),
   ('JIT', make_timestamp(2017, 12, 5, 15, 30, 0));
 
 
