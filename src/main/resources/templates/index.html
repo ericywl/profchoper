@@ -7,22 +7,12 @@
 <div class="container">
     <h1>Students</h1>
     <!--/*@thymesVar id="students" type="java.util.Map"*/-->
-    <ul th:each="entry : ${students}">
-        <li th:text="${entry.key}">
-            <ul>
-                <li th:text="${entry.value[0]}">
-                <li th:text="${entry.value[1]}">
-                <li th:text="${entry.value[2]}">
-            </ul>
-        </li>
-    </ul>
-
-    <table>
-        <tr th:each="entry : ${students}">
-            <td th:text="${entry.key}">Name, ID</td>
+    <th:block th:each="entry : ${students}">
+        <tr>
+            <td th:text="${entry.key}">Test</td>
             <td th:text="${entry.value[0]}">Course 1</td>
         </tr>
-    </table>
+    </th:block>
 </div>
 
 </body>
