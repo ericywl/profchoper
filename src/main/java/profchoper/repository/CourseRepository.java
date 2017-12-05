@@ -43,7 +43,7 @@ public class CourseRepository {
         Connection connection = dataSource.getConnection();
         Course course = null;
 
-        String selectSQL = "SELECT * FROM courses WHERE id = " + id;
+        String selectSQL = "SELECT * FROM courses WHERE id = ''" + id + "''";
         PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
         ResultSet rs = preparedStatement.executeQuery();
 
