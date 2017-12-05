@@ -31,8 +31,7 @@ public class DBTest {
     @RequestMapping("/")
     String index(Map<String, Object> model) {
         try {
-            List<Course> courseList = new ArrayList<>();
-            courseList.add(courseRepository.findById("50.001"));
+            List<Course> courseList = courseRepository.findAll();
 
             List<Student> studentList = studentRepository.findAll();
 
