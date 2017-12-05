@@ -40,19 +40,10 @@ public class CourseRepository {
     }
 
     public Course findById(String id) throws SQLException {
-        return findBy("id", "TEXT", id);
-    }
-
-    public Course findByName(String name) throws SQLException {
-        return findBy("name", "TEXT", name);
-    }
-
-    private <T> Course findBy(String selection, String type, T arg) throws SQLException {
         Connection connection = dataSource.getConnection();
         Course course = null;
 
-        String selectSQL = "SELECT * FROM courses " +
-                "WHERE " + selection + " = " + arg + "::" + type;
+        String selectSQL = "SELECT * FROM courses WHERE id = " + id;
         PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
         ResultSet rs = preparedStatement.executeQuery();
 

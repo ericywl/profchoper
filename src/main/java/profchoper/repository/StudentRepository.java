@@ -48,16 +48,11 @@ public class StudentRepository {
         return studentList;
     }
 
-    public Student findById(int id) throws SQLException {
-        return findBy("id", "INTEGER", id);
-    }
-
-    private <T> Student findBy(String selection, String type, T arg) throws SQLException {
+    private Student findById(int id) throws SQLException {
         Connection connection = dataSource.getConnection();
         Student student = null;
 
-        String selectSQL = "SELECT * FROM students " +
-                "WHERE " + selection + " = " + arg + "::" + type;
+        String selectSQL = "SELECT * FROM students WHERE id = " + id;
         PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
         ResultSet rs = preparedStatement.executeQuery();
 
