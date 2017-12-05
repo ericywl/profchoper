@@ -1,5 +1,5 @@
 INSERT INTO students (id, name, course1, course2, course3, course4) VALUES
-  (1002394, 'Yap Wei Lok', '50.001', '50.002', '50.004', NULL),
-  (1002222, 'Woong Wen Tat', '50.001', '50.002', '50.004', NULL),
-  (1001234, 'Kok Hanyi', '50.001', '50.002', '50.004', NULL)
+  (1001111, 'Eric', '50.001', '50.002', '50.004', NULL),
+  (1002222, 'Edmund', '50.001', '50.002', '50.004', NULL),
+  (1003333, 'Kok', '50.001', '50.002', '50.004', NULL)
   ON CONFLICT (id) DO NOTHING ;
