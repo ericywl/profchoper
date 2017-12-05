@@ -37,7 +37,7 @@ public class StudentRepository {
             List<Course> courseList = new ArrayList<>();
 
             for (int i = 1; i < 5; i++) {
-                String courseId = rs.getString("course" + i);
+                String courseId = rs.getString("course" + i + "_id");
                 courseList.add(courseRepository.findById(courseId));
             }
 
@@ -80,7 +80,7 @@ public class StudentRepository {
             List<Course> courseList = new ArrayList<>();
 
             for (int i = 1; i < 5; i++) {
-                String courseId = rs.getString("course" + i);
+                String courseId = rs.getString("course" + i + "_id");
                 courseList.add(courseRepository.findById(courseId));
             }
 
