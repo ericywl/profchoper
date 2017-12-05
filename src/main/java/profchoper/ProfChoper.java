@@ -25,7 +25,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @SpringBootApplication
 public class ProfChoper {
-
     public static void main(String[] args) throws Exception {
         SpringApplication.run(ProfChoper.class, args);
     }
