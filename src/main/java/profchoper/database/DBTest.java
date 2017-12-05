@@ -31,6 +31,7 @@ public class DBTest {
                 ArrayList<String> student_temp = new ArrayList<>();
                 student_temp.add(String.valueOf(studentRs.getInt("id")));
                 student_temp.add(studentRs.getString("name"));
+                student_temp.add(studentRs.getString("email"));
                 student_temp.add(studentRs.getString("course1_id"));
                 student_temp.add(studentRs.getString("course2_id"));
                 student_temp.add(studentRs.getString("course3_id"));
@@ -45,6 +46,7 @@ public class DBTest {
             while (profRs.next()) {
                 ArrayList<String> prof_temp = new ArrayList<>();
                 prof_temp.add(profRs.getString("name"));
+                prof_temp.add(profRs.getString("email"));
                 prof_temp.add(profRs.getString("office"));
                 prof_temp.add(profRs.getString("course_id"));
 
@@ -63,7 +65,7 @@ public class DBTest {
             }
 
             String bookingSelect = "SELECT id, start_time, " +
-                    "professors.name as professor_name, booked, student_id FROM bookings " +
+                    "professors.name as professor_name, book_status, student_id FROM bookings " +
                     "INNER JOIN professors " +
                     "ON bookings.professor_alias = professors.alias " +
                     "WHERE course_id = '50.001'";
@@ -79,7 +81,7 @@ public class DBTest {
                 booking_temp.add(date.format(timestamp));
                 booking_temp.add(time.format(timestamp));
                 booking_temp.add(String.valueOf(bookingRs.getString("professor_name")));
-                booking_temp.add(String.valueOf(bookingRs.getBoolean("booked")));
+                booking_temp.add(String.valueOf(bookingRs.getString("book_status")));
                 booking_temp.add(String.valueOf(bookingRs.getInt("student_id")));
 
                 bookings.add(booking_temp);
