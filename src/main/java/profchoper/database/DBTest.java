@@ -22,20 +22,30 @@ public class DBTest {
     String index(Map<String, Object> model) {
         try (Connection connection = dataSource.getConnection()) {
             Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM students ORDER BY id");
-
+            ResultSet studentRs = stmt.executeQuery("SELECT * FROM students ORDER BY id");
             Map<Integer, ArrayList<String>> students = new HashMap<>();
-            while (rs.next()) {
+            while (studentRs.next()) {
                 ArrayList<String> temp = new ArrayList<>();
-                temp.add(rs.getString("name"));
-                temp.add(rs.getString("course1"));
-                temp.add(rs.getString("course2"));
-                temp.add(rs.getString("course3"));
+                temp.add(studentRs.getString("name"));
+                temp.add(studentRs.getString("course1"));
+                temp.add(studentRs.getString("course2"));
+                temp.add(studentRs.getString("course3"));
 
-                students.put(rs.getInt("id"), temp);
+                students.put(studentRs.getInt("id"), temp);
+            }
+
+            ResultSet profRs = stmt.executeQuery("SELECT * FROM professors ORDER BY course");
+            Map<String, ArrayList<String>> professors = new HashMap<>();
+            while (profRs.next()) {
+                ArrayList<String> temp = new ArrayList<>();
+                temp.add(profRs.getString("office"));
+                temp.add(profRs.getString("course"));
+
+                professors.put(profRs.getString("name"), temp);
             }
 
             model.put("students", students);
+            model.put("professors", professors);
             return "index";
         } catch (SQLException ex) {
             model.put("message", ex.getMessage());

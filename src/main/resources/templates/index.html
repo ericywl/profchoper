@@ -5,23 +5,47 @@
 
 
 <div class="container">
-    <h1>Students</h1>
-    <table class="table table-striped">
-        <tr>
-            <th>Test</th>
-            <th>Course 1</th>
-        </tr>
+    <!--/*@thymesVar id="students" type="java.util.Map"*/-->
+    <div th:if="${not ${students.isEmpty()}}">
+        <h1>Students</h1>
+        <table class="table table-striped">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Course 1</th>
+                <th>Course 2</th>
+                <th>Course 3</th>
+                <th>Course 4</th>
+            </tr>
 
-        <!--/*@thymesVar id="students" type="java.util.Map"*/-->
-        <tr th:each="entry : ${students}">
-            <td th:text="${entry.key}"></td>
-            <td th:text="${entry.value[0]}"></td>
-            <td th:text="${entry.value[1]}"></td>
-            <td th:text="${entry.value[2]}"></td>
-            <td th:text="${entry.value[3]}"></td>
-            <td th:text="${entry.value[4]}"></td>
-        </tr>
-    </table>
+            <tr th:each="student : ${students}">
+                <td th:text="${student.key}"></td>
+                <td th:text="${student.value[0]}"></td>
+                <td th:text="${student.value[1]}"></td>
+                <td th:text="${student.value[2]}"></td>
+                <td th:text="${student.value[3]}"></td>
+                <td th:text="${student.value[4]}"></td>
+            </tr>
+        </table>
+    </div>
+
+    <!--/*@thymesVar id="professors" type="java.util.Map"*/-->
+    <div th:if="${not ${professors.isEmpty()}}">
+        <h1>Professors</h1>
+        <table class="table table-striped">
+            <tr>
+                <th>Name</th>
+                <th>Office</th>
+                <th>Course</th>
+            </tr>
+
+            <tr th:each="prof : ${professors}">
+                <td th:text="${prof.key}"></td>
+                <td th:text="${prof.value[0]}"></td>
+                <td th:text="${prof.value[1]}"></td>
+            </tr>
+        </table>
+    </div>
 </div>
 
 </body>
