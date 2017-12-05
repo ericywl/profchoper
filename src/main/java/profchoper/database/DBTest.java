@@ -35,7 +35,7 @@ public class DBTest {
                 students.put(studentRs.getInt("id"), temp);
             }
 
-            ResultSet profRs = stmt.executeQuery("SELECT * FROM professors ORDER BY course");
+            ResultSet profRs = stmt.executeQuery("SELECT * FROM professors ORDER BY course_id");
             Map<String, ArrayList<String>> professors = new HashMap<>();
             while (profRs.next()) {
                 ArrayList<String> temp = new ArrayList<>();
