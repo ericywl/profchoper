@@ -1,5 +1,6 @@
 package profchoper.booking;
 
+import profchoper._misc.Constant;
 import profchoper.user.Professor;
 import profchoper.user.Student;
 
@@ -19,22 +20,28 @@ public class BookingSlot {
     private final LocalTime startTime;
     private final LocalTime endTime;
     private final Professor professor;
-    private String bookStatus = AVAIL;
+    private String bookStatus = Constant.AVAIL;
     private Student student = null;
 
-    public BookingSlot(Professor professor, Timestamp startTimestamp) {
-        this.professor = professor;
+    public BookingSlot(Professor professor, Timestamp startTimestamp) throws BookingSlotException {
+        LocalTime startTime = startTimestamp.toLocalDateTime().toLocalTime();
+        if (startTime.isBefore(DAY_FIRST_START_TIME) || startTime.isAfter(DAY_LAST_START_TIME))
+            throw new BookingSlotException("Start time must be within set boundaries.");
 
+        this.professor = professor;
         this.timestamp = startTimestamp;
         this.date = startTimestamp.toLocalDateTime().toLocalDate();
         this.day = this.date.getDayOfWeek();
-        this.startTime = startTimestamp.toLocalDateTime().toLocalTime();
+        this.startTime = startTime;
         this.endTime = this.startTime.plus(SLOT_TIME, ChronoUnit.MINUTES);
     }
 
-    public BookingSlot(Professor professor, LocalDateTime startDateTime) {
-        this.professor = professor;
+    public BookingSlot(Professor professor, LocalDateTime startDateTime) throws BookingSlotException {
+        LocalTime startTime = startDateTime.toLocalTime();
+        if (startTime.isBefore(DAY_FIRST_START_TIME) || startTime.isAfter(DAY_LAST_START_TIME))
+            throw new BookingSlotException("Start time must be within set boundaries.");
 
+        this.professor = professor;
         this.timestamp = Timestamp.valueOf(startDateTime);
         this.date = startDateTime.toLocalDate();
         this.day = this.date.getDayOfWeek();
@@ -48,7 +55,7 @@ public class BookingSlot {
     }
 
     public void cancel() {
-        bookStatus = AVAIL;
+        bookStatus = Constant.AVAIL;
         this.student = null;
     }
 

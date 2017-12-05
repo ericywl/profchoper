@@ -40,6 +40,6 @@ public class Student {
 
     @Override
     public String toString() {
-        return name;
+        return name + " (" + id + ")";
     }
 }

@@ -5,46 +5,25 @@
 
 
 <div class="container">
-    <!--/*@thymesVar id="courseBookings" type="java.util.ArrayList"*/-->
-    <div th:if="not ${courseBookings.isEmpty()}">
+    <!--/*@thymesVar id="bookings" type="java.util.List"*/-->
+    <div th:if="not ${bookings.isEmpty()}">
         <h1>Bookings By Course</h1>
         <table class="table table-striped">
             <tr>
                 <th>Date</th>
                 <th>Start Time</th>
                 <th>Professor</th>
-                <th>Booked</th>
-                <th>Student ID</th>
+                <th>Book Status</th>
+                <th>Student</th>
             </tr>
 
-            <tr th:each="booking : ${courseBookings}">
-                <td th:text="${booking[0]}"></td>
-                <td th:text="${booking[1]}"></td>
-                <td th:text="${booking[2]}"></td>
-                <td th:text="${booking[3]}"></td>
-                <td th:text="${booking[4]}"></td>
-            </tr>
-        </table>
-    </div>
-
-    <!--/*@thymesVar id="profBookings" type="java.util.ArrayList"*/-->
-    <div th:if="not ${profBookings.isEmpty()}">
-        <h1>Bookings By Professor</h1>
-        <table class="table table-striped">
-            <tr>
-                <th>Date</th>
-                <th>Start Time</th>
-                <th>Professor</th>
-                <th>Booked</th>
-                <th>Student ID</th>
-            </tr>
-
-            <tr th:each="booking : ${profBookings}">
-                <td th:text="${booking[0]}"></td>
-                <td th:text="${booking[1]}"></td>
-                <td th:text="${booking[2]}"></td>
-                <td th:text="${booking[3]}"></td>
-                <td th:text="${booking[4]}"></td>
+            <!--/*@thymesVar id="booking" type="profchoper.booking.BookingSlot"*/-->
+            <tr th:each="booking : ${bookings}">
+                <td th:text="${booking.getDate().toString()}"></td>
+                <td th:text="${booking.getStartTime().toString()}"></td>
+                <td th:text="${booking.getProfessor().toString()}"></td>
+                <td th:text="${booking.getBookStatus()}"></td>
+                <td th:text="${booking.getStudent().toString()}"></td>
             </tr>
         </table>
     </div>

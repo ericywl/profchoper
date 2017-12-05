@@ -4,78 +4,76 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import profchoper.booking.BookingSlot;
+import profchoper.booking.BookingSlotException;
 import profchoper.course.Course;
 import profchoper.user.Professor;
 
 import javax.sql.DataSource;
 import java.sql.*;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+
+import static profchoper._misc.Constant.INFOSYS;
+import static profchoper._misc.Constant.OKA;
 
 @Controller
 public class DBTest {
     @Autowired
     @Qualifier("profChoperDataSource")
     private DataSource dataSource;
+    private Connection connection;
 
     @RequestMapping("/")
     String index(Map<String, Object> model) {
-        try (Connection connection = dataSource.getConnection()) {
-            Statement stmt = connection.createStatement();
-            Course infoSys = new Course("50.001", "a", "a");
-            Professor oka = new Professor("Oka Kurniawan", "a", "a");
+        try {
+            connection = dataSource.getConnection();
 
-            ResultSet courseBookingRs = stmt.executeQuery(selectBookingSlotsByCourse(infoSys));
-            model.put("courseBookings", modelGen(courseBookingRs));
-
-            ResultSet profBookingRs = stmt.executeQuery(selectBookingSlotsByProf(oka));
-            model.put("profBookings", modelGen(profBookingRs));
+            ResultSet courseBookingRs = filterBookingSlots("course_id", INFOSYS);
+            model.put("bookings", modelGen(courseBookingRs));
             return "index";
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             model.put("message", ex.getMessage());
             return "error";
         }
     }
 
-    private ArrayList<ArrayList<String>> modelGen(ResultSet bookingRs) throws SQLException {
-        ArrayList<ArrayList<String>> bookings = new ArrayList<>();
+    private List<BookingSlot> modelGen(ResultSet bookingRs) throws SQLException, BookingSlotException {
+        List<BookingSlot> bookings = new ArrayList<>();
 
         while (bookingRs.next()) {
-            ArrayList<String> booking_temp = new ArrayList<>();
             Timestamp timestamp = bookingRs.getTimestamp("start_time");
-            SimpleDateFormat date = new SimpleDateFormat("dd.MM.yyyy");
-            SimpleDateFormat time = new SimpleDateFormat("HH:mm");
+            String profName = bookingRs.getString("prof_name");
+            String profAlias = bookingRs.getString("prof_alias");
+            String profEmail = bookingRs.getString("prof_email");
+            String profOffice = bookingRs.getString("prof_office");
+            String profCourse = bookingRs.getString("prof_course");
 
-            booking_temp.add(date.format(timestamp));
-            booking_temp.add(time.format(timestamp));
-            booking_temp.add(String.valueOf(bookingRs.getString("professor_name")));
-            booking_temp.add(String.valueOf(bookingRs.getString("book_status")));
-            booking_temp.add(String.valueOf(bookingRs.getInt("student_id")));
+            Professor prof = new Professor(profName, profAlias, profEmail, profOffice);
+            BookingSlot bookingSlot = new BookingSlot(prof, timestamp);
 
-            bookings.add(booking_temp);
+            bookings.add(bookingSlot);
         }
 
         return bookings;
     }
 
-    private String selectBookingSlotsByCourse(Course course) {
-        return "SELECT start_time, " +
-                "professors.name as professor_name, book_status, student_id FROM bookings " +
-                "INNER JOIN professors " +
-                "ON bookings.professor_alias = professors.alias " +
-                "WHERE course_id = '" + course.getId() + "'" +
-                "ORDER BY professor_name, start_time";
-    }
+    private ResultSet filterBookingSlots(String selection, String arg)
+            throws SQLException {
 
-    private String selectBookingSlotsByProf(Professor professor) {
-        return "SELECT start_time, " +
-                "professors.name as professor_name, book_status, student_id FROM bookings " +
-                "INNER JOIN professors " +
-                "ON bookings.professor_alias = professors.alias " +
-                "WHERE name = '" + professor.getName() + "'" +
-                "ORDER BY professor_name, start_time";
+        String selectSQL = "SELECT start_time, " +
+                "professors.name as prof_name, " +
+                "professors.alias as prof_alias, " +
+                "professors.email as prof_email, " +
+                "professors.office as prof_office, " +
+                "book_status, student_id FROM bookings " +
+                "INNER JOIN professors ON bookings.professor_alias = professors.alias " +
+                "WHERE " + selection + " = ?" +
+                "ORDER BY prof_name, start_time";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
+        preparedStatement.setString(1, arg);
+
+        return preparedStatement.executeQuery();
     }
 }

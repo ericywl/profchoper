@@ -6,12 +6,13 @@ import profchoper.course.Course;
 public class Professor {
     private final String name;
     private final String email;
-    private String alias;
+    private final String alias;
     private String officeLocation;
     private Course course = null;
 
-    public Professor(String name, String email, String officeLocation) {
+    public Professor(String name, String alias, String email, String officeLocation) {
         this.name = name;
+        this.alias = alias;
         this.email = email;
         this.officeLocation = officeLocation;
     }
@@ -22,10 +23,6 @@ public class Professor {
         this.alias = alias;
         this.officeLocation = officeLocation;
         this.course = course;
-    }
-
-    public void setAlias(String alias) {
-        this.alias = alias;
     }
 
     public void setCourse(Course course) {
