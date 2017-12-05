@@ -22,7 +22,9 @@ public class DBTest {
     String index(Map<String, Object> model) {
         try (Connection connection = dataSource.getConnection()) {
             Statement stmt = connection.createStatement();
-            ResultSet studentRs = stmt.executeQuery("SELECT * FROM students ORDER BY id");
+
+            String studentSelect = "SELECT * FROM students ORDER BY cast(id as INTEGER)";
+            ResultSet studentRs = stmt.executeQuery(studentSelect);
             Map<Integer, ArrayList<String>> students = new HashMap<>();
             while (studentRs.next()) {
                 ArrayList<String> temp = new ArrayList<>();
@@ -35,7 +37,8 @@ public class DBTest {
                 students.put(studentRs.getInt("id"), temp);
             }
 
-            ResultSet profRs = stmt.executeQuery("SELECT * FROM professors ORDER BY course_id");
+            String profSelect = "SELECT * FROM professors ORDER BY cast(course_id as INTEGER)";
+            ResultSet profRs = stmt.executeQuery(profSelect);
             Map<String, ArrayList<String>> professors = new HashMap<>();
             while (profRs.next()) {
                 ArrayList<String> temp = new ArrayList<>();
