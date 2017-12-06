@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS public.bookings
 
 CREATE TABLE IF NOT EXISTS public.users
 (
-  email VARCHAR(40) PRIMARY KEY,
+  username VARCHAR(40) PRIMARY KEY,
   password VARCHAR(20) NOT NULL,
   role VARCHAR(20) NOT NULL
 )

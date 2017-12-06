@@ -54,11 +54,11 @@ INSERT INTO bookings (professor_alias, start_time) VALUES
 ON CONFLICT (professor_alias, start_time)
   DO NOTHING;
 
-INSERT INTO users (email, password, role) VALUES
+INSERT INTO users (username, password, role) VALUES
   ('eric@mymail.sutd.edu.sg', 'password', 'STUDENT'),
   ('wentat@mymail.sutd.edu.sg', 'password', 'STUDENT'),
   ('ngaiman_cheung@sutd.edu.sg', 'prof_password', 'PROFESSOR')
-ON CONFLICT (email)
+ON CONFLICT (username)
   DO
   UPDATE SET
     password = EXCLUDED.password;

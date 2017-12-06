@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
 
@@ -26,8 +25,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication().dataSource(dataSource)
-                .usersByUsernameQuery("SELECT email, password FROM users WHERE email = ?")
-                .authoritiesByUsernameQuery("SELECT email, role FROM users WHERE email = ?");
+                .usersByUsernameQuery("SELECT username, password FROM users WHERE username = ?")
+                .authoritiesByUsernameQuery("SELECT username, role FROM users WHERE username = ?");
     }
 
     @Override
