@@ -16,15 +16,12 @@ import static profchoper._misc.Constant.ROLE_STUDENT;
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final ProfChoperAuthSuccessHandler successHandler;
-    private final DataSource dataSource;
+    @Autowired
+    private ProfChoperAuthSuccessHandler successHandler;
 
     @Autowired
-    public SecurityConfig(@Qualifier("profChoperDataSource") DataSource dataSource,
-                          ProfChoperAuthSuccessHandler successHandler) {
-        this.dataSource = dataSource;
-        this.successHandler = successHandler;
-    }
+    @Qualifier("profChoperDataSource")
+    private DataSource dataSource;
 
     @Autowired
     public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
@@ -35,8 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().requireCsrfProtectionMatcher(new AntPathRequestMatcher("**/"))
-                .and().authorizeRequests()
+        http.authorizeRequests()
                 .antMatchers("/student").hasRole(ROLE_STUDENT)
                 .antMatchers("/prof").hasRole(ROLE_PROF)
                 .and().formLogin().successHandler(successHandler)
