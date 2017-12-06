@@ -99,9 +99,25 @@
         </table>
     </div>-->
 
-    <div>
-        <p th:text="${calendar.getDisplayDate().toString()}">Date</p>
-        <p th:text="${calendar.toString()}">Exception message</p>
+    <div th:if="!${calendarRows.isEmpty()}">
+        <h1>Calendar</h1>
+        <table class="table table-striped">
+            <tr>
+                <th>MONDAY</th>
+                <th>TUESDAY</th>
+                <th>WEDNESDAY</th>
+                <th>THURSDAY</th>
+                <th>FRIDAY</th>
+            </tr>
+
+            <tr th:each="timeRow : ${calendarRows}">
+                <td th:text="${timeRow.getMonSlotHandler().toString()}"></td>
+                <td th:text="${timeRow.getTueSlowHandler().toString()}"></td>
+                <td th:text="${timeRow.getWedSlotHandler().toString()}"></td>
+                <td th:text="${timeRow.getThuSlotHandler().toString()}"></td>
+                <td th:text="${timeRow.getFriSlotHandler().toString()}"></td>
+            </tr>
+        </table>
     </div>
 
 </div>

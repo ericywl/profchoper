@@ -30,7 +30,7 @@ public class LoginTest {
             WeekCalendar calendar = new WeekCalendar(date);
             calendar.insertSlots(slotList);
 
-            model.put("calendar", calendar);
+            model.put("calendarRows", calendar.getTimeRowList());
             model.put("bookings", slotList);
             return "student";
         } catch (Exception ex) {

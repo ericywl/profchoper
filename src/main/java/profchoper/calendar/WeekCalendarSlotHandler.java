@@ -26,7 +26,7 @@ public class WeekCalendarSlotHandler {
             Slot slot = slotList.get(i);
             outputBld.append(slot.getProfAlias());
 
-            if (i != slotList.size() - 1)
+            if (i < slotList.size() - 1)
                 outputBld.append("\n");
         }
 
