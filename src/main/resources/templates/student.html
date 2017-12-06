@@ -112,12 +112,12 @@
 
             <th:block th:each="matrixRow : ${calendar}">
                 <tr th:each="calendarSlotHandler : ${matrixRow}">
-                    <th th:if="!${calendarSlotHandler.isEmpty()}"
+                    <td th:if="!${calendarSlotHandler.isEmpty()}"
                         th:id="${calendarSlotHandler.getHandlerID()}"
-                        th:text="calendarSlotHandler.toString()"></th>
+                        th:text="calendarSlotHandler.toString()"></td>
 
-                    <th th:if="${calendarSlotHandler.isEmpty()}"
-                        th:id="${calendarSlotHandler.getHandlerID()}"></th>
+                    <td th:if="${calendarSlotHandler.isEmpty()}"
+                        th:id="${calendarSlotHandler.getHandlerID()}">N/A</td>
                 </tr>
             </th:block>
         </table>

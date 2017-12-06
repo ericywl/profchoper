@@ -18,21 +18,21 @@ public class WeekCalendar {
 
     public WeekCalendar(LocalDate date) {
         timeHash.put(LocalTime.of(9, 0, 0), 0);
-        timeHash.put(LocalTime.of(9, 30, 0), 0);
-        timeHash.put(LocalTime.of(10, 0, 0), 0);
-        timeHash.put(LocalTime.of(10, 30, 0), 0);
-        timeHash.put(LocalTime.of(11, 0, 0), 0);
-        timeHash.put(LocalTime.of(11, 30, 0), 0);
-        timeHash.put(LocalTime.of(12, 0, 0), 0);
-        timeHash.put(LocalTime.of(12, 30, 0), 0);
-        timeHash.put(LocalTime.of(13, 0, 0), 0);
-        timeHash.put(LocalTime.of(13, 30, 0), 0);
-        timeHash.put(LocalTime.of(14, 0, 0), 0);
-        timeHash.put(LocalTime.of(14, 30, 0), 0);
-        timeHash.put(LocalTime.of(15, 0, 0), 0);
-        timeHash.put(LocalTime.of(15, 30, 0), 0);
-        timeHash.put(LocalTime.of(16, 0, 0), 0);
-        timeHash.put(LocalTime.of(16, 30, 0), 0);
+        timeHash.put(LocalTime.of(9, 30, 0), 1);
+        timeHash.put(LocalTime.of(10, 0, 0), 2);
+        timeHash.put(LocalTime.of(10, 30, 0), 3);
+        timeHash.put(LocalTime.of(11, 0, 0), 4);
+        timeHash.put(LocalTime.of(11, 30, 0), 5);
+        timeHash.put(LocalTime.of(12, 0, 0), 6);
+        timeHash.put(LocalTime.of(12, 30, 0), 7);
+        timeHash.put(LocalTime.of(13, 0, 0), 8);
+        timeHash.put(LocalTime.of(13, 30, 0), 9);
+        timeHash.put(LocalTime.of(14, 0, 0), 10);
+        timeHash.put(LocalTime.of(14, 30, 0), 11);
+        timeHash.put(LocalTime.of(15, 0, 0), 12);
+        timeHash.put(LocalTime.of(15, 30, 0), 13);
+        timeHash.put(LocalTime.of(16, 0, 0), 14);
+        timeHash.put(LocalTime.of(16, 30, 0), 15);
 
         dayHash.put(DayOfWeek.MONDAY, 0);
         dayHash.put(DayOfWeek.TUESDAY, 1);
@@ -42,7 +42,7 @@ public class WeekCalendar {
 
         displayDate = date;
 
-        slotHandlerMatrix = new WeekCalendarSlotHandler[5][18];
+        slotHandlerMatrix = new WeekCalendarSlotHandler[5][16];
         for (int i = 0; i < slotHandlerMatrix.length; i++) {
             for (int j = 0; j < slotHandlerMatrix[i].length; j++) {
                 String handlerID = i + "_" + j;

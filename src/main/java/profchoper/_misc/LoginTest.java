@@ -23,18 +23,13 @@ public class LoginTest {
 
     @GetMapping("/student")
     public String student(Map<String, Object> model) {
-        try {
-            LocalDate date = LocalDate.of(2017, 12, 4);
-            List<Slot> slotList = slotService.getSlotsBySchoolWeek(date);
-            WeekCalendar calendar = new WeekCalendar(date);
-            calendar.insertSlots(slotList);
+        LocalDate date = LocalDate.of(2017, 12, 4);
+        List<Slot> slotList = slotService.getSlotsBySchoolWeek(date);
+        WeekCalendar calendar = new WeekCalendar(date);
+        calendar.insertSlots(slotList);
 
-            model.put("calendar", calendar.getSlotHandlerMatrix());
-            return "student";
-        } catch (Exception ex) {
-            model.put("message", ex.getMessage());
-            return "error";
-        }
+        model.put("calendar", calendar.getSlotHandlerMatrix());
+        return "student";
     }
 
     @GetMapping("/prof")
