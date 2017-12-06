@@ -6,7 +6,7 @@
 
 <div class="container">
     <!--/*@thymesVar id="bookings" type="java.util.List"*/-->
-    <!--<div th:if="!${bookings.isEmpty()}">
+    <div th:if="!${bookings.isEmpty()}">
         <h1>Bookings</h1>
         <table class="table table-striped">
             <tr>
@@ -17,7 +17,7 @@
                 <th>Student</th>
             </tr>
 
-            &lt;!&ndash;/*@thymesVar id="slot" type="profchoper.slot.Slot"*/&ndash;&gt;
+            <!--/*@thymesVar id="slot" type="profchoper.slot.Slot"*/-->
             <tr th:each="slot : ${bookings}">
                 <td th:text="${slot.getDate().toString()}"></td>
                 <td th:text="${slot.getStartTime().toString()}"></td>
@@ -27,7 +27,7 @@
                 <td th:if="!${slot.getStudentId()}">N/A</td>
             </tr>
         </table>
-    </div>-->
+    </div>
 
 
     <!--/*@thymesVar id="courses" type="java.util.List"*/-->
@@ -99,10 +99,10 @@
         </table>
     </div>-->
 
-    <div>
+<!--    <div>
         <p th:text="${calendar.getDisplayDate().toString()}">Date</p>
         <p th:text="${calendar.getSlotHandlerMatrix().toString()}">Exception message</p>
-    </div>
+    </div>-->
 
 </div>
 
