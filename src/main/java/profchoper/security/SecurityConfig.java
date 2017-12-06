@@ -22,24 +22,31 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private AccessDeniedHandler accessDeniedHandler;
 
-    /*@Autowired
-    public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
-        auth.jdbcAuthentication().dataSource(dataSource);
-    }*/
-
     @Autowired
+    public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
+        auth.jdbcAuthentication()
+                .dataSource(dataSource)
+                .usersByUsernameQuery("SELECT username AS principal, " +
+                        "password AS credentials, " +
+                        "TRUE FROM users WHERE username = ?")
+                .authoritiesByUsernameQuery("SELECT username AS principal, " +
+                        "authority AS role FROM user_roles WHERE username = ?")
+                .rolePrefix("ROLE_");
+    }
+
+    /*@Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
                 .withUser("student").password("password").roles(ROLE_STUDENT)
                 .and()
                 .withUser("prof").password("password").roles(ROLE_PROF);
-    }
+    }*/
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/", "/home", "/about").permitAll()
+                .antMatchers("/").permitAll()
                 .antMatchers("/prof/**").hasAnyRole(ROLE_PROF)
                 .antMatchers("/student/**").hasAnyRole(ROLE_STUDENT)
                 .anyRequest().authenticated()

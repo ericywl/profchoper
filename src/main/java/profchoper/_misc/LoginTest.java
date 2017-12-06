@@ -53,6 +53,6 @@ public class LoginTest {
 
     @GetMapping("/403")
     public String error403() {
-        return "/error/403";
+        return "403";
     }
 }
