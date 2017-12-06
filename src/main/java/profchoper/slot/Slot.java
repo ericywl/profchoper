@@ -2,17 +2,15 @@ package profchoper.slot;
 
 import java.sql.Timestamp;
 import java.time.DayOfWeek;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
 
 import static profchoper._misc.Constant.*;
 
 public class Slot {
     private final Timestamp timestamp;
     private final LocalDateTime startDateTime;
-    private final DayOfWeek day;
+    private final DayOfWeek dayOfWeek;
     private final String profAlias;
     private Integer studentId = null;
     private String bookStatus = AVAIL;
@@ -21,7 +19,7 @@ public class Slot {
         this.profAlias = profAlias;
         this.timestamp = startTimestamp;
         this.startDateTime = startTimestamp.toLocalDateTime();
-        this.day = this.startDateTime.getDayOfWeek();
+        this.dayOfWeek = this.startDateTime.getDayOfWeek();
     }
 
     // For inserting into database
@@ -33,7 +31,7 @@ public class Slot {
         this.profAlias = profAlias;
         this.timestamp = Timestamp.valueOf(startDateTime);
         this.startDateTime = startDateTime;
-        this.day = this.startDateTime.getDayOfWeek();
+        this.dayOfWeek = this.startDateTime.getDayOfWeek();
     }
 
     public void book(Integer studentId) {
@@ -51,7 +49,7 @@ public class Slot {
     }
 
     @Override
-    // Slots are considered equal if they have the same day and startTime
+    // Slots are considered equal if they have the same dayOfWeek and startTime
     public boolean equals(Object obj) {
         if (obj.getClass() != this.getClass())
             return false;
@@ -91,8 +89,8 @@ public class Slot {
         return startDateTime;
     }
 
-    public DayOfWeek getDay() {
-        return day;
+    public DayOfWeek getDayOfWeek() {
+        return dayOfWeek;
     }
 
     public String getBookStatus() {

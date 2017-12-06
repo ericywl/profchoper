@@ -41,6 +41,10 @@ public class WeekCalendarSlotHandler {
         return slotList.isEmpty();
     }
 
+    public String getHandlerID() {
+        return handlerID;
+    }
+
     public LocalTime getTime() {
         return dateTime.toLocalTime();
     }

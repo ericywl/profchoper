@@ -17,49 +17,28 @@ public class WeekCalendar {
     private WeekCalendarSlotHandler[][] slotHandlerMatrix;
 
     public WeekCalendar(LocalDate date) {
-        timeHash.put(LocalTime.parse("8:00:00"), 0);
-        timeHash.put(LocalTime.parse("8:30:00"), 1);
-        timeHash.put(LocalTime.parse("9:00:00"), 2);
-        timeHash.put(LocalTime.parse("9:30:00"), 3);
-        timeHash.put(LocalTime.parse("10:00:00"), 4);
-        timeHash.put(LocalTime.parse("10:30:00"), 5);
-        timeHash.put(LocalTime.parse("11:00:00"), 6);
-        timeHash.put(LocalTime.parse("11:30:00"), 7);
-        timeHash.put(LocalTime.parse("12:00:00"), 8);
-        timeHash.put(LocalTime.parse("12:30:00"), 9);
-        timeHash.put(LocalTime.parse("13:00:00"), 10);
-        timeHash.put(LocalTime.parse("13:30:00"), 11);
-        timeHash.put(LocalTime.parse("14:00:00"), 12);
-        timeHash.put(LocalTime.parse("14:30:00"), 13);
-        timeHash.put(LocalTime.parse("15:00:00"), 14);
-        timeHash.put(LocalTime.parse("15:30:00"), 15);
-        timeHash.put(LocalTime.parse("16:00:00"), 16);
-        timeHash.put(LocalTime.parse("16:30:00"), 17);
+        timeHash.put(LocalTime.of(9, 0, 0), 0);
+        timeHash.put(LocalTime.of(9, 30, 0), 0);
+        timeHash.put(LocalTime.of(10, 0, 0), 0);
+        timeHash.put(LocalTime.of(10, 30, 0), 0);
+        timeHash.put(LocalTime.of(11, 0, 0), 0);
+        timeHash.put(LocalTime.of(11, 30, 0), 0);
+        timeHash.put(LocalTime.of(12, 0, 0), 0);
+        timeHash.put(LocalTime.of(12, 30, 0), 0);
+        timeHash.put(LocalTime.of(13, 0, 0), 0);
+        timeHash.put(LocalTime.of(13, 30, 0), 0);
+        timeHash.put(LocalTime.of(14, 0, 0), 0);
+        timeHash.put(LocalTime.of(14, 30, 0), 0);
+        timeHash.put(LocalTime.of(15, 0, 0), 0);
+        timeHash.put(LocalTime.of(15, 30, 0), 0);
+        timeHash.put(LocalTime.of(16, 0, 0), 0);
+        timeHash.put(LocalTime.of(16, 30, 0), 0);
 
         dayHash.put(DayOfWeek.MONDAY, 0);
         dayHash.put(DayOfWeek.TUESDAY, 1);
         dayHash.put(DayOfWeek.WEDNESDAY, 2);
         dayHash.put(DayOfWeek.THURSDAY, 3);
         dayHash.put(DayOfWeek.FRIDAY, 4);
-
-        timeList.add(LocalTime.parse("8:00:00"));
-        timeList.add(LocalTime.parse("8:30:00"));
-        timeList.add(LocalTime.parse("9:00:00"));
-        timeList.add(LocalTime.parse("9:30:00"));
-        timeList.add(LocalTime.parse("10:00:00"));
-        timeList.add(LocalTime.parse("10:30:00"));
-        timeList.add(LocalTime.parse("11:00:00"));
-        timeList.add(LocalTime.parse("11:30:00"));
-        timeList.add(LocalTime.parse("12:00:00"));
-        timeList.add(LocalTime.parse("12:30:00"));
-        timeList.add(LocalTime.parse("1:00:00"));
-        timeList.add(LocalTime.parse("1:30:00"));
-        timeList.add(LocalTime.parse("2:00:00"));
-        timeList.add(LocalTime.parse("2:30:00"));
-        timeList.add(LocalTime.parse("3:00:00"));
-        timeList.add(LocalTime.parse("3:30:00"));
-        timeList.add(LocalTime.parse("4:00:00"));
-        timeList.add(LocalTime.parse("4:30:00"));
 
         displayDate = date;
 
@@ -78,12 +57,12 @@ public class WeekCalendar {
     }
 
     private void insertSlot(Slot slot) {
-        LocalTime localTime = slot.getStartDateTime().toLocalTime();
+        LocalTime time = slot.getStartDateTime().toLocalTime();
+        DayOfWeek day = slot.getDayOfWeek();
 
-        slotHandlerMatrix[dayHash.get(slot.getDay())][timeHash.get(localTime)].addSlot(slot);
+        slotHandlerMatrix[dayHash.get(day)][timeHash.get(time)].addSlot(slot);
 
-        slotHandlerMatrix[dayHash.get(slot.getDay())]
-                [timeHash.get(localTime)].setDateTime(slot.getStartDateTime());
+        slotHandlerMatrix[dayHash.get(day)][timeHash.get(time)].setDateTime(slot.getStartDateTime());
 
     }
 

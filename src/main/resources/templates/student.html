@@ -113,9 +113,12 @@
             <!--/*@thymesVar id="calendar" type="profchoper.calendar.WeekCalendar"*/-->
             <th:block th:each="matrixRow : ${calendar.getSlotHandlerMatrix()}">
                 <tr th:each="calendarSlotHandler : ${matrixRow}">
-                    <th th:if="!${calendarSlotHandler.isEmpty()}" 
+                    <th th:if="!${calendarSlotHandler.isEmpty()}"
+                        th:id="${calendarSlotHandler.getHandlerID()}"
                         th:text="calendarSlotHandler.toString()"></th>
-                    <th th:if="${calendarSlotHandler.isEmpty()}"></th>
+
+                    <th th:if="${calendarSlotHandler.isEmpty()}"
+                        th:id="${calendarSlotHandler.getHandlerID()}"></th>
                 </tr>
             </th:block>
         </table>
