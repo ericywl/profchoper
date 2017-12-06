@@ -153,7 +153,8 @@
             </tr>
 
             <tr id="test-row" th:each="row : ${test}">
-                <td th:utext="${row[0]}"></td>
+                <td th:text="${#strings.replace(row[0],
+                T(org.apache.commons.lang3.StringUtils).LF, '&lt;br /&gt;')}"></td>
                 <td th:text="${row[1]}"></td>
                 <td th:text="${row[2]}"></td>
                 <td th:text="${row[3]}"></td>
