@@ -25,4 +25,7 @@ public class Constant {
 
     public static final String OKA = "Oka Kurniawan";
     public static final String MAN = "Ngai-Man Cheung";
+
+    public static final String ROLE_STUDENT = "STUDENT";
+    public static final String ROLE_PROF = "PROFESSOR";
 }

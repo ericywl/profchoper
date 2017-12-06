@@ -23,12 +23,12 @@ public class LoginTest {
     @Autowired
     private SlotService slotService;
 
-    @RequestMapping("/")
+    @GetMapping("/")
     String index() {
         return "index";
     }
 
-    @RequestMapping("/student")
+    @GetMapping("/student")
     public String student(Map<String, Object> model) {
         try {
             List<Slot> slotList = slotService.getSlotsByWeek(LocalDate.of(2017, 12, 3));
@@ -41,18 +41,18 @@ public class LoginTest {
         }
     }
 
-    @RequestMapping("/prof")
+    @GetMapping("/prof")
     public String prof() {
         return "prof";
     }
 
-    @RequestMapping("/login")
+    @GetMapping("/login")
     public String login() {
         return "login";
     }
 
-    @RequestMapping("/403")
-    public String Error403() {
-        return "403";
+    @GetMapping("/403")
+    public String error403() {
+        return "/error/403";
     }
 }
