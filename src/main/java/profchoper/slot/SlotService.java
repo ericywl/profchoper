@@ -23,38 +23,6 @@ public class SlotService {
         return slotDAO.findByProfAlias(profAlias);
     }
 
-    private List<Slot> getSlotsByDateRangeType(String type, LocalDate startDate) {
-        LocalDateTime startDateTime = startDate.atStartOfDay();
-        LocalDateTime endDateTime;
-
-        switch (type) {
-            case "DATE":
-                endDateTime = startDateTime.plus(1, ChronoUnit.DAYS);
-                break;
-
-            case "SCHOOL_WEEK":
-                endDateTime = startDateTime.plus(5, ChronoUnit.DAYS);
-                break;
-
-            case "WEEK":
-                endDateTime = startDateTime.plus(1, ChronoUnit.WEEKS);
-                break;
-
-            case "MONTH":
-                endDateTime = startDateTime.plus(1, ChronoUnit.MONTHS);
-                break;
-
-            case "TERM":
-                endDateTime = startDateTime.plus(14, ChronoUnit.MONTHS);
-                break;
-
-            default:
-                endDateTime = startDateTime.plus(SLOT_TIME, ChronoUnit.MINUTES);
-        }
-
-        return slotDAO.findByDateRange(startDateTime, endDateTime);
-    }
-
     public List<Slot> getSlotsByDate(LocalDate date) {
         return getSlotsByDateRangeType(DATE, date);
     }
@@ -73,5 +41,38 @@ public class SlotService {
 
     public List<Slot> getSlotsByTerm(LocalDate startDateOfTerm) {
         return getSlotsByDateRangeType(TERM, startDateOfTerm);
+    }
+
+    private List<Slot> getSlotsByDateRangeType(String type, LocalDate startDate) {
+        LocalDateTime startDateTime = startDate.atStartOfDay();
+        LocalDateTime endDateTime;
+
+        switch (type) {
+            case DATE:
+                endDateTime = startDateTime.plus(1, ChronoUnit.DAYS);
+                break;
+
+            case SCHOOL_WEEK:
+                endDateTime = startDateTime.plus(5, ChronoUnit.DAYS);
+                break;
+
+            case WEEK:
+                endDateTime = startDateTime.plus(1, ChronoUnit.WEEKS);
+                break;
+
+            case MONTH:
+                endDateTime = startDateTime.plus(1, ChronoUnit.MONTHS);
+                break;
+
+            case TERM:
+                endDateTime = startDateTime.plus(14, ChronoUnit.MONTHS);
+                break;
+
+            default:
+                endDateTime = startDateTime.plus(SLOT_TIME, ChronoUnit.MINUTES);
+                break;
+        }
+
+        return slotDAO.findByDateRange(startDateTime, endDateTime);
     }
 }
