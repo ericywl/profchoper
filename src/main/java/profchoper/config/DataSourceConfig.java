@@ -1,17 +1,15 @@
-package profchoper.database;
+package profchoper.config;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Repository;
+import org.springframework.context.annotation.Configuration;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
 
-@Repository
+@Configuration
 public class DataSourceConfig {
     @Value("${spring.datasource.url}")
     public String dbUrl;

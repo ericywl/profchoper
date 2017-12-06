@@ -1,42 +1,27 @@
 package profchoper._misc;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import profchoper.booking.BookingSlot;
-import profchoper.booking.BookingSlotException;
-import profchoper.course.Course;
-import profchoper.repository.CourseRepository;
-import profchoper.repository.StudentRepository;
-import profchoper.user.Professor;
-import profchoper.user.Student;
+import profchoper.professor.Professor;
+import profchoper.professor.ProfessorDAO;
+import profchoper.professor.ProfessorService;
+import profchoper.student.Student;
+import profchoper.student.StudentDAO;
 
-import javax.sql.DataSource;
-import java.sql.*;
-import java.text.SimpleDateFormat;
 import java.util.*;
-
-import static profchoper._misc.Constant.INFOSYS;
-import static profchoper._misc.Constant.OKA;
 
 @Controller
 public class DBTest {
     @Autowired
-    CourseRepository courseRepository;
-
-    @Autowired
-    StudentRepository studentRepository;
+    private ProfessorService professorService;
 
     @RequestMapping("/")
     String index(Map<String, Object> model) {
         try {
-            List<Course> courseList = courseRepository.findAll();
+            List<Professor> profList = professorService.getProfessorsByCourseId("50.002");
 
-            List<Student> studentList = studentRepository.findAll();
-
-            model.put("courses", courseList);
-            model.put("students", studentList);
+            model.put("professors", profList);
             return "index";
         } catch (Exception ex) {
             model.put("message", ex.getMessage());
@@ -44,8 +29,8 @@ public class DBTest {
         }
     }
 
-    /*private List<BookingSlot> modelGen(ResultSet bookingRs) throws SQLException, BookingSlotException {
-        List<BookingSlot> bookings = new ArrayList<>();
+    /*private List<Slot> modelGen(ResultSet bookingRs) throws SQLException, SlotException {
+        List<Slot> bookings = new ArrayList<>();
 
         while (bookingRs.next()) {
             Timestamp timestamp = bookingRs.getTimestamp("start_time");
@@ -55,7 +40,7 @@ public class DBTest {
             String profOffice = bookingRs.getString("prof_office");
 
             Professor prof = new Professor(profName, profAlias, profEmail, profOffice);
-            BookingSlot bookingSlot = new BookingSlot(prof, timestamp);
+            Slot bookingSlot = new Slot(prof, timestamp);
 
             bookings.add(bookingSlot);
         }

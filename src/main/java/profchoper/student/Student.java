@@ -1,4 +1,4 @@
-package profchoper.user;
+package profchoper.student;
 
 
 import profchoper.course.Course;
@@ -24,6 +24,11 @@ public class Student {
         this.enrolledCourses = enrolledCourses;
     }
 
+    @Override
+    public String toString() {
+        return name + " (" + id + ")";
+    }
+
     public int getId() {
         return id;
     }
@@ -42,10 +47,5 @@ public class Student {
 
     public void setEnrolledCourses(List<Course> enrolledCourses) {
         this.enrolledCourses = enrolledCourses;
-    }
-
-    @Override
-    public String toString() {
-        return name + " (" + id + ")";
     }
 }
