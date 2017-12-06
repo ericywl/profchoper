@@ -20,14 +20,15 @@ public class WeekCalendarSlotHandler {
 
     @Override
     public String toString() {
-        StringBuilder outputBld = new StringBuilder();
+        if (slotList.isEmpty()) return "N/A";
 
+        StringBuilder outputBld = new StringBuilder();
         for (int i = 0; i < slotList.size(); i++) {
             Slot slot = slotList.get(i);
             outputBld.append(slot.getProfAlias());
 
             if (i < slotList.size() - 1)
-                outputBld.append("\n");
+                outputBld.append(" ");
         }
 
         return outputBld.toString();
