@@ -28,12 +28,12 @@ public class SlotService {
         LocalDateTime endDateTime;
 
         switch (type) {
-            case "DATE_TIME":
-                endDateTime = startDateTime;
-                break;
-
             case "DATE":
                 endDateTime = startDate.plus(1, ChronoUnit.DAYS).atStartOfDay();
+                break;
+
+            case "SCHOOL_WEEK":
+                endDateTime = startDate.plus(5, ChronoUnit.DAYS).atStartOfDay();
                 break;
 
             case "WEEK":
@@ -61,6 +61,10 @@ public class SlotService {
 
     public List<Slot> getSlotsByDate(LocalDate date) {
         return getSlotsByDateRangeType(DATE, date);
+    }
+
+    public List<Slot> getSlotsBySchoolWeek(LocalDate startDateOfSchoolWeek) {
+        return getSlotsByDateRangeType(SCHOOL_WEEK, startDateOfSchoolWeek);
     }
 
     public List<Slot> getSlotsByWeek(LocalDate startDateOfWeek) {

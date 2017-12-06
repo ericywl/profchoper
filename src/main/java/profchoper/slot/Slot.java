@@ -11,23 +11,17 @@ import static profchoper._misc.Constant.*;
 
 public class Slot {
     private final Timestamp timestamp;
-    private final LocalDate date;
+    private final LocalDateTime startDateTime;
     private final DayOfWeek day;
-    private final LocalTime startTime;
-    private final LocalTime endTime;
     private final String profAlias;
     private Integer studentId = null;
     private String bookStatus = AVAIL;
 
     public Slot(String profAlias, Timestamp startTimestamp) {
-        LocalTime startTime = startTimestamp.toLocalDateTime().toLocalTime();
-
         this.profAlias = profAlias;
         this.timestamp = startTimestamp;
-        this.date = startTimestamp.toLocalDateTime().toLocalDate();
-        this.day = this.date.getDayOfWeek();
-        this.startTime = startTime;
-        this.endTime = this.startTime.plus(SLOT_TIME, ChronoUnit.MINUTES);
+        this.startDateTime = startTimestamp.toLocalDateTime();
+        this.day = this.startDateTime.getDayOfWeek();
     }
 
     // For inserting into database
@@ -38,10 +32,8 @@ public class Slot {
 
         this.profAlias = profAlias;
         this.timestamp = Timestamp.valueOf(startDateTime);
-        this.date = startDateTime.toLocalDate();
-        this.day = this.date.getDayOfWeek();
-        this.startTime = startDateTime.toLocalTime();
-        this.endTime = this.startTime.plus(SLOT_TIME, ChronoUnit.MINUTES);
+        this.startDateTime = startDateTime;
+        this.day = this.startDateTime.getDayOfWeek();
     }
 
     public void book(Integer studentId) {
@@ -56,11 +48,6 @@ public class Slot {
 
     public void confirm() {
         bookStatus = BOOKED;
-    }
-
-    @Override
-    public String toString() {
-        return date + ": " + startTime + " => " + endTime;
     }
 
     @Override
@@ -100,23 +87,15 @@ public class Slot {
         return profAlias;
     }
 
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public LocalTime getEndTime() {
-        return endTime;
-    }
-
-    public String getBookStatus() {
-        return bookStatus;
+    public LocalDateTime getStartDateTime() {
+        return startDateTime;
     }
 
     public DayOfWeek getDay() {
         return day;
     }
 
-    public LocalTime getStartTime() {
-        return startTime;
+    public String getBookStatus() {
+        return bookStatus;
     }
 }

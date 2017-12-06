@@ -6,76 +6,76 @@
 
 <div class="container">
     <!--/*@thymesVar id="bookings" type="java.util.List"*/-->
-        <div th:if="not ${bookings.isEmpty()}">
-            <h1>Bookings</h1>
-            <table class="table table-striped">
-                <tr>
-                    <th>Date</th>
-                    <th>Start Time</th>
-                    <th>Professor</th>
-                    <th>Booking Status</th>
-                    <th>Student</th>
-                </tr>
+    <!--<div th:if="not ${bookings.isEmpty()}">
+        <h1>Bookings</h1>
+        <table class="table table-striped">
+            <tr>
+                <th>Date</th>
+                <th>Start Time</th>
+                <th>Professor</th>
+                <th>Booking Status</th>
+                <th>Student</th>
+            </tr>
 
-                <!--/*@thymesVar id="booking" type="profchoper.slot.Slot"*/-->
-                <tr th:each="booking : ${bookings}">
-                    <td th:text="${booking.getDate().toString()}"></td>
-                    <td th:text="${booking.getStartTime().toString()}"></td>
-                    <td th:text="${booking.getProfAlias()}"></td>
-                    <td th:text="${booking.getBookStatus()}"></td>
-                    <td th:if="${booking.getStudentId()}" th:text="${booking.getStudentId()}"></td>
-                    <td th:if="!${booking.getStudentId()}">N/A</td>
-                </tr>
-            </table>
-        </div>
+            &lt;!&ndash;/*@thymesVar id="booking" type="profchoper.slot.Slot"*/&ndash;&gt;
+            <tr th:each="booking : ${bookings}">
+                <td th:text="${booking.getDate().toString()}"></td>
+                <td th:text="${booking.getStartTime().toString()}"></td>
+                <td th:text="${booking.getProfAlias()}"></td>
+                <td th:text="${booking.getBookStatus()}"></td>
+                <td th:if="${booking.getStudentId()}" th:text="${booking.getStudentId()}"></td>
+                <td th:if="!${booking.getStudentId()}">N/A</td>
+            </tr>
+        </table>
+    </div>-->
 
 
     <!--/*@thymesVar id="courses" type="java.util.List"*/-->
-<!--    <div th:if="not ${courses.isEmpty()}">
-        <h1>Courses</h1>
-        <table class="table table-striped">
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Alias</th>
-            </tr>
+    <!--    <div th:if="not ${courses.isEmpty()}">
+            <h1>Courses</h1>
+            <table class="table table-striped">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Alias</th>
+                </tr>
 
-            &lt;!&ndash;/*@thymesVar id="course" type="profchoper.course.Course"*/&ndash;&gt;
-            <tr th:each="course : ${courses}">
-                <td th:text="${course.getId()}"></td>
-                <td th:text="${course.getName()}"></td>
-                <td th:text="${course.getAlias()}"></td>
-            </tr>
-        </table>
-    </div>-->
+                &lt;!&ndash;/*@thymesVar id="course" type="profchoper.course.Course"*/&ndash;&gt;
+                <tr th:each="course : ${courses}">
+                    <td th:text="${course.getId()}"></td>
+                    <td th:text="${course.getName()}"></td>
+                    <td th:text="${course.getAlias()}"></td>
+                </tr>
+            </table>
+        </div>-->
 
     <!--/*@thymesVar id="students" type="java.util.List"*/-->
-<!--    <div th:if="not ${students.isEmpty()}">
-        <h1>Students</h1>
-        <table class="table table-striped">
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Course 1</th>
-                <th>Course 2</th>
-                <th>Course 3</th>
-                <th>Course 4</th>
-            </tr>
+    <!--    <div th:if="not ${students.isEmpty()}">
+            <h1>Students</h1>
+            <table class="table table-striped">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Course 1</th>
+                    <th>Course 2</th>
+                    <th>Course 3</th>
+                    <th>Course 4</th>
+                </tr>
 
-            &lt;!&ndash;/*@thymesVar id="student" type="profchoper.student.Student"*/&ndash;&gt;
-            <tr th:each="student : ${students}">
-                <td th:text="${student.getId()}"></td>
-                <td th:text="${student.getName()}"></td>
-                <td th:text="${student.getEmail()}"></td>
-                <td th:text="${student.getEnrolledCourses()[0].toString()}"></td>
-                <td th:text="${student.getEnrolledCourses()[1].toString()}"></td>
-                <td th:text="${student.getEnrolledCourses()[2].toString()}"></td>
-                <td th:text="${student.getEnrolledCourses()[3].toString()}"></td>
-            </tr>
+                &lt;!&ndash;/*@thymesVar id="student" type="profchoper.student.Student"*/&ndash;&gt;
+                <tr th:each="student : ${students}">
+                    <td th:text="${student.getId()}"></td>
+                    <td th:text="${student.getName()}"></td>
+                    <td th:text="${student.getEmail()}"></td>
+                    <td th:text="${student.getEnrolledCourses()[0].toString()}"></td>
+                    <td th:text="${student.getEnrolledCourses()[1].toString()}"></td>
+                    <td th:text="${student.getEnrolledCourses()[2].toString()}"></td>
+                    <td th:text="${student.getEnrolledCourses()[3].toString()}"></td>
+                </tr>
 
-        </table>
-    </div>-->
+            </table>
+        </div>-->
 
     <!--/*@thymesVar id="professors" type="java.util.List"*/-->
     <!--<div th:if="not ${professors.isEmpty()}">
@@ -98,6 +98,22 @@
 
         </table>
     </div>-->
+
+    <div>
+        <h1>Calendar</h1>
+        <table class="table table-striped">
+            <tr>
+                <th>MONDAY</th>
+                <th>TUESDAY</th>
+                <th>WEDNESDAY</th>
+                <th>THURSDAY</th>
+                <th>FRIDAY</th>
+            </tr>
+
+
+        </table>
+    </div>
+
 </div>
 
 </body>
