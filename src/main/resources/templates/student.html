@@ -110,9 +110,14 @@
                 <th>FRIDAY</th>
             </tr>
 
-            <tr>
-
-            </tr>
+            <!--/*@thymesVar id="calendar" type="profchoper.calendar.WeekCalendar"*/-->
+            <th:block th:each="matrixRow : ${calendar.getSlotHandlerMatrix()}">
+                <tr th:each="calendarSlotHandler : ${matrixRow}">
+                    <th th:if="!${calendarSlotHandler.isEmpty()}" 
+                        th:text="calendarSlotHandler.toString()"></th>
+                    <th th:if="${calendarSlotHandler.isEmpty()}"></th>
+                </tr>
+            </th:block>
         </table>
     </div>
 

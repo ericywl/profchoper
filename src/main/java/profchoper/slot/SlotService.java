@@ -29,23 +29,23 @@ public class SlotService {
 
         switch (type) {
             case "DATE":
-                endDateTime = startDate.plus(1, ChronoUnit.DAYS).atStartOfDay();
+                endDateTime = startDateTime.plus(1, ChronoUnit.DAYS);
                 break;
 
             case "SCHOOL_WEEK":
-                endDateTime = startDate.plus(5, ChronoUnit.DAYS).atStartOfDay();
+                endDateTime = startDateTime.plus(5, ChronoUnit.DAYS);
                 break;
 
             case "WEEK":
-                endDateTime = startDate.plus(1, ChronoUnit.WEEKS).atStartOfDay();
+                endDateTime = startDateTime.plus(1, ChronoUnit.WEEKS);
                 break;
 
             case "MONTH":
-                endDateTime = startDate.plus(1, ChronoUnit.MONTHS).atStartOfDay();
+                endDateTime = startDateTime.plus(1, ChronoUnit.MONTHS);
                 break;
 
             case "TERM":
-                endDateTime = startDate.plus(14, ChronoUnit.MONTHS).atStartOfDay();
+                endDateTime = startDateTime.plus(14, ChronoUnit.MONTHS);
                 break;
 
             default:
@@ -53,10 +53,6 @@ public class SlotService {
         }
 
         return slotDAO.findByDateRange(startDateTime, endDateTime);
-    }
-
-    public List<Slot> getSlotsByDateTime(LocalDateTime dateTime) {
-        return null;
     }
 
     public List<Slot> getSlotsByDate(LocalDate date) {

@@ -4,16 +4,17 @@ import profchoper.slot.Slot;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import static profchoper._misc.Constant.AVAIL;
 
-public class CalendarSlotHandler {
+public class WeekCalendarSlotHandler {
     private final String handlerID;
-    private List<Slot> slotList;
+    private List<Slot> slotList = new ArrayList<>();
     private LocalDateTime dateTime;
 
-    public CalendarSlotHandler(String handlerID) {
+    public WeekCalendarSlotHandler(String handlerID) {
         this.handlerID = handlerID;
     }
 
@@ -32,6 +33,14 @@ public class CalendarSlotHandler {
         return outputBld.toString();
     }
 
+    public void addSlot(Slot slot){
+        this.slotList.add(slot);
+    }
+
+    public boolean isEmpty() {
+        return slotList.isEmpty();
+    }
+
     public LocalTime getTime() {
         return dateTime.toLocalTime();
     }
@@ -46,23 +55,5 @@ public class CalendarSlotHandler {
 
     public List<Slot> getSlotList() {
         return slotList;
-    }
-
-    public void setSlotList(List<Slot> slotList) {
-        this.slotList = slotList;
-    }
-
-    public void addSlot(Slot slot){
-        this.slotList.add(slot);
-    }
-
-    public Boolean getAvailability() {
-        for (Slot slot: slotList) {
-            if (slot.getBookStatus().equals(AVAIL)) {
-                return true;
-            }
-        }
-
-        return false;
     }
 }
