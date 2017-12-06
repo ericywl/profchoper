@@ -8,10 +8,13 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <style>
-        tr {
-            line-height: 50px;
-            min-height: 50px;
-            height: 50px;
+        .table-striped tr {
+            display: block;
+            height: 80px;
+        }
+
+        .table-striped th, td {
+            width: 100px;
         }
     </style>
 </head>
@@ -113,26 +116,26 @@
         </table>
     </div>-->
 
-<!--    <div th:if="!${calendarRows.isEmpty()}">
-        <h1>Calendar</h1>
-        <table class="table table-striped">
-            <tr>
-                <th>MONDAY</th>
-                <th>TUESDAY</th>
-                <th>WEDNESDAY</th>
-                <th>THURSDAY</th>
-                <th>FRIDAY</th>
-            </tr>
+    <!--    <div th:if="!${calendarRows.isEmpty()}">
+            <h1>Calendar</h1>
+            <table class="table table-striped">
+                <tr>
+                    <th>MONDAY</th>
+                    <th>TUESDAY</th>
+                    <th>WEDNESDAY</th>
+                    <th>THURSDAY</th>
+                    <th>FRIDAY</th>
+                </tr>
 
-            <tr th:each="timeRow : ${calendarRows}">
-                <td th:text="${timeRow.getMonSlotHandler().toString()}"></td>
-                <td th:text="${timeRow.getTueSlowHandler().toString()}"></td>
-                <td th:text="${timeRow.getWedSlotHandler().toString()}"></td>
-                <td th:text="${timeRow.getThuSlotHandler().toString()}"></td>
-                <td th:text="${timeRow.getFriSlotHandler().toString()}"></td>
-            </tr>
-        </table>
-    </div>-->
+                <tr th:each="timeRow : ${calendarRows}">
+                    <td th:text="${timeRow.getMonSlotHandler().toString()}"></td>
+                    <td th:text="${timeRow.getTueSlowHandler().toString()}"></td>
+                    <td th:text="${timeRow.getWedSlotHandler().toString()}"></td>
+                    <td th:text="${timeRow.getThuSlotHandler().toString()}"></td>
+                    <td th:text="${timeRow.getFriSlotHandler().toString()}"></td>
+                </tr>
+            </table>
+        </div>-->
 
     <div>
         <h1>Test</h1>
