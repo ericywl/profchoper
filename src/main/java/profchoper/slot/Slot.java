@@ -1,8 +1,4 @@
-package profchoper.bookingslot;
-
-import profchoper._misc.Constant;
-import profchoper.professor.Professor;
-import profchoper.student.Student;
+package profchoper.slot;
 
 import java.sql.Timestamp;
 import java.time.DayOfWeek;
@@ -13,22 +9,20 @@ import java.time.temporal.ChronoUnit;
 
 import static profchoper._misc.Constant.*;
 
-public class BookingSlot {
+public class Slot {
     private final Timestamp timestamp;
     private final LocalDate date;
     private final DayOfWeek day;
     private final LocalTime startTime;
     private final LocalTime endTime;
-    private final Professor professor;
-    private String bookStatus = Constant.AVAIL;
-    private Student student = null;
+    private final String profAlias;
+    private Integer studentId = null;
+    private String bookStatus = AVAIL;
 
-    public BookingSlot(Professor professor, Timestamp startTimestamp) throws BookingSlotException {
+    public Slot(String profAlias, Timestamp startTimestamp) {
         LocalTime startTime = startTimestamp.toLocalDateTime().toLocalTime();
-        if (startTime.isBefore(DAY_FIRST_START_TIME) || startTime.isAfter(DAY_LAST_START_TIME))
-            throw new BookingSlotException("Start time must be within set boundaries.");
 
-        this.professor = professor;
+        this.profAlias = profAlias;
         this.timestamp = startTimestamp;
         this.date = startTimestamp.toLocalDateTime().toLocalDate();
         this.day = this.date.getDayOfWeek();
@@ -36,12 +30,13 @@ public class BookingSlot {
         this.endTime = this.startTime.plus(SLOT_TIME, ChronoUnit.MINUTES);
     }
 
-    public BookingSlot(Professor professor, LocalDateTime startDateTime) throws BookingSlotException {
+    // For inserting into database
+    public Slot(String profAlias, LocalDateTime startDateTime) throws SlotException {
         LocalTime startTime = startDateTime.toLocalTime();
         if (startTime.isBefore(DAY_FIRST_START_TIME) || startTime.isAfter(DAY_LAST_START_TIME))
-            throw new BookingSlotException("Start time must be within set boundaries.");
+            throw new SlotException("Start time must be within set boundaries.");
 
-        this.professor = professor;
+        this.profAlias = profAlias;
         this.timestamp = Timestamp.valueOf(startDateTime);
         this.date = startDateTime.toLocalDate();
         this.day = this.date.getDayOfWeek();
@@ -49,14 +44,14 @@ public class BookingSlot {
         this.endTime = this.startTime.plus(SLOT_TIME, ChronoUnit.MINUTES);
     }
 
-    public void book(Student student) {
+    public void book(Integer studentId) {
         bookStatus = PENDING;
-        this.student = student;
+        this.studentId = studentId;
     }
 
     public void cancel() {
-        bookStatus = Constant.AVAIL;
-        this.student = null;
+        bookStatus = AVAIL;
+        this.studentId = null;
     }
 
     public void confirm() {
@@ -74,19 +69,35 @@ public class BookingSlot {
         if (obj.getClass() != this.getClass())
             return false;
 
-        BookingSlot comparedSlot = (BookingSlot) obj;
+        Slot comparedSlot = (Slot) obj;
 
         if (!comparedSlot.timestamp.equals(this.timestamp))
             return false;
 
-        if (!comparedSlot.professor.equals(this.professor))
+        if (!comparedSlot.profAlias.equals(this.profAlias))
             return false;
 
         return true;
     }
 
-    public Professor getProfessor() {
-        return professor;
+    public Timestamp getTimestamp() {
+        return timestamp;
+    }
+
+    public Integer getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(Integer studentId) {
+        this.studentId = studentId;
+    }
+
+    public void setBookStatus(String bookStatus) {
+        this.bookStatus = bookStatus;
+    }
+
+    public String getProfAlias() {
+        return profAlias;
     }
 
     public LocalDate getDate() {
@@ -99,10 +110,6 @@ public class BookingSlot {
 
     public String getBookStatus() {
         return bookStatus;
-    }
-
-    public Student getStudent() {
-        return student;
     }
 
     public DayOfWeek getDay() {

@@ -29,8 +29,8 @@ public class DBTest {
         }
     }
 
-    /*private List<BookingSlot> modelGen(ResultSet bookingRs) throws SQLException, BookingSlotException {
-        List<BookingSlot> bookings = new ArrayList<>();
+    /*private List<Slot> modelGen(ResultSet bookingRs) throws SQLException, SlotException {
+        List<Slot> bookings = new ArrayList<>();
 
         while (bookingRs.next()) {
             Timestamp timestamp = bookingRs.getTimestamp("start_time");
@@ -40,7 +40,7 @@ public class DBTest {
             String profOffice = bookingRs.getString("prof_office");
 
             Professor prof = new Professor(profName, profAlias, profEmail, profOffice);
-            BookingSlot bookingSlot = new BookingSlot(prof, timestamp);
+            Slot bookingSlot = new Slot(prof, timestamp);
 
             bookings.add(bookingSlot);
         }

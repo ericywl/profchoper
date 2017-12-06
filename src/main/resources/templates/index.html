@@ -17,11 +17,11 @@
                     <th>Student</th>
                 </tr>
 
-                &lt;!&ndash;/*@thymesVar id="booking" type="profchoper.bookingslot.BookingSlot"*/&ndash;&gt;
+                &lt;!&ndash;/*@thymesVar id="booking" type="profchoper.slot.Slot"*/&ndash;&gt;
                 <tr th:each="booking : ${bookings}">
                     <td th:text="${booking.getDate().toString()}"></td>
                     <td th:text="${booking.getStartTime().toString()}"></td>
-                    <td th:text="${booking.getProfessor().toString()}"></td>
+                    <td th:text="${booking.getProfAlias().toString()}"></td>
                     <td th:text="${booking.getBookStatus()}"></td>
                     <td th:if="${booking.getStudent()}" th:text="${booking.getStudent().toString()}"></td>
                     <td th:if="!${booking.getStudent()}">N/A</td>
