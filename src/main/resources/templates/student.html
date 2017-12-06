@@ -6,7 +6,7 @@
 
 <div class="container">
     <!--/*@thymesVar id="bookings" type="java.util.List"*/-->
-    <div th:if="!${bookings.isEmpty()}">
+    <!--<div th:if="!${bookings.isEmpty()}">
         <h1>Bookings</h1>
         <table class="table table-striped">
             <tr>
@@ -17,17 +17,17 @@
                 <th>Student</th>
             </tr>
 
-            <!--/*@thymesVar id="booking" type="profchoper.slot.Slot"*/-->
-            <tr th:each="booking : ${bookings}">
-                <td th:text="${booking.getDate().toString()}"></td>
-                <td th:text="${booking.getStartTime().toString()}"></td>
-                <td th:text="${booking.getProfAlias()}"></td>
-                <td th:text="${booking.getBookStatus()}"></td>
-                <td th:if="${booking.getStudentId()}" th:text="${booking.getStudentId()}"></td>
-                <td th:if="!${booking.getStudentId()}">N/A</td>
+            &lt;!&ndash;/*@thymesVar id="slot" type="profchoper.slot.Slot"*/&ndash;&gt;
+            <tr th:each="slot : ${bookings}">
+                <td th:text="${slot.getDate().toString()}"></td>
+                <td th:text="${slot.getStartTime().toString()}"></td>
+                <td th:text="${slot.getProfAlias()}"></td>
+                <td th:text="${slot.getBookStatus()}"></td>
+                <td th:if="${slot.getStudentId()}" th:text="${slot.getStudentId()}"></td>
+                <td th:if="!${slot.getStudentId()}">N/A</td>
             </tr>
         </table>
-    </div>
+    </div>-->
 
 
     <!--/*@thymesVar id="courses" type="java.util.List"*/-->
@@ -99,7 +99,7 @@
         </table>
     </div>-->
 
-<!--    <div>
+    <div>
         <h1>Calendar</h1>
         <table class="table table-striped">
             <tr>
@@ -110,8 +110,11 @@
                 <th>FRIDAY</th>
             </tr>
 
+            <!--/*@thymesVar id="calendar" type="java.util.Arrays"*/-->
             <th:block th:each="matrixRow : ${calendar}">
                 <tr th:each="calendarSlotHandler : ${matrixRow}">
+                    <!--/*@thymesVar id="calendarSlotHandler"
+                    type="profchoper.calendar.WeekCalendarSlotHandler"*/-->
                     <td th:if="!${calendarSlotHandler.isEmpty()}"
                         th:id="${calendarSlotHandler.getHandlerID()}"
                         th:text="calendarSlotHandler.toString()"></td>
@@ -121,7 +124,7 @@
                 </tr>
             </th:block>
         </table>
-    </div>-->
+    </div>
 
 </div>
 

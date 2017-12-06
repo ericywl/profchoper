@@ -3,6 +3,7 @@ package profchoper._misc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import profchoper.calendar.WeekCalendar;
 import profchoper.slot.Slot;
 import profchoper.slot.SlotService;
 
@@ -26,11 +27,11 @@ public class LoginTest {
         try {
             LocalDate date = LocalDate.of(2017, 12, 4);
             List<Slot> slotList = slotService.getSlotsBySchoolWeek(date);
-            // WeekCalendar calendar = new WeekCalendar(date);
-            // calendar.insertSlots(slotList);
+            WeekCalendar calendar = new WeekCalendar(date);
+            calendar.insertSlots(slotList);
 
-            // model.put("calendar", calendar.getSlotHandlerMatrix());
-            model.put("bookings", slotList);
+            model.put("calendar", calendar.getSlotHandlerMatrix());
+            // model.put("bookings", slotList);
             return "student";
         } catch (Exception ex) {
             model.put("message", ex.getMessage());
