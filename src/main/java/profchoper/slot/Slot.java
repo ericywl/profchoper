@@ -2,6 +2,7 @@ package profchoper.slot;
 
 import java.sql.Timestamp;
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
@@ -48,6 +49,14 @@ public class Slot {
         bookStatus = BOOKED;
     }
 
+    public void setStudentId(Integer studentId) {
+        this.studentId = studentId;
+    }
+
+    public void setBookStatus(String bookStatus) {
+        this.bookStatus = bookStatus;
+    }
+
     @Override
     // Slots are considered equal if they have the same dayOfWeek and startTime
     public boolean equals(Object obj) {
@@ -65,20 +74,20 @@ public class Slot {
         return true;
     }
 
+    public LocalDate getDate() {
+        return startDateTime.toLocalDate();
+    }
+
+    public LocalTime getStartTime() {
+        return startDateTime.toLocalTime();
+    }
+
     public Timestamp getTimestamp() {
         return timestamp;
     }
 
     public Integer getStudentId() {
         return studentId;
-    }
-
-    public void setStudentId(Integer studentId) {
-        this.studentId = studentId;
-    }
-
-    public void setBookStatus(String bookStatus) {
-        this.bookStatus = bookStatus;
     }
 
     public String getProfAlias() {

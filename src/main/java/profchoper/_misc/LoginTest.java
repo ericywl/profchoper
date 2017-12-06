@@ -3,13 +3,12 @@ package profchoper._misc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import profchoper.calendar.WeekCalendar;
 import profchoper.slot.Slot;
 import profchoper.slot.SlotService;
 
 import java.time.LocalDate;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 public class LoginTest {
@@ -22,7 +21,7 @@ public class LoginTest {
         return "index";
     }
 
-    @RequestMapping("/student")
+    @GetMapping("/student")
     public String student(Map<String, Object> model) {
         try {
             LocalDate date = LocalDate.of(2017, 12, 4);
