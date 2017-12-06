@@ -9,6 +9,11 @@ public class Constant {
     public static final LocalTime DAY_END_TIME = LocalTime.of(17, 0);
     public static final LocalTime DAY_LAST_START_TIME = DAY_END_TIME.minus(30, ChronoUnit.MINUTES);
 
+    public static final String TERM = "TERM";
+    public static final String MONTH = "MONTH";
+    public static final String DATE = "DATE";
+    public static final String WEEK = "WEEK";
+
     public static final String AVAIL = "AVAILABLE";
     public static final String PENDING = "PENDING";
     public static final String BOOKED = "BOOKED";

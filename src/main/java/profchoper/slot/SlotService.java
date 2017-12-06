@@ -8,6 +8,9 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
+import static profchoper._misc.Constant.SLOT_TIME;
+import static profchoper._misc.Constant.TERM;
+
 @Service
 public class SlotService {
     @Autowired
@@ -21,17 +24,48 @@ public class SlotService {
         return slotDAO.findByProfAlias(profAlias);
     }
 
-    public List<Slot> getSlotsByDate(LocalDate date) {
-        LocalDateTime startDateTime = date.atStartOfDay();
-        LocalDateTime endDateTime = date.plus(1, ChronoUnit.DAYS).atStartOfDay();
+    private List<Slot> getSlotsByDateRangeType(String type, LocalDate startDate) {
+        LocalDateTime startDateTime = startDate.atStartOfDay();
+        LocalDateTime endDateTime;
+
+        switch (type) {
+            case "DATE":
+                endDateTime = startDate.plus(1, ChronoUnit.DAYS).atStartOfDay();
+                break;
+
+            case "WEEK":
+                endDateTime = startDate.plus(1, ChronoUnit.WEEKS).atStartOfDay();
+                break;
+
+            case "MONTH":
+                endDateTime = startDate.plus(1, ChronoUnit.MONTHS).atStartOfDay();
+                break;
+
+            case "TERM":
+                endDateTime = startDate.plus(14, ChronoUnit.MONTHS).atStartOfDay();
+                break;
+                
+            default:
+                endDateTime = startDateTime.plus(SLOT_TIME, ChronoUnit.MINUTES);
+        }
 
         return slotDAO.findByDateRange(startDateTime, endDateTime);
     }
 
-    public List<Slot> getSlotsByWeek(LocalDate startDateOfWeek) {
-        LocalDateTime startDateTime = startDateOfWeek.atStartOfDay();
-        LocalDateTime endDateTime = startDateOfWeek.plus(1, ChronoUnit.WEEKS).atStartOfDay();
+    public List<Slot> getSlotsByDate(LocalDate date) {
+        return getSlotsByDateRangeType(TERM, date);
+    }
 
-        return slotDAO.findByDateRange(startDateTime, endDateTime);
+    public List<Slot> getSlotsByWeek(LocalDate startDateOfWeek) {
+        return getSlotsByDateRangeType(TERM, startDateOfWeek);
+    }
+
+    public List<Slot> getSlotsByMonth(LocalDate startDateOfMonth) {
+        return getSlotsByDateRangeType(TERM, startDateOfMonth);
+
+    }
+
+    public List<Slot> getSlotsByTerm(LocalDate startDateOfTerm) {
+        return getSlotsByDateRangeType(TERM, startDateOfTerm);
     }
 }
