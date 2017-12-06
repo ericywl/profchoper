@@ -27,10 +27,10 @@ public class LoginTest {
         try {
             LocalDate date = LocalDate.of(2017, 12, 4);
             List<Slot> slotList = slotService.getSlotsBySchoolWeek(date);
-            // WeekCalendar calendar = new WeekCalendar(date);
+            WeekCalendar calendar = new WeekCalendar(date);
             // calendar.insertSlots(slotList);
 
-            // model.put("calendar", calendar);
+            model.put("calendar", calendar);
             model.put("bookings", slotList);
             return "student";
         } catch (Exception ex) {
