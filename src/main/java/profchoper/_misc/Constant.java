@@ -18,7 +18,6 @@ public class Constant {
     public static final String MONTH = "MONTH";
     public static final String DATE = "DATE";
     public static final String WEEK = "WEEK";
-    public static final String DATE_TIME = "DATE_TIME";
     public static final String SCHOOL_WEEK = "SCHOOL_WEEK";
 
     public static final String AVAIL = "AVAILABLE";

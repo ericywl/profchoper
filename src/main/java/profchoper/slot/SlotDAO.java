@@ -32,7 +32,15 @@ public class SlotDAO {
         return select.query(selectSQL, new Object[]{profAlias}, new SlotRowMapper());
     }
 
-    public List<Slot> findByDateRange(LocalDateTime startDateTime, LocalDateTime endDateTime) {
+    public List<Slot> findByDateTime(LocalDateTime startDateTime) {
+        JdbcTemplate select = new JdbcTemplate(dataSource);
+        Timestamp startTimestamp = Timestamp.valueOf(startDateTime);
+        String selectSQL = "SELECT * FROM bookings WHERE start_time = ?";
+
+        return select.query(selectSQL, new Object[]{startTimestamp}, new SlotRowMapper());
+    }
+
+    public List<Slot> findByDateTimeRange(LocalDateTime startDateTime, LocalDateTime endDateTime) {
         JdbcTemplate select = new JdbcTemplate(dataSource);
         Timestamp startTimestamp = Timestamp.valueOf(startDateTime);
         Timestamp endTimestamp = Timestamp.valueOf(endDateTime);

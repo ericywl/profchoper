@@ -23,6 +23,10 @@ public class SlotService {
         return slotDAO.findByProfAlias(profAlias);
     }
 
+    public List<Slot> getSlotsByDateTime(LocalDateTime dateTime) {
+        return slotDAO.findByDateTime(dateTime);
+    }
+
     public List<Slot> getSlotsByDate(LocalDate date) {
         return getSlotsByDateRangeType(DATE, date);
     }
@@ -69,10 +73,10 @@ public class SlotService {
                 break;
 
             default:
-                endDateTime = startDateTime.plus(SLOT_TIME, ChronoUnit.MINUTES);
+                endDateTime = null;
                 break;
         }
 
-        return slotDAO.findByDateRange(startDateTime, endDateTime);
+        return slotDAO.findByDateTimeRange(startDateTime, endDateTime);
     }
 }

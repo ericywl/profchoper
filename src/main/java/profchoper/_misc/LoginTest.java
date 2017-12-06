@@ -30,7 +30,7 @@ public class LoginTest {
             List<Slot> slotList = slotService.getSlotsBySchoolWeek(date);
             List<List<String>> test = new ArrayList<>();
             for (int i = 0; i < 16; i++) {
-                test.add(Arrays.asList("A", "B", "C", "D", "E"));
+                test.add(Arrays.asList("A\nAA", "B", "C", "D", "E"));
             }
 
             model.put("bookings", slotList);
