@@ -63,8 +63,8 @@ public class ProfChoperAuthSuccessHandler implements AuthenticationSuccessHandle
             }
         }
 
-        if (isStudent) return "/student.html";
         if (isProf) return "/prof.html";
+        if (isStudent) return "/student.html";
 
         throw new IllegalStateException();
     }

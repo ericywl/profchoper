@@ -11,8 +11,8 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 
 import javax.sql.DataSource;
 
-import static profchoper._misc.Constant.ROLE_PROF;
-import static profchoper._misc.Constant.ROLE_STUDENT;
+import static profchoper._misc.Constant.PROF;
+import static profchoper._misc.Constant.STUDENT;
 
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -39,8 +39,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/prof/**").hasAnyRole(ROLE_PROF)
-                .antMatchers("/student/**").hasAnyRole(ROLE_STUDENT)
+                .antMatchers("/prof/**").hasAnyRole(PROF)
+                .antMatchers("/student/**").hasAnyRole(STUDENT)
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().successHandler(successHandler)
