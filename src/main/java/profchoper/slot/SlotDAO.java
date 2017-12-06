@@ -7,8 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.Timestamp;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
@@ -32,10 +31,10 @@ public class SlotDAO {
         return select.query(selectSQL, new Object[]{profAlias}, new SlotRowMapper());
     }
 
-    public List<Slot> findByDate(LocalDate date) {
+    public List<Slot> findByDateRange(LocalDateTime startDateTime, LocalDateTime endDateTime) {
         JdbcTemplate select = new JdbcTemplate(dataSource);
-        Timestamp startTimestamp = Timestamp.valueOf(date.atStartOfDay());
-        Timestamp endTimestamp = Timestamp.valueOf(date.plus(1, ChronoUnit.DAYS).atStartOfDay());
+        Timestamp startTimestamp = Timestamp.valueOf(startDateTime);
+        Timestamp endTimestamp = Timestamp.valueOf(endDateTime);
         String selectSQL = "SELECT * FROM bookings WHERE start_time BETWEEN ? AND ?";
 
         return select.query(selectSQL, new Object[]{startTimestamp, endTimestamp}, new SlotRowMapper());

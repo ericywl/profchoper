@@ -8,6 +8,7 @@ import profchoper.professor.ProfessorDAO;
 import profchoper.professor.ProfessorService;
 import profchoper.slot.Slot;
 import profchoper.slot.SlotDAO;
+import profchoper.slot.SlotService;
 import profchoper.student.Student;
 import profchoper.student.StudentDAO;
 
@@ -17,12 +18,12 @@ import java.util.*;
 @Controller
 public class DBTest {
     @Autowired
-    private SlotDAO slotDAO;
+    private SlotService slotService;
 
     @RequestMapping("/")
     String index(Map<String, Object> model) {
         try {
-            List<Slot> slotList = slotDAO.findAll();
+            List<Slot> slotList = slotService.getSlotsByWeek(LocalDate.of(2017, 12, 3));
 
             model.put("bookings", slotList);
             return "index";
