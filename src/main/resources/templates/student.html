@@ -153,7 +153,7 @@
             </tr>
 
             <tr id="test-row" th:each="row : ${test}">
-                <td th:text="${#strings.replace(#strings.escapeXml(row[0]), '&#10;', '&lt;br /&gt;')}"></td>
+                <td th:utext="${#strings.replace(#strings.escapeXml(row[0]), '&#10;', '&lt;br /&gt;')}"></td>
                 <td th:text="${row[1]}"></td>
                 <td th:text="${row[2]}"></td>
                 <td th:text="${row[3]}"></td>
