@@ -65,6 +65,11 @@ public class Calendar {
         displayDate = date;
     }
 
+    public void insertSlots(List<Slot> slotList) {
+        for (Slot slot : slotList)
+            insertSlot(slot);
+    }
+
     private void insertSlot(Slot slot) {
         LocalTime localTime = slot.getStartDateTime().toLocalTime();
 
