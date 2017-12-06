@@ -120,6 +120,27 @@
         </table>
     </div>-->
 
+    <div>
+        <h1>Test</h1>
+        <table class="table table-striped">
+            <tr>
+                <th>MONDAY</th>
+                <th>TUESDAY</th>
+                <th>WEDNESDAY</th>
+                <th>THURSDAY</th>
+                <th>FRIDAY</th>
+            </tr>
+
+            <tr th:each="row : ${test}">
+                <td th:text="${row[0]}"></td>
+                <td th:text="${row[1]}"></td>
+                <td th:text="${row[2]}"></td>
+                <td th:text="${row[3]}"></td>
+                <td th:text="${row[4]}"></td>
+            </tr>
+        </table>
+    </div>
+
 </div>
 
 </body>

@@ -7,6 +7,8 @@ import profchoper.slot.Slot;
 import profchoper.slot.SlotService;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -26,8 +28,13 @@ public class LoginTest {
         try {
             LocalDate date = LocalDate.of(2017, 12, 4);
             List<Slot> slotList = slotService.getSlotsBySchoolWeek(date);
-            
+            List<List<String>> test = new ArrayList<>();
+            for (int i = 0; i < 16; i++) {
+                test.add(Arrays.asList("A", "B", "C", "D", "E"));
+            }
+
             model.put("bookings", slotList);
+            model.put("test", test);
             return "student";
         } catch (Exception ex) {
             model.put("message", ex.getMessage());
