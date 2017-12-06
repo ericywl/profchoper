@@ -33,7 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/prof").hasRole(ROLE_PROF)
                 .antMatchers("/student").hasRole(ROLE_STUDENT)
                 .anyRequest().authenticated().and()
-                .formLogin().loginPage("/").permitAll()
+                .formLogin().loginPage("/login").permitAll()
                 .and().logout().permitAll();
 
         http.exceptionHandling().accessDeniedPage("/403");

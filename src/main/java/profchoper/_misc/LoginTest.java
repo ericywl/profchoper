@@ -49,10 +49,10 @@ public class LoginTest {
     /*@RequestMapping("/login")
     public String login() {
         return "login";
-    }
+    }*/
 
-    @RequestMapping(value = "/403")
+    @RequestMapping("/403")
     public String Error403() {
         return "403";
-    }*/
+    }
 }
