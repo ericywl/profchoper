@@ -39,5 +39,13 @@ CREATE TABLE IF NOT EXISTS public.users
 (
   username VARCHAR(40) PRIMARY KEY,
   password VARCHAR(20) NOT NULL,
-  role VARCHAR(20) NOT NULL
+  enabled BOOLEAN NOT NULL DEFAULT FALSE
+);
+
+CREATE TABLE IF NOT EXISTS public.user_roles
+(
+  user_role_id SERIAL PRIMARY KEY,
+  username VARCHAR(40) NOT NULL REFERENCES users(username),
+  role VARCHAR(20) NOT NULL,
+  UNIQUE (username, role)
 )
