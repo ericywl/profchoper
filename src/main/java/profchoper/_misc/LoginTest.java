@@ -23,7 +23,7 @@ public class LoginTest {
     @Autowired
     private SlotService slotService;
 
-    @RequestMapping("/")
+    @RequestMapping(value = {"/", "index"})
     String index() {
         return "index";
     }
