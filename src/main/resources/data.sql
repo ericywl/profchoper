@@ -68,7 +68,7 @@ INSERT INTO user_roles (username, role) VALUES
   ('eric@mymail.sutd.edu.sg', 'STUDENT'),
   ('wentat@mymail.sutd.edu.sg', 'STUDENT'),
   ('ngaiman_cheung@sutd.edu.sg', 'PROFESSOR')
-ON CONFLICT (username)
+ON CONFLICT (username, role)
   DO NOTHING;
 
 
