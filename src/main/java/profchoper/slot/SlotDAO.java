@@ -2,6 +2,7 @@ package profchoper.slot;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -22,7 +23,10 @@ public class SlotDAO {
         return select.query(selectSQL, new SlotRowMapper());
     }
 
-    public List<Slot> findByProf() {
-        return null;
+    public List<Slot> findByProfAlias(String profAlias) {
+        JdbcTemplate select = new JdbcTemplate(dataSource);
+        String selectSQL = "SELECT * FROM bookings WHERE professor_alias = ?";
+
+        return select.query(selectSQL, new Object[]{profAlias}, new SlotRowMapper());
     }
 }
