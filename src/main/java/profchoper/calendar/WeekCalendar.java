@@ -14,9 +14,11 @@ public class WeekCalendar {
     private List<LocalTime> timeList = new ArrayList<>();
     private HashMap<LocalTime, Integer> timeHash = new HashMap<>();
     private HashMap<DayOfWeek, Integer> dayHash = new HashMap<>();
-    private WeekCalendarSlotHandler[][] slotHandlerMatrix;
+    private WeekCalendarSlotHandler[][] slotHandlerMatrix = new WeekCalendarSlotHandler[5][16];;
 
     public WeekCalendar(LocalDate date) {
+        this.displayDate = date;
+
         timeHash.put(LocalTime.of(9, 0, 0), 0);
         timeHash.put(LocalTime.of(9, 30, 0), 1);
         timeHash.put(LocalTime.of(10, 0, 0), 2);
@@ -40,9 +42,6 @@ public class WeekCalendar {
         dayHash.put(DayOfWeek.THURSDAY, 3);
         dayHash.put(DayOfWeek.FRIDAY, 4);
 
-        displayDate = date;
-
-        slotHandlerMatrix = new WeekCalendarSlotHandler[5][16];
         for (int i = 0; i < slotHandlerMatrix.length; i++) {
             for (int j = 0; j < slotHandlerMatrix[i].length; j++) {
                 String handlerID = i + "_" + j;
@@ -60,9 +59,11 @@ public class WeekCalendar {
         LocalTime time = slot.getStartDateTime().toLocalTime();
         DayOfWeek day = slot.getDayOfWeek();
 
-        slotHandlerMatrix[dayHash.get(day)][timeHash.get(time)].addSlot(slot);
+        WeekCalendarSlotHandler slotHandler = slotHandlerMatrix[dayHash.get(day)][timeHash.get(time)];
+        slotHandler.addSlot(slot);
 
-        slotHandlerMatrix[dayHash.get(day)][timeHash.get(time)].setDateTime(slot.getStartDateTime());
+        if (slotHandler.getDateTime() == null)
+            slotHandler.setDateTime(slot.getStartDateTime());
 
     }
 

@@ -28,7 +28,8 @@ public class LoginTest {
         WeekCalendar calendar = new WeekCalendar(date);
         calendar.insertSlots(slotList);
 
-        model.put("calendar", calendar.getSlotHandlerMatrix());
+        // model.put("calendar", calendar.getSlotHandlerMatrix());
+        model.put("bookings", slotList);
         return "student";
     }
 

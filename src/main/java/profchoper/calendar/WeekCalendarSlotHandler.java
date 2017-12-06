@@ -12,7 +12,7 @@ import static profchoper._misc.Constant.AVAIL;
 public class WeekCalendarSlotHandler {
     private final String handlerID;
     private List<Slot> slotList = new ArrayList<>();
-    private LocalDateTime dateTime;
+    private LocalDateTime dateTime = null;
 
     public WeekCalendarSlotHandler(String handlerID) {
         this.handlerID = handlerID;
