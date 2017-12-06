@@ -36,8 +36,8 @@ public class ProfChoperAuthSuccessHandler implements AuthenticationSuccessHandle
         clearAuthenticationAttributes(request);
     }
 
-    protected void handle(HttpServletRequest request, HttpServletResponse response,
-                          Authentication authentication) throws IOException {
+    private void handle(HttpServletRequest request, HttpServletResponse response,
+                        Authentication authentication) throws IOException {
 
         String targetURL = determineTargetURL(authentication);
 
@@ -50,7 +50,7 @@ public class ProfChoperAuthSuccessHandler implements AuthenticationSuccessHandle
         redirectStrategy.sendRedirect(request, response, targetURL);
     }
 
-    protected String determineTargetURL(Authentication authentication) {
+    private String determineTargetURL(Authentication authentication) {
         boolean isStudent = false;
         boolean isProf = false;
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
