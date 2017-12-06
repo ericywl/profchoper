@@ -117,7 +117,7 @@
                     type="profchoper.calendar.WeekCalendarSlotHandler"*/-->
                     <td th:if="!${calendarSlotHandler.isEmpty()}"
                         th:id="${calendarSlotHandler.getHandlerID()}"
-                        th:text="calendarSlotHandler.toString()"></td>
+                        th:text="${calendarSlotHandler.toString()}"></td>
 
                     <td th:if="${calendarSlotHandler.isEmpty()}"
                         th:id="${calendarSlotHandler.getHandlerID()}">N/A</td>
