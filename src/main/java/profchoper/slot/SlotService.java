@@ -8,8 +8,7 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
-import static profchoper._misc.Constant.SLOT_TIME;
-import static profchoper._misc.Constant.TERM;
+import static profchoper._misc.Constant.*;
 
 @Service
 public class SlotService {
@@ -44,7 +43,7 @@ public class SlotService {
             case "TERM":
                 endDateTime = startDate.plus(14, ChronoUnit.MONTHS).atStartOfDay();
                 break;
-                
+
             default:
                 endDateTime = startDateTime.plus(SLOT_TIME, ChronoUnit.MINUTES);
         }
@@ -53,15 +52,15 @@ public class SlotService {
     }
 
     public List<Slot> getSlotsByDate(LocalDate date) {
-        return getSlotsByDateRangeType(TERM, date);
+        return getSlotsByDateRangeType(DATE, date);
     }
 
     public List<Slot> getSlotsByWeek(LocalDate startDateOfWeek) {
-        return getSlotsByDateRangeType(TERM, startDateOfWeek);
+        return getSlotsByDateRangeType(WEEK, startDateOfWeek);
     }
 
     public List<Slot> getSlotsByMonth(LocalDate startDateOfMonth) {
-        return getSlotsByDateRangeType(TERM, startDateOfMonth);
+        return getSlotsByDateRangeType(MONTH, startDateOfMonth);
 
     }
 
