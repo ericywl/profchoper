@@ -64,15 +64,26 @@ public class WeekCalendar {
 
         if (slotHandler.getDateTime() == null)
             slotHandler.setDateTime(slot.getStartDateTime());
+    }
 
+    @Override
+    public String toString() {
+        StringBuilder output = new StringBuilder();
+
+        for (WeekCalendarSlotHandler[] row : slotHandlerMatrix) {
+            for (WeekCalendarSlotHandler slotHandler : row) {
+                output.append(slotHandler.toString());
+                output.append(" ");
+            }
+
+            output.append("\n");
+        }
+
+        return output.toString();
     }
 
     public LocalDate getDisplayDate() {
         return displayDate;
-    }
-
-    public List<LocalTime> getTimeList() {
-        return timeList;
     }
 
     public WeekCalendarSlotHandler[][] getSlotHandlerMatrix() {

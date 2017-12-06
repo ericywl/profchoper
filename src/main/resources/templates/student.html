@@ -100,50 +100,8 @@
     </div>-->
 
     <div>
-        <h1>Calendar</h1>
-        <table class="table table-striped">
-            <tr>
-                <th>MONDAY</th>
-                <th>TUESDAY</th>
-                <th>WEDNESDAY</th>
-                <th>THURSDAY</th>
-                <th>FRIDAY</th>
-            </tr>
-
-            <tr th:each="matrixRow : ${calendar}">
-                <!--/*@thymesVar id="matrixRow"
-                type="profchoper.calendar.WeekCalendarSlotHandler"*/-->
-                <td th:if="!${matrixRow[0].isEmpty()}"
-                    th:id="${matrixRow[0].getHandlerID()}"
-                    th:text="${matrixRow[0].toString()}"></td>
-                <td th:if="${matrixRow[0].isEmpty()}"
-                    th:id="${matrixRow[0].getHandlerID()}">N/A</td>
-
-                <td th:if="!${matrixRow[1].isEmpty()}"
-                    th:id="${matrixRow[1].getHandlerID()}"
-                    th:text="${matrixRow[1].toString()}"></td>
-                <td th:if="${matrixRow[1].isEmpty()}"
-                    th:id="${matrixRow[1].getHandlerID()}">N/A</td>
-
-                <td th:if="!${matrixRow[2].isEmpty()}"
-                    th:id="${matrixRow[2].getHandlerID()}"
-                    th:text="${matrixRow[2].toString()}"></td>
-                <td th:if="${matrixRow[2].isEmpty()}"
-                    th:id="${matrixRow[2].getHandlerID()}">N/A</td>
-
-                <td th:if="!${matrixRow[3].isEmpty()}"
-                    th:id="${matrixRow[3].getHandlerID()}"
-                    th:text="${matrixRow[3].toString()}"></td>
-                <td th:if="${matrixRow[3].isEmpty()}"
-                    th:id="${matrixRow[3].getHandlerID()}">N/A</td>
-
-                <td th:if="!${matrixRow[4].isEmpty()}"
-                    th:id="${matrixRow[4].getHandlerID()}"
-                    th:text="${matrixRow[4].toString()}"></td>
-                <td th:if="${matrixRow[4].isEmpty()}"
-                    th:id="${matrixRow[4].getHandlerID()}">N/A</td>
-            </tr>
-        </table>
+        <p th:text="${calendar.getDisplayDate().toString()}">Date</p>
+        <p th:text="${calendar.getSlotHandlerMatrix().toString()}">Exception message</p>
     </div>
 
 </div>
