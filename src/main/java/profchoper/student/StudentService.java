@@ -8,17 +8,17 @@ import java.util.List;
 @Service
 public class StudentService {
     @Autowired
-    StudentDAO studentRepo;
+    StudentDAO studentDAO;
     
     public List<Student> getAllStudents() {
-        return studentRepo.findAll();
+        return studentDAO.findAll();
     }
     
     public Student getStudentById(int id) {
-        return studentRepo.findById(id);
+        return studentDAO.findById(id);
     }
     
     public Student getStudentByEmail(String email) {
-        return studentRepo.findByEmail(email);
+        return studentDAO.findByEmail(email);
     }
 }
