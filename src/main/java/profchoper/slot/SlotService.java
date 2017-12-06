@@ -13,6 +13,5 @@ public class SlotService {
     public List<Slot> getAllSlots() {
         return slotDAO.findAll();
     }
-
-    public List<Slot> get
+    
 }
