@@ -8,13 +8,13 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <style>
-        .table-striped tr {
+        #test-row {
             display: block;
             height: 80px;
         }
 
         .table-striped th, td {
-            width: 100px;
+            width: 200px;
         }
     </style>
 </head>
@@ -140,7 +140,7 @@
     <div>
         <h1>Test</h1>
         <table class="table table-striped">
-            <tr>
+            <tr id="test-header">
                 <th>MONDAY</th>
                 <th>TUESDAY</th>
                 <th>WEDNESDAY</th>
@@ -148,7 +148,7 @@
                 <th>FRIDAY</th>
             </tr>
 
-            <tr th:each="row : ${test}">
+            <tr id="test-row" th:each="row : ${test}">
                 <td th:text="${row[0]}"></td>
                 <td th:text="${row[1]}"></td>
                 <td th:text="${row[2]}"></td>
