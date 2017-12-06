@@ -10,7 +10,7 @@ import java.sql.Timestamp;
 public class SlotResultSetExtractor implements ResultSetExtractor {
     @Override
     public Object extractData(ResultSet resultSet) throws SQLException, DataAccessException {
-        String profAlias = resultSet.getString("prof_alias");
+        String profAlias = resultSet.getString("professor_alias");
         Timestamp startTimestamp = resultSet.getTimestamp("start_time");
         Slot bookingSlot = new Slot(profAlias, startTimestamp);
 
