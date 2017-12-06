@@ -13,6 +13,7 @@ public class Constant {
     public static final String MONTH = "MONTH";
     public static final String DATE = "DATE";
     public static final String WEEK = "WEEK";
+    public static final String DATE_TIME = "DATE_TIME";
 
     public static final String AVAIL = "AVAILABLE";
     public static final String PENDING = "PENDING";
@@ -24,4 +25,7 @@ public class Constant {
 
     public static final String OKA = "Oka Kurniawan";
     public static final String MAN = "Ngai-Man Cheung";
+
+    public static final String ROLE_STUDENT = "STUDENT";
+    public static final String ROLE_PROF = "PROFESSOR";
 }

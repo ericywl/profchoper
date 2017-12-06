@@ -28,6 +28,10 @@ public class SlotService {
         LocalDateTime endDateTime;
 
         switch (type) {
+            case "DATE_TIME":
+                endDateTime = startDateTime;
+                break;
+
             case "DATE":
                 endDateTime = startDate.plus(1, ChronoUnit.DAYS).atStartOfDay();
                 break;
@@ -51,6 +55,10 @@ public class SlotService {
         return slotDAO.findByDateRange(startDateTime, endDateTime);
     }
 
+    public List<Slot> getSlotsByDateTime(LocalDateTime dateTime) {
+        return null;
+    }
+
     public List<Slot> getSlotsByDate(LocalDate date) {
         return getSlotsByDateRangeType(DATE, date);
     }
@@ -61,7 +69,6 @@ public class SlotService {
 
     public List<Slot> getSlotsByMonth(LocalDate startDateOfMonth) {
         return getSlotsByDateRangeType(MONTH, startDateOfMonth);
-
     }
 
     public List<Slot> getSlotsByTerm(LocalDate startDateOfTerm) {
