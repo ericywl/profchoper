@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 import javax.sql.DataSource;
 
@@ -23,20 +24,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private AccessDeniedHandler accessDeniedHandler;
 
     @Autowired
+    private AuthenticationSuccessHandler successHandler;
+
+    @Autowired
     public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
                 .usersByUsernameQuery("SELECT username, password, enabled FROM users WHERE username = ?")
                 .authoritiesByUsernameQuery("SELECT username, role FROM user_roles WHERE username = ?");
     }
-
-    /*@Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("student").password("password").roles(ROLE_STUDENT)
-                .and()
-                .withUser("prof").password("password").roles(ROLE_PROF);
-    }*/
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -47,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/student/**").hasAnyRole(ROLE_STUDENT)
                 .anyRequest().authenticated()
                 .and()
-                .formLogin()
+                .formLogin().successHandler(successHandler)
                 .loginPage("/login")
                 .permitAll()
                 .and()
