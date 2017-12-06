@@ -6,22 +6,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import profchoper.professor.Professor;
 import profchoper.professor.ProfessorDAO;
 import profchoper.professor.ProfessorService;
+import profchoper.slot.Slot;
+import profchoper.slot.SlotDAO;
 import profchoper.student.Student;
 import profchoper.student.StudentDAO;
 
+import java.time.LocalDate;
 import java.util.*;
 
 @Controller
 public class DBTest {
     @Autowired
-    private ProfessorService professorService;
+    private SlotDAO slotDAO;
 
     @RequestMapping("/")
     String index(Map<String, Object> model) {
         try {
-            List<Professor> profList = professorService.getProfessorsByCourseId("50.002");
+            List<Slot> slotList = slotDAO.findByDate(LocalDate.of(2017, 12, 5));
 
-            model.put("professors", profList);
+            model.put("slots", slotList);
             return "index";
         } catch (Exception ex) {
             model.put("message", ex.getMessage());
