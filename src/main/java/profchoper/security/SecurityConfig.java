@@ -40,6 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/student").hasRole(ROLE_STUDENT)
                 .antMatchers("/prof").hasRole(ROLE_PROF)
                 .and().formLogin().successHandler(successHandler)
-                .loginPage("/").and().logout().permitAll();
+                .loginPage("/").usernameParameter("email").passwordParameter("password")
+                .and().logout().permitAll();
     }
 }
