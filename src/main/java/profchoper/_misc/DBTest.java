@@ -22,9 +22,9 @@ public class DBTest {
     @RequestMapping("/")
     String index(Map<String, Object> model) {
         try {
-            List<Slot> slotList = slotDAO.findByDate(LocalDate.of(2017, 12, 5));
+            List<Slot> slotList = slotDAO.findAll();
 
-            model.put("slots", slotList);
+            model.put("bookings", slotList);
             return "index";
         } catch (Exception ex) {
             model.put("message", ex.getMessage());
