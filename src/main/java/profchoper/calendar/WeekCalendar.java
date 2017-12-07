@@ -25,15 +25,15 @@ public class WeekCalendar {
 
     public List<List<String>> getWeekCalendar(LocalDate startDateOfWeek) {
         List<List<String>> output = new ArrayList<>();
-        List<String> temp = null;
+        List<String> temp;
 
         for (int i = 0; i < WEEK_CAL_ROW; i++) {
+            temp = new ArrayList<>();
             for (int j = 0; j < WEEK_CAL_COL; j++) {
                 LocalDate datePart = startDateOfWeek.plus(j, ChronoUnit.DAYS);
                 LocalTime timePart = ROW_TO_TIME.get(i);
                 LocalDateTime dateTime = LocalDateTime.of(datePart, timePart);
 
-                temp = new ArrayList<>();
                 temp.add(getProfAliasesForHTML(dateTime));
             }
 
@@ -48,11 +48,11 @@ public class WeekCalendar {
         if (slotList == null) return "\n";
 
         StringBuilder outputBld = new StringBuilder();
-        outputBld.append("<br />");
+        outputBld.append("\n");
 
         for (Slot slot : slotList) {
             outputBld.append(slot.getProfAlias());
-            outputBld.append("<br />");
+            outputBld.append("\n");
         }
 
         return outputBld.toString();

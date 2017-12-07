@@ -138,11 +138,11 @@
             </tr>
 
             <tr id="test-row" th:each="row : ${calendar}">
-                <td th:utext="${row[0]}"></td>
-                <td th:utext="${row[1]}"></td>
-                <td th:utext="${row[2]}"></td>
-                <td th:utext="${row[3]}"></td>
-                <td th:utext="${row[4]}"></td>
+                <td th:utext="${#strings.replace(#strings.escapeXml(row[0]),'&#10;','&lt;br /&gt;')}"></td>
+                <td th:utext="${#strings.replace(#strings.escapeXml(row[1]),'&#10;','&lt;br /&gt;')}"></td>
+                <td th:utext="${#strings.replace(#strings.escapeXml(row[2]),'&#10;','&lt;br /&gt;')}"></td>
+                <td th:utext="${#strings.replace(#strings.escapeXml(row[3]),'&#10;','&lt;br /&gt;')}"></td>
+                <td th:utext="${#strings.replace(#strings.escapeXml(row[4]),'&#10;','&lt;br /&gt;')}"></td>
             </tr>
         </table>
     </div>
