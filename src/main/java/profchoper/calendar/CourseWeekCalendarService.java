@@ -18,7 +18,7 @@ import static profchoper._misc.Constant.WEEK_CAL_COL;
 import static profchoper._misc.Constant.WEEK_CAL_ROW;
 
 @Service
-public class WeekCalendar {
+public class CourseWeekCalendarService {
 
     @Autowired
     private SlotService slotService;
