@@ -41,37 +41,37 @@ ON CONFLICT (name)
     course_id = EXCLUDED.course_id;
 
 INSERT INTO bookings (professor_alias, start_time) VALUES
-  ('ZY', make_timestamp(2017, 12, 6, 11, 0, 0)),
-  ('ZY', make_timestamp(2017, 12, 6, 11, 30, 0)),
+  ('zy', make_timestamp(2017, 12, 6, 11, 0, 0)),
+  ('zy', make_timestamp(2017, 12, 6, 11, 30, 0)),
 
-  ('JY', make_timestamp(2017, 12, 6, 15, 30, 0)),
-  ('JY', make_timestamp(2017, 12, 6, 16, 00, 0)),
-  ('JY', make_timestamp(2017, 12, 6, 16, 30, 0)),
+  ('jy', make_timestamp(2017, 12, 6, 15, 30, 0)),
+  ('jy', make_timestamp(2017, 12, 6, 16, 00, 0)),
+  ('jy', make_timestamp(2017, 12, 6, 16, 30, 0)),
 
-  ('YC', make_timestamp(2017, 12, 6, 13, 00, 0)),
-  ('YC', make_timestamp(2017, 12, 6, 13, 30, 0)),
-  ('YC', make_timestamp(2017, 12, 6, 14, 00, 0)),
-  ('YC', make_timestamp(2017, 12, 6, 14, 30, 0)),
+  ('yc', make_timestamp(2017, 12, 6, 13, 00, 0)),
+  ('yc', make_timestamp(2017, 12, 6, 13, 30, 0)),
+  ('yc', make_timestamp(2017, 12, 6, 14, 00, 0)),
+  ('yc', make_timestamp(2017, 12, 6, 14, 30, 0)),
 
-  ('OKA', make_timestamp(2017, 12, 6, 15, 00, 0)),
-  ('OKA', make_timestamp(2017, 12, 6, 15, 30, 0)),
-  ('OKA', make_timestamp(2017, 12, 6, 16, 00, 0)),
-  ('OKA', make_timestamp(2017, 12, 8, 9, 00, 0)),
-  ('OKA', make_timestamp(2017, 12, 8, 9, 30, 0)),
-  ('OKA', make_timestamp(2017, 12, 8, 10, 00, 0)),
-  ('OKA', make_timestamp(2017, 12, 8, 10, 30, 0)),
+  ('oka', make_timestamp(2017, 12, 6, 15, 00, 0)),
+  ('oka', make_timestamp(2017, 12, 6, 15, 30, 0)),
+  ('oka', make_timestamp(2017, 12, 6, 16, 00, 0)),
+  ('oka', make_timestamp(2017, 12, 8, 9, 00, 0)),
+  ('oka', make_timestamp(2017, 12, 8, 9, 30, 0)),
+  ('oka', make_timestamp(2017, 12, 8, 10, 00, 0)),
+  ('oka', make_timestamp(2017, 12, 8, 10, 30, 0)),
 
-  ('MAN', make_timestamp(2017, 12, 6, 14, 0, 0)),
-  ('MAN', make_timestamp(2017, 12, 6, 14, 30, 0)),
-  ('MAN', make_timestamp(2017, 12, 6, 15, 0, 0)),
-  ('MAN', make_timestamp(2017, 12, 6, 15, 30, 0)),
-  ('MAN', make_timestamp(2017, 12, 6, 16, 00, 0)),
-  ('MAN', make_timestamp(2017, 12, 6, 15, 30, 0)),
+  ('man', make_timestamp(2017, 12, 6, 14, 0, 0)),
+  ('man', make_timestamp(2017, 12, 6, 14, 30, 0)),
+  ('man', make_timestamp(2017, 12, 6, 15, 0, 0)),
+  ('man', make_timestamp(2017, 12, 6, 15, 30, 0)),
+  ('man', make_timestamp(2017, 12, 6, 16, 00, 0)),
+  ('man', make_timestamp(2017, 12, 6, 16, 30, 0)),
 
-  ('NORMAN', make_timestamp(2017, 12, 7, 15, 0, 0)),
-  ('NORMAN', make_timestamp(2017, 12, 7, 15, 30, 0)),
-  ('NORMAN', make_timestamp(2017, 12, 7, 16, 00, 0)),
-  ('NORMAN', make_timestamp(2017, 12, 7, 16, 30, 0))
+  ('norman', make_timestamp(2017, 12, 7, 15, 0, 0)),
+  ('norman', make_timestamp(2017, 12, 7, 15, 30, 0)),
+  ('norman', make_timestamp(2017, 12, 7, 16, 00, 0)),
+  ('norman', make_timestamp(2017, 12, 7, 16, 30, 0))
 ON CONFLICT (professor_alias, start_time)
   DO NOTHING;
 
