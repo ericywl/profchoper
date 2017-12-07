@@ -130,6 +130,7 @@
         <h1>Test</h1>
         <table class="table table-striped">
             <tr id="test-header">
+                <th>TIME</th>
                 <th>MONDAY</th>
                 <th>TUESDAY</th>
                 <th>WEDNESDAY</th>
@@ -138,11 +139,14 @@
             </tr>
 
             <tr id="test-row" th:each="row : ${calendar}">
-                <td th:utext="${#strings.replace(#strings.escapeXml(row[0]),'&#10;','&lt;br /&gt;')}"></td>
+                <td th:text="${row[0]}"></td>
+                <!-- th:utext does not escape <br /> -->
+                <!-- replace \n from backend to <br /> for html frontend -->
                 <td th:utext="${#strings.replace(#strings.escapeXml(row[1]),'&#10;','&lt;br /&gt;')}"></td>
                 <td th:utext="${#strings.replace(#strings.escapeXml(row[2]),'&#10;','&lt;br /&gt;')}"></td>
                 <td th:utext="${#strings.replace(#strings.escapeXml(row[3]),'&#10;','&lt;br /&gt;')}"></td>
                 <td th:utext="${#strings.replace(#strings.escapeXml(row[4]),'&#10;','&lt;br /&gt;')}"></td>
+                <td th:utext="${#strings.replace(#strings.escapeXml(row[5]),'&#10;','&lt;br /&gt;')}"></td>
             </tr>
         </table>
     </div>
