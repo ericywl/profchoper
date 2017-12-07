@@ -4,7 +4,6 @@ package profchoper.course;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity
 public class Course {
     @Id
     private final int id;
