@@ -22,10 +22,10 @@ public class Professor {
         // empty
     }
 
-    public Professor(String name, String email, String alias, String officeLocation, Course course) {
+    public Professor(String name, String alias, String email, String officeLocation, Course course) {
         this.name = name;
-        this.email = email;
         this.alias = alias;
+        this.email = email;
         this.officeLocation = officeLocation;
         this.course = course;
     }
