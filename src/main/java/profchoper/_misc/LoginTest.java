@@ -36,7 +36,7 @@ public class LoginTest {
 
     @GetMapping("/student")
     public String student(Map<String, Object> model) {
-        return "test";
+        return "student";
     }
 
     @GetMapping("/prof")
