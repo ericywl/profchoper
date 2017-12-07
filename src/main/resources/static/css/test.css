@@ -1,0 +1,77 @@
+@font-face {
+    font-family: Quicksand;
+    src: url("https://fonts.gstatic.com/s/quicksand/v7/sKd0EMYPAh5PYCRKSryvW5Bw1xU1rKptJj_0jans920.woff2");
+}
+
+/*main body*/
+body {
+    font-family: Quicksand, sans-serif;
+}
+
+/* remove bullets */
+ul {
+    list-style-type: none;
+}
+
+/* Week header */
+.week {
+    padding: 70px 25px;
+    width: 80%;
+    background: #1DD118;
+    margin: auto;
+    text-align: center;
+}
+
+.week ul li {
+    color: white;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+/* Previous button inside month header */
+.week .prev {
+    float: left;
+    padding-top: 10px;
+}
+
+/* Next button */
+.week .next {
+    float: right;
+    padding-top: 10px;
+}
+
+/*table header and data elements */
+th, td {
+    margin: auto;
+    text-align: center;
+    border-collapse: collapse;
+    outline: 1px solid #e3e3e3;
+}
+
+td {
+    padding: 10px 10px;
+}
+
+th {
+    background: #666;
+    color: white;
+    padding: 5px 10px;
+}
+
+td:hover {
+    cursor: pointer;
+    background: #666;
+    color: white;
+}
+
+table#week-cal-table {
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    table-layout: fixed;
+}
+
+#week-cal-table tr td {
+    height: 40px;
+}
