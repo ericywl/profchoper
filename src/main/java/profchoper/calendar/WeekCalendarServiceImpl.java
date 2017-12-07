@@ -74,7 +74,11 @@ public class WeekCalendarServiceImpl implements WeekCalendarService {
         }
 
         String output = outputBld.toString();
-        return output.substring(0, output.length() - 2);
+        int len = output.length();
+        
+        if (len == 0) return "";
+
+        return output.substring(0, len - 2);
     }
 
 
