@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        @font-face {
+            font-family: Quicksand;
+            src: url("https://fonts.gstatic.com/s/quicksand/v7/sKd0EMYPAh5PYCRKSryvW5Bw1xU1rKptJj_0jans920.woff2");
+        }
+        body
+        {
+            font-family: Quicksand;
+        }
+
+        /* remove bullets */
+        ul {list-style-type: none;}
+
+        /* Week header */
+        .week {
+            padding: 20px 50px 75px 50px;
+            width: 80%;
+            background: darkgrey;
+            margin: auto;
+            height: 10px;
+            text-align: center;
+        }
+
+        .week ul li {
+            color: white;
+            font-size: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        /* Previous button inside month header */
+        .week .prev {
+            float: left;
+            padding-top: 10px;
+        }
+
+        /* Next button */
+        .week .next {
+            float: right;
+            padding-top: 10px;
+        }
+
+        /*table header and data elements */
+        .scheduler{
+            margin-bottom: 100px;
+        }
+        th,td
+        {
+            margin: auto;
+            text-align: center;
+            border-collapse: collapse;
+            outline: 1px solid #e3e3e3;
+        }
+
+        td
+        {
+            padding: 10px 10px;
+        }
+
+        th
+        {
+            background: #666;
+            color: white;
+            padding: 5px 10px;
+        }
+
+        td:hover
+        {
+            cursor: pointer;
+            background: green;
+            color: white;
+        }
+
+
+
+
+
+
+
+        .container .appointments{
+            border-color:green;
+            border-radius: 5%;
+            border-style:solid;
+            color:green;
+            background-color:white;
+            width:100%;
+            height: 70px;
+        }
+
+        .container .appointments:hover {
+            border-color: #ABDF75;
+        }
+
+        .container .appointments:hover button{
+            display: inline-block;
+            border-radius: 25px;
+            height: 30px;
+            width: 80px;
+            border-radius: 5%;
+            border: 2px solid #d8d8d8;
+            color: #d8d8d8;
+
+        }
+
+
+
+
+
+
+        .page-header{
+            margin: 100px 20px 10px 20px;
+        }
+
+
+    #calendar{
+        margin-bottom: 30px;
+    }
+        /*nav bav props*/
+
+.btn-lg {
+    margin: 15px 30px 0px 40px;
+    color: white;
+}
+        .course{
+            margin-left: 10%;
+
+        }
+        .instructor{
+            margin-left: 2%;
+
+        }
+        .logout{
+            margin-left: 90px;
+        }
+        .h4{
+            padding-left:55px;
+            font-size: 3.5rem;
+        }
+        .btn{
+            margin-top: 12.5px;
+        }
+        .showID{
+            float: right;
+            color: green;
+            margin-left: 95px;
+            overflow: auto;
+        }
+        /* successful appointment */
+
+        .noticonfirm {
+            width:90%;
+            height: 63px;
+            margin-left: 50px;
+            margin-right: 50px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            background-color: white;
+            border: 2px solid #26e073;
+            padding-left: 20px;
+            padding-right: 6px;
+            padding-bottom: 4px;
+            text-align: center;
+        }
+
+        .noticonfirm:hover{
+            background: #26e073;
+            color:white;
+
+        }
+        .noticonfirm:hover button{
+            display:inline-block;
+            overflow: auto;
+
+        }
+        .noticonfirm:hover span{
+            display: inline-block;
+        }
+
+        .noticonfirm:hover{
+            font-size: 1.3em;
+
+        }
+        /* pending */
+        .notipending {
+            width:90%;
+            height: 63px;
+            margin-left: 50px;
+            margin-right: 50px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            background-color: white;
+            border: 2px solid #4286f4;
+            padding-left: 20px;
+            padding-right: 6px;
+            padding-bottom: 4px;
+            text-align: center;
+        }
+
+        .notipending:hover{
+            background: #4286f4;
+            color:white;
+
+        }
+        .notipending:hover button{
+            display:inline-block;
+            overflow: auto;
+
+        }
+        .notipending:hover span{
+            display: inline-block;
+        }
+
+        .notipending:hover{
+            font-size: 1.3em;
+
+        }
+        /* cancel */
+        .noticancel {
+            width:90%;
+            height: 63px;
+            margin-left: 50px;
+            margin-right: 50px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            background-color: white;
+            border: 2px solid #ed3b3b;
+            padding-left: 20px;
+            padding-right: 6px;
+            padding-bottom: 4px;
+            text-align: center;
+        }
+
+        .noticancel:hover{
+            background: #ed3b3b;
+            color:white;
+
+        }
+        .noticancel:hover button{
+            display:inline-block;
+            overflow: auto;
+
+        }
+        .noticancel:hover span{
+            display: inline-block;
+        }
+
+        .noticancel:hover{
+            font-size: 1.3em;
+
+        }
+
+        .notibtnbook{
+            display:none;
+            float:right;
+            overflow: auto;
+            margin: 0;
+            padding-top: 3px;
+            padding-bottom: 5px;
+            padding-right: 10px;
+            padding-left: 10px;
+            margin-bottom: 3px;
+        }
+
+        /* general noti */
+        .notistatus{
+            display: none;
+            float: left;
+        }
+
+        .notitext{
+            align-self: left;
+            padding-top: 15px;
+            font-size: 1.2em;
+            vertical-align: middle;
+        }
+        .notibtn{
+            display:none;
+            float:right;
+            overflow: auto;
+            margin: 0;
+            padding-top: 3px;
+            padding-bottom: 5px;
+            padding-right: 5px;
+            padding-left: 5px;
+            margin-bottom: 3px;
+        }
+
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <p class="navbar-brand h4">ProfChoper</p>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <button class="btn navbar-btn btn-lg"><a href="#calendar"> Chope a slot</a></button>
+        <button class="course dropdown btn btn-outline-info"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Choose Course <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="#">50-001 Introduction to Information System & Programming </a></li>
+                <li><a href="#">50-002 Computation Structure</a></li>
+                <li><a href="#">50-004 Introduction to Algorithm</a></li>
+            </ul>
+        </button>
+        <button class="instructor dropdown btn btn-outline-secondary" aria-disabled="true"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Choose Instructor <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="#">Oka Kurniawan</a></li>
+                <li><a href="#">Zhang Yue</a></li>
+                <li><a href="#">Yuen Chau</a></li>
+            </ul>
+        </button>
+        <h7 class="showID"> 100XXXX </h7>
+        <button class="logout btn btn-sm">Log out</button>
+    </div>
+    </div>
+</nav>
+
+    <div class= "page-header noti">
+        <h1>Your schedules</h1>
+    </div>
+
+
+
+<!--if got notification-->
+<div class="noticonfirm">
+    <!--get slot info-->
+    <p class="notitext">
+        <span type="text" class="notistatus">Confirmed</span>
+        4/12 prof oka from 3:30 - 4:00
+        <button type="button" class="notibtn btn btn-danger">Cancel slot</button>
+    </p>
+</div>
+
+<!--if got notification-->
+<div class="notipending">
+    <!--get slot info-->
+    <p class="notitext">
+        <span type="text" class="notistatus">Pending</span>
+        4/12 prof oka from 3:30 - 4:00
+        <button type="button" class="notibtn btn btn-danger">Cancel slot</button>
+    </p>
+</div>
+
+<!--if got notification-->
+<div class="noticancel">
+    <!--get slot info-->
+    <p class="notitext">
+        <span type="text" class="notistatus">Cancelled</span>
+        4/12 prof oka from 3:30 - 4:00
+        <button type="button" class="notibtnbook btn btn-success">Book another</button>
+    </p>
+</div>
+
+<div class= "page-header" id="calendar">
+    <h1>Your calendar</h1>
+</div>
+
+
+
+
+<div class="week">
+    <ul>
+        <li class="prev">&#10094;</li>
+        <li class="next">&#10095;</li>
+        <li>
+            4 Sept - 8 Sept 2017<br>
+            <span style="font-size:18px">Week 12</span>
+        </li>
+    </ul>
+</div>
+
+<table class="scheduler" width="80%" align="center">
+    <div id="head_nav">
+        <tr>
+            <th>Time</th>
+            <th scope="col">Monday</th>
+            <th scope="col">Tuesday</th>
+            <th scope="col">Wednesday</th>
+            <th scope="col">Thursday</th>
+            <th scope="col">Friday</th>
+        </tr>
+    </div>
+    <div>
+        <tr>
+            <th scope="row">08:00 - 08:30</td>
+            <td id="row1col1"></td>
+            <td id="row1col2"></td>
+            <td id="row1col3"></td>
+            <td id="row1col4"></td>
+            <td id="row1col5"></td>
+        </tr>
+    </div>
+    <div>
+        <tr>
+            <th scope="row">08:30 - 09:00</td>
+            <td id="row2col1"></td>
+            <td id="row2col2"></td>
+            <td id="row2col3"></td>
+            <td id="row2col4"></td>
+            <td id="row2col5"></td>
+        </tr>
+    </div>
+    <div>
+        <tr>
+            <th scope="row">09:00 - 09:30</td>
+            <td id="row3col1"></td>
+            <td id="row3col2"></td>
+            <td id="row3col3"></td>
+            <td id="row3col4"></td>
+            <td id="row3col5"></td>
+        </tr>
+    </div>
+    <div>
+        <tr>
+            <th scope="row">09:30 - 10:00</td>
+            <td id="row4col1"></td>
+            <td id="row4col2"></td>
+            <td id="row4col3"></td>
+            <td id="row4col4"></td>
+            <td id="row4col5"></td>
+        </tr>
+    </div>
+    <div>
+        <tr>
+            <th scope="row">10:00 - 10:30</td>
+            <td id="row5col1"></td>
+            <td id="row5col2"></td>
+            <td id="row5col3"></td>
+            <td id="row5col4"></td>
+            <td id="row5col5"></td>
+        </tr>
+    </div>
+    <div>
+        <tr>
+            <th scope="row">10:30 - 11:00</td>
+            <td id="row6col1"></td>
+            <td id="row6col2"></td>
+            <td id="row6col3"></td>
+            <td id="row6col4"></td>
+            <td id="row6col5"></td>
+        </tr>
+    </div>
+    <div>
+        <tr>
+            <th scope="row">11:00 - 11:30</td>
+            <td id="row7col1"></td>
+            <td id="row7col2"></td>
+            <td id="row7col3"></td>
+            <td id="row7col4"></td>
+            <td id="row7col5"></td>
+        </tr>
+    </div>
+    <div>
+        <tr>
+            <th scope="row">11:30 - 12:00</td>
+            <td id="row8col1"></td>
+            <td id="row8col2"></td>
+            <td id="row8col3"></td>
+            <td id="row8col4"></td>
+            <td id="row8col5"></td>
+        </tr>
+    </div>
+    <div>
+        <tr>
+            <th scope="row">12:00 - 12:30</td>
+            <td id="row9col1"></td>
+            <td id="row9col2"></td>
+            <td id="row9col3"></td>
+            <td id="row9col4"></td>
+            <td id="row9col5"></td>
+        </tr>
+    </div>
+    <div>
+        <tr>
+            <th scope="row">12:30 - 01:00</td>
+            <td id="row10col1"></td>
+            <td id="row10col2"></td>
+            <td id="row10col3"></td>
+            <td id="row10col4"></td>
+            <td id="row10col5"></td>
+        </tr>
+    </div>
+    <div>
+        <tr>
+            <th scope="row">01:00 - 01:30</td>
+            <td id="row11col1"></td>
+            <td id="row11col2"></td>
+            <td id="row11col3"></td>
+            <td id="row11col4"></td>
+            <td id="row11col5"></td>
+        </tr>
+    </div>
+    <div>
+        <tr>
+            <th scope="row">01:30 - 02:00</td>
+            <td id="row12col1"></td>
+            <td id="row12col2"></td>
+            <td id="row12col3"></td>
+            <td id="row12col4"></td>
+            <td id="row12col5"></td>
+        </tr>
+    </div>
+    <div>
+        <tr>
+            <th scope="row">02:00 - 02:30</td>
+            <td id="row13col1"></td>
+            <td id="row13col2"></td>
+            <td id="row13col3"></td>
+            <td id="row13col4"></td>
+            <td id="row13col5"></td>
+        </tr>
+    </div>
+    <div>
+        <tr>
+            <th scope="row">02:30 - 03:00</td>
+            <td id="row14col1"></td>
+            <td id="row14col2"></td>
+            <td id="row14col3"></td>
+            <td id="row14col4"></td>
+            <td id="row14col5"></td>
+        </tr>
+    </div>
+    <div>
+        <tr>
+            <th scope="row">03:00 - 03:30</td>
+            <td id="row15col1"></td>
+            <td id="row15col2"></td>
+            <td id="row15col3"></td>
+            <td id="row15col4"></td>
+            <td id="row15col5"></td>
+        </tr>
+    </div>
+    <div>
+        <tr>
+            <th scope="row">03:30 - 04:00</td>
+            <td id="row16col1"></td>
+            <td id="row16col2"></td>
+            <td id="row16col3"></td>
+            <td id="row16col4"></td>
+            <td id="row16col5"></td>
+        </tr>
+    </div>
+    <div>
+        <tr>
+            <th scope="row">04:00 - 04:30</td>
+            <td id="row17col1"></td>
+            <td id="row17col2"></td>
+            <td id="row17col3"></td>
+            <td id="row17col4"></td>
+            <td id="row17col5"></td>
+        </tr>
+    </div>
+    <div>
+        <tr>
+            <th scope="row">04:30 - 05:00</td>
+            <td id="row18col1"></td>
+            <td id="row18col2"></td>
+            <td id="row18col3"></td>
+            <td id="row18col4"></td>
+            <td id="row18col5"></td>
+        </tr>
+    </div>
+</table>
+</div>
+</body>
+</html>
