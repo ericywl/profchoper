@@ -14,9 +14,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
-import static profchoper._misc.Constant.ROW_TO_TIME;
-import static profchoper._misc.Constant.WEEK_CAL_COL;
-import static profchoper._misc.Constant.WEEK_CAL_ROW;
+import static profchoper._misc.Constant.*;
 
 @Service
 public class CourseCalendarService {

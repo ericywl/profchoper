@@ -3,20 +3,12 @@ package profchoper.professor;
 
 import profchoper.course.Course;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-
 public class Professor {
-    private String name;
-    private String email;
+    private final String name;
+    private final String email;
     private String alias;
     private String officeLocation;
     private Course course;
-
-    public Professor() {
-        // empty
-    }
 
     public Professor(String name, String alias, String email, String officeLocation, Course course) {
         this.name = name;
@@ -61,13 +53,5 @@ public class Professor {
 
     public void setAlias(String alias) {
         this.alias = alias;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 }

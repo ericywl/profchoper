@@ -1,19 +1,10 @@
 package profchoper.course;
 
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-@Entity
 public class Course {
-    @Id
-    private int id;
-    private String name;
-    private String alias;
-
-    public Course() {
-        // empty
-    }
+    private final int id;
+    private final String name;
+    private final String alias;
 
     public Course(int id, String name, String alias) {
         this.id = id;
@@ -36,17 +27,5 @@ public class Course {
 
     public String getAlias() {
         return alias;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setAlias(String alias) {
-        this.alias = alias;
     }
 }

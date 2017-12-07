@@ -49,4 +49,4 @@ CREATE TABLE IF NOT EXISTS public.user_roles
   username VARCHAR(40) NOT NULL REFERENCES users(username),
   role VARCHAR(20) NOT NULL,
   UNIQUE (username, role)
-)
+);

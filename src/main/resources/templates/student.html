@@ -2,8 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>SUTD ProfChoper</title>
+
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" media="all" href="../static/css/student.css"
@@ -11,7 +11,7 @@
 
 </head>
 <body>
-
+<!-- Nav bar -->
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -25,36 +25,33 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <button class="btn navbar-btn btn-lg"><a href="#calendar"> Chope a slot</a></button>
-            <button class="course dropdown btn btn-outline-info"><a class="dropdown-toggle"
-                                                                    data-toggle="dropdown" href="#">Choose
-                Course <span class="caret"></span></a>
+            <button class="course dropdown btn btn-outline-info"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Choose Course <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="#">50-001 Introduction to Information System & Programming </a></li>
                     <li><a href="#">50-002 Computation Structure</a></li>
                     <li><a href="#">50-004 Introduction to Algorithm</a></li>
                 </ul>
             </button>
-            <button class="instructor dropdown btn btn-outline-secondary" aria-disabled="true"><a
-                    class="dropdown-toggle" data-toggle="dropdown" href="#">Choose Instructor <span
-                    class="caret"></span></a>
+            <button class="instructor dropdown btn btn-outline-secondary" aria-disabled="true"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Choose Instructor <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="#">Oka Kurniawan</a></li>
                     <li><a href="#">Zhang Yue</a></li>
                     <li><a href="#">Yuen Chau</a></li>
                 </ul>
             </button>
-            <h6 class="showID"> 100XXXX </h6>
+            <h7 class="showID"> 100XXXX </h7>
             <button class="logout btn btn-sm">Log out</button>
         </div>
     </div>
 </nav>
 
-<div class="page-header noti">
+<div class= "page-header noti">
     <h1>Your schedules</h1>
 </div>
 
 
-<!--if got notification-->
+
+<!-- if got notification-->
 <div class="noticonfirm">
     <!--get slot info-->
     <p class="notitext">
@@ -64,7 +61,7 @@
     </p>
 </div>
 
-<!--if got notification-->
+<!-- if got notification-->
 <div class="notipending">
     <!--get slot info-->
     <p class="notitext">
@@ -74,7 +71,7 @@
     </p>
 </div>
 
-<!--if got notification-->
+<!-- if got notification-->
 <div class="noticancel">
     <!--get slot info-->
     <p class="notitext">
@@ -84,10 +81,30 @@
     </p>
 </div>
 
-<div class="page-header" id="calendar">
+<div class= "page-header" id="calendar">
     <h1>Your calendar</h1>
 </div>
 
+<div class="container">
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                    <p id="text">Some text in the modal.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="week">
     <ul>
@@ -100,7 +117,7 @@
     </ul>
 </div>
 
-<table class="scheduler" width="80%" align="center">
+<table id="week-cal-table">
     <tr>
         <th>Time</th>
         <th scope="col">Monday</th>
@@ -120,12 +137,14 @@
         <td th:utext="${#strings.replace(#strings.escapeXml(row[4]),'&#10;','&lt;br /&gt;')}"></td>
         <td th:utext="${#strings.replace(#strings.escapeXml(row[5]),'&#10;','&lt;br /&gt;')}"></td>
     </tr>
+
 </table>
 
 <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../static/js/student.js" th:src="@{/js/student.js}"></script>
 
 </body>
 </html>

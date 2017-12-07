@@ -3,8 +3,9 @@
     src: url("https://fonts.gstatic.com/s/quicksand/v7/sKd0EMYPAh5PYCRKSryvW5Bw1xU1rKptJj_0jans920.woff2");
 }
 
+/*main body*/
 body {
-    font-family: Quicksand;
+    font-family: Quicksand, sans-serif;
 }
 
 /* remove bullets */
@@ -14,11 +15,10 @@ ul {
 
 /* Week header */
 .week {
-    padding: 20px 50px 75px 50px;
+    padding: 70px 25px;
     width: 80%;
-    background: darkgrey;
+    background: #1DD118;
     margin: auto;
-    height: 10px;
     text-align: center;
 }
 
@@ -42,10 +42,6 @@ ul {
 }
 
 /*table header and data elements */
-.scheduler {
-    margin-bottom: 100px;
-}
-
 th, td {
     margin: auto;
     text-align: center;
@@ -65,112 +61,93 @@ th {
 
 td:hover {
     cursor: pointer;
-    background: green;
+    background: #666;
     color: white;
 }
 
-.container .appointments {
-    border-color: green;
-    border-radius: 5%;
-    border-style: solid;
-    color: green;
-    background-color: white;
-    width: 100%;
-    height: 70px;
+table#week-cal-table {
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    table-layout: fixed;
 }
 
-.container .appointments:hover {
-    border-color: #ABDF75;
-}
-
-.container .appointments:hover button {
-    display: inline-block;
-    height: 30px;
-    width: 80px;
-    border-radius: 5%;
-    border: 2px solid #d8d8d8;
-    color: #d8d8d8;
-}
-
-.page-header {
+.page-header{
     margin: 100px 20px 10px 20px;
 }
 
-#calendar {
+
+#calendar{
     margin-bottom: 30px;
 }
-
 /*nav bav props*/
+
 .btn-lg {
     margin: 15px 30px 0px 40px;
     color: white;
 }
-
-.course {
+.course{
     margin-left: 10%;
-}
 
-.instructor {
+}
+.instructor{
     margin-left: 2%;
-}
 
-.logout {
+}
+.logout{
     margin-left: 90px;
 }
-
-.h4 {
-    padding-left: 55px;
+.h4{
+    padding-left:55px;
     font-size: 3.5rem;
 }
-
-.btn {
+.btn{
     margin-top: 12.5px;
 }
-
-.showID {
+.showID{
     float: right;
     color: green;
     margin-left: 95px;
     overflow: auto;
 }
-
 /* successful appointment */
+
 .noticonfirm {
-    width: 90%;
+    width:90%;
     height: 63px;
     margin-left: 50px;
     margin-right: 50px;
     margin-top: 10px;
     margin-bottom: 10px;
     background-color: white;
-    border: 2px solid #26e073;
+    border: 2px solid green;
     padding-left: 20px;
     padding-right: 6px;
     padding-bottom: 4px;
     text-align: center;
 }
 
-.noticonfirm:hover {
-    background: #26e073;
-    color: white;
-}
+.noticonfirm:hover{
+    background: green;
+    color:white;
 
-.noticonfirm:hover button {
-    display: inline-block;
+}
+.noticonfirm:hover button{
+    display:inline-block;
     overflow: auto;
-}
 
-.noticonfirm:hover span {
+}
+.noticonfirm:hover span{
     display: inline-block;
 }
 
-.noticonfirm:hover {
+.noticonfirm:hover{
     font-size: 1.3em;
-}
 
+}
 /* pending */
 .notipending {
-    width: 90%;
+    width:90%;
     height: 63px;
     margin-left: 50px;
     margin-right: 50px;
@@ -184,27 +161,27 @@ td:hover {
     text-align: center;
 }
 
-.notipending:hover {
+.notipending:hover{
     background: #4286f4;
-    color: white;
-}
+    color:white;
 
-.notipending:hover button {
-    display: inline-block;
+}
+.notipending:hover button{
+    display:inline-block;
     overflow: auto;
-}
 
-.notipending:hover span {
+}
+.notipending:hover span{
     display: inline-block;
 }
 
-.notipending:hover {
+.notipending:hover{
     font-size: 1.3em;
-}
 
+}
 /* cancel */
 .noticancel {
-    width: 90%;
+    width:90%;
     height: 63px;
     margin-left: 50px;
     margin-right: 50px;
@@ -218,27 +195,28 @@ td:hover {
     text-align: center;
 }
 
-.noticancel:hover {
+.noticancel:hover{
     background: #ed3b3b;
-    color: white;
-}
+    color:white;
 
-.noticancel:hover button {
-    display: inline-block;
+}
+.noticancel:hover button{
+    display:inline-block;
     overflow: auto;
-}
 
-.noticancel:hover span {
+}
+.noticancel:hover span{
     display: inline-block;
 }
 
-.noticancel:hover {
+.noticancel:hover{
     font-size: 1.3em;
+
 }
 
-.notibtnbook {
-    display: none;
-    float: right;
+.notibtnbook{
+    display:none;
+    float:right;
     overflow: auto;
     margin: 0;
     padding-top: 3px;
@@ -249,21 +227,20 @@ td:hover {
 }
 
 /* general noti */
-.notistatus {
+.notistatus{
     display: none;
     float: left;
 }
 
-.notitext {
+.notitext{
     align-self: left;
     padding-top: 15px;
     font-size: 1.2em;
     vertical-align: middle;
 }
-
-.notibtn {
-    display: none;
-    float: right;
+.notibtn{
+    display:none;
+    float:right;
     overflow: auto;
     margin: 0;
     padding-top: 3px;
