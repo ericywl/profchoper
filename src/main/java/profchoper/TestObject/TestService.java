@@ -25,4 +25,16 @@ public class TestService {
     public Test getTestById(int id) {
         return testRepo.findOne(id);
     }
+
+    public void addTest(Test test) {
+        testRepo.save(test);
+    }
+
+    public void updateTest(Test test) {
+        testRepo.save(test);
+    }
+
+    public void deleteTest(int id) {
+        testRepo.delete(id);
+    }
 }
