@@ -50,6 +50,25 @@ INSERT INTO bookings (professor_alias, start_time) VALUES
   ('DATTA', make_timestamp(2017, 12, 6, 13, 30, 0)),
   ('NORMAN', make_timestamp(2017, 12, 6, 16, 0, 0)),
   ('NORMAN', make_timestamp(2017, 12, 6, 16, 30, 0)),
-  ('JIT', make_timestamp(2017, 12, 5, 15, 30, 0));
+  ('JIT', make_timestamp(2017, 12, 5, 15, 30, 0))
+ON CONFLICT (professor_alias, start_time)
+  DO NOTHING;
+
+INSERT INTO users (username, password, enabled) VALUES
+  ('eric@mymail.sutd.edu.sg', 'password', TRUE),
+  ('wentat@mymail.sutd.edu.sg', 'password', TRUE),
+  ('ngaiman_cheung@sutd.edu.sg', 'prof_password', TRUE)
+ON CONFLICT (username)
+  DO
+  UPDATE SET
+    password = EXCLUDED.password,
+    enabled = EXCLUDED.enabled;
+
+INSERT INTO user_roles (username, role) VALUES
+  ('eric@mymail.sutd.edu.sg', 'STUDENT'),
+  ('wentat@mymail.sutd.edu.sg', 'STUDENT'),
+  ('ngaiman_cheung@sutd.edu.sg', 'ROLE_PROFESSOR')
+ON CONFLICT (username, role)
+  DO NOTHING;
 
 

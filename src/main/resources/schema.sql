@@ -1,38 +1,51 @@
 CREATE TABLE IF NOT EXISTS public.courses
 (
-  id TEXT PRIMARY KEY,
-  name TEXT UNIQUE NOT NULL,
-  alias TEXT UNIQUE NOT NULL
+  id VARCHAR(10) PRIMARY KEY,
+  name VARCHAR(150) UNIQUE NOT NULL,
+  alias VARCHAR(20) UNIQUE NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS public.students
 (
   id INTEGER PRIMARY KEY,
-  name TEXT NOT NULL,
-  email TEXT UNIQUE NOT NULL,
-  course1_id TEXT REFERENCES courses(id),
-  course2_id TEXT REFERENCES courses(id),
-  course3_id TEXT REFERENCES courses(id),
-  course4_id TEXT REFERENCES courses(id)
+  name VARCHAR(40) NOT NULL,
+  email VARCHAR(40) UNIQUE NOT NULL,
+  course1_id VARCHAR(10) REFERENCES courses(id),
+  course2_id VARCHAR(10) REFERENCES courses(id),
+  course3_id VARCHAR(10) REFERENCES courses(id),
+  course4_id VARCHAR(10) REFERENCES courses(id)
 );
 
 CREATE TABLE IF NOT EXISTS public.professors
 (
-  name TEXT PRIMARY KEY,
-  email TEXT UNIQUE NOT NULL,
-  alias TEXT UNIQUE,
-  office TEXT UNIQUE,
-  course_id TEXT REFERENCES courses(id)
+  name VARCHAR(40) PRIMARY KEY,
+  email VARCHAR(40) UNIQUE NOT NULL,
+  alias VARCHAR(10) UNIQUE,
+  office VARCHAR(10) UNIQUE,
+  course_id VARCHAR(10) REFERENCES courses(id)
 );
-
-DROP TABLE IF EXISTS public.bookings;
 
 CREATE TABLE IF NOT EXISTS public.bookings
 (
   id SERIAL PRIMARY KEY,
   start_time TIMESTAMP NOT NULL,
-  professor_alias TEXT NOT NULL REFERENCES professors(alias),
-  book_status TEXT DEFAULT 'AVAILABLE',
+  professor_alias VARCHAR(10) NOT NULL REFERENCES professors(alias),
+  book_status VARCHAR(20) DEFAULT 'AVAILABLE',
   student_id INTEGER DEFAULT NULL REFERENCES students(id),
   UNIQUE (professor_alias, start_time)
 );
+
+CREATE TABLE IF NOT EXISTS public.users
+(
+  username VARCHAR(40) PRIMARY KEY,
+  password VARCHAR(20) NOT NULL,
+  enabled BOOLEAN NOT NULL DEFAULT FALSE
+);
+
+CREATE TABLE IF NOT EXISTS public.user_roles
+(
+  user_role_id SERIAL PRIMARY KEY,
+  username VARCHAR(40) NOT NULL REFERENCES users(username),
+  role VARCHAR(20) NOT NULL,
+  UNIQUE (username, role)
+)

@@ -2,21 +2,19 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>SUTD ProfChoper</title>
-
-
 </head>
 <body>
 
 <div class="container">
 
     <div class="starter-template">
-        <h1>Get Chope-ing now!</h1>
-        <h2>1. Visit <a th:href="@{/prof}">Prof page</a></h2>
-        <h2>2. Visit <a th:href="@{/student}">Student page</a></h2>
+        <h1>403 - Access is denied</h1>
+        <div th:inline="text">Hello '[[${#httpServletRequest.remoteUser}]]',
+            you do not have permission to access this page.
+        </div>
     </div>
 
 </div>
-<!-- /.container -->
 
 </body>
 </html>

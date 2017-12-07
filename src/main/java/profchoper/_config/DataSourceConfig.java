@@ -1,4 +1,4 @@
-package profchoper.config;
+package profchoper._config;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;

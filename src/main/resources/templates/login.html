@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>SUTD ProfChoper</title>
+    <meta charset="UTF-8">
+    <link href="@{/resources/css/bootstrap-3.3.2-dist/bootstrap.min.css}" rel="stylesheet"/>
+
+    <style>
+        @font-face {
+            font-family: Quicksand;
+            src: url("https://fonts.gstatic.com/s/quicksand/v7/sKd0EMYPAh5PYCRKSryvW5Bw1xU1rKptJj_0jans920.woff2");
+        }
+
+        body {
+            font-family: Quicksand, 'sans-serif';
+        }
+
+        h1 {
+            text-align: center;
+            display: inline;
+        }
+
+        .form {
+            width: 40%;
+            margin: auto;
+            padding: 65px 0 30px 150px;
+
+        }
+
+        #helloprof {
+            font-weight: bolder;
+            color: green;
+        }
+
+        .openingtext {
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        #username, #password {
+            width: 320px;
+            height: 20px;
+        }
+
+        #student {
+            margin-left: 35px;
+        }
+
+        #instructor {
+            margin-left: 75px;
+        }
+
+        #submit {
+            margin-left: 60px;
+            width: 200px;
+            height: 40px;
+            font-size: 15px;
+            border-color: green;
+            border-style: solid;
+            color: green;
+            background-color: white;
+        }
+
+        #remember-me {
+            margin-left: 60px;
+        }
+
+        #submit:hover {
+            background-color: green;
+            color: white;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="openingtext">
+        <h1>Goodbye emails.
+        </h1>
+        <h1 id="helloprof">Hello <em>Profchoper</em></h1></div>
+
+    <div class="form">
+        <!--/*@thymesVar id="Log_in" type="login.Log_in"*/-->
+        <form th:action="@{/login}" method="post">
+            <div th:if="${param.error}">
+                <div class="alert alert-danger">
+                    Invalid username and password.
+                </div>
+            </div>
+
+            <div th:if="${param.logout}">
+                <div class="alert alert-info">
+                    You have been logged out.
+                </div>
+            </div>
+
+            Enter your SUTD email (one last time):<br>
+            <input type="email" name="username" id="username" placeholder="example@(mymail).sutd.edu.sg"
+                   required="required"/>
+
+            <br><br>
+
+            Enter your SUTD password:<br>
+            <input type="password" name="password" id="password" placeholder="Get it right, no need to retype"
+                   required="required">
+
+            <br><br>
+
+            You are a(n)...<br>
+            <input type="radio" name="who" id="student"> Student
+            <input type="radio" name="who" id="instructor"> Instructor<br><br>
+            <input type="checkbox" name="rememberme" id="remember-me"> Remember me<br>
+            <br>
+
+            <input type="submit" value="Log in" id="submit">
+        </form>
+
+    </div>
+</div>
+</body>
+</html>
