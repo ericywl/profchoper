@@ -11,7 +11,7 @@ import javax.sql.DataSource;
 import java.sql.SQLException;
 
 @Configuration
-public class ProfChoperConfig {
+public class ProfChoperJdbcConfig {
     @Value("${spring.datasource.url}")
     public String dbUrl;
 

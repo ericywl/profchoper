@@ -15,14 +15,14 @@ import static profchoper._misc.Constant.PROF;
 import static profchoper._misc.Constant.STUDENT;
 
 @Configuration
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    
+public class ProfChoperSecurityConfig extends WebSecurityConfigurerAdapter {
+
     private final DataSource dataSource;
     private final AccessDeniedHandler accessDeniedHandler;
     private final AuthenticationSuccessHandler successHandler;
 
     @Autowired
-    public SecurityConfig(@Qualifier("profChoperDataSource") DataSource dataSource, AccessDeniedHandler
+    public ProfChoperSecurityConfig(@Qualifier("profChoperDataSource") DataSource dataSource, AccessDeniedHandler
             accessDeniedHandler, AuthenticationSuccessHandler successHandler) {
         this.dataSource = dataSource;
         this.accessDeniedHandler = accessDeniedHandler;
