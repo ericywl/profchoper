@@ -17,9 +17,4 @@ public class CourseRestController {
     public List<Course> findAll() {
         return courseService.getAllCourses();
     }
-
-    @GetMapping("/api/courses/{id}")
-    public Course findById(@PathVariable int id) {
-        return courseService.getCourseById(id);
-    }
 }

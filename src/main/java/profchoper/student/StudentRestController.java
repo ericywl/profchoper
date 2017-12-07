@@ -17,9 +17,4 @@ public class StudentRestController {
     public List<Student> findAll() {
         return studentService.getAllStudents();
     }
-
-    @GetMapping("/api/students/{id}")
-    public Student findById(@PathVariable int id) {
-        return studentService.getStudentById(id);
-    }
 }

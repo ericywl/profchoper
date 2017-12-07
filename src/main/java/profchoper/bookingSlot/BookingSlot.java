@@ -1,5 +1,6 @@
 package profchoper.bookingSlot;
 
+import javax.persistence.Entity;
 import java.sql.Timestamp;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -8,6 +9,7 @@ import java.time.LocalTime;
 
 import static profchoper._misc.Constant.*;
 
+@Entity
 public class BookingSlot {
     private final Timestamp timestamp;
     private final String profAlias;

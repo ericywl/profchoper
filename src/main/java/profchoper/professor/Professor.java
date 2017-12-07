@@ -5,18 +5,21 @@ import profchoper.course.Course;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
+@Entity
 public class Professor {
     @Id
     private String name;
-
-    private String alias;
     private String email;
+    private String alias;
     private String officeLocation;
+
+    @ManyToOne
     private Course course;
 
     public Professor() {
-        // empty constructor
+        // empty
     }
 
     public Professor(String name, String email, String alias, String officeLocation, Course course) {
@@ -56,19 +59,19 @@ public class Professor {
         return name;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getOfficeLocation() {
         return officeLocation;
+    }
+
+    public void setAlias(String alias) {
+        this.alias = alias;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setAlias(String alias) {
-        this.alias = alias;
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
