@@ -49,5 +49,5 @@ public class SlotDAO {
         return select.query(selectSQL, new Object[]{startTimestamp, endTimestamp}, new SlotRowMapper());
     }
 
-    public void updateSlot()
+    // public void updateSlot()
 }
