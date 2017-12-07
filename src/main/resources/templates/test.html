@@ -23,14 +23,14 @@
                 <th>Student</th>
             </tr>
 
-            &lt;!&ndash;/*@thymesVar id="slot" type="profchoper.slot.Slot"*/&ndash;&gt;
-            <tr th:each="slot : ${bookings}">
-                <td th:text="${slot.getDate().toString()}"></td>
-                <td th:text="${slot.getStartTime().toString()}"></td>
-                <td th:text="${slot.getProfAlias()}"></td>
-                <td th:text="${slot.getBookStatus()}"></td>
-                <td th:if="${slot.getStudentId()}" th:text="${slot.getStudentId()}"></td>
-                <td th:if="!${slot.getStudentId()}">N/A</td>
+            &lt;!&ndash;/*@thymesVar id="bookingSlot" type="profchoper.bookingSlot.BookingSlot"*/&ndash;&gt;
+            <tr th:each="bookingSlot : ${bookings}">
+                <td th:text="${bookingSlot.getDate().toString()}"></td>
+                <td th:text="${bookingSlot.getStartTime().toString()}"></td>
+                <td th:text="${bookingSlot.getProfAlias()}"></td>
+                <td th:text="${bookingSlot.getBookStatus()}"></td>
+                <td th:if="${bookingSlot.getStudentId()}" th:text="${bookingSlot.getStudentId()}"></td>
+                <td th:if="!${bookingSlot.getStudentId()}">N/A</td>
             </tr>
         </table>
     </div>-->

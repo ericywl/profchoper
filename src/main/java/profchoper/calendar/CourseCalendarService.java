@@ -3,8 +3,8 @@ package profchoper.calendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import profchoper.slot.Slot;
-import profchoper.slot.SlotService;
+import profchoper.bookingSlot.BookingSlot;
+import profchoper.bookingSlot.BookingSlotService;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -21,7 +21,7 @@ import static profchoper._misc.Constant.WEEK_CAL_ROW;
 public class CourseCalendarService {
 
     @Autowired
-    private SlotService slotService;
+    private BookingSlotService slotService;
 
     public List<List<String>> getWeekCalendar(LocalDate startDateOfWeek) {
         List<List<String>> output = new ArrayList<>();
@@ -44,13 +44,13 @@ public class CourseCalendarService {
     }
 
     private String getProfAliasesForHTML(LocalDateTime dateTime) {
-        List<Slot> slotList = slotService.getSlotsByDateTime(dateTime);
+        List<BookingSlot> slotList = slotService.getSlotsByDateTime(dateTime);
         if (slotList == null) return "\n";
 
         StringBuilder outputBld = new StringBuilder();
         outputBld.append("\n");
 
-        for (Slot slot : slotList) {
+        for (BookingSlot slot : slotList) {
             outputBld.append(slot.getProfAlias());
             outputBld.append("\n");
         }
