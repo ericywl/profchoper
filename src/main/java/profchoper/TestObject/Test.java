@@ -1,6 +1,11 @@
 package profchoper.TestObject;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Test {
+    @Id
     private int id;
     private String name;
 
