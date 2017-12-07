@@ -23,16 +23,16 @@ ON CONFLICT (id)
     course4_id = EXCLUDED.course4_id;
 
 INSERT INTO professors (name, alias, email, office, course_id) VALUES
-  ('Oka Kurniawan', 'OKA', 'oka_kurniawan@sutd.edu.sg', '1.502-27', '50.002'),
-  ('Zhang Yue', 'ZY', 'yue_zhang@sutd.edu.sg', '1.702-34', '50.002'),
-  ('Yuen Chau', 'YC', 'yuenchau@sutd.edu.sg', '3.301-07', '50.002'),
-  ('Zhou Jianying', 'JY', 'jianying_zhou@sutd.edu.sg', '1.302-03', '50.002'),
-  ('Norman Lee', 'NORMAN', 'norman_lee@sutd.edu.sg', '1.502-25', '50.001'),
-  ('Jit Biswas', 'JIT', 'jit_biswas@sutd.edu.sg', '1.602-28', '50.001'),
-  ('Ngai-Man Cheung', 'MAN', 'ngaiman_cheung@sutd.edu.sg', '1.502-17', '50.001'),
-  ('Subhajit Datta', 'DATTA', 'subhajit_datta@sutd.edu.sg', '1.702-32', '50.004'),
-  ('Simon Lui', 'SIMON', 'simon_lui@sutd.edu.sg', '1.502-18', '50.004'),
-  ('Gemma Roig', 'GEMMA', 'gemma_roig@sutd.edu.sg', '1.702-33', '50.004')
+  ('Oka Kurniawan', 'oka', 'oka_kurniawan@sutd.edu.sg', '1.502-27', '50.002'),
+  ('Zhang Yue', 'zy', 'yue_zhang@sutd.edu.sg', '1.702-34', '50.002'),
+  ('Yuen Chau', 'yc', 'yuenchau@sutd.edu.sg', '3.301-07', '50.002'),
+  ('Zhou Jianying', 'jy', 'jianying_zhou@sutd.edu.sg', '1.302-03', '50.002'),
+  ('Norman Lee', 'norman', 'norman_lee@sutd.edu.sg', '1.502-25', '50.001'),
+  ('Jit Biswas', 'jit', 'jit_biswas@sutd.edu.sg', '1.602-28', '50.001'),
+  ('Ngai-Man Cheung', 'man', 'ngaiman_cheung@sutd.edu.sg', '1.502-17', '50.001'),
+  ('Subhajit Datta', 'datta', 'subhajit_datta@sutd.edu.sg', '1.702-32', '50.004'),
+  ('Simon Lui', 'simon', 'simon_lui@sutd.edu.sg', '1.502-18', '50.004'),
+  ('Gemma Roig', 'gemma', 'gemma_roig@sutd.edu.sg', '1.702-33', '50.004')
 ON CONFLICT (name)
   DO
   UPDATE SET

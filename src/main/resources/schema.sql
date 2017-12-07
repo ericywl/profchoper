@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS public.bookings
   id SERIAL PRIMARY KEY,
   start_time TIMESTAMP NOT NULL,
   professor_alias VARCHAR(10) NOT NULL REFERENCES professors(alias),
-  book_status VARCHAR(20) DEFAULT 'AVAILABLE',
+  book_status VARCHAR(20) DEFAULT 'available',
   student_id INTEGER DEFAULT NULL REFERENCES students(id),
   UNIQUE (professor_alias, start_time)
 );

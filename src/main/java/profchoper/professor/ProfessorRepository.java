@@ -9,11 +9,11 @@ import java.util.List;
 
 @Repository
 @SuppressWarnings("unchecked")
-public class ProfessorDAO {
+public class ProfessorRepository {
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public ProfessorDAO(JdbcTemplate jdbcTemplate) {
+    public ProfessorRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 

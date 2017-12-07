@@ -53,13 +53,13 @@ public class CourseCalendarService {
 
     private String getProfAliasesForHTML(LocalDateTime dateTime) {
         List<BookingSlot> slotList = slotService.getSlotsByDateTime(dateTime);
-        if (slotList == null) return "";
+        if (slotList == null) return " ";
 
         StringBuilder outputBld = new StringBuilder();
 
         for (int i = 0, size = slotList.size(); i < size; i++) {
             BookingSlot slot = slotList.get(i);
-            outputBld.append(slot.getProfAlias());
+            outputBld.append(slot.getProfessor().getAlias());
 
             if (i < size - 1) outputBld.append(", ");
         }

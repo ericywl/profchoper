@@ -8,10 +8,10 @@ import java.util.List;
 
 @Repository
 @SuppressWarnings("unchecked")
-public class CourseDAO {
+public class CourseRepository {
     private final JdbcTemplate jdbcTemplate;
 
-    public CourseDAO(JdbcTemplate jdbcTemplate) {
+    public CourseRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 

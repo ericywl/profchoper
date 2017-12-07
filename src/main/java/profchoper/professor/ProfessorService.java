@@ -8,17 +8,17 @@ import java.util.List;
 @Service
 public class ProfessorService {
     @Autowired
-    private ProfessorDAO professorDAO;
+    private ProfessorRepository professorRepository;
 
     public List<Professor> getAllProfessors() {
-        return professorDAO.findAll();
+        return professorRepository.findAll();
     }
 
     public List<Professor> getProfessorsByCourseId(String courseId) {
-        return professorDAO.findByCourseId(courseId);
+        return professorRepository.findByCourseId(courseId);
     }
 
     public Professor getProfessorByAlias(String alias) {
-        return professorDAO.findByAlias(alias);
+        return professorRepository.findByAlias(alias);
     }
 }

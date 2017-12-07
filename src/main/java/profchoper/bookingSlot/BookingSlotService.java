@@ -2,31 +2,45 @@ package profchoper.bookingSlot;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import profchoper.professor.Professor;
+import profchoper.professor.ProfessorService;
+import profchoper.student.Student;
+import profchoper.student.StudentService;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
 
 import static profchoper._misc.Constant.*;
 
 @Service
 public class BookingSlotService {
+    private final BookingSlotRepository slotDAO;
+    private final StudentService studentService;
+    private final ProfessorService professorService;
+
     @Autowired
-    private BookingSlotDAO slotDAO;
+    public BookingSlotService(BookingSlotRepository slotDAO, StudentService studentService,
+                              ProfessorService professorService) {
+        this.slotDAO = slotDAO;
+        this.studentService = studentService;
+        this.professorService = professorService;
+    }
 
     public List<BookingSlot> getAllSlots() {
-        return slotDAO.findAll();
+        return initBookingSlots(slotDAO.findAll());
     }
 
     public List<BookingSlot> getSlotsByProfAlias(String profAlias) {
-        return slotDAO.findByProfAlias(profAlias);
+        return initBookingSlots(slotDAO.findByProfAlias(profAlias));
     }
 
     public List<BookingSlot> getSlotsByDateTime(LocalDateTime dateTime) {
         Timestamp timestamp = Timestamp.valueOf(dateTime);
-        return slotDAO.findByDateTime(timestamp);
+        return initBookingSlots(slotDAO.findByDateTime(timestamp));
     }
 
     public List<BookingSlot> getSlotsByDate(LocalDate date) {
@@ -49,37 +63,37 @@ public class BookingSlotService {
         return getSlotsByDateRangeType(TERM, startDateOfTerm);
     }
 
-    public boolean bookSlot(BookingSlot slot, int studentID) {
+    public boolean bookSlot(BookingSlot slot, Student student) {
         if (!slot.getBookStatus().equals(AVAIL)) return false;
 
         slot.setBookStatus(PENDING);
-        slot.setStudentId(studentID);
+        slot.setStudent(student);
 
         return slotDAO.update(slot);
     }
 
     public boolean cancelBookSlot(BookingSlot slot, int studentID) {
         if (slot.getBookStatus().equals(AVAIL)
-                || slot.getStudentId() != studentID) return false;
+                || slot.getStudent().getId() != studentID) return false;
 
         slot.setBookStatus(AVAIL);
-        slot.setStudentId(null);
-
+        slot.setStudent(studentService.getStudentById(studentID));
         return slotDAO.update(slot);
     }
 
     public boolean confirmBookSlot(BookingSlot slot, String profAlias) {
-        if (slot.getBookStatus().equals(AVAIL)
-                || !slot.getProfAlias().equals(profAlias)) return false;
+        if (slot.getBookStatus().equals(AVAIL)) return false;
+
+        if (!slot.getProfessor().getAlias().equals(profAlias)) return false;
 
         slot.setBookStatus(BOOKED);
-
         return slotDAO.update(slot);
     }
 
     public boolean deleteSlot(BookingSlot slot, String profAlias) {
-        if (!slot.getBookStatus().equals(AVAIL)
-                || !slot.getProfAlias().equals(profAlias)) return false;
+        if (!slot.getBookStatus().equals(AVAIL)) return false;
+
+        if (!slot.getProfessor().getAlias().equals(profAlias)) return false;
 
         return slotDAO.delete(slot);
     }
@@ -116,6 +130,21 @@ public class BookingSlotService {
 
         Timestamp startTimestamp = Timestamp.valueOf(startDateTime);
         Timestamp endTimestamp = Timestamp.valueOf(endDateTime);
-        return slotDAO.findByDateTimeRange(startTimestamp, endTimestamp);
+
+        List<BookingSlotModel> bsmList = slotDAO.findByDateTimeRange(startTimestamp, endTimestamp);
+        return initBookingSlots(bsmList);
+    }
+
+    private List<BookingSlot> initBookingSlots(List<BookingSlotModel> bsmList) {
+        List<BookingSlot> output = new ArrayList<>();
+
+        for (BookingSlotModel bsm : bsmList) {
+            Professor prof = professorService.getProfessorByAlias(bsm.getProfAlias());
+            Student student = studentService.getStudentById(bsm.getStudentId());
+
+            output.add(new BookingSlot(bsm.getTimestamp(), prof, student, bsm.getBookStatus()));
+        }
+
+        return output;
     }
 }

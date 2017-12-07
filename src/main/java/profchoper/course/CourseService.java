@@ -8,13 +8,13 @@ import java.util.List;
 @Service
 public class CourseService {
     @Autowired
-    CourseDAO courseDAO;
+    CourseRepository courseRepository;
 
     public List<Course> getAllCourses() {
-        return courseDAO.findAll();
+        return courseRepository.findAll();
     }
 
     public Course getCourseById(String id) {
-        return courseDAO.findById(id);
+        return courseRepository.findById(id);
     }
 }
