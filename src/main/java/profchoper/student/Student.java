@@ -16,13 +16,10 @@ public class Student {
     private int id;
     private String name;
     private String email;
-
-    @OneToMany
-    @JoinColumn(name = "course_id")
     private List<Course> enrolledCourses;
 
     public Student() {
-
+        // empty
     }
 
     public Student(int id, String name, String email, List<Course> enrolledCourses) {
