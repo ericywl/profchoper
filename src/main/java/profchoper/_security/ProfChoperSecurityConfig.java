@@ -17,9 +17,9 @@ import static profchoper._misc.Constant.STUDENT;
 @Configuration
 public class ProfChoperSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final DataSource dataSource;
-    private final AccessDeniedHandler accessDeniedHandler;
-    private final AuthenticationSuccessHandler successHandler;
+    private DataSource dataSource;
+    private AccessDeniedHandler accessDeniedHandler;
+    private AuthenticationSuccessHandler successHandler;
 
     @Autowired
     public ProfChoperSecurityConfig(@Qualifier("profChoperDataSource") DataSource dataSource,
