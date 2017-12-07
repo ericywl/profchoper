@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>SUTD ProfChoper</title>
 
     <link href="@{/resources/css/bootstrap-3.3.2-dist/bootstrap.min.css}" rel="stylesheet"/>
-    <link rel="stylesheet" type="text/css" media="all" href="../static/css/student.css"/>
+    <link rel="stylesheet" type="text/css" media="all" href="../static/css/student.css"
+          th:href="@{/css/student.css}"/>
 
     <script type="text/javascript" src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
