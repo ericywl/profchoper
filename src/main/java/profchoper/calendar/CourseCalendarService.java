@@ -59,7 +59,7 @@ public class CourseCalendarService {
 
         for (int i = 0, size = slotList.size(); i < size; i++) {
             BookingSlot slot = slotList.get(i);
-            outputBld.append(slot.getProfAlias());
+            outputBld.append(slot.getProfAlias().toUpperCase());
 
             if (i < size - 1) outputBld.append(", ");
         }

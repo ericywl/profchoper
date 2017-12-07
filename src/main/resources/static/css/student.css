@@ -71,3 +71,7 @@ table#week-cal-table {
     margin-right: 10%;
     table-layout: fixed;
 }
+
+#week-cal-table tr td {
+    height: 40px;
+}
