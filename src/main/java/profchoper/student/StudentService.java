@@ -2,13 +2,14 @@ package profchoper.student;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
 public class StudentService {
     @Autowired
-    StudentDAO studentDAO;
+    private StudentDAO studentDAO;
     
     public List<Student> getAllStudents() {
         return studentDAO.findAll();

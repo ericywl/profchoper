@@ -1,153 +1,76 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'student')}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
+    <meta charset="UTF-8">
     <title>SUTD ProfChoper</title>
 
-    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="all" href="../static/css/student.css"
+          th:href="@{/css/student.css}"/>
+
 </head>
 <body>
-
-
 <div class="container">
-    <!--/*@thymesVar id="bookings" type="java.util.List"*/-->
-    <!--<div th:if="!${bookings.isEmpty()}">
-        <h1>Bookings</h1>
-        <table class="table table-striped">
-            <tr>
-                <th>Date</th>
-                <th>Start Time</th>
-                <th>Professor</th>
-                <th>Booking Status</th>
-                <th>Student</th>
-            </tr>
-
-            &lt;!&ndash;/*@thymesVar id="slot" type="profchoper.slot.Slot"*/&ndash;&gt;
-            <tr th:each="slot : ${bookings}">
-                <td th:text="${slot.getDate().toString()}"></td>
-                <td th:text="${slot.getStartTime().toString()}"></td>
-                <td th:text="${slot.getProfAlias()}"></td>
-                <td th:text="${slot.getBookStatus()}"></td>
-                <td th:if="${slot.getStudentId()}" th:text="${slot.getStudentId()}"></td>
-                <td th:if="!${slot.getStudentId()}">N/A</td>
-            </tr>
-        </table>
-    </div>-->
-
-
-    <!--/*@thymesVar id="courses" type="java.util.List"*/-->
-    <!--    <div th:if="not ${courses.isEmpty()}">
-            <h1>Courses</h1>
-            <table class="table table-striped">
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Alias</th>
-                </tr>
-
-                &lt;!&ndash;/*@thymesVar id="course" type="profchoper.course.Course"*/&ndash;&gt;
-                <tr th:each="course : ${courses}">
-                    <td th:text="${course.getId()}"></td>
-                    <td th:text="${course.getName()}"></td>
-                    <td th:text="${course.getAlias()}"></td>
-                </tr>
-            </table>
-        </div>-->
-
-    <!--/*@thymesVar id="students" type="java.util.List"*/-->
-    <!--    <div th:if="not ${students.isEmpty()}">
-            <h1>Students</h1>
-            <table class="table table-striped">
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Course 1</th>
-                    <th>Course 2</th>
-                    <th>Course 3</th>
-                    <th>Course 4</th>
-                </tr>
-
-                &lt;!&ndash;/*@thymesVar id="student" type="profchoper.student.Student"*/&ndash;&gt;
-                <tr th:each="student : ${students}">
-                    <td th:text="${student.getId()}"></td>
-                    <td th:text="${student.getName()}"></td>
-                    <td th:text="${student.getEmail()}"></td>
-                    <td th:text="${student.getEnrolledCourses()[0].toString()}"></td>
-                    <td th:text="${student.getEnrolledCourses()[1].toString()}"></td>
-                    <td th:text="${student.getEnrolledCourses()[2].toString()}"></td>
-                    <td th:text="${student.getEnrolledCourses()[3].toString()}"></td>
-                </tr>
-
-            </table>
-        </div>-->
-
-    <!--/*@thymesVar id="professors" type="java.util.List"*/-->
-    <!--<div th:if="not ${professors.isEmpty()}">
-        <h1>Students</h1>
-        <table class="table table-striped">
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Office Location</th>
-                <th>Course</th>
-            </tr>
-
-            &lt;!&ndash;/*@thymesVar id="prof" type="profchoper.professor.Professor"*/&ndash;&gt;
-            <tr th:each="prof : ${professors}">
-                <td th:text="${prof.getName()}"></td>
-                <td th:text="${prof.getEmail()}"></td>
-                <td th:text="${prof.getOfficeLocation()}"></td>
-                <td th:text="${prof.getCourse()}"></td>
-            </tr>
-
-        </table>
-    </div>-->
-
-    <!--    <div th:if="!${calendarRows.isEmpty()}">
-            <h1>Calendar</h1>
-            <table class="table table-striped">
-                <tr>
-                    <th>MONDAY</th>
-                    <th>TUESDAY</th>
-                    <th>WEDNESDAY</th>
-                    <th>THURSDAY</th>
-                    <th>FRIDAY</th>
-                </tr>
-
-                <tr th:each="timeRow : ${calendarRows}">
-                    <td th:text="${timeRow.getMonSlotHandler().toString()}"></td>
-                    <td th:text="${timeRow.getTueSlowHandler().toString()}"></td>
-                    <td th:text="${timeRow.getWedSlotHandler().toString()}"></td>
-                    <td th:text="${timeRow.getThuSlotHandler().toString()}"></td>
-                    <td th:text="${timeRow.getFriSlotHandler().toString()}"></td>
-                </tr>
-            </table>
-        </div>-->
-
-    <div>
-        <h1>Test</h1>
-        <table class="table table-striped">
-            <tr id="test-header">
-                <th>MONDAY</th>
-                <th>TUESDAY</th>
-                <th>WEDNESDAY</th>
-                <th>THURSDAY</th>
-                <th>FRIDAY</th>
-            </tr>
-
-            <tr id="test-row" th:each="row : ${calendar}">
-                <td th:utext="${#strings.replace(#strings.escapeXml(row[0]),'&#10;','&lt;br /&gt;')}"></td>
-                <td th:utext="${#strings.replace(#strings.escapeXml(row[1]),'&#10;','&lt;br /&gt;')}"></td>
-                <td th:utext="${#strings.replace(#strings.escapeXml(row[2]),'&#10;','&lt;br /&gt;')}"></td>
-                <td th:utext="${#strings.replace(#strings.escapeXml(row[3]),'&#10;','&lt;br /&gt;')}"></td>
-                <td th:utext="${#strings.replace(#strings.escapeXml(row[4]),'&#10;','&lt;br /&gt;')}"></td>
-            </tr>
-        </table>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                    <p id="text">Some text in the modal.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
-
 </div>
+
+<div class="week">
+    <ul>
+        <li class="prev">&#10094;</li>
+        <li class="next">&#10095;</li>
+        <li>
+            4 Sept - 8 Sept 2017<br>
+            <span style="font-size:18px">Week 12</span>
+        </li>
+    </ul>
+</div>
+
+<table id="week-cal-table">
+    <tr>
+        <th>Time</th>
+        <th scope="col">Monday</th>
+        <th scope="col">Tuesday</th>
+        <th scope="col">Wednesday</th>
+        <th scope="col">Thursday</th>
+        <th scope="col">Friday</th>
+    </tr>
+
+    <tr id="week-cal-row" th:each="row : ${calendar}">
+        <th th:text="${row[0]}"></th>
+        <!-- th:utext does not escape <br /> -->
+        <!-- replace \n from backend to <br /> for html frontend -->
+        <td th:utext="${#strings.replace(#strings.escapeXml(row[1]),'&#10;','&lt;br /&gt;')}"></td>
+        <td th:utext="${#strings.replace(#strings.escapeXml(row[2]),'&#10;','&lt;br /&gt;')}"></td>
+        <td th:utext="${#strings.replace(#strings.escapeXml(row[3]),'&#10;','&lt;br /&gt;')}"></td>
+        <td th:utext="${#strings.replace(#strings.escapeXml(row[4]),'&#10;','&lt;br /&gt;')}"></td>
+        <td th:utext="${#strings.replace(#strings.escapeXml(row[5]),'&#10;','&lt;br /&gt;')}"></td>
+    </tr>
+
+</table>
+
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../static/js/student.js" th:src="@{/js/student.js}"></script>
 
 </body>
 </html>

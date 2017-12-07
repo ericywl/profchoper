@@ -3,75 +3,11 @@
 <head>
     <title>SUTD ProfChoper</title>
     <meta charset="UTF-8">
+
     <link href="@{/resources/css/bootstrap-3.3.2-dist/bootstrap.min.css}" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" media="all" href="../static/css/login.css"
+          th:href="@{/css/login.css}"/>
 
-    <style>
-        @font-face {
-            font-family: Quicksand;
-            src: url("https://fonts.gstatic.com/s/quicksand/v7/sKd0EMYPAh5PYCRKSryvW5Bw1xU1rKptJj_0jans920.woff2");
-        }
-
-        body {
-            font-family: Quicksand, 'sans-serif';
-        }
-
-        h1 {
-            text-align: center;
-            display: inline;
-        }
-
-        .form {
-            width: 40%;
-            margin: auto;
-            padding: 65px 0 30px 150px;
-
-        }
-
-        #helloprof {
-            font-weight: bolder;
-            color: green;
-        }
-
-        .openingtext {
-            text-align: center;
-            margin-top: 100px;
-        }
-
-        #username, #password {
-            width: 320px;
-            height: 20px;
-        }
-
-        #student {
-            margin-left: 35px;
-        }
-
-        #instructor {
-            margin-left: 75px;
-        }
-
-        #submit {
-            margin-left: 60px;
-            width: 200px;
-            height: 40px;
-            font-size: 15px;
-            border-color: green;
-            border-style: solid;
-            color: green;
-            background-color: white;
-        }
-
-        #remember-me {
-            margin-left: 60px;
-        }
-
-        #submit:hover {
-            background-color: green;
-            color: white;
-        }
-
-
-    </style>
 </head>
 <body>
 

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'student')}">
+<head>
+    <title>SUTD ProfChoper</title>
+
+    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+
+<div class="container">
+    <!--/*@thymesVar id="bookings" type="java.util.List"*/-->
+    <!--<div th:if="!${bookings.isEmpty()}">
+        <h1>Bookings</h1>
+        <table class="table table-striped">
+            <tr>
+                <th>Date</th>
+                <th>Start Time</th>
+                <th>Professor</th>
+                <th>Booking Status</th>
+                <th>Student</th>
+            </tr>
+
+            &lt;!&ndash;/*@thymesVar id="bookingSlot" type="profchoper.bookingSlot.BookingSlot"*/&ndash;&gt;
+            <tr th:each="bookingSlot : ${bookings}">
+                <td th:text="${bookingSlot.getDate().toString()}"></td>
+                <td th:text="${bookingSlot.getStartTime().toString()}"></td>
+                <td th:text="${bookingSlot.getProfAlias()}"></td>
+                <td th:text="${bookingSlot.getBookStatus()}"></td>
+                <td th:if="${bookingSlot.getStudentId()}" th:text="${bookingSlot.getStudentId()}"></td>
+                <td th:if="!${bookingSlot.getStudentId()}">N/A</td>
+            </tr>
+        </table>
+    </div>-->
+
+
+    <!--/*@thymesVar id="courses" type="java.util.List"*/-->
+    <!--    <div th:if="not ${courses.isEmpty()}">
+            <h1>Courses</h1>
+            <table class="table table-striped">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Alias</th>
+                </tr>
+
+                &lt;!&ndash;/*@thymesVar id="course" type="profchoper.course.Course"*/&ndash;&gt;
+                <tr th:each="course : ${courses}">
+                    <td th:text="${course.getId()}"></td>
+                    <td th:text="${course.getName()}"></td>
+                    <td th:text="${course.getAlias()}"></td>
+                </tr>
+            </table>
+        </div>-->
+
+    <!--/*@thymesVar id="students" type="java.util.List"*/-->
+    <!--    <div th:if="not ${students.isEmpty()}">
+            <h1>Students</h1>
+            <table class="table table-striped">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Course 1</th>
+                    <th>Course 2</th>
+                    <th>Course 3</th>
+                    <th>Course 4</th>
+                </tr>
+
+                &lt;!&ndash;/*@thymesVar id="student" type="profchoper.student.Student"*/&ndash;&gt;
+                <tr th:each="student : ${students}">
+                    <td th:text="${student.getId()}"></td>
+                    <td th:text="${student.getName()}"></td>
+                    <td th:text="${student.getEmail()}"></td>
+                    <td th:text="${student.getEnrolledCourses()[0].toString()}"></td>
+                    <td th:text="${student.getEnrolledCourses()[1].toString()}"></td>
+                    <td th:text="${student.getEnrolledCourses()[2].toString()}"></td>
+                    <td th:text="${student.getEnrolledCourses()[3].toString()}"></td>
+                </tr>
+
+            </table>
+        </div>-->
+
+    <!--/*@thymesVar id="professors" type="java.util.List"*/-->
+    <!--<div th:if="not ${professors.isEmpty()}">
+        <h1>Students</h1>
+        <table class="table table-striped">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Office Location</th>
+                <th>Course</th>
+            </tr>
+
+            &lt;!&ndash;/*@thymesVar id="prof" type="profchoper.professor.Professor"*/&ndash;&gt;
+            <tr th:each="prof : ${professors}">
+                <td th:text="${prof.getName()}"></td>
+                <td th:text="${prof.getEmail()}"></td>
+                <td th:text="${prof.getOfficeLocation()}"></td>
+                <td th:text="${prof.getCourse()}"></td>
+            </tr>
+
+        </table>
+    </div>-->
+
+    <!--    <div th:if="!${calendarRows.isEmpty()}">
+            <h1>Calendar</h1>
+            <table class="table table-striped">
+                <tr>
+                    <th>MONDAY</th>
+                    <th>TUESDAY</th>
+                    <th>WEDNESDAY</th>
+                    <th>THURSDAY</th>
+                    <th>FRIDAY</th>
+                </tr>
+
+                <tr th:each="timeRow : ${calendarRows}">
+                    <td th:text="${timeRow.getMonSlotHandler().toString()}"></td>
+                    <td th:text="${timeRow.getTueSlowHandler().toString()}"></td>
+                    <td th:text="${timeRow.getWedSlotHandler().toString()}"></td>
+                    <td th:text="${timeRow.getThuSlotHandler().toString()}"></td>
+                    <td th:text="${timeRow.getFriSlotHandler().toString()}"></td>
+                </tr>
+            </table>
+        </div>-->
+
+    <div>
+        <h1>Test</h1>
+        <table class="table table-striped">
+            <tr id="test-header">
+                <th>TIME</th>
+                <th>MONDAY</th>
+                <th>TUESDAY</th>
+                <th>WEDNESDAY</th>
+                <th>THURSDAY</th>
+                <th>FRIDAY</th>
+            </tr>
+
+            <tr id="test-row" th:each="row : ${calendar}">
+                <td th:text="${row[0]}"></td>
+                <!-- th:utext does not escape <br /> -->
+                <!-- replace \n from backend to <br /> for html frontend -->
+                <td th:utext="${#strings.replace(#strings.escapeXml(row[1]),'&#10;','&lt;br /&gt;')}"></td>
+                <td th:utext="${#strings.replace(#strings.escapeXml(row[2]),'&#10;','&lt;br /&gt;')}"></td>
+                <td th:utext="${#strings.replace(#strings.escapeXml(row[3]),'&#10;','&lt;br /&gt;')}"></td>
+                <td th:utext="${#strings.replace(#strings.escapeXml(row[4]),'&#10;','&lt;br /&gt;')}"></td>
+                <td th:utext="${#strings.replace(#strings.escapeXml(row[5]),'&#10;','&lt;br /&gt;')}"></td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>

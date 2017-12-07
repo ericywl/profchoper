@@ -1,4 +1,4 @@
-package profchoper.security;
+package profchoper._security;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -22,7 +22,7 @@ import static profchoper._misc.Constant.ROLE_STUDENT;
 @Component
 public class ProfChoperAuthSuccessHandler implements AuthenticationSuccessHandler {
 
-    private Log logger = LogFactory.getLog(this.getClass());
+    private static Log logger = LogFactory.getLog(ProfChoperAuthSuccessHandler.class);
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
     @Override
@@ -40,8 +40,7 @@ public class ProfChoperAuthSuccessHandler implements AuthenticationSuccessHandle
         String targetURL = determineTargetURL(authentication);
 
         if (response.isCommitted()) {
-            logger.debug("Response has already been committed. " +
-                    "Unable to redirect to " + targetURL);
+            logger.debug("Response has already been committed. Unable to redirect to " + targetURL);
             return;
         }
 
@@ -63,6 +62,7 @@ public class ProfChoperAuthSuccessHandler implements AuthenticationSuccessHandle
             }
         }
 
+        // Redirect prof to /prof and student to /student
         if (isProf) return "/prof";
         if (isStudent) return "/student";
 

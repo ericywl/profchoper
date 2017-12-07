@@ -1,4 +1,4 @@
-package profchoper.security;
+package profchoper._security;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,16 +22,15 @@ public class ProfChoperAccessDeniedHandler implements AccessDeniedHandler {
                        HttpServletResponse httpServletResponse,
                        AccessDeniedException e) throws IOException {
 
-        Authentication auth
-                = SecurityContextHolder.getContext().getAuthentication();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
+        // Log access attempts
         if (auth != null) {
-            logger.info("User '" + auth.getName()
-                    + "' attempted to access the protected URL: "
+            logger.info("User '" + auth.getName() + "' attempted to access the protected URL: "
                     + httpServletRequest.getRequestURI());
         }
 
+        // Direct user to access denied page
         httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/403");
-
     }
 }

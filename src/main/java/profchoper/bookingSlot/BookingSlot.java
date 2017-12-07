@@ -1,4 +1,4 @@
-package profchoper.slot;
+package profchoper.bookingSlot;
 
 import java.sql.Timestamp;
 import java.time.DayOfWeek;
@@ -8,46 +8,43 @@ import java.time.LocalTime;
 
 import static profchoper._misc.Constant.*;
 
-public class Slot {
+public class BookingSlot {
     private final Timestamp timestamp;
-    private final LocalDateTime startDateTime;
-    private final DayOfWeek dayOfWeek;
     private final String profAlias;
     private Integer studentId = null;
     private String bookStatus = AVAIL;
 
-    public Slot(String profAlias, Timestamp startTimestamp) {
+    public BookingSlot(String profAlias, Timestamp startTimestamp) {
         this.profAlias = profAlias;
         this.timestamp = startTimestamp;
-        this.startDateTime = startTimestamp.toLocalDateTime();
-        this.dayOfWeek = this.startDateTime.getDayOfWeek();
     }
 
     // For inserting into database
-    public Slot(String profAlias, LocalDateTime startDateTime) throws SlotException {
+    public BookingSlot(String profAlias, LocalDateTime startDateTime) throws BookingSlotException {
         LocalTime startTime = startDateTime.toLocalTime();
         if (startTime.isBefore(DAY_FIRST_START_TIME) || startTime.isAfter(DAY_LAST_START_TIME))
-            throw new SlotException("Start time must be within set boundaries.");
+            throw new BookingSlotException("Start time must be within set boundaries.");
 
         this.profAlias = profAlias;
         this.timestamp = Timestamp.valueOf(startDateTime);
-        this.startDateTime = startDateTime;
-        this.dayOfWeek = this.startDateTime.getDayOfWeek();
     }
 
-    public void book(Integer studentId) {
-        bookStatus = PENDING;
-        this.studentId = studentId;
+    public LocalDateTime getDateTime() {
+        return timestamp.toLocalDateTime();
     }
 
-    public void cancel() {
-        bookStatus = AVAIL;
-        this.studentId = null;
+    public DayOfWeek getDayOfWeek() {
+        return timestamp.toLocalDateTime().getDayOfWeek();
     }
 
-    public void confirm() {
-        bookStatus = BOOKED;
+    public LocalDate getDate() {
+        return timestamp.toLocalDateTime().toLocalDate();
     }
+
+    public LocalTime getTime() {
+        return timestamp.toLocalDateTime().toLocalTime();
+    }
+
 
     public void setStudentId(Integer studentId) {
         this.studentId = studentId;
@@ -63,7 +60,7 @@ public class Slot {
         if (obj.getClass() != this.getClass())
             return false;
 
-        Slot comparedSlot = (Slot) obj;
+        BookingSlot comparedSlot = (BookingSlot) obj;
 
         if (!comparedSlot.timestamp.equals(this.timestamp))
             return false;
@@ -72,14 +69,6 @@ public class Slot {
             return false;
 
         return true;
-    }
-
-    public LocalDate getDate() {
-        return startDateTime.toLocalDate();
-    }
-
-    public LocalTime getStartTime() {
-        return startDateTime.toLocalTime();
     }
 
     public Timestamp getTimestamp() {
@@ -92,14 +81,6 @@ public class Slot {
 
     public String getProfAlias() {
         return profAlias;
-    }
-
-    public LocalDateTime getStartDateTime() {
-        return startDateTime;
-    }
-
-    public DayOfWeek getDayOfWeek() {
-        return dayOfWeek;
     }
 
     public String getBookStatus() {

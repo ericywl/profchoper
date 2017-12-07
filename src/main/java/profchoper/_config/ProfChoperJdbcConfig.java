@@ -5,12 +5,13 @@ import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
 
 @Configuration
-public class DataSourceConfig {
+public class ProfChoperJdbcConfig {
     @Value("${spring.datasource.url}")
     public String dbUrl;
 
@@ -23,5 +24,10 @@ public class DataSourceConfig {
             config.setJdbcUrl(dbUrl);
             return new HikariDataSource(config);
         }
+    }
+
+    @Bean(name = "profChoperJdbcTemplate")
+    public JdbcTemplate jdbcTemplate() throws SQLException {
+        return new JdbcTemplate(dataSource());
     }
 }
