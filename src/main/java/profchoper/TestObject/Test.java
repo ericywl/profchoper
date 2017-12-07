@@ -2,11 +2,13 @@ package profchoper.TestObject;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "test_table")
 public class Test {
     @Id
-    private int id;
+    private Integer id;
     private String name;
 
     public Test() {

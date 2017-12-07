@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS public.users
 
 CREATE TABLE IF NOT EXISTS public.user_roles
 (
-  user_role_id SERIAL PRIMARY KEY,
+  id SERIAL PRIMARY KEY,
   username VARCHAR(40) NOT NULL REFERENCES users(username),
   role VARCHAR(20) NOT NULL,
   UNIQUE (username, role)

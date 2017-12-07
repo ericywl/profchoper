@@ -7,8 +7,7 @@ import java.util.List;
 
 @RestController
 public class TestRestController {
-
-    private final TestService testService;
+    private TestService testService;
 
     @Autowired
     public TestRestController(TestService testService) {
@@ -21,7 +20,7 @@ public class TestRestController {
     }
 
     @GetMapping("/api/tests/{id}")
-    public Test findById(@PathVariable int id) {
+    public Test findById(@PathVariable Integer id) {
         return testService.getTestById(id);
     }
 
@@ -36,7 +35,7 @@ public class TestRestController {
     }
 
     @DeleteMapping(value="/api/tests/{id}")
-    public void deletetest(@PathVariable int id) {
+    public void deletetest(@PathVariable Integer id) {
         testService.deleteTest(id);
     }
 }

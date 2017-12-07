@@ -22,7 +22,7 @@ public class TestService {
         return output;
     }
 
-    public Test getTestById(int id) {
+    public Test getTestById(Integer id) {
         return testRepo.findOne(id);
     }
 
@@ -34,7 +34,7 @@ public class TestService {
         testRepo.save(test);
     }
 
-    public void deleteTest(int id) {
+    public void deleteTest(Integer id) {
         testRepo.delete(id);
     }
 }
