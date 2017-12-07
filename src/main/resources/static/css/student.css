@@ -17,7 +17,7 @@ ul {
 .week {
     padding: 70px 25px;
     width: 80%;
-    background: #5DF118;
+    background: #1DD118;
     margin: auto;
     text-align: center;
 }
@@ -69,4 +69,5 @@ table#week-cal-table {
     width: 80%;
     margin-left: 10%;
     margin-right: 10%;
+    table-layout: fixed;
 }
