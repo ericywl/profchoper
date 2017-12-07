@@ -13,7 +13,7 @@ import java.util.Map;
 public class TestController {
 
     @Autowired
-    private WeekCalendarService weekCalendar;
+    private WeekCalendarService weekCalendarService;
 
     @GetMapping("/")
     String index() {
@@ -23,7 +23,7 @@ public class TestController {
     @GetMapping("/test")
     public String test(Map<String, Object> model) {
         LocalDate date = LocalDate.of(2017, 12, 4);
-        List<List<String>> cal = weekCalendar.getCourseCalendar(date);
+        List<List<String>> cal = weekCalendarService.getCalendar(date);
 
         model.put("calendar", cal);
         return "test";
@@ -32,7 +32,7 @@ public class TestController {
     @GetMapping("/student")
     public String student(Map<String, Object> model) {
         LocalDate date = LocalDate.of(2017, 12, 4);
-        List<List<String>> cal = weekCalendar.getCourseCalendar(date);
+        List<List<String>> cal = weekCalendarService.getCalendar(date);
 
         model.put("calendar", cal);
         return "student";
