@@ -45,8 +45,7 @@ public class WeekCalendarServiceImpl implements WeekCalendarService {
 
         for (int i = 0; i < WEEK_CAL_ROW; i++) {
             LocalTime timePart = ROW_TO_TIME.get(i);
-            LocalTime timePart2 = timePart.plus(30, ChronoUnit.MINUTES);
-            String timeRange = timePart.format(dtf) + " - " + timePart2.format(dtf);
+            String timeRange = timeRangeFormat(timePart);
 
             temp = new ArrayList<>();
             temp.add(timeRange);
@@ -67,16 +66,31 @@ public class WeekCalendarServiceImpl implements WeekCalendarService {
     private String createCourseCalString(LocalDateTime dateTime, List<BookingSlot> slotList) {
         StringBuilder outputBld = new StringBuilder();
 
-        for (int i = 0, size = slotList.size(); i < size; i++) {
-            BookingSlot slot = slotList.get(i);
+        for (BookingSlot slot : slotList) {
             if (slot.getDateTime().equals(dateTime)) {
-                outputBld.append(slot.getProfAlias());
-
-                if (i < size - 1) outputBld.append(", ");
+                outputBld.append(slot.getProfAlias().toUpperCase());
+                outputBld.append(", ");
             }
         }
 
-        return outputBld.toString();
+        String output = outputBld.toString();
+        return output.substring(0, output.length() - 2);
+    }
+
+
+    // TODO: ProfCal implementation
+    private List<List<String>> createProfCalMatrix(String profAlias, LocalDate startDateOfSchoolWeek) {
+        return null;
+    }
+
+    private String createProfCalString(LocalDateTime dateTime, List<BookingSlot> slotList, String userType) {
+        return null;
+    }
+
+    private String timeRangeFormat(LocalTime timePart) {
+        LocalTime timePart2 = timePart.plus(30, ChronoUnit.MINUTES);
+
+        return timePart.format(dtf) + " - " + timePart2.format(dtf);
     }
 
 }
