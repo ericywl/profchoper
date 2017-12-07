@@ -5,6 +5,7 @@ import org.springframework.data.annotation.Id;
 import profchoper.course.Course;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import java.util.List;
@@ -17,6 +18,7 @@ public class Student {
     private final String email;
 
     @OneToMany
+    @JoinColumn(name = "course_id")
     private List<Course> enrolledCourses;
 
     public Student(int id, String name, String email, List<Course> enrolledCourses) {
