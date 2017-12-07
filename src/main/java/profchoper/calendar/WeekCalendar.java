@@ -52,7 +52,7 @@ public class WeekCalendar {
 
         for (Slot slot : slotList) {
             outputBld.append(slot.getProfAlias());
-            outputBld.append("\n");
+            outputBld.append("<br />");
         }
 
         return outputBld.toString();
