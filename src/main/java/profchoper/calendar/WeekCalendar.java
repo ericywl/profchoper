@@ -5,14 +5,19 @@ import java.util.List;
 
 public class WeekCalendar {
     private LocalDate startDateOfSchoolWeek;
-    private List<List<String>> matrixForHTML;
-    
-    public List<List<String>> getMatrixForHTML() {
-        return matrixForHTML;
+    private List<List<String>> matrix;
+
+    public WeekCalendar(LocalDate startDateOfSchoolWeek, List<List<String>> matrix) {
+        this.startDateOfSchoolWeek = startDateOfSchoolWeek;
+        this.matrix = matrix;
+    }
+
+    public List<List<String>> getMatrix() {
+        return matrix;
     }
     
-    public void setMatrixForHTML(List<List<String>> matrixForHTML) {
-        this.matrixForHTML = matrixForHTML;
+    public void setMatrix(List<List<String>> setMatrix) {
+        this.matrix = setMatrix;
     }
     
     public LocalDate getStartDateOfSchoolWeek() {

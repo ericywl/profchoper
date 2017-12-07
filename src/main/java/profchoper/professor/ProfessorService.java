@@ -1,24 +1,11 @@
 package profchoper.professor;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 
-@Service
-public class ProfessorService {
-    @Autowired
-    private ProfessorRepository professorRepository;
+public interface ProfessorService {
+    List<Professor> getAllProfessors();
 
-    public List<Professor> getAllProfessors() {
-        return professorRepository.findAll();
-    }
+    List<Professor> getProfessorsByCourseId(int courseId);
 
-    public List<Professor> getProfessorsByCourseId(int courseId) {
-        return professorRepository.findByCourseId(courseId);
-    }
-
-    public Professor getProfessorByAlias(String alias) {
-        return professorRepository.findByAlias(alias);
-    }
+    Professor getProfessorByAlias(String alias);
 }

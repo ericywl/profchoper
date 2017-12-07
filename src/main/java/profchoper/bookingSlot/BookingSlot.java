@@ -47,16 +47,7 @@ public class BookingSlot {
     }
 
 
-    public void setStudentId(Integer studentId) {
-        this.studentId = studentId;
-    }
-
-    public void setBookStatus(String bookStatus) {
-        this.bookStatus = bookStatus;
-    }
-
     @Override
-    // Slots are considered equal if they have the same dayOfWeek and startTime
     public boolean equals(Object obj) {
         if (obj.getClass() != this.getClass())
             return false;
@@ -70,6 +61,14 @@ public class BookingSlot {
             return false;
 
         return true;
+    }
+
+    public void setStudentId(Integer studentId) {
+        this.studentId = studentId;
+    }
+
+    public void setBookStatus(String bookStatus) {
+        this.bookStatus = bookStatus;
     }
 
     public Timestamp getTimestamp() {
