@@ -37,23 +37,23 @@ public class Constant {
     public static final String ROLE_STUDENT = "ROLE_STUDENT";
     public static final String ROLE_PROF = "ROLE_PROFESSOR";
 
-    public static final Map<LocalTime, Integer> TIME_TO_ROW = new HashMap<>();
+    public static final Map<Integer, LocalTime> ROW_TO_TIME = new HashMap<>();
     static {
-        TIME_TO_ROW.put(LocalTime.of(9, 0, 0), 0);
-        TIME_TO_ROW.put(LocalTime.of(9, 30, 0), 1);
-        TIME_TO_ROW.put(LocalTime.of(10, 0, 0), 2);
-        TIME_TO_ROW.put(LocalTime.of(10, 30, 0), 3);
-        TIME_TO_ROW.put(LocalTime.of(11, 0, 0), 4);
-        TIME_TO_ROW.put(LocalTime.of(11, 30, 0), 5);
-        TIME_TO_ROW.put(LocalTime.of(12, 0, 0), 6);
-        TIME_TO_ROW.put(LocalTime.of(12, 30, 0), 7);
-        TIME_TO_ROW.put(LocalTime.of(13, 0, 0), 8);
-        TIME_TO_ROW.put(LocalTime.of(13, 30, 0), 9);
-        TIME_TO_ROW.put(LocalTime.of(14, 0, 0), 10);
-        TIME_TO_ROW.put(LocalTime.of(14, 30, 0), 11);
-        TIME_TO_ROW.put(LocalTime.of(15, 0, 0), 12);
-        TIME_TO_ROW.put(LocalTime.of(15, 30, 0), 13);
-        TIME_TO_ROW.put(LocalTime.of(16, 0, 0), 14);
-        TIME_TO_ROW.put(LocalTime.of(16, 30, 0), 15);
+        ROW_TO_TIME.put(0, LocalTime.of(9, 0, 0));
+        ROW_TO_TIME.put(1, LocalTime.of(9, 30, 0));
+        ROW_TO_TIME.put(2, LocalTime.of(10, 0, 0));
+        ROW_TO_TIME.put(3, LocalTime.of(10, 30, 0));
+        ROW_TO_TIME.put(4, LocalTime.of(11, 0, 0));
+        ROW_TO_TIME.put(5, LocalTime.of(11, 30, 0));
+        ROW_TO_TIME.put(6, LocalTime.of(12, 0, 0));
+        ROW_TO_TIME.put(7, LocalTime.of(12, 30, 0));
+        ROW_TO_TIME.put(8, LocalTime.of(13, 0, 0));
+        ROW_TO_TIME.put(9, LocalTime.of(13, 30, 0));
+        ROW_TO_TIME.put(10, LocalTime.of(14, 0, 0));
+        ROW_TO_TIME.put(11, LocalTime.of(14, 30, 0));
+        ROW_TO_TIME.put(12, LocalTime.of(15, 0, 0));
+        ROW_TO_TIME.put(13, LocalTime.of(15, 30, 0));
+        ROW_TO_TIME.put(14, LocalTime.of(16, 0, 0));
+        ROW_TO_TIME.put(15, LocalTime.of(16, 30, 0));
     }
 }

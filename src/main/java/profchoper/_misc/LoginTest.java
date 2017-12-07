@@ -3,6 +3,7 @@ package profchoper._misc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import profchoper.calendar.WeekCalendar;
 import profchoper.slot.Slot;
 import profchoper.slot.SlotService;
 
@@ -16,7 +17,7 @@ import java.util.Map;
 public class LoginTest {
 
     @Autowired
-    private SlotService slotService;
+    private WeekCalendar weekCalendar;
 
     @GetMapping("/")
     String index() {
@@ -27,14 +28,9 @@ public class LoginTest {
     public String student(Map<String, Object> model) {
         try {
             LocalDate date = LocalDate.of(2017, 12, 4);
-            List<Slot> slotList = slotService.getSlotsBySchoolWeek(date);
-            List<List<String>> test = new ArrayList<>();
-            for (int i = 0; i < 16; i++) {
-                test.add(Arrays.asList("A\nAA", "B", "C", "D", "E"));
-            }
+            List<List<String>> cal = weekCalendar.getWeekCalendar(date);
 
-            model.put("bookings", slotList);
-            model.put("test", test);
+            model.put("calendar", cal);
             return "student";
         } catch (Exception ex) {
             model.put("message", ex.getMessage());

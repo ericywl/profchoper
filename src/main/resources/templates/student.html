@@ -6,21 +6,6 @@
     <link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-    <style>
-        .table-striped {
-            width: 100%;
-        }
-
-        #test-row {
-            display: block;
-            height: 120px;
-        }
-
-        .table-striped th, td {
-            width: 20%;
-        }
-    </style>
 </head>
 <body>
 
@@ -152,12 +137,12 @@
                 <th>FRIDAY</th>
             </tr>
 
-            <tr id="test-row" th:each="row : ${test}">
+            <tr id="test-row" th:each="row : ${calendar}">
                 <td th:utext="${#strings.replace(#strings.escapeXml(row[0]), '&#10;', '&lt;br /&gt;')}"></td>
-                <td th:text="${row[1]}"></td>
-                <td th:text="${row[2]}"></td>
-                <td th:text="${row[3]}"></td>
-                <td th:text="${row[4]}"></td>
+                <td th:text="${#strings.replace(#strings.escapeXml(row[1]), '&#10;', '&lt;br /&gt;')}"></td>
+                <td th:text="${#strings.replace(#strings.escapeXml(row[2]), '&#10;', '&lt;br /&gt;')}"></td>
+                <td th:text="${#strings.replace(#strings.escapeXml(row[3]), '&#10;', '&lt;br /&gt;')}"></td>
+                <td th:text="${#strings.replace(#strings.escapeXml(row[4]), '&#10;', '&lt;br /&gt;')}"></td>
             </tr>
         </table>
     </div>
