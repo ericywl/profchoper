@@ -9,7 +9,6 @@ import java.time.LocalTime;
 
 import static profchoper._misc.Constant.*;
 
-@Entity
 public class BookingSlot {
     private final Timestamp timestamp;
     private final String profAlias;
