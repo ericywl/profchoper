@@ -14,7 +14,7 @@ public class CourseService {
         return courseRepository.findAll();
     }
 
-    public Course getCourseById(String id) {
+    public Course getCourseById(int id) {
         return courseRepository.findById(id);
     }
 }

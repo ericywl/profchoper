@@ -19,7 +19,7 @@ public class CourseRestController {
     }
 
     @GetMapping("/api/courses/{id}")
-    public Course findById(@PathVariable String id) {
+    public Course findById(@PathVariable int id) {
         return courseService.getCourseById(id);
     }
 }
