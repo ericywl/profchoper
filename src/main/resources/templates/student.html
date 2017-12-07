@@ -138,7 +138,8 @@
             </tr>
 
             <tr id="test-row" th:each="row : ${calendar}">
-                <td th:utext="${#strings.replace(#strings.escapeXml(row[0]), '&#10;', '&lt;br /&gt;')}"></td>
+                <td th:utext="${#strings.replace(#strings.escapeXml(row[0]),
+                T(java.lang.System).getProperty('line.separator'),'&lt;br /&gt;')}"></td>
             </tr>
         </table>
     </div>
