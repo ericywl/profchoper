@@ -1,13 +1,9 @@
 package profchoper.student;
 
 
-import org.springframework.data.annotation.Id;
 import profchoper.course.Course;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -16,6 +12,9 @@ public class Student {
     private int id;
     private String name;
     private String email;
+
+    @OneToMany
+    @JoinColumn(name = "course_id")
     private List<Course> enrolledCourses;
 
     public Student() {
@@ -46,17 +45,7 @@ public class Student {
         return email;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     public List<Course> getEnrolledCourses() {
         return enrolledCourses;
