@@ -13,13 +13,17 @@ import java.util.List;
 @Entity
 public class Student {
     @Id
-    private final int id;
-    private final String name;
-    private final String email;
+    private int id;
+    private String name;
+    private String email;
 
     @OneToMany
     @JoinColumn(name = "course_id")
     private List<Course> enrolledCourses;
+
+    public Student() {
+
+    }
 
     public Student(int id, String name, String email, List<Course> enrolledCourses) {
         this.id = id;
@@ -43,6 +47,18 @@ public class Student {
 
     public String getEmail() {
         return email;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public List<Course> getEnrolledCourses() {
