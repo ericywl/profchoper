@@ -15,7 +15,6 @@ public class ProfessorResultSetExtractor implements ResultSetExtractor {
         String profEmail = resultSet.getString("p_email");
         String profOffice = resultSet.getString("p_office");
 
-
         String courseId = resultSet.getString("c_id");
         String courseName = resultSet.getString("c_name");
         String courseAlias = resultSet.getString("c_alias");
