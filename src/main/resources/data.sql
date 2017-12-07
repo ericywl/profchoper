@@ -1,11 +1,11 @@
---INSERT INTO courses (id, name, alias) VALUES
-  --(50001, 'Introduction to Information System & Programming', 'InfoSys'),
-  --(50002, 'Computation Structures', 'CompStruct'),
-  --(50004, 'Introduction to Algorithms', 'Algo'),
-  --(02125, 'Normalcy and Deviance: Philosophical Approaches to Sexuality', 'NormalcyDeviance'),
-  --(02113, 'The Laboratory of the Mind', 'LabOfMind')
---ON CONFLICT (id)
-  --DO NOTHING;
+INSERT INTO courses (id, name, alias) VALUES
+  (50001, 'Introduction to Information System & Programming', 'InfoSys'),
+  (50002, 'Computation Structures', 'CompStruct'),
+  (50004, 'Introduction to Algorithms', 'Algo'),
+  (02125, 'Normalcy and Deviance: Philosophical Approaches to Sexuality', 'NormalcyDeviance'),
+  (02113, 'The Laboratory of the Mind', 'LabOfMind')
+ON CONFLICT (id)
+  DO NOTHING;
 
 INSERT INTO students (id, name, email, course1_id, course2_id, course3_id, course4_id) VALUES
   (1001111, 'Eric', 'eric@mymail.sutd.edu.sg', 50001, 50002, 50004, 02125),
