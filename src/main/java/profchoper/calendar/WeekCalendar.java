@@ -45,7 +45,7 @@ public class WeekCalendar {
 
     private String getProfAliases(LocalDateTime dateTime) {
         List<Slot> slotList = slotService.getSlotsByDateTime(dateTime);
-        if (slotList == null) return "";
+        if (slotList == null) return "\n";
 
         StringBuilder outputBld = new StringBuilder();
         outputBld.append("\n");
