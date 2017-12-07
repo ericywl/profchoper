@@ -1,25 +1,23 @@
 package profchoper.student;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import profchoper.course.Course;
 
-import javax.sql.DataSource;
-import java.sql.SQLException;
 import java.util.List;
 
 @Repository
 @SuppressWarnings("unchecked")
-public class StudentDAO {
+public class StudentRepository {
+    private final JdbcTemplate jdbcTemplate;
+
     @Autowired
-    @Qualifier("profChoperDataSource")
-    private DataSource dataSource;
+    public StudentRepository(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     public List<Student> findAll() {
-        JdbcTemplate select = new JdbcTemplate(dataSource);
         String selectSQL = "SELECT s.id as s_id, s.name as s_name, s.email as s_email, " +
                 "c1.id as c1_id, c1.name as c1_name, c1.alias as c1_alias, " +
                 "c2.id as c2_id, c2.name as c2_name, c2.alias as c2_alias," +
@@ -32,11 +30,10 @@ public class StudentDAO {
                 "JOIN courses c4 ON s.course4_id = c4.id " +
                 "ORDER BY s_id";
 
-        return select.query(selectSQL, new StudentRowMapper());
+        return jdbcTemplate.query(selectSQL, new StudentRowMapper());
     }
 
     public Student findById(int id) {
-        JdbcTemplate select = new JdbcTemplate(dataSource);
         String selectSQL = "SELECT s.id as s_id, s.name as s_name, s.email as s_email, " +
                 "c1.id as c1_id, c1.name as c1_name, c1.alias as c1_alias, " +
                 "c2.id as c2_id, c2.name as c2_name, c2.alias as c2_alias," +
@@ -49,12 +46,11 @@ public class StudentDAO {
                 "JOIN courses c4 ON s.course4_id = c4.id " +
                 "WHERE s.id = ?";
 
-        return (Student) select.queryForObject(selectSQL, new Object[]{id},
+        return (Student) jdbcTemplate.queryForObject(selectSQL, new Object[]{id},
                 new BeanPropertyRowMapper(Student.class));
     }
 
     public Student findByEmail(String email) {
-        JdbcTemplate select = new JdbcTemplate(dataSource);
         String selectSQL = "SELECT s.id as s_id, " +
                 "s.name as s_name, s.email as s_email, " +
                 "c1.id as c1_id, c1.name as c1_name, c1.alias as c1_alias, " +
@@ -68,8 +64,7 @@ public class StudentDAO {
                 "JOIN courses c4 ON s.course4_id = c4.id " +
                 "WHERE s.email = ?";
 
-        return (Student) select.queryForObject(selectSQL, new Object[]{email},
+        return (Student) jdbcTemplate.queryForObject(selectSQL, new Object[]{email},
                 new BeanPropertyRowMapper(Student.class));
     }
 }
-

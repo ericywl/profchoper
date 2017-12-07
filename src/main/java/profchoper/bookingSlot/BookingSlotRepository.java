@@ -9,42 +9,44 @@ import java.util.List;
 
 @Repository
 @SuppressWarnings("unchecked")
-public class BookingSlotDAO {
+public class BookingSlotRepository {
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public BookingSlotDAO(JdbcTemplate jdbcTemplate) {
+    public BookingSlotRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<BookingSlot> findAll() {
+    public List<BookingSlotModel> findAll() {
         String selectSQL = "SELECT * FROM bookings ORDER BY start_time, professor_alias";
 
-        return jdbcTemplate.query(selectSQL, new BookingSlotRowMapper());
+        return jdbcTemplate.query(selectSQL, new BookingSlotModelRowMapper());
     }
 
-    public List<BookingSlot> findByProfAlias(String profAlias) {
-        String selectSQL = "SELECT * FROM bookings WHERE professor_alias = ?";
+    public List<BookingSlotModel> findByProfAlias(String profAlias) {
+        String selectSQL = "SELECT * FROM bookings WHERE professor_alias = ? ORDER BY start_time";
 
-        return jdbcTemplate.query(selectSQL, new Object[]{profAlias}, new BookingSlotRowMapper());
+        return jdbcTemplate.query(selectSQL, new Object[]{profAlias}, new BookingSlotModelRowMapper());
     }
 
-    public List<BookingSlot> findByDateTime(Timestamp startTimestamp) {
-        String selectSQL = "SELECT * FROM bookings WHERE start_time = ?";
+    public List<BookingSlotModel> findByDateTime(Timestamp startTimestamp) {
+        String selectSQL = "SELECT * FROM bookings WHERE start_time = ? ORDER BY professor_alias";
 
-        return jdbcTemplate.query(selectSQL, new Object[]{startTimestamp}, new BookingSlotRowMapper());
+        return jdbcTemplate.query(selectSQL, new Object[]{startTimestamp}, new BookingSlotModelRowMapper());
     }
 
-    public List<BookingSlot> findByDateTimeRange(Timestamp startTimestamp, Timestamp endTimestamp) {
-        String selectSQL = "SELECT * FROM bookings WHERE start_time BETWEEN ? AND ?";
+    public List<BookingSlotModel> findByDateTimeRange(Timestamp startTimestamp, Timestamp endTimestamp) {
+        String selectSQL = "SELECT * FROM bookings WHERE start_time BETWEEN ? AND ? " +
+                "ORDER BY start_time, professor_alias";
 
-        return jdbcTemplate.query(selectSQL, new Object[]{startTimestamp, endTimestamp}, new BookingSlotRowMapper());
+        return jdbcTemplate.query(selectSQL, new Object[]{startTimestamp, endTimestamp},
+                new BookingSlotModelRowMapper());
     }
 
 
     // JdbcTemplate returns 1 if success, 0 if failure
     public boolean create(BookingSlot slot) {
-        String profAlias = slot.getProfAlias();
+        String profAlias = slot.getProfessor().getAlias();
         Timestamp startTimestamp = slot.getTimestamp();
 
         String insertSQL = "INSERT INTO bookings (professor_alias, start_time) VALUES (?, ?) " +
@@ -55,10 +57,10 @@ public class BookingSlotDAO {
     }
 
     public boolean update(BookingSlot slot) {
-        String profAlias = slot.getProfAlias();
+        String profAlias = slot.getProfessor().getAlias();
         Timestamp startTimestamp = slot.getTimestamp();
         String bookStatus = slot.getBookStatus();
-        int studentId = slot.getStudentId();
+        int studentId = slot.getStudent().getId();
 
         String updateSQL = "UPDATE bookings SET book_status = ?, student_id = ? " +
                 "WHERE professor_alias = ? AND start_time = ?";
@@ -68,7 +70,7 @@ public class BookingSlotDAO {
     }
 
     public boolean delete(BookingSlot slot) {
-        String profAlias = slot.getProfAlias();
+        String profAlias = slot.getProfessor().getAlias();
         Timestamp startTimestamp = slot.getTimestamp();
 
         String deleteSQL = "DELETE FROM bookings WHERE professor_alias = ? AND start_time = ?";
