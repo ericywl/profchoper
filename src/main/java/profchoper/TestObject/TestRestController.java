@@ -25,17 +25,17 @@ public class TestRestController {
         return testService.getTestById(id);
     }
 
-    @PostMapping(value="/tests")
+    @PostMapping(value="/api/tests")
     public void addtest(@RequestBody Test test) {
         testService.addTest(test);
     }
 
-    @PutMapping(value="/tests")
+    @PutMapping(value="/api/tests")
     public void updatetest(@RequestBody Test test) {
         testService.updateTest(test);
     }
 
-    @DeleteMapping(value="/tests/{id}")
+    @DeleteMapping(value="/api/tests/{id}")
     public void deletetest(@PathVariable int id) {
         testService.deleteTest(id);
     }
