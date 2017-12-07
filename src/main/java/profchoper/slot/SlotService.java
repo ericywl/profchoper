@@ -3,6 +3,7 @@ package profchoper.slot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -24,7 +25,8 @@ public class SlotService {
     }
 
     public List<Slot> getSlotsByDateTime(LocalDateTime dateTime) {
-        return slotDAO.findByDateTime(dateTime);
+        Timestamp timestamp = Timestamp.valueOf(dateTime);
+        return slotDAO.findByDateTime(timestamp);
     }
 
     public List<Slot> getSlotsByDate(LocalDate date) {
@@ -45,6 +47,41 @@ public class SlotService {
 
     public List<Slot> getSlotsByTerm(LocalDate startDateOfTerm) {
         return getSlotsByDateRangeType(TERM, startDateOfTerm);
+    }
+
+    public boolean bookSlot(Slot slot, int studentID) {
+        if (!slot.getBookStatus().equals(AVAIL)) return false;
+
+        slot.setBookStatus(PENDING);
+        slot.setStudentId(studentID);
+
+        return slotDAO.update(slot);
+    }
+
+    public boolean cancelBookSlot(Slot slot, int studentID) {
+        if (slot.getBookStatus().equals(AVAIL)
+                || slot.getStudentId() != studentID) return false;
+
+        slot.setBookStatus(AVAIL);
+        slot.setStudentId(null);
+
+        return slotDAO.update(slot);
+    }
+
+    public boolean confirmBookSlot(Slot slot, String profAlias) {
+        if (slot.getBookStatus().equals(AVAIL)
+                || !slot.getProfAlias().equals(profAlias)) return false;
+
+        slot.setBookStatus(BOOKED);
+
+        return slotDAO.update(slot);
+    }
+
+    public boolean deleteSlot(Slot slot, String profAlias) {
+        if (!slot.getBookStatus().equals(AVAIL)
+                || !slot.getProfAlias().equals(profAlias)) return false;
+
+        return slotDAO.delete(slot);
     }
 
     private List<Slot> getSlotsByDateRangeType(String type, LocalDate startDate) {
@@ -73,10 +110,12 @@ public class SlotService {
                 break;
 
             default:
-                endDateTime = null;
+                endDateTime = startDateTime.plus(SLOT_TIME, ChronoUnit.MINUTES);
                 break;
         }
 
-        return slotDAO.findByDateTimeRange(startDateTime, endDateTime);
+        Timestamp startTimestamp = Timestamp.valueOf(startDateTime);
+        Timestamp endTimestamp = Timestamp.valueOf(endDateTime);
+        return slotDAO.findByDateTimeRange(startTimestamp, endTimestamp);
     }
 }
