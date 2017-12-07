@@ -14,13 +14,13 @@ public class ProfessorResultSetExtractor implements ResultSetExtractor {
         String profAlias = resultSet.getString("p_alias");
         String profEmail = resultSet.getString("p_email");
         String profOffice = resultSet.getString("p_office");
-        Professor professor = new Professor(profName, profAlias, profEmail, profOffice);
+
 
         String courseId = resultSet.getString("c_id");
         String courseName = resultSet.getString("c_name");
         String courseAlias = resultSet.getString("c_alias");
 
-        professor.setCourse(new Course(courseId, courseName, courseAlias));
-        return professor;
+        Course profCourse = new Course(courseId, courseName, courseAlias);
+        return new Professor(profName, profAlias, profEmail, profOffice, profCourse);
     }
 }

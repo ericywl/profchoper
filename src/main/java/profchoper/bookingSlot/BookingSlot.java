@@ -12,10 +12,14 @@ import java.time.LocalTime;
 import static profchoper._misc.Constant.*;
 
 public class BookingSlot {
-    private final Timestamp timestamp;
-    private final Professor professor;
+    private Timestamp timestamp;
+    private Professor professor;
     private Student student = null;
     private String bookStatus = AVAIL;
+
+    public BookingSlot() {
+        // empty constructor
+    }
 
     public BookingSlot(Professor professor, Timestamp startTimestamp) {
         this.professor = professor;
@@ -72,28 +76,35 @@ public class BookingSlot {
         return true;
     }
 
-    public void setStudent(Student student) {
-        this.student = student;
+    public Timestamp getTimestamp() {
+        return timestamp;
     }
 
-    public void setBookStatus(String bookStatus) {
-        this.bookStatus = bookStatus;
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public Professor getProfessor() {
+        return professor;
+    }
+
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
     }
 
     public Student getStudent() {
         return student;
     }
 
-    public Timestamp getTimestamp() {
-        return timestamp;
-    }
-
-
-    public Professor getProfessor() {
-        return professor;
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
     public String getBookStatus() {
         return bookStatus;
+    }
+
+    public void setBookStatus(String bookStatus) {
+        this.bookStatus = bookStatus;
     }
 }

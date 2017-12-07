@@ -1,17 +1,18 @@
 package profchoper.bookingSlot;
 
-import profchoper.professor.Professor;
-import profchoper.student.Student;
-
 import java.sql.Timestamp;
 
 import static profchoper._misc.Constant.AVAIL;
 
 public class BookingSlotModel {
-    private final Timestamp timestamp;
-    private final String profAlias;
+    private Timestamp timestamp;
+    private String profAlias;
     private Integer StudentId = null;
     private String bookStatus = AVAIL;
+
+    public BookingSlotModel() {
+        // empty constructor
+    }
 
     public BookingSlotModel(String profAlias, Timestamp startTimestamp) {
         this.profAlias = profAlias;
@@ -22,8 +23,16 @@ public class BookingSlotModel {
         return timestamp;
     }
 
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
+    }
+
     public String getProfAlias() {
         return profAlias;
+    }
+
+    public void setProfAlias(String profAlias) {
+        this.profAlias = profAlias;
     }
 
     public Integer getStudentId() {
