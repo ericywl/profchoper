@@ -1,19 +1,19 @@
 INSERT INTO courses (id, name, alias) VALUES
-  ('50.001', 'Introduction to Information System & Programming', 'InfoSys'),
-  ('50.002', 'Computation Structures', 'CompStruct'),
-  ('50.004', 'Introduction to Algorithms', 'Algo'),
-  ('02.125', 'Normalcy and Deviance: Philosophical Approaches to Sexuality', 'NormalcyDeviance'),
-  ('02.113', 'The Laboratory of the Mind', 'LabOfMind')
+  (50001, 'Introduction to Information System & Programming', 'InfoSys'),
+  (50002, 'Computation Structures', 'CompStruct'),
+  (50004, 'Introduction to Algorithms', 'Algo'),
+  (02125, 'Normalcy and Deviance: Philosophical Approaches to Sexuality', 'NormalcyDeviance'),
+  (02113, 'The Laboratory of the Mind', 'LabOfMind')
 ON CONFLICT (id)
   DO NOTHING;
 
 INSERT INTO students (id, name, email, course1_id, course2_id, course3_id, course4_id) VALUES
-  (1001111, 'Eric', 'eric@mymail.sutd.edu.sg', '50.001', '50.002', '50.004', '02.125'),
-  (1002222, 'Thanh', 'thanh@mymail.sutd.edu.sg', '50.001', '50.002', '50.004', '02.125'),
-  (1003333, 'Kok', 'kok@mymail.sutd.edu.sg', '50.001', '50.002', '50.004', '02.113'),
-  (1002423, 'Wen Tat', 'wentat@mymail.sutd.edu.sg', '50.001', '50.002', '50.004', '02.125'),
-  (1002523, 'Roshni', 'roshni@mymail.sutd.edu.sg', '50.001', '50.002', '50.004', '02.113'),
-  (1002859, 'Ragini', 'ragini@mymail.sutd.edu.sg', '50.001', '50.002', '50.004', '02.113')
+  (1001111, 'Eric', 'eric@mymail.sutd.edu.sg', 50001, 50002, 50004, 02125),
+  (1002222, 'Thanh', 'thanh@mymail.sutd.edu.sg', 50001, 50002, 50004, 02125),
+  (1003333, 'Kok', 'kok@mymail.sutd.edu.sg', 50001, 50002, 50004, 02113),
+  (1002423, 'Wen Tat', 'wentat@mymail.sutd.edu.sg', 50001, 50002, 50004, 02125),
+  (1002523, 'Roshni', 'roshni@mymail.sutd.edu.sg', 50001, 50002, 50004, 02113),
+  (1002859, 'Ragini', 'ragini@mymail.sutd.edu.sg', 50001, 50002, 50004, 02113)
 ON CONFLICT (id)
   DO
   UPDATE SET
@@ -23,16 +23,16 @@ ON CONFLICT (id)
     course4_id = EXCLUDED.course4_id;
 
 INSERT INTO professors (name, alias, email, office, course_id) VALUES
-  ('Oka Kurniawan', 'oka', 'oka_kurniawan@sutd.edu.sg', '1.502-27', '50.002'),
-  ('Zhang Yue', 'zy', 'yue_zhang@sutd.edu.sg', '1.702-34', '50.002'),
-  ('Yuen Chau', 'yc', 'yuenchau@sutd.edu.sg', '3.301-07', '50.002'),
-  ('Zhou Jianying', 'jy', 'jianying_zhou@sutd.edu.sg', '1.302-03', '50.002'),
-  ('Norman Lee', 'norman', 'norman_lee@sutd.edu.sg', '1.502-25', '50.001'),
-  ('Jit Biswas', 'jit', 'jit_biswas@sutd.edu.sg', '1.602-28', '50.001'),
-  ('Ngai-Man Cheung', 'man', 'ngaiman_cheung@sutd.edu.sg', '1.502-17', '50.001'),
-  ('Subhajit Datta', 'datta', 'subhajit_datta@sutd.edu.sg', '1.702-32', '50.004'),
-  ('Simon Lui', 'simon', 'simon_lui@sutd.edu.sg', '1.502-18', '50.004'),
-  ('Gemma Roig', 'gemma', 'gemma_roig@sutd.edu.sg', '1.702-33', '50.004')
+  ('Oka Kurniawan', 'oka', 'oka_kurniawan@sutd.edu.sg', '1.502-27', 50002),
+  ('Zhang Yue', 'zy', 'yue_zhang@sutd.edu.sg', '1.702-34', 50002),
+  ('Yuen Chau', 'yc', 'yuenchau@sutd.edu.sg', '3.301-07', 50002),
+  ('Zhou Jianying', 'jy', 'jianying_zhou@sutd.edu.sg', '1.302-03', 50002),
+  ('Norman Lee', 'norman', 'norman_lee@sutd.edu.sg', '1.502-25', 50001),
+  ('Jit Biswas', 'jit', 'jit_biswas@sutd.edu.sg', '1.602-28', 50001),
+  ('Ngai-Man Cheung', 'man', 'ngaiman_cheung@sutd.edu.sg', '1.502-17', 50001),
+  ('Subhajit Datta', 'datta', 'subhajit_datta@sutd.edu.sg', '1.702-32', 50004),
+  ('Simon Lui', 'simon', 'simon_lui@sutd.edu.sg', '1.502-18', 50004),
+  ('Gemma Roig', 'gemma', 'gemma_roig@sutd.edu.sg', '1.702-33', 50004)
 ON CONFLICT (name)
   DO
   UPDATE SET

@@ -3,6 +3,8 @@ package profchoper.student;
 
 import profchoper.course.Course;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.List;
 
 public class Student {
@@ -27,18 +29,6 @@ public class Student {
         return name + " (" + id + ")";
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public int getId() {
         return id;
     }
@@ -49,6 +39,18 @@ public class Student {
 
     public String getEmail() {
         return email;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public List<Course> getEnrolledCourses() {

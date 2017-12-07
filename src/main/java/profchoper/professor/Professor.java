@@ -4,15 +4,11 @@ package profchoper.professor;
 import profchoper.course.Course;
 
 public class Professor {
-    private String name;
+    private final String name;
+    private final String alias;
     private String email;
-    private String alias;
     private String officeLocation;
     private Course course = null;
-
-    public Professor() {
-        // empty constructor
-    }
 
     public Professor(String name, String email, String alias, String officeLocation, Course course) {
         this.name = name;
@@ -51,16 +47,8 @@ public class Professor {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public void setAlias(String alias) {
-        this.alias = alias;
     }
 
     public String getOfficeLocation() {
