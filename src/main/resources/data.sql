@@ -41,16 +41,37 @@ ON CONFLICT (name)
     course_id = EXCLUDED.course_id;
 
 INSERT INTO bookings (professor_alias, start_time) VALUES
-  ('ZY', make_timestamp(2017, 12, 5, 8, 0, 0)),
-  ('OKA', make_timestamp(2017, 12, 5, 16, 00, 0)),
-  ('OKA', make_timestamp(2017, 12, 5, 16, 30, 0)),
-  ('OKA', make_timestamp(2017, 12, 5, 17, 30, 0)),
-  ('MAN', make_timestamp(2017, 12, 5, 9, 0, 0)),
-  ('DATTA', make_timestamp(2017, 12, 6, 13, 0, 0)),
-  ('DATTA', make_timestamp(2017, 12, 6, 13, 30, 0)),
-  ('NORMAN', make_timestamp(2017, 12, 6, 16, 0, 0)),
-  ('NORMAN', make_timestamp(2017, 12, 6, 16, 30, 0)),
-  ('JIT', make_timestamp(2017, 12, 5, 15, 30, 0))
+  ('ZY', make_timestamp(2017, 12, 6, 11, 0, 0)),
+  ('ZY', make_timestamp(2017, 12, 6, 11, 30, 0)),
+
+  ('JY', make_timestamp(2017, 12, 6, 15, 30, 0)),
+  ('JY', make_timestamp(2017, 12, 6, 16, 00, 0)),
+  ('JY', make_timestamp(2017, 12, 6, 16, 30, 0)),
+
+  ('YC', make_timestamp(2017, 12, 6, 13, 00, 0)),
+  ('YC', make_timestamp(2017, 12, 6, 13, 30, 0)),
+  ('YC', make_timestamp(2017, 12, 6, 14, 00, 0)),
+  ('YC', make_timestamp(2017, 12, 6, 14, 30, 0)),
+
+  ('OKA', make_timestamp(2017, 12, 6, 15, 00, 0)),
+  ('OKA', make_timestamp(2017, 12, 6, 15, 30, 0)),
+  ('OKA', make_timestamp(2017, 12, 6, 16, 00, 0)),
+  ('OKA', make_timestamp(2017, 12, 8, 9, 00, 0)),
+  ('OKA', make_timestamp(2017, 12, 8, 9, 30, 0)),
+  ('OKA', make_timestamp(2017, 12, 8, 10, 00, 0)),
+  ('OKA', make_timestamp(2017, 12, 8, 10, 30, 0)),
+
+  ('MAN', make_timestamp(2017, 12, 6, 14, 0, 0)),
+  ('MAN', make_timestamp(2017, 12, 6, 14, 30, 0)),
+  ('MAN', make_timestamp(2017, 12, 6, 15, 0, 0)),
+  ('MAN', make_timestamp(2017, 12, 6, 15, 30, 0)),
+  ('MAN', make_timestamp(2017, 12, 6, 16, 00, 0)),
+  ('MAN', make_timestamp(2017, 12, 6, 15, 30, 0)),
+
+  ('NORMAN', make_timestamp(2017, 12, 7, 15, 0, 0)),
+  ('NORMAN', make_timestamp(2017, 12, 7, 15, 30, 0)),
+  ('NORMAN', make_timestamp(2017, 12, 7, 16, 00, 0)),
+  ('NORMAN', make_timestamp(2017, 12, 7, 16, 30, 0))
 ON CONFLICT (professor_alias, start_time)
   DO NOTHING;
 
@@ -62,7 +83,7 @@ ON CONFLICT (username)
   DO
   UPDATE SET
     password = EXCLUDED.password,
-    enabled = EXCLUDED.enabled;
+    enabled  = EXCLUDED.enabled;
 
 INSERT INTO user_roles (username, role) VALUES
   ('eric@mymail.sutd.edu.sg', 'STUDENT'),

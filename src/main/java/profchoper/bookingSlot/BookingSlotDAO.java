@@ -24,21 +24,23 @@ public class BookingSlotDAO {
     }
 
     public List<BookingSlot> findByProfAlias(String profAlias) {
-        String selectSQL = "SELECT * FROM bookings WHERE professor_alias = ?";
+        String selectSQL = "SELECT * FROM bookings WHERE professor_alias = ? ORDER BY start_time";
 
         return jdbcTemplate.query(selectSQL, new Object[]{profAlias}, new BookingSlotRowMapper());
     }
 
     public List<BookingSlot> findByDateTime(Timestamp startTimestamp) {
-        String selectSQL = "SELECT * FROM bookings WHERE start_time = ?";
+        String selectSQL = "SELECT * FROM bookings WHERE start_time = ? ORDER BY professor_alias";
 
         return jdbcTemplate.query(selectSQL, new Object[]{startTimestamp}, new BookingSlotRowMapper());
     }
 
     public List<BookingSlot> findByDateTimeRange(Timestamp startTimestamp, Timestamp endTimestamp) {
-        String selectSQL = "SELECT * FROM bookings WHERE start_time BETWEEN ? AND ?";
+        String selectSQL = "SELECT * FROM bookings WHERE start_time BETWEEN ? AND ? " +
+                "ORDER BY start_time, professor_alias";
 
-        return jdbcTemplate.query(selectSQL, new Object[]{startTimestamp, endTimestamp}, new BookingSlotRowMapper());
+        return jdbcTemplate.query(selectSQL, new Object[]{startTimestamp, endTimestamp},
+                new BookingSlotRowMapper());
     }
 
 
