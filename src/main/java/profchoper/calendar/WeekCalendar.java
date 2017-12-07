@@ -34,7 +34,7 @@ public class WeekCalendar {
                 LocalDateTime dateTime = LocalDateTime.of(datePart, timePart);
 
                 temp = new ArrayList<>();
-                temp.add(getProfAliases(dateTime));
+                temp.add(getProfAliasesForHTML(dateTime));
             }
 
             output.add(temp);
@@ -43,12 +43,12 @@ public class WeekCalendar {
         return output;
     }
 
-    private String getProfAliases(LocalDateTime dateTime) {
+    private String getProfAliasesForHTML(LocalDateTime dateTime) {
         List<Slot> slotList = slotService.getSlotsByDateTime(dateTime);
         if (slotList == null) return "\n";
 
         StringBuilder outputBld = new StringBuilder();
-        outputBld.append("\n");
+        outputBld.append("<br />");
 
         for (Slot slot : slotList) {
             outputBld.append(slot.getProfAlias());
