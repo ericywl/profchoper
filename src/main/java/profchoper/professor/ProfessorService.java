@@ -14,7 +14,7 @@ public class ProfessorService {
         return professorRepository.findAll();
     }
 
-    public List<Professor> getProfessorsByCourseId(String courseId) {
+    public List<Professor> getProfessorsByCourseId(int courseId) {
         return professorRepository.findByCourseId(courseId);
     }
 

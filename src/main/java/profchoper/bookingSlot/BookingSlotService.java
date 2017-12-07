@@ -2,11 +2,14 @@ package profchoper.bookingSlot;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import profchoper.professor.Professor;
+import profchoper.professor.ProfessorService;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
 
 import static profchoper._misc.Constant.*;
@@ -16,37 +19,11 @@ public class BookingSlotService {
     @Autowired
     private BookingSlotRepository slotDAO;
 
+    @Autowired
+    private ProfessorService professorService;
+
     public List<BookingSlot> getAllSlots() {
         return slotDAO.findAll();
-    }
-
-    public List<BookingSlot> getSlotsByProfAlias(String profAlias) {
-        return slotDAO.findByProfAlias(profAlias);
-    }
-
-    public List<BookingSlot> getSlotsByDateTime(LocalDateTime dateTime) {
-        Timestamp timestamp = Timestamp.valueOf(dateTime);
-        return slotDAO.findByDateTime(timestamp);
-    }
-
-    public List<BookingSlot> getSlotsByDate(LocalDate date) {
-        return getSlotsByDateRangeType(DATE, date);
-    }
-
-    public List<BookingSlot> getSlotsBySchoolWeek(LocalDate startDateOfSchoolWeek) {
-        return getSlotsByDateRangeType(SCHOOL_WEEK, startDateOfSchoolWeek);
-    }
-
-    public List<BookingSlot> getSlotsByWeek(LocalDate startDateOfWeek) {
-        return getSlotsByDateRangeType(WEEK, startDateOfWeek);
-    }
-
-    public List<BookingSlot> getSlotsByMonth(LocalDate startDateOfMonth) {
-        return getSlotsByDateRangeType(MONTH, startDateOfMonth);
-    }
-
-    public List<BookingSlot> getSlotsByTerm(LocalDate startDateOfTerm) {
-        return getSlotsByDateRangeType(TERM, startDateOfTerm);
     }
 
     public boolean bookSlot(BookingSlot slot, int studentID) {
@@ -84,6 +61,44 @@ public class BookingSlotService {
         return slotDAO.delete(slot);
     }
 
+
+    // Professor related queries
+
+    public List<BookingSlot> getSlotsByProfAlias(String profAlias) {
+        return slotDAO.findByProfAlias(profAlias);
+    }
+
+    public List<BookingSlot> getSlotsByCourseId(int courseId) {
+        List<Professor> professors = professorService.getProfessorsByCourseId(courseId);
+        List<BookingSlot> output = new ArrayList<>();
+
+        for (Professor prof : professors) {
+            output.addAll(getSlotsByProfAlias(prof.getAlias()));
+        }
+
+        return output;
+    }
+
+
+    // Date and Time related queries
+
+    public List<BookingSlot> getSlotsByDateTime(LocalDateTime dateTime) {
+        Timestamp timestamp = Timestamp.valueOf(dateTime);
+        return slotDAO.findByDateTime(timestamp);
+    }
+
+    public List<BookingSlot> getSlotsByDate(LocalDate date) {
+        return getSlotsByDateRangeType(DATE, date);
+    }
+
+    public List<BookingSlot> getSlotsBySchoolWeek(LocalDate startDateOfSchoolWeek) {
+        return getSlotsByDateRangeType(SCHOOL_WEEK, startDateOfSchoolWeek);
+    }
+
+    public List<BookingSlot> getSlotsByWeek(LocalDate startDateOfWeek) {
+        return getSlotsByDateRangeType(WEEK, startDateOfWeek);
+    }
+
     private List<BookingSlot> getSlotsByDateRangeType(String type, LocalDate startDate) {
         LocalDateTime startDateTime = startDate.atStartOfDay();
         LocalDateTime endDateTime;
@@ -99,14 +114,6 @@ public class BookingSlotService {
 
             case WEEK:
                 endDateTime = startDateTime.plus(1, ChronoUnit.WEEKS);
-                break;
-
-            case MONTH:
-                endDateTime = startDateTime.plus(1, ChronoUnit.MONTHS);
-                break;
-
-            case TERM:
-                endDateTime = startDateTime.plus(14, ChronoUnit.MONTHS);
                 break;
 
             default:

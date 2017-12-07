@@ -17,14 +17,14 @@ import java.util.List;
 import static profchoper._misc.Constant.*;
 
 @Service
-public class CourseCalendarService {
+public class WeekCalendarService {
 
     @Autowired
     private BookingSlotService slotService;
 
     private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
 
-    public List<List<String>> getWeekCalendar(LocalDate startDateOfWeek) {
+    public List<List<String>> getCalendar(LocalDate startDateOfWeek) {
         List<List<String>> output = new ArrayList<>();
         List<String> temp;
 
@@ -40,7 +40,7 @@ public class CourseCalendarService {
                 LocalDate datePart = startDateOfWeek.plus(j, ChronoUnit.DAYS);
                 LocalDateTime dateTime = LocalDateTime.of(datePart, timePart);
 
-                temp.add(getProfAliasesForHTML(dateTime));
+                temp.add(getListForHTML(dateTime));
             }
 
             output.add(temp);
@@ -49,7 +49,7 @@ public class CourseCalendarService {
         return output;
     }
 
-    private String getProfAliasesForHTML(LocalDateTime dateTime) {
+    private String getListForHTML(LocalDateTime dateTime) {
         List<BookingSlot> slotList = slotService.getSlotsByDateTime(dateTime);
         if (slotList == null) return " ";
 

@@ -23,7 +23,7 @@ public class ProfessorRepository {
         return jdbcTemplate.query(selectSQL, new ProfessorRowMapper());
     }
 
-    public List<Professor> findByCourseId(String courseId) {
+    public List<Professor> findByCourseId(int courseId) {
         String selectSQL = "SELECT p.name AS p_name, p.email AS p_email, " +
                 "p.alias AS p_alias, p.office AS p_office, " +
                 "c.name AS c_name, c.id AS c_id, c.alias AS c_alias " +
