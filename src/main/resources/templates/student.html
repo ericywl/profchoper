@@ -54,7 +54,7 @@
     </tr>
 
     <tr id="week-cal-row" th:each="row : ${calendar}">
-        <td th:text="${row[0]}"></td>
+        <th th:text="${row[0]}"></th>
         <!-- th:utext does not escape <br /> -->
         <!-- replace \n from backend to <br /> for html frontend -->
         <td th:utext="${#strings.replace(#strings.escapeXml(row[1]),'&#10;','&lt;br /&gt;')}"></td>
