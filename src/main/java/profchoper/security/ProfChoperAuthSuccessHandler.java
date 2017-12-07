@@ -22,7 +22,7 @@ import static profchoper._misc.Constant.ROLE_STUDENT;
 @Component
 public class ProfChoperAuthSuccessHandler implements AuthenticationSuccessHandler {
 
-    private Log logger = LogFactory.getLog(this.getClass());
+    private static Log logger = LogFactory.getLog(ProfChoperAuthSuccessHandler.class);
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
     @Override
@@ -63,6 +63,7 @@ public class ProfChoperAuthSuccessHandler implements AuthenticationSuccessHandle
             }
         }
 
+        // Redirect prof to /prof and student to /student
         if (isProf) return "/prof";
         if (isStudent) return "/student";
 

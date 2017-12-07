@@ -25,12 +25,14 @@ public class ProfChoperAccessDeniedHandler implements AccessDeniedHandler {
         Authentication auth
                 = SecurityContextHolder.getContext().getAuthentication();
 
+        // Log access attempts
         if (auth != null) {
             logger.info("User '" + auth.getName()
                     + "' attempted to access the protected URL: "
                     + httpServletRequest.getRequestURI());
         }
 
+        // Direct user to access denied page
         httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/403");
 
     }
