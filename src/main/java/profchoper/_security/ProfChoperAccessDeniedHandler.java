@@ -1,4 +1,4 @@
-package profchoper.security;
+package profchoper._security;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

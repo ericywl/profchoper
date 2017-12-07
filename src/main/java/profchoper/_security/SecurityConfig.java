@@ -1,4 +1,4 @@
-package profchoper.security;
+package profchoper._security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -16,15 +16,18 @@ import static profchoper._misc.Constant.STUDENT;
 
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    @Autowired
-    @Qualifier("profChoperDataSource")
-    private DataSource dataSource;
+    
+    private final DataSource dataSource;
+    private final AccessDeniedHandler accessDeniedHandler;
+    private final AuthenticationSuccessHandler successHandler;
 
     @Autowired
-    private AccessDeniedHandler accessDeniedHandler;
-
-    @Autowired
-    private AuthenticationSuccessHandler successHandler;
+    public SecurityConfig(@Qualifier("profChoperDataSource") DataSource dataSource, AccessDeniedHandler
+            accessDeniedHandler, AuthenticationSuccessHandler successHandler) {
+        this.dataSource = dataSource;
+        this.accessDeniedHandler = accessDeniedHandler;
+        this.successHandler = successHandler;
+    }
 
     @Autowired
     public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
@@ -39,6 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
+                .antMatchers("/test").permitAll()
                 .antMatchers("/prof/**").hasAnyRole(PROF)
                 .antMatchers("/student/**").hasAnyRole(STUDENT)
                 .anyRequest().authenticated()
