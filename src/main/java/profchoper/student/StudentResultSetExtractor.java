@@ -19,7 +19,7 @@ public class StudentResultSetExtractor implements ResultSetExtractor {
 
         List<Course> courseList = new ArrayList<>();
         for (int i = 1; i < 5; i++) {
-            String courseId = resultSet.getString("c" + i + "_id");
+            int courseId = resultSet.getInt("c" + i + "_id");
             String courseName = resultSet.getString("c" + i + "_name");
             String courseAlias = resultSet.getString("c" + i + "_alias");
 
