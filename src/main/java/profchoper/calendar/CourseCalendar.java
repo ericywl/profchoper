@@ -4,7 +4,7 @@ import profchoper.course.Course;
 
 import java.util.List;
 
-public class CourseWeekCalendar {
+public class CourseCalendar {
     private Course course;
     private List<List<String>> profAliasesForHTML;
 

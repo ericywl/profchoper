@@ -3,7 +3,7 @@ package profchoper._misc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import profchoper.calendar.CourseWeekCalendarService;
+import profchoper.calendar.CourseCalendarService;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.Map;
 public class LoginTest {
 
     @Autowired
-    private CourseWeekCalendarService weekCalendar;
+    private CourseCalendarService weekCalendar;
 
     @GetMapping("/")
     String index() {
