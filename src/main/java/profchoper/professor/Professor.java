@@ -5,17 +5,13 @@ import profchoper.course.Course;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
-@Entity
 public class Professor {
-    @Id
     private String name;
     private String email;
     private String alias;
     private String officeLocation;
-
-    @ManyToOne
     private Course course;
 
     public Professor() {

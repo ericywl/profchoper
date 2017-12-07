@@ -1,6 +1,6 @@
 package profchoper.bookingSlot;
 
-import javax.persistence.Entity;
+
 import java.sql.Timestamp;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
