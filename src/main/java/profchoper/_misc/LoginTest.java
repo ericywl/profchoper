@@ -22,20 +22,19 @@ public class LoginTest {
 
     @GetMapping("/test")
     public String test(Map<String, Object> model) {
-        try {
-            LocalDate date = LocalDate.of(2017, 12, 4);
-            List<List<String>> cal = weekCalendar.getWeekCalendar(date);
+        LocalDate date = LocalDate.of(2017, 12, 4);
+        List<List<String>> cal = weekCalendar.getWeekCalendar(date);
 
-            model.put("calendar", cal);
-            return "test";
-        } catch (Exception ex) {
-            model.put("message", ex.getMessage());
-            return "error";
-        }
+        model.put("calendar", cal);
+        return "test";
     }
 
     @GetMapping("/student")
     public String student(Map<String, Object> model) {
+        LocalDate date = LocalDate.of(2017, 12, 4);
+        List<List<String>> cal = weekCalendar.getWeekCalendar(date);
+
+        model.put("calendar", cal);
         return "student";
     }
 

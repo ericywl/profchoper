@@ -64,3 +64,9 @@ td:hover {
     background: #666;
     color: white;
 }
+
+table#week-cal-table {
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+}

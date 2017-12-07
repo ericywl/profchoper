@@ -43,7 +43,7 @@
     </ul>
 </div>
 
-<table style="width: 80%; text-align: center">
+<table id="week-cal-table">
     <tr>
         <th>Time</th>
         <th scope="col">Monday</th>
@@ -53,148 +53,15 @@
         <th scope="col">Friday</th>
     </tr>
 
-    <tr>
-        <th scope="row">09:00 - 09:30</th>
-        <td id="row1col1"></td>
-        <td id="row1col2"></td>
-        <td id="row1col3"></td>
-        <td id="row1col4"></td>
-        <td id="row1col5"></td>
-    </tr>
-
-    <tr>
-        <th scope="row">09:30 - 10:00</th>
-        <td id="row2col1"></td>
-        <td id="row2col2"></td>
-        <td id="row2col3"></td>
-        <td id="row2col4"></td>
-        <td id="row2col5"></td>
-    </tr>
-
-    <tr>
-        <th scope="row">10:00 - 10:30</th>
-        <td id="row3col1"></td>
-        <td id="row3col2"></td>
-        <td id="row3col3"></td>
-        <td id="row3col4"></td>
-        <td id="row3col5"></td>
-    </tr>
-
-    <tr>
-        <th scope="row">10:30 - 11:00</th>
-        <td id="row4col1"></td>
-        <td id="row4col2"></td>
-        <td id="row4col3"></td>
-        <td id="row4col4"></td>
-        <td id="row4col5"></td>
-    </tr>
-
-    <tr>
-        <th scope="row">11:00 - 11:30</th>
-        <td id="row5col1"></td>
-        <td id="row5col2"></td>
-        <td id="row5col3"></td>
-        <td id="row5col4"></td>
-        <td id="row5col5"></td>
-    </tr>
-
-    <tr>
-        <th scope="row">11:30 - 12:00</th>
-        <td id="row6col1"></td>
-        <td id="row6col2"></td>
-        <td id="row6col3"></td>
-        <td id="row6col4"></td>
-        <td id="row6col5"></td>
-    </tr>
-
-    <tr>
-        <th scope="row">12:00 - 12:30</th>
-        <td id="row7col1"></td>
-        <td id="row7col2"></td>
-        <td id="row7col3"></td>
-        <td id="row7col4"></td>
-        <td id="row7col5"></td>
-    </tr>
-
-    <tr>
-        <th scope="row">12:30 - 01:00</th>
-        <td id="row8col1"></td>
-        <td id="row8col2"></td>
-        <td id="row8col3"></td>
-        <td id="row8col4"></td>
-        <td id="row8col5"></td>
-    </tr>
-
-    <tr>
-        <th scope="row">01:00 - 01:30</th>
-        <td id="row9col1"></td>
-        <td id="row9col2"></td>
-        <td id="row9col3"></td>
-        <td id="row9col4"></td>
-        <td id="row9col5"></td>
-    </tr>
-
-    <tr>
-        <th scope="row">01:30 - 02:00</th>
-        <td id="row10col1"></td>
-        <td id="row10col2"></td>
-        <td id="row10col3"></td>
-        <td id="row10col4"></td>
-        <td id="row10col5"></td>
-    </tr>
-
-    <tr>
-        <th scope="row">02:00 - 02:30</th>
-        <td id="row11col1"></td>
-        <td id="row11col2"></td>
-        <td id="row11col3"></td>
-        <td id="row11col4"></td>
-        <td id="row11col5"></td>
-    </tr>
-
-    <tr>
-        <th scope="row">02:30 - 03:00</th>
-        <td id="row12col1"></td>
-        <td id="row12col2"></td>
-        <td id="row12col3"></td>
-        <td id="row12col4"></td>
-        <td id="row12col5"></td>
-    </tr>
-
-    <tr>
-        <th scope="row">03:00 - 03:30</th>
-        <td id="row13col1"></td>
-        <td id="row13col2"></td>
-        <td id="row13col3"></td>
-        <td id="row13col4"></td>
-        <td id="row13col5"></td>
-    </tr>
-
-    <tr>
-        <th scope="row">03:30 - 04:00</th>
-        <td id="row14col1"></td>
-        <td id="row14col2"></td>
-        <td id="row14col3"></td>
-        <td id="row14col4"></td>
-        <td id="row14col5"></td>
-    </tr>
-
-    <tr>
-        <th scope="row">04:00 - 04:30</th>
-        <td id="row15col1"></td>
-        <td id="row15col2"></td>
-        <td id="row15col3"></td>
-        <td id="row15col4"></td>
-        <td id="row15col5"></td>
-    </tr>
-
-    <tr>
-        <th scope="row">04:30 - 05:00</th>
-        <td id="row16col1"></td>
-        <td id="row16col2"></td>
-        <td id="row16col3"></td>
-        <td id="row16col4"></td>
-        <td id="row16col5"></td>
+    <tr id="week-cal-row" th:each="row : ${calendar}">
+        <td th:text="${row[0]}"></td>
+        <!-- th:utext does not escape <br /> -->
+        <!-- replace \n from backend to <br /> for html frontend -->
+        <td th:utext="${#strings.replace(#strings.escapeXml(row[1]),'&#10;','&lt;br /&gt;')}"></td>
+        <td th:utext="${#strings.replace(#strings.escapeXml(row[2]),'&#10;','&lt;br /&gt;')}"></td>
+        <td th:utext="${#strings.replace(#strings.escapeXml(row[3]),'&#10;','&lt;br /&gt;')}"></td>
+        <td th:utext="${#strings.replace(#strings.escapeXml(row[4]),'&#10;','&lt;br /&gt;')}"></td>
+        <td th:utext="${#strings.replace(#strings.escapeXml(row[5]),'&#10;','&lt;br /&gt;')}"></td>
     </tr>
 
 </table>
