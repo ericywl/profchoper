@@ -22,8 +22,10 @@ public class ProfChoperSecurityConfig extends WebSecurityConfigurerAdapter {
     private final AuthenticationSuccessHandler successHandler;
 
     @Autowired
-    public ProfChoperSecurityConfig(@Qualifier("profChoperDataSource") DataSource dataSource, AccessDeniedHandler
-            accessDeniedHandler, AuthenticationSuccessHandler successHandler) {
+    public ProfChoperSecurityConfig(@Qualifier("profChoperDataSource") DataSource dataSource,
+                                    AccessDeniedHandler accessDeniedHandler,
+                                    AuthenticationSuccessHandler successHandler) {
+
         this.dataSource = dataSource;
         this.accessDeniedHandler = accessDeniedHandler;
         this.successHandler = successHandler;

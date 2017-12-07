@@ -40,8 +40,7 @@ public class ProfChoperAuthSuccessHandler implements AuthenticationSuccessHandle
         String targetURL = determineTargetURL(authentication);
 
         if (response.isCommitted()) {
-            logger.debug("Response has already been committed. " +
-                    "Unable to redirect to " + targetURL);
+            logger.debug("Response has already been committed. Unable to redirect to " + targetURL);
             return;
         }
 
