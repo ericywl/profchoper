@@ -21,7 +21,7 @@ public class CourseRepository {
         return jdbcTemplate.query(selectSQL, new CourseRowMapper());
     }
 
-    public Course findById(String id) {
+    public Course findById(int id) {
         String selectSQL = "SELECT * FROM courses WHERE id = ?";
 
         return (Course) jdbcTemplate.queryForObject(selectSQL, new Object[]{id},

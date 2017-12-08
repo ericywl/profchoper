@@ -3,17 +3,18 @@ package profchoper._misc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import profchoper.calendar.CourseCalendarService;
+import profchoper.calendar.WeekCalendar;
+import profchoper.calendar.WeekCalendarService;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
 @Controller
-public class LoginTest {
+public class TestController {
 
     @Autowired
-    private CourseCalendarService weekCalendar;
+    private WeekCalendarService weekCalendarService;
 
     @GetMapping("/")
     String index() {
@@ -23,18 +24,18 @@ public class LoginTest {
     @GetMapping("/test")
     public String test(Map<String, Object> model) {
         LocalDate date = LocalDate.of(2017, 12, 4);
-        List<List<String>> cal = weekCalendar.getWeekCalendar(date);
+        WeekCalendar wkCal = weekCalendarService.getStudentCalendarByCourse(50002, date);
 
-        model.put("calendar", cal);
+        model.put("calendar", wkCal.getMatrix());
         return "test";
     }
 
     @GetMapping("/student")
     public String student(Map<String, Object> model) {
         LocalDate date = LocalDate.of(2017, 12, 4);
-        List<List<String>> cal = weekCalendar.getWeekCalendar(date);
+        WeekCalendar wkCal = weekCalendarService.getStudentCalendarByCourse(50002, date);
 
-        model.put("calendar", cal);
+        model.put("calendar", wkCal.getMatrix());
         return "student";
     }
 

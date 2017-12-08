@@ -5,10 +5,10 @@ import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class BookingSlotModelRowMapper implements RowMapper {
+public class BookingSlotRowMapper implements RowMapper {
     @Override
     public Object mapRow(ResultSet resultSet, int i) throws SQLException {
-        BookingSlotModelResultSetExtractor extractor = new BookingSlotModelResultSetExtractor();
+        BookingSlotResultSetExtractor extractor = new BookingSlotResultSetExtractor();
         return extractor.extractData(resultSet);
     }
 }

@@ -3,7 +3,7 @@
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'error')}">
 
 <body>
-<p th:text="${message}">Exception message</p>
+<p th:utext="${#strings.replace(#strings.escapeXml(message),'&#10;','&lt;br /&gt;')}">Exception message</p>
 </body>
 
 </html>

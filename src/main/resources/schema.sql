@@ -1,6 +1,7 @@
+
 CREATE TABLE IF NOT EXISTS public.courses
 (
-  id VARCHAR(10) PRIMARY KEY,
+  id INTEGER PRIMARY KEY,
   name VARCHAR(150) UNIQUE NOT NULL,
   alias VARCHAR(20) UNIQUE NOT NULL
 );
@@ -10,10 +11,10 @@ CREATE TABLE IF NOT EXISTS public.students
   id INTEGER PRIMARY KEY,
   name VARCHAR(40) NOT NULL,
   email VARCHAR(40) UNIQUE NOT NULL,
-  course1_id VARCHAR(10) REFERENCES courses(id),
-  course2_id VARCHAR(10) REFERENCES courses(id),
-  course3_id VARCHAR(10) REFERENCES courses(id),
-  course4_id VARCHAR(10) REFERENCES courses(id)
+  course1_id INTEGER REFERENCES courses(id),
+  course2_id INTEGER REFERENCES courses(id),
+  course3_id INTEGER REFERENCES courses(id),
+  course4_id INTEGER REFERENCES courses(id)
 );
 
 CREATE TABLE IF NOT EXISTS public.professors
@@ -22,7 +23,7 @@ CREATE TABLE IF NOT EXISTS public.professors
   email VARCHAR(40) UNIQUE NOT NULL,
   alias VARCHAR(10) UNIQUE,
   office VARCHAR(10) UNIQUE,
-  course_id VARCHAR(10) REFERENCES courses(id)
+  course_id INTEGER REFERENCES courses(id)
 );
 
 CREATE TABLE IF NOT EXISTS public.bookings
@@ -44,8 +45,8 @@ CREATE TABLE IF NOT EXISTS public.users
 
 CREATE TABLE IF NOT EXISTS public.user_roles
 (
-  user_role_id SERIAL PRIMARY KEY,
+  id SERIAL PRIMARY KEY,
   username VARCHAR(40) NOT NULL REFERENCES users(username),
   role VARCHAR(20) NOT NULL,
   UNIQUE (username, role)
-)
+);

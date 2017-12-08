@@ -1,4 +1,4 @@
-package profchoper.professor;
+package profchoper.course;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-public class ProfessorRestController {
+public class CourseRestController {
 
     @Autowired
-    private ProfessorService professorService;
+    private CourseService courseService;
 
-    @GetMapping("/api/professors")
-    public List<Professor> findAll() {
-        return professorService.getAllProfessors();
+    @GetMapping("/api/courses")
+    public List<Course> findAll() {
+        return courseService.getAllCourses();
     }
 }

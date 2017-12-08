@@ -2,11 +2,11 @@ package profchoper.course;
 
 
 public class Course {
-    private final String id;
+    private final int id;
     private final String name;
     private final String alias;
 
-    public Course(String id, String name, String alias) {
+    public Course(int id, String name, String alias) {
         this.id = id;
         this.name = name;
         this.alias = alias;
@@ -17,7 +17,7 @@ public class Course {
         return alias;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 

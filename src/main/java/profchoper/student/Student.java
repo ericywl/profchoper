@@ -11,12 +11,6 @@ public class Student {
     private final String email;
     private List<Course> enrolledCourses;
 
-    public Student(int id, String name, String email) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-    }
-
     public Student(int id, String name, String email, List<Course> enrolledCourses) {
         this.id = id;
         this.name = name;
