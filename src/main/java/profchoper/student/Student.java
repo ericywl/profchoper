@@ -18,6 +18,10 @@ public class Student {
     @ElementCollection
     private List<Integer> courseIds;
 
+    public Student() {
+        // empty constructor
+    }
+
     public Student(int id, String name, String email, List<Integer> courseIds) {
         this.id = id;
         this.name = name;
