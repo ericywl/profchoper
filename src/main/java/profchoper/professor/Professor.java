@@ -3,12 +3,29 @@ package profchoper.professor;
 
 import profchoper.course.Course;
 
+import javax.persistence.*;
+
+@Entity
 public class Professor {
-    private final String name;
-    private final String email;
+    @Id
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "alias")
     private String alias;
+
+    @Column(name = "office")
     private String officeLocation;
+
+    @OneToOne(cascade = CascadeType.ALL)
     private Course course;
+
+    public Professor() {
+        // empty constructor
+    }
 
     public Professor(String name, String alias, String email, String officeLocation, Course course) {
         this.name = name;
