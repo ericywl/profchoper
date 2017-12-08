@@ -121,9 +121,10 @@ public class WeekCalendarServiceImpl implements WeekCalendarService {
             if (slot.getDateTime().equals(dateTime)) {
                 String appendedStr = "";
                 if (userType.equals(STUDENT))
-                    appendedStr = slot.getBookStatus().equals(AVAIL) ? slot.getProfAlias().toUpperCase() : "";
+                    appendedStr = slot.getBookStatus().equals(AVAIL)
+                            ? slot.getProfAlias().toUpperCase() : "";
                 else if (userType.equals(PROF))
-                    appendedStr = slot.getBookStatus();
+                    appendedStr = slot.getBookStatus().toUpperCase();
 
                 outputBld.append(appendedStr);
             }

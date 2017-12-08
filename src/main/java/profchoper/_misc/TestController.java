@@ -2,7 +2,9 @@ package profchoper._misc;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import profchoper.calendar.WeekCalendar;
 import profchoper.calendar.WeekCalendarService;
 
@@ -36,6 +38,11 @@ public class TestController {
         WeekCalendar wkCal = weekCalendarService.getStudentCalendarByCourse(50002, date);
 
         model.put("calendar", wkCal.getMatrix());
+        return "student";
+    }
+
+    @PutMapping("/student")
+    public String updateSlotStudent() {
         return "student";
     }
 

@@ -1,4 +1,12 @@
 
+DROP TABLE IF EXISTS customer;
+
+CREATE TABLE public.customer (
+  ID Bigserial PRIMARY KEY NOT NULL,
+  FIRSTNAME varchar(100) NOT NULL,
+  LASTNAME varchar(100) NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS public.courses
 (
   id INTEGER PRIMARY KEY,
