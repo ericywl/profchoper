@@ -50,6 +50,8 @@ function courseTextOnClick() {
     var data = $.getJSON(profUrl, function (json) {
         if (json.length !== 0) {
             var arr = $.parseJSON(json);
+            console.log(json);
+
             for (var i = 0; i < arr.length; i++) {
                 console.log(arr[i].name);
                 profsHTML = profsHTML + "<li>" + arr[i].name + "</li>";
