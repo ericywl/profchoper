@@ -8,15 +8,16 @@ body {
 }
 
 h1 {
+    font-size: 250%;
     text-align: center;
     display: inline;
 }
 
 .form {
-    width: 40%;
-    margin: auto;
-    padding: 65px 0 30px 150px;
-
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 3%;
 }
 
 #helloprof {
@@ -26,34 +27,54 @@ h1 {
 
 .openingtext {
     text-align: center;
-    margin-top: 100px;
+    margin-top: 7%;
+}
+
+.credentials {
+    width: 30%;
+    margin-left: 35%;
+    margin-right: 35%;
 }
 
 #username, #password {
-    width: 320px;
-    height: 20px;
+    width: 100%;
+    padding: 1%;
 }
 
-.h4{
-    font-size: large;
+.h4 {
+    font-size: larger;
 }
 
 #submit {
-    margin-left: 60px;
-    width: 200px;
-    height: 40px;
-    font-size: 15px;
-    border-color: green;
-    border-style: solid;
+    width: 14%;
+    margin-left: 43%;
+    margin-right: 43%;
+    font-size: 130%;
+    padding-top: .5%;
+    padding-bottom: .5%;
+    cursor: pointer;
+    border: solid green;
     color: green;
     background-color: white;
 }
 
 #remember-me {
-    margin-left: 60px;
+    text-align: center;
+    width: 80%;
+    margin-top: 1%;
+    margin-left: 9%;
+    margin-right: 11%;
 }
 
 #submit:hover {
     background-color: green;
     color: white;
+}
+
+.alert {
+    text-align: center;
+    width: 40%;
+    margin-top: 2%;
+    margin-left: 30%;
+    margin-right: 30%;
 }
