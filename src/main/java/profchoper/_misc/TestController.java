@@ -42,7 +42,7 @@ public class TestController {
     @GetMapping("/student")
     public String student(Map<String, Object> model) {
         LocalDate date = LocalDate.of(2017, 12, 4);
-        WeekCalendar wkCal = weekCalendarService.getStudentCalendarByCourse(50002, date);
+        WeekCalendar wkCal = weekCalendarService.getStudentCalendarByCourse("50002", date);
 
         String studentEmail = authFacade.getAuthentication().getName();
         Student student = studentService.getStudentByEmail(studentEmail);

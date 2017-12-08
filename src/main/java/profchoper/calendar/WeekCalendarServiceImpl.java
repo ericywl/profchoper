@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import profchoper.bookingSlot.BookingSlot;
 import profchoper.bookingSlot.BookingSlotService;
-import sun.security.x509.AVA;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
