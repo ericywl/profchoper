@@ -8,7 +8,7 @@ import java.sql.SQLException;
 public class CourseRowMapper implements RowMapper {
     @Override
     public Object mapRow(ResultSet resultSet, int i) throws SQLException {
-        int courseId = resultSet.getInt("id");
+        String courseId = resultSet.getString("id");
         String courseName = resultSet.getString("name");
         String courseAlias = resultSet.getString("alias");
 

@@ -7,7 +7,7 @@ import javax.persistence.Id;
 @Entity
 public class Course {
     @Id
-    private int id;
+    private String id;
 
     @Column(name = "name")
     private String name;
@@ -20,7 +20,7 @@ public class Course {
         // default constructor
     }
 
-    public Course(int id, String name, String alias) {
+    public Course(String id, String name, String alias) {
         this.id = id;
         this.name = name;
         this.alias = alias;
@@ -28,31 +28,27 @@ public class Course {
 
     @Override
     public String toString() {
-        String idStr = String.valueOf(id);
-        if (idStr.length() == 4) idStr = "0" + idStr;
-
-        idStr = idStr.substring(0, 2) + "." + idStr.substring(2,5);
-        return  idStr + " " + name;
+        return id.substring(0,2) + id.substring(2,5) + " " + name;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getAlias() {
-        return alias;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getAlias() {
+        return alias;
     }
 
     public void setAlias(String alias) {

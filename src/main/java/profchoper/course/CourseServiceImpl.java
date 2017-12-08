@@ -14,7 +14,7 @@ public class CourseServiceImpl implements CourseService {
         return courseRepository.findAll();
     }
 
-    public Course getCourseById(int id) {
+    public Course getCourseById(String id) {
         return courseRepository.findById(id);
     }
 }
