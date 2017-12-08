@@ -40,11 +40,27 @@ $(document).ready(function () {
 
 function courseTextOnClick() {
     var course = $(this).text();
-    $("#course-choice-text").html(course);
+    $("#course-choice-text").text(course);
 
     var courseId = course.substr(0, 2) + course.substr(3, 3);
     console.log(courseId);
     const profUrl = "https://sutd-profchoper.herokuapp.com/api/professors?course=" + courseId;
-    var data = $.getJSON(profUrl);
-    console.log(data);
+
+    var profsHTML;
+    var data = $.getJSON(profUrl, function (json) {
+        if (json.length !== 0) {
+            var arr = $.parseJSON(json);
+            for (var i = 0; i < arr.length; i++) {
+                console.log(arr[i].name);
+                profsHTML = profsHTML + "<li>" + arr[i].name + "</li>";
+            }
+
+            $("#instructor-dropdown-menu").empty().append(profsHTML);
+
+        } else {
+            console.log("error");
+        }
+    });
+
+
 }
