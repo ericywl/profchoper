@@ -43,7 +43,7 @@ public class TestController {
         String studentEmail = authFacade.getAuthentication().getName();
         Student student = studentService.getStudentByEmail(studentEmail);
 
-        model.put("user", student);
+        model.put("student", student);
         model.put("calendar", wkCal.getMatrix());
         return "student";
     }
