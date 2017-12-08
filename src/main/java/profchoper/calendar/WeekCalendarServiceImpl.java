@@ -74,7 +74,7 @@ public class WeekCalendarServiceImpl implements WeekCalendarService {
         StringBuilder outputBld = new StringBuilder();
 
         for (BookingSlot slot : slotList) {
-            if (slot.getDateTime().equals(dateTime) && slot.getBookStatus().equals(AVAIL)) {
+            if (slot.getDateTime().equals(dateTime)) {
                 outputBld.append(slot.getProfAlias().toUpperCase());
                 outputBld.append(", ");
             }

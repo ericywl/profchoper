@@ -34,8 +34,7 @@ public class ProfessorRepository {
                 "c.name AS c_name, c.id AS c_id, c.alias AS c_alias " +
                 "FROM professors p " +
                 "JOIN courses c ON p.course_id = c.id " +
-                "WHERE p.course_id = ? " +
-                "ORDER BY p.alias";
+                "WHERE p.course_id = ?";
 
         return jdbcTemplate.query(selectSQL, new Object[]{courseId}, new ProfessorRowMapper());
     }
