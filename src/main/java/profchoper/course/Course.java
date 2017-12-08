@@ -23,7 +23,11 @@ public class Course {
 
     @Override
     public String toString() {
-        return id + " " + name;
+        String idStr = String.valueOf(id);
+        if (idStr.length() == 4)
+            idStr = "0" + idStr;
+
+        return idStr + " " + name;
     }
 
     public int getId() {

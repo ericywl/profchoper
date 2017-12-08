@@ -110,8 +110,11 @@
         <button class="course dropdown btn" id="coursechoice" data-toggle="dropdown"
                 href="#coursechoice">Choose Course
             <span class="caret"></span>
-            <ul class="dropdown-menu" th:each="course : ${student.getEnrolledCourses()}">
-                <li th:text="${course.toString()}"></li>
+            <ul class="dropdown-menu">
+                <li th:text="${student.getEnrolledCourses()[0].toString()}">Course 1</li>
+                <li th:text="${student.getEnrolledCourses()[1].toString()}">Course 2</li>
+                <li th:text="${student.getEnrolledCourses()[2].toString()}">Course 3</li>
+                <li th:text="${student.getEnrolledCourses()[3].toString()}">Course 4</li>
             </ul>
         </button><!--
         --><button class="instructor dropdown btn btn-outline-secondary disabled" id="profchoice"
