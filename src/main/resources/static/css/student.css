@@ -152,7 +152,7 @@ td:hover {
     display: block;
 }
 
-/* Successful appointment */
+/* Successful booking */
 .noticonfirm {
     width: 90%;
     height: 63px;
@@ -192,7 +192,7 @@ td:hover {
     text-align: center;
 }
 
-/* Cancel */
+/* Cancelled */
 .noticancel {
     width: 90%;
     height: 63px;

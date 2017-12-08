@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import profchoper._security.ProfChoperAuthFacade;
 import profchoper.calendar.WeekCalendar;
 import profchoper.calendar.WeekCalendarService;
 
@@ -18,6 +19,9 @@ public class TestController {
     @Autowired
     private WeekCalendarService weekCalendarService;
 
+    @Autowired
+    private ProfChoperAuthFacade authFacade;
+
     @GetMapping("/")
     String index() {
         return "index";
@@ -27,8 +31,10 @@ public class TestController {
     public String student(Map<String, Object> model) {
         LocalDate date = LocalDate.of(2017, 12, 4);
         WeekCalendar wkCal = weekCalendarService.getStudentCalendarByCourse(50002, date);
+        String name = authFacade.getAuthentication().getName();
 
         model.put("calendar", wkCal.getMatrix());
+        model.put("username", name);
         return "student";
     }
 
