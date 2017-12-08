@@ -154,21 +154,21 @@ td:hover {
     height: 100%;
 }
 
-.noticonfirm:hover button {
+.noticonfirm:hover .notibtn, .notipending:hover .notibtn {
     display: inline-block;
     overflow: auto;
 
 }
 
-.noticonfirm:hover span {
+.noticonfirm:hover span, .notipending:hover span {
     display: inline-block;
 }
 
-.noticonfirm:hover hr {
+.noticonfirm:hover hr, .notipending:hover hr {
     display: block;
 }
 
-.noticonfirm:hover .notimsg {
+.noticonfirm:hover .notimsg, .notipending:hover .notimsg{
     display: block;
 }
 
@@ -176,10 +176,7 @@ td:hover {
 .notipending {
     width: 90%;
     height: 63px;
-    margin-left: 50px;
-    margin-right: 50px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin: 10px 50px;
     background-color: white;
     border: 2px solid #4286f4;
     padding-left: 20px;
@@ -195,32 +192,11 @@ td:hover {
     height: 100%;
 }
 
-.notipending:hover button {
-    display: inline-block;
-    overflow: auto;
-
-}
-
-.notipending:hover span {
-    display: inline-block;
-}
-
-.notipending:hover hr {
-    display: block;
-}
-
-.notipending:hover .notimsg {
-    display: block;
-}
-
 /* cancel */
 .noticancel {
     width: 90%;
     height: 63px;
-    margin-left: 50px;
-    margin-right: 50px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin: 10px 50px;
     background-color: white;
     border: 2px solid #ed3b3b;
     padding-left: 20px;
@@ -234,10 +210,9 @@ td:hover {
     color: white;
     height: 100%;
     font-size: 1.3em;
-
 }
 
-.noticancel:hover button {
+.noticancel:hover .notibtnbook {
     display: inline-block;
     overflow: auto;
 
@@ -253,18 +228,6 @@ td:hover {
 
 .noticancel:hover .notimsg {
     display: block;
-}
-
-.notibtnbook {
-    display: none;
-    float: right;
-    overflow: auto;
-    margin: 0;
-    padding-top: 3px;
-    padding-bottom: 5px;
-    padding-right: 10px;
-    padding-left: 10px;
-    margin-bottom: 3px;
 }
 
 /* general noti */
@@ -294,12 +257,14 @@ hr {
     display: none;
     float: right;
     overflow: auto;
-    margin: 0;
-    padding-top: 3px;
-    padding-bottom: 5px;
-    padding-right: 5px;
-    padding-left: 5px;
-    margin-bottom: 3px;
+    margin: auto;
+}
+
+.notibtnbook {
+    display: none;
+    float: right;
+    padding: auto;
+    margin: 0 0 10px;
 }
 
 .notimsg {
