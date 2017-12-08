@@ -1,15 +1,4 @@
 $(document).ready(function () {
-    $("table td").click(function () {
-        $("#myModal").modal();
-    });
-
-    $(".dropdown-menu li").click(function () {
-        var course = $(this).text();
-        $("#coursechoicetext").html(course);
-    })
-});
-
-$(function () {
     // Select all links with hashes
     $('a[href*="#"]')
     // Remove links that don't actually link to anything
@@ -40,4 +29,18 @@ $(function () {
                 }
             }
         });
+
+    $("table td").click(function () {
+        $("#myModal").modal();
+    });
+
+    $(".dropdown-menu li").click(function () {
+        var course = $(this).text();
+        $("#coursechoicetext").html(course);
+
+        $.getJSON("https://sutd-profchoper.herokuapp.com/api/professors?course=50001", function (json) {
+            console.log(json)
+        })
+
+    });
 });

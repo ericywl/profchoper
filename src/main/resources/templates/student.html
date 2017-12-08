@@ -109,8 +109,8 @@
     <div id="week-cal-buttons">
         <button class="course dropdown btn" id="coursechoice" data-toggle="dropdown"
                 href="#coursechoice">
-            <span id="coursechoicetext"
-                  th:text="${student.getEnrolledCourses()[0].toString()}">Choose Course</span>
+            <span class="choicetext" id="coursechoicetext"
+                  th:text="${student.getEnrolledCourses()[0].toString()}">Course 1</span>
             <span class="caret"></span>
             <ul class="dropdown-menu">
                 <li th:text="${student.getEnrolledCourses()[0].toString()}">Course 1</li>
@@ -119,10 +119,10 @@
                 <li th:text="${student.getEnrolledCourses()[3].toString()}">Course 4</li>
             </ul>
         </button><!--
-        --><button class="instructor dropdown btn btn-outline-secondary disabled" id="profchoice"
-                aria-disabled="true"
-                data-toggle="dropdown" href="#profchoice">Choose Instructor <span
-                class="caret"></span>
+        --><button class="instructor dropdown btn" id="profchoice" data-toggle="dropdown"
+                   href="#profchoice">
+        <span class="choicetext">Choose Instructor</span>
+        <span class="caret"></span>
             <ul class="dropdown-menu">
                 <li><a href="#profchoice">Oka Kurniawan</a></li>
                 <li><a href="#profchoice">Zhang Yue</a></li>
