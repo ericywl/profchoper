@@ -35,7 +35,7 @@ $(document).ready(function () {
     });
 
     $("#course-dropdown-menu").find("li").click(courseTextOnClick);
-
+    $("#instructor-dropdown-menu").find("li").click(profTextOnClick);
 });
 
 function courseTextOnClick() {
@@ -55,12 +55,16 @@ function courseTextOnClick() {
                 profsHTML = profsHTML + "<li>" + json[i].name + "</li>";
             }
 
+            $("#instructor-choice-text").text("Choose Instructor");
             $("#instructor-dropdown-menu").empty().append(profsHTML);
 
         } else {
             console.log("error");
         }
     });
+}
 
-
+function profTextOnClick() {
+    var prof = $(this).text();
+    $("#instructor-choice-text").text(prof);
 }
