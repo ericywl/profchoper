@@ -79,17 +79,22 @@ td:hover {
 }
 
 .page-header {
-    margin: 100px 20px 10px 20px;
+    margin: 7% 3% 2% 3%;
 }
 
 #calendar {
-    margin-bottom: 17px;
+    margin-bottom: 2%;
 }
 
 /* Nav bar props */
 .btn-lg {
-    margin: 15px 30px 0 40px;
-    color: white;
+    margin: 5% 3% 0 2%;
+    background: white;
+    color: dodgerblue;
+}
+
+.btn-lg:hover {
+    color: #1e70ff;
 }
 
 .course {
@@ -103,13 +108,11 @@ td:hover {
     display: inline;
     width: 30%;
     margin-left: -4px;
-
 }
 
 .logout {
-    margin-left: 590px;
+    margin-left: 60%;
     display: inline-block;
-
 }
 
 .h4 {
@@ -124,7 +127,8 @@ td:hover {
 .showID {
     float: right;
     color: green;
-    margin-left: 0;
+    margin: 10px 10px 0;
+    padding: 5px;
     overflow: auto;
 }
 
