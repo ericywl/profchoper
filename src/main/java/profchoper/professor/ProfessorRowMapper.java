@@ -14,7 +14,7 @@ public class ProfessorRowMapper implements RowMapper {
         String profEmail = resultSet.getString("p_email");
         String profOffice = resultSet.getString("p_office");
 
-        int courseId = resultSet.getInt("c_id");
+        String courseId = resultSet.getString("c_id");
         String courseName = resultSet.getString("c_name");
         String courseAlias = resultSet.getString("c_alias");
 

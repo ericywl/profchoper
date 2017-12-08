@@ -14,7 +14,7 @@ public class ProfessorServiceImpl implements ProfessorService{
         return professorRepository.findAll();
     }
 
-    public List<Professor> getProfessorsByCourseId(int courseId) {
+    public List<Professor> getProfessorsByCourseId(String courseId) {
         return professorRepository.findByCourseId(courseId);
     }
 
