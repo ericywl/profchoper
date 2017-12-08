@@ -1,0 +1,88 @@
+@font-face {
+    font-family: Quicksand;
+    src: url("https://fonts.gstatic.com/s/quicksand/v7/sKd0EMYPAh5PYCRKSryvW5Bw1xU1rKptJj_0jans920.woff2");
+}
+
+body {
+    font-family: Quicksand, 'sans-serif';
+}
+
+h1 {
+    font-size: 250%;
+    text-align: center;
+    display: inline;
+}
+
+.form {
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 3%;
+}
+
+#helloprof {
+    font-weight: bolder;
+    color: green;
+}
+
+.openingtext {
+    text-align: center;
+    margin-top: 7%;
+}
+
+.credentials {
+    width: 30%;
+    margin-left: 35%;
+    margin-right: 35%;
+}
+
+#username, #password {
+    width: 100%;
+    padding: 1%;
+}
+
+.h4 {
+    font-size: larger;
+}
+
+#submit {
+    width: 14%;
+    margin-left: 43%;
+    margin-right: 43%;
+    font-size: 130%;
+    padding-top: .5%;
+    padding-bottom: .5%;
+    cursor: pointer;
+    border: solid green;
+    color: green;
+    background-color: white;
+}
+
+#remember-me {
+    text-align: center;
+    width: 80%;
+    margin-top: 1%;
+    margin-left: 9%;
+    margin-right: 11%;
+}
+
+#submit:hover {
+    background-color: green;
+    color: white;
+}
+
+.alert {
+    text-align: center;
+    width: 40%;
+    margin-top: 2%;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+}

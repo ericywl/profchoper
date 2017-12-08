@@ -47,7 +47,7 @@ public class BookingSlot {
         if (!comparedSlot.timestamp.equals(this.timestamp))
             return false;
 
-        if (!comparedSlot.profAlias.equals(this.profAlias))
+        if (!comparedSlot.profAlias.equalsIgnoreCase(this.profAlias))
             return false;
 
         return true;

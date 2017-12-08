@@ -74,7 +74,7 @@ public class WeekCalendarServiceImpl implements WeekCalendarService {
         StringBuilder outputBld = new StringBuilder();
 
         for (BookingSlot slot : slotList) {
-            if (slot.getDateTime().equals(dateTime) && slot.getBookStatus().equals(AVAIL)) {
+            if (slot.getDateTime().equals(dateTime) && slot.getBookStatus().equalsIgnoreCase(AVAIL)) {
                 outputBld.append(slot.getProfAlias().toUpperCase());
                 outputBld.append(", ");
             }
@@ -89,7 +89,9 @@ public class WeekCalendarServiceImpl implements WeekCalendarService {
     }
 
 
-    private List<List<String>> createProfCalMatrix(String profAlias, LocalDate startDateOfSchoolWeek, String userType) {
+    private List<List<String>> createProfCalMatrix(String profAlias,
+                                                   LocalDate startDateOfSchoolWeek, String userType) {
+
         List<BookingSlot> slotList = slotService.getSlotsByProfAndSWeek(profAlias, startDateOfSchoolWeek);
         List<List<String>> output = new ArrayList<>();
         List<String> temp;

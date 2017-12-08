@@ -20,9 +20,9 @@ public class Constant {
     public static final String WEEK = "WEEK";
     public static final String SCHOOL_WEEK = "SCHOOL_WEEK";
 
-    public static final String AVAIL = "available";
-    public static final String PENDING = "pending";
-    public static final String BOOKED = "booked";
+    public static final String AVAIL = "AVAILABLE";
+    public static final String PENDING = "PENDING";
+    public static final String BOOKED = "BOOKED";
 
     public static final String STUDENT_EMAIL_DOMAIN = "@mymail.sutd.edu.sg";
     public static final String PROF_EMAIL_DOMAIN = "@sutd.edu.sg";

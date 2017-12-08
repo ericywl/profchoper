@@ -12,7 +12,7 @@
 </head>
 <body>
 <!-- Nav bar -->
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-inverse navbar-fixed-top noselect">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -24,23 +24,40 @@
             <p class="navbar-brand h4">ProfChoper</p>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
-            <button class="btn navbar-btn btn-lg"><a href="#calendar"> Chope a slot</a></button>
+            <a class="btn navbar-btn btn-lg" href="#calendar"><strong>Chope a slot</strong></a>
 
-            <h6 class="showID"> 100XXXX </h6>
-            <button class="btn btn-danger logout"><a href="loginpage.html"> Log out</a></button>
+            <p class="showID" th:text="${student.getId()}"></p>
+            <a class="btn btn-danger logout" th:href="@{/logout}">Logout</a>
         </div>
     </div>
 </nav>
 
-<div class="page-header noti">
-    <h1>Your schedules</h1>
+<div class="modal fad noselect" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <p id="text">Some text in the modal.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
 </div>
 
+<div class="page-header noti noselect">
+    <h1>Your schedules</h1>
+</div>
 
 <!--NOTIFICATIONS-->
 
 <!--if got notification-->
-<div class="noticonfirm">
+<div class="noticonfirm noselect">
     <!--get slot info-->
     <p class="notitext">
         <span class="notistatus">Confirmed</span>
@@ -50,17 +67,17 @@
 </div>
 
 <!--if got notification-->
-<div class="notipending">
+<div class="notipending noselect">
     <!--get slot info-->
     <p class="notitext">
         <span class="notistatus">Pending</span>
-        4/12 prof oka from 3:30 - 4:00
+        4/12 prof oka from 3:30 - 4:00 bla bla
         <a class="notibtn btn btn-danger" href="#calendar">Cancel Slot</a>
     </p>
 </div>
 
 <!--if got notification-->
-<div class="noticancel">
+<div class="noticancel noselect">
     <!--get slot info-->
     <p class="notitext">
         <span class="notistatus">Cancelled</span>
@@ -73,63 +90,65 @@
     <p id="notimsg" class="notimsg">Note: please bring along your stuff please bring along your stuffp</p>
 </div>
 
-<div class="page-header" id="calendar">
+<div class="page-header noselect" id="calendar">
     <h1>Your calendar</h1>
 </div>
 
-<div class="week-cal" id="week-cal-header">
-    <ul>
-        <li class="prev">&#10094;</li>
-        <li class="next">&#10095;</li>
-        <li>
-            4 Sept - 8 Sept 2017<br>
-            <span style="font-size:18px">Week 12</span>
-        </li>
-    </ul>
+<div class="calendar noselect">
+    <div class="week-cal" id="week-cal-header">
+        <ul>
+            <li class="prev">&#10094;</li>
+            <li class="next">&#10095;</li>
+            <li>
+                4 Sept - 8 Sept 2017<br>
+                <span style="font-size:18px">Week 12</span>
+            </li>
+        </ul>
+    </div>
+
+    <div id="week-cal-buttons">
+        <button class="course dropdown btn" id="coursechoice" data-toggle="dropdown"
+                href="#coursechoice">Choose Course
+            <span class="caret"></span>
+            <ul class="dropdown-menu" th:each="course : ${student.getEnrolledCourses()}">
+                <li th:text="${course.toString()}"></li>
+            </ul>
+        </button><!--
+        --><button class="instructor dropdown btn btn-outline-secondary disabled" id="profchoice"
+                aria-disabled="true"
+                data-toggle="dropdown" href="#profchoice">Choose Instructor <span
+                class="caret"></span>
+            <ul class="dropdown-menu">
+                <li><a href="#profchoice">Oka Kurniawan</a></li>
+                <li><a href="#profchoice">Zhang Yue</a></li>
+                <li><a href="#profchoice">Yuen Chau</a></li>
+            </ul>
+        </button>
+    </div>
+
+    <table class="week-cal" id="week-cal-table">
+        <tr>
+            <th>Time</th>
+            <th scope="col">Monday</th>
+            <th scope="col">Tuesday</th>
+            <th scope="col">Wednesday</th>
+            <th scope="col">Thursday</th>
+            <th scope="col">Friday</th>
+        </tr>
+
+        <tr id="week-cal-row" th:each="row : ${calendar}">
+            <th th:text="${row[0]}"></th>
+            <!-- th:utext does not escape <br /> -->
+            <!-- replace \n from backend to <br /> for html frontend -->
+            <td th:utext="${#strings.replace(#strings.escapeXml(row[1]),'&#10;','&lt;br /&gt;')}"></td>
+            <td th:utext="${#strings.replace(#strings.escapeXml(row[2]),'&#10;','&lt;br /&gt;')}"></td>
+            <td th:utext="${#strings.replace(#strings.escapeXml(row[3]),'&#10;','&lt;br /&gt;')}"></td>
+            <td th:utext="${#strings.replace(#strings.escapeXml(row[4]),'&#10;','&lt;br /&gt;')}"></td>
+            <td th:utext="${#strings.replace(#strings.escapeXml(row[5]),'&#10;','&lt;br /&gt;')}"></td>
+        </tr>
+
+    </table>
 </div>
-
-<button class="course dropdown btn btn-outline-info" id="coursechoice" data-toggle="dropdown"
-        href="#coursechoice">Choose Course
-    <span class="caret"></span>
-    <ul class="dropdown-menu">
-        <li><a href="#coursechoice">50-001 Introduction to Information System & Programming </a></li>
-        <li><a href="#coursechoice">50-002 Computation Structure</a></li>
-        <li><a href="#coursechoice">50-004 Introduction to Algorithm</a></li>
-    </ul>
-</button>
-
-<button class="instructor dropdown btn btn-outline-secondary disabled" id="profchoice" aria-disabled="true"
-        data-toggle="dropdown" href="#profchoice">Choose Instructor <span
-        class="caret"></span>
-    <ul class="dropdown-menu">
-        <li><a href="#profchoice">Oka Kurniawan</a></li>
-        <li><a href="#profchoice">Zhang Yue</a></li>
-        <li><a href="#profchoice">Yuen Chau</a></li>
-    </ul>
-</button>
-
-<table class="week-cal" id="week-cal-table">
-    <tr>
-        <th>Time</th>
-        <th scope="col">Monday</th>
-        <th scope="col">Tuesday</th>
-        <th scope="col">Wednesday</th>
-        <th scope="col">Thursday</th>
-        <th scope="col">Friday</th>
-    </tr>
-
-    <tr id="week-cal-row" th:each="row : ${calendar}">
-        <th th:text="${row[0]}"></th>
-        <!-- th:utext does not escape <br /> -->
-        <!-- replace \n from backend to <br /> for html frontend -->
-        <td th:utext="${#strings.replace(#strings.escapeXml(row[1]),'&#10;','&lt;br /&gt;')}"></td>
-        <td th:utext="${#strings.replace(#strings.escapeXml(row[2]),'&#10;','&lt;br /&gt;')}"></td>
-        <td th:utext="${#strings.replace(#strings.escapeXml(row[3]),'&#10;','&lt;br /&gt;')}"></td>
-        <td th:utext="${#strings.replace(#strings.escapeXml(row[4]),'&#10;','&lt;br /&gt;')}"></td>
-        <td th:utext="${#strings.replace(#strings.escapeXml(row[5]),'&#10;','&lt;br /&gt;')}"></td>
-    </tr>
-
-</table>
 
 <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
