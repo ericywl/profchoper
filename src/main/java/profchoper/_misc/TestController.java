@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import profchoper._security.ProfChoperAuthFacade;
 import profchoper.calendar.WeekCalendar;
 import profchoper.calendar.WeekCalendarService;
+import profchoper.professor.Professor;
+import profchoper.professor.ProfessorService;
 import profchoper.student.Student;
 import profchoper.student.StudentService;
 
@@ -19,14 +21,16 @@ import java.util.Map;
 public class TestController {
     private final WeekCalendarService weekCalendarService;
     private final StudentService studentService;
+    private final ProfessorService professorService;
     private final ProfChoperAuthFacade authFacade;
 
     @Autowired
     public TestController(WeekCalendarService weekCalendarService, StudentService studentService,
-                          ProfChoperAuthFacade authFacade) {
+                          ProfessorService professorService, ProfChoperAuthFacade authFacade) {
 
         this.weekCalendarService = weekCalendarService;
         this.studentService = studentService;
+        this.professorService = professorService;
         this.authFacade = authFacade;
     }
 
@@ -42,8 +46,11 @@ public class TestController {
 
         String studentEmail = authFacade.getAuthentication().getName();
         Student student = studentService.getStudentByEmail(studentEmail);
+        int firstCourseId = student.getEnrolledCourses().get(0).getId();
+        List<Professor> professors = professorService.getProfessorsByCourseId(firstCourseId);
 
         model.put("student", student);
+        model.put("professors", professors);
         model.put("calendar", wkCal.getMatrix());
         return "student";
     }

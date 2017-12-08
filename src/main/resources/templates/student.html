@@ -107,9 +107,9 @@
     </div>
 
     <div id="week-cal-buttons">
-        <button class="course dropdown btn" id="coursechoice" data-toggle="dropdown"
-                href="#coursechoice">
-            <span class="choicetext" id="coursechoicetext"
+        <button class="course dropdown btn" id="course-choice" data-toggle="dropdown"
+                href="#course-choice">
+            <span class="choice-text" id="course-choice-text"
                   th:text="${student.getEnrolledCourses()[0].toString()}">Course 1</span>
             <span class="caret"></span>
             <ul class="dropdown-menu">
@@ -119,14 +119,12 @@
                 <li th:text="${student.getEnrolledCourses()[3].toString()}">Course 4</li>
             </ul>
         </button><!--
-        --><button class="instructor dropdown btn" id="profchoice" data-toggle="dropdown"
-                   href="#profchoice">
-        <span class="choicetext">Choose Instructor</span>
+        --><button class="instructor dropdown btn" id="prof-choice" data-toggle="dropdown"
+                   href="#prof-choice">
+        <span class="choice-text">Choose Instructor</span>
         <span class="caret"></span>
-            <ul class="dropdown-menu">
-                <li><a href="#profchoice">Oka Kurniawan</a></li>
-                <li><a href="#profchoice">Zhang Yue</a></li>
-                <li><a href="#profchoice">Yuen Chau</a></li>
+            <ul id="prof-choice-menu" class="dropdown-menu" th:each="prof : ${professors}">
+                <li th:text="${prof.getName()}">Prof Placeholder</li>
             </ul>
         </button>
     </div>
