@@ -49,11 +49,10 @@ function courseTextOnClick() {
     var profs = [];
     var data = $.getJSON(profUrl, function (json) {
         if (json.length !== 0) {
-            var arr = JSON.parse(json);
             console.log(json);
 
-            for (var i = 0; i < arr.length; i++) {
-                console.log(arr[i].name);
+            for (var i = 0; i < json.length; i++) {
+                console.log(json[i].name);
             }
 
         } else {
