@@ -42,7 +42,7 @@ public class TestController {
     @GetMapping("/prof")
     public String prof(Map<String, Object> model) {
         LocalDate date = LocalDate.of(2017, 12, 4);
-        WeekCalendar wkCal = weekCalendarService.getProfCalendar("OKA", date);
+        WeekCalendar wkCal = weekCalendarService.getProfCalendar("oka", date);
 
         model.put("calendar", wkCal.getMatrix());
         return "prof";
