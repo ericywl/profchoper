@@ -19,7 +19,7 @@ public class Student {
     private List<Integer> courseIds;
 
     public Student() {
-        // empty constructor
+        // default constructor
     }
 
     public Student(int id, String name, String email, List<Integer> courseIds) {

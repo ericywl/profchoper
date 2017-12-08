@@ -22,7 +22,7 @@ public class Professor {
     private int courseId;
 
     public Professor() {
-        // empty constructor
+        // default constructor
     }
 
     public Professor(String name, String email, String alias, String office, int courseId) {

@@ -16,7 +16,7 @@ public class Course {
     private String alias;
 
     public Course() {
-        // empty constructor
+        // default constructor
     }
 
     public Course(int id, String name, String alias) {
