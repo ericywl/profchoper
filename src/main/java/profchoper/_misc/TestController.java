@@ -40,7 +40,11 @@ public class TestController {
     }
 
     @GetMapping("/prof")
-    public String prof() {
+    public String prof(Map<String, Object> model) {
+        LocalDate date = LocalDate.of(2017, 12, 4);
+        WeekCalendar wkCal = weekCalendarService.getStudentCalendarByCourse(50002, date);
+
+        model.put("calendar", wkCal.getMatrix());
         return "prof";
     }
 
