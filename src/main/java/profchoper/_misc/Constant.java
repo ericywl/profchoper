@@ -24,6 +24,9 @@ public class Constant {
     public static final String PENDING = "pending";
     public static final String BOOKED = "booked";
 
+    public static final String STUDENT_EMAIL_DOMAIN = "@mymail.sutd.edu.sg";
+    public static final String PROF_EMAIL_DOMAIN = "@sutd.edu.sg";
+
     public static final String STUDENT = "STUDENT";
     public static final String PROF = "PROFESSOR";
 

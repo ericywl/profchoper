@@ -3,12 +3,12 @@
     src: url("https://fonts.gstatic.com/s/quicksand/v7/sKd0EMYPAh5PYCRKSryvW5Bw1xU1rKptJj_0jans920.woff2");
 }
 
-/*main body*/
+/* Main body*/
 body {
     font-family: Quicksand, sans-serif;
 }
 
-/* remove bullets */
+/* Remove bullets */
 ul {
     list-style-type: none;
 }
@@ -126,7 +126,6 @@ td:hover {
     color: green;
     margin-left: 0;
     overflow: auto;
-
 }
 
 /* Noticonfirm and Notipending hover */
@@ -250,7 +249,7 @@ hr {
     display: none;
     float: right;
     overflow: auto;
-    margin: 0 20px 10px;
+    margin: -2px 20px 0;
 }
 
 .notibtnbook {
@@ -258,7 +257,7 @@ hr {
     float: right;
     overflow: auto;
     padding: auto;
-    margin: 0 20px 10px;
+    margin: -2px 20px 0;
 }
 
 .notimsg {
