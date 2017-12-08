@@ -1,6 +1,8 @@
 package profchoper.test;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,20 +20,22 @@ import java.util.List;
 @Controller
 public class UserController {
 
+    @Autowired
+    @Qualifier("profChoperDataSource")
     private DataSource dataSource;
 
-    @RequestMapping("/c")
+    @RequestMapping("/")
     public String home(Model model) {
         return "home";
     }
 
-    @RequestMapping("/c/createuserform")
+    @RequestMapping("/createuserform")
     public String createUserForm(Model model) {
         model.addAttribute("user", new User());
         return "createuser";
     }
 
-    @RequestMapping("/c/users")
+    @RequestMapping("/users")
     public String users(Model model) {
         try {
             Connection connection = dataSource.getConnection();
@@ -39,7 +43,6 @@ public class UserController {
             String sql;
             sql = "SELECT id, first, last, email, company, city FROM cuser";
             ResultSet rs = stmt.executeQuery(sql);
-            StringBuffer sb = new StringBuffer();
             List<User> users = new ArrayList<>();
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -57,7 +60,7 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value = "/c/createuser", method = RequestMethod.POST)
+    @RequestMapping(value = "/createuser", method = RequestMethod.POST)
     public String createUser(@ModelAttribute User user, Model model) {
         model.addAttribute("user", user);
         int id = user.getId();
