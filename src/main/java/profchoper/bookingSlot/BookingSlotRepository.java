@@ -65,7 +65,7 @@ public class BookingSlotRepository {
         String updateSQL = "UPDATE bookings SET book_status = ?, student_id = ? " +
                 "WHERE professor_alias = ? AND start_time = ?";
 
-        int i = jdbcTemplate.update(updateSQL, bookStatus, studentId, startTimestamp);
+        int i = jdbcTemplate.update(updateSQL, bookStatus, studentId, profAlias, startTimestamp);
         return i == 1;
     }
 
