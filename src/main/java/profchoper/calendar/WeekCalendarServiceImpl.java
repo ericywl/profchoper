@@ -89,7 +89,9 @@ public class WeekCalendarServiceImpl implements WeekCalendarService {
     }
 
 
-    private List<List<String>> createProfCalMatrix(String profAlias, LocalDate startDateOfSchoolWeek, String userType) {
+    private List<List<String>> createProfCalMatrix(String profAlias,
+                                                   LocalDate startDateOfSchoolWeek, String userType) {
+
         List<BookingSlot> slotList = slotService.getSlotsByProfAndSWeek(profAlias, startDateOfSchoolWeek);
         List<List<String>> output = new ArrayList<>();
         List<String> temp;
