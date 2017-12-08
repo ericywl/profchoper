@@ -24,10 +24,6 @@ public class UserController {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    @Autowired
-    @Qualifier("profChoperDataSource")
-    private DataSource dataSource;
-
     @RequestMapping("/")
     public String home(Model model) {
         return "home";
@@ -64,13 +60,12 @@ public class UserController {
         String company = user.getCompany();
 
         try {
-            Connection connection = dataSource.getConnection();
-            Statement stmt = connection.createStatement();
             String sql;
             sql = "insert into cuser(first, last, email, company, city) values " +
                     "('" + first + "', '" + last + " ',' " + email + "', ' " +
                     company + "', '" + city + "');";
-            ResultSet rs = stmt.executeQuery(sql);
+
+            jdbcTemplate.update(sql);
         } catch (Exception e) {
             e.printStackTrace();
         }
