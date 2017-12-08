@@ -26,7 +26,7 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <a class="btn navbar-btn btn-lg" href="#calendar"><strong>Chope a slot</strong></a>
 
-            <h4 class="showID" th:text="${student.getId()}"></h4>
+            <h4 class="showID" th:text="${user.getId()}"></h4>
             <a class="btn btn-danger logout" th:href="@{/logout}">Logout</a>
         </div>
     </div>
@@ -110,9 +110,7 @@
         <button class="course dropdown btn" id="coursechoice" data-toggle="dropdown"
                 href="#coursechoice">Choose Course
             <span class="caret"></span>
-            <ul class="dropdown-menu" th:each="course : ${student.getEnrolledCourses()}">
-                <li th:text="${course.toString()}"></li>
-            </ul>
+            
         </button><!--
         --><button class="instructor dropdown btn btn-outline-secondary disabled" id="profchoice"
                 aria-disabled="true"
