@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import profchoper._security.ProfChoperAuthFacade;
 import profchoper.calendar.WeekCalendar;
 import profchoper.calendar.WeekCalendarService;
+import profchoper.student.Student;
+import profchoper.student.StudentService;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -15,12 +17,18 @@ import java.util.Map;
 
 @Controller
 public class TestController {
+    private final WeekCalendarService weekCalendarService;
+    private final StudentService studentService;
+    private final ProfChoperAuthFacade authFacade;
 
     @Autowired
-    private WeekCalendarService weekCalendarService;
+    public TestController(WeekCalendarService weekCalendarService, StudentService studentService,
+                          ProfChoperAuthFacade authFacade) {
 
-    @Autowired
-    private ProfChoperAuthFacade authFacade;
+        this.weekCalendarService = weekCalendarService;
+        this.studentService = studentService;
+        this.authFacade = authFacade;
+    }
 
     @GetMapping("/")
     String index() {
@@ -32,6 +40,10 @@ public class TestController {
         LocalDate date = LocalDate.of(2017, 12, 4);
         WeekCalendar wkCal = weekCalendarService.getStudentCalendarByCourse(50002, date);
 
+        String studentEmail = authFacade.getAuthentication().getName();
+        Student student = studentService.getStudentByEmail(studentEmail);
+
+        model.put("student", student);
         model.put("calendar", wkCal.getMatrix());
         return "student";
     }

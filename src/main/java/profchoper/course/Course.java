@@ -23,7 +23,7 @@ public class Course {
 
     @Override
     public String toString() {
-        return alias;
+        return id + " " + name;
     }
 
     public int getId() {
