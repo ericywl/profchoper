@@ -18,7 +18,12 @@ public class ProfessorRepository {
     }
 
     public List<Professor> findAll() {
-        String selectSQL = "SELECT * FROM professors ORDER BY alias";
+        String selectSQL = "SELECT p.name AS p_name, p.email AS p_email, " +
+                "p.alias AS p_alias, p.office AS p_office, " +
+                "c.name AS c_name, c.id AS c_id, c.alias AS c_alias " +
+                "FROM professors p " +
+                "JOIN courses c ON p.course_id = c.id " +
+                "ORDER BY p.alias";
 
         return jdbcTemplate.query(selectSQL, new ProfessorRowMapper());
     }
@@ -29,7 +34,8 @@ public class ProfessorRepository {
                 "c.name AS c_name, c.id AS c_id, c.alias AS c_alias " +
                 "FROM professors p " +
                 "JOIN courses c ON p.course_id = c.id " +
-                "WHERE p.course_id = ?";
+                "WHERE p.course_id = ? " +
+                "ORDER BY p.alias";
 
         return jdbcTemplate.query(selectSQL, new Object[]{courseId}, new ProfessorRowMapper());
     }
