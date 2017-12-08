@@ -143,7 +143,7 @@ td:hover {
     display: block;
 }
 
-.noticonfirm:hover .notimsg, .notipending:hover .notimsg{
+.noticonfirm:hover .notimsg, .notipending:hover .notimsg {
     display: block;
 }
 
@@ -250,14 +250,15 @@ hr {
     display: none;
     float: right;
     overflow: auto;
-    margin: auto;
+    margin: 0 20px 10px;
 }
 
 .notibtnbook {
     display: none;
     float: right;
+    overflow: auto;
     padding: auto;
-    margin: 0 0 10px;
+    margin: 0 20px 10px;
 }
 
 .notimsg {
