@@ -46,6 +46,8 @@ public class ProfChoperSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 .antMatchers("/api/**").permitAll()
                 .antMatchers("/test").permitAll()
+                .antMatchers("/form").permitAll()
+                .antMatchers("/load").permitAll()
                 .antMatchers("/prof").hasAnyRole(PROF)
                 .antMatchers("/student").hasAnyRole(STUDENT)
                 .anyRequest().authenticated()
