@@ -24,11 +24,6 @@ public class UserController {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    @RequestMapping("/")
-    public String home(Model model) {
-        return "home";
-    }
-
     @RequestMapping("/createuserform")
     public String createUserForm(Model model) {
         model.addAttribute("user", new User());

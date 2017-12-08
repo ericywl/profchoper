@@ -18,10 +18,10 @@ public class TestController {
     @Autowired
     private WeekCalendarService weekCalendarService;
 
-    /*@GetMapping("/")
+    @GetMapping("/")
     String index() {
         return "index";
-    }*/
+    }
 
     @GetMapping("/test")
     public String test(Map<String, Object> model) {
