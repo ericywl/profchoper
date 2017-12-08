@@ -156,11 +156,11 @@ td:hover {
 .noticonfirm {
     width: 90%;
     height: 63px;
-    margin: 10px 50px;
+    margin: 10px 6% 10px 4%;
     background-color: white;
     border: 2px solid #26e073;
     padding-left: 20px;
-    padding-right: 6px;
+    padding-right: 20px;
     padding-bottom: 4px;
     text-align: center;
 }
@@ -169,18 +169,18 @@ td:hover {
     background: #26e073;
     color: white;
     font-size: 1.3em;
-    height: 100%;
+    text-align: center;
 }
 
 /* Pending */
 .notipending {
     width: 90%;
     height: 63px;
-    margin: 10px 50px;
+    margin: 10px 6% 10px 4%;
     background-color: white;
     border: 2px solid #4286f4;
     padding-left: 20px;
-    padding-right: 6px;
+    padding-right: 20px;
     padding-bottom: 4px;
     text-align: center;
 }
@@ -189,18 +189,18 @@ td:hover {
     background: #4286f4;
     color: white;
     font-size: 1.3em;
-    height: 100%;
+    text-align: center;
 }
 
 /* Cancel */
 .noticancel {
     width: 90%;
     height: 63px;
-    margin: 10px 50px;
+    margin: 10px 6% 10px 4%;
     background-color: white;
     border: 2px solid #ed3b3b;
     padding-left: 20px;
-    padding-right: 6px;
+    padding-right: 20px;
     padding-bottom: 4px;
     text-align: center;
 }
@@ -210,6 +210,7 @@ td:hover {
     color: white;
     height: 100%;
     font-size: 1.3em;
+    text-align: center;
 }
 
 .noticancel:hover .notibtnbook {
@@ -245,17 +246,15 @@ hr {
 }
 
 .notitext {
-    align-self: left;
     padding-top: 15px;
     font-size: 1.2em;
-    vertical-align: middle;
 }
 
 .notibtn {
     display: none;
     float: right;
     overflow: auto;
-    margin: -2px 20px 0;
+    margin: 0 1.5% 0;
 }
 
 .notibtnbook {
@@ -263,11 +262,19 @@ hr {
     float: right;
     overflow: auto;
     padding: auto;
-    margin: -2px 20px 0;
+    margin: 0 1.5% 0;
 }
 
 .notimsg {
     display: none;
     margin-left: 100px;
     margin-right: 100px;
+}
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
 }
