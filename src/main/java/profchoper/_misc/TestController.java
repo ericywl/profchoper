@@ -34,7 +34,6 @@ public class TestController {
         String name = authFacade.getAuthentication().getName();
 
         model.put("calendar", wkCal.getMatrix());
-        model.put("username", name);
         return "student";
     }
 
