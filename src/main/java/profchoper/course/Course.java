@@ -27,7 +27,8 @@ public class Course {
         if (idStr.length() == 4)
             idStr = "0" + idStr;
 
-        return idStr + " " + name;
+        idStr = idStr.substring(0, 2) + "." + idStr.substring(2,5);
+        return  idStr + " " + name;
     }
 
     public int getId() {

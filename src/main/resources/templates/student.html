@@ -108,7 +108,9 @@
 
     <div id="week-cal-buttons">
         <button class="course dropdown btn" id="coursechoice" data-toggle="dropdown"
-                href="#coursechoice">Choose Course
+                href="#coursechoice">
+            <span id="coursechoicetext"
+                  th:text="${student.getEnrolledCourses()[0].toString()}">Choose Course</span>
             <span class="caret"></span>
             <ul class="dropdown-menu">
                 <li th:text="${student.getEnrolledCourses()[0].toString()}">Course 1</li>

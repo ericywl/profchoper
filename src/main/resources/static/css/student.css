@@ -14,12 +14,16 @@ ul {
 }
 
 .dropdown-menu {
-    width: 60%;
+    width: 75%;
 }
 
 .dropdown-menu li {
     padding: 5px 25px;
     width: 99.8%;
+}
+
+#coursechoicetext {
+    margin-right: 10px;
 }
 
 /* Whole calendar */
