@@ -1,8 +1,6 @@
 package profchoper.professor;
 
 
-import profchoper.course.Course;
-
 import javax.persistence.*;
 
 @Entity
@@ -20,27 +18,19 @@ public class Professor {
     @Column(name = "office")
     private String officeLocation;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private Course course;
+    @Column(name = "course_id")
+    private int courseId;
 
     public Professor() {
         // empty constructor
     }
 
-    public Professor(String name, String alias, String email, String officeLocation, Course course) {
+    public Professor(String name, String email, String alias, String officeLocation, int courseId) {
         this.name = name;
-        this.alias = alias;
         this.email = email;
+        this.alias = alias;
         this.officeLocation = officeLocation;
-        this.course = course;
-    }
-
-    public void setCourse(Course course) {
-        this.course = course;
-    }
-
-    public void setOfficeLocation(String officeLocation) {
-        this.officeLocation = officeLocation;
+        this.courseId = courseId;
     }
 
     @Override
@@ -56,10 +46,6 @@ public class Professor {
         return alias;
     }
 
-    public Course getCourse() {
-        return course;
-    }
-
     public String getName() {
         return name;
     }
@@ -70,5 +56,25 @@ public class Professor {
 
     public void setAlias(String alias) {
         this.alias = alias;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setOfficeLocation(String officeLocation) {
+        this.officeLocation = officeLocation;
+    }
+
+    public int getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(int courseId) {
+        this.courseId = courseId;
     }
 }

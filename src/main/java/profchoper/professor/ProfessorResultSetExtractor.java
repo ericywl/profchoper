@@ -10,16 +10,12 @@ import java.sql.SQLException;
 public class ProfessorResultSetExtractor implements ResultSetExtractor {
     @Override
     public Object extractData(ResultSet resultSet) throws SQLException, DataAccessException {
-        String profName = resultSet.getString("p_name");
-        String profAlias = resultSet.getString("p_alias");
-        String profEmail = resultSet.getString("p_email");
-        String profOffice = resultSet.getString("p_office");
+        String profName = resultSet.getString("name");
+        String profAlias = resultSet.getString("alias");
+        String profEmail = resultSet.getString("email");
+        String profOffice = resultSet.getString("office");
+        int courseId = resultSet.getInt("course_id");
 
-        int courseId = resultSet.getInt("c_id");
-        String courseName = resultSet.getString("c_name");
-        String courseAlias = resultSet.getString("c_alias");
-
-        Course profCourse = new Course(courseId, courseName, courseAlias);
-        return new Professor(profName, profAlias, profEmail, profOffice, profCourse);
+        return new Professor(profName, profAlias, profEmail, profOffice, courseId);
     }
 }
