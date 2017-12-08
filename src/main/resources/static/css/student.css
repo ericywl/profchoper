@@ -13,12 +13,12 @@ ul {
     list-style-type: none;
 }
 
+/* Week header */
 .week {
-    padding: 20px 50px 75px 50px;
+    padding: 70px 25px;
     width: 80%;
     background: #1DD118;
     margin: auto;
-    height: 20px;
     text-align: center;
 }
 
