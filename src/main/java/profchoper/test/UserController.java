@@ -3,6 +3,7 @@ package profchoper.test;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,9 @@ import java.util.List;
 public class UserController {
 
     @Autowired
+    private JdbcTemplate jdbcTemplate;
+
+    @Autowired
     @Qualifier("profChoperDataSource")
     private DataSource dataSource;
 
@@ -36,23 +40,12 @@ public class UserController {
     }
 
     @RequestMapping("/users")
+    @SuppressWarnings("unchecked")
     public String users(Model model) {
         try {
-            Connection connection = dataSource.getConnection();
-            Statement stmt = connection.createStatement();
-            String sql;
-            sql = "SELECT id, first, last, email, company, city FROM cuser";
-            ResultSet rs = stmt.executeQuery(sql);
-            List<User> users = new ArrayList<>();
-            while (rs.next()) {
-                int id = rs.getInt("id");
-                String first = rs.getString("first");
-                String last = rs.getString("last");
-                String email = rs.getString("email");
-                String company = rs.getString("company");
-                String city = rs.getString("city");
-                users.add(new User(id, first, last, email, company, city));
-            }
+            String sql = "SELECT id, first, last, email, company, city FROM cuser";
+            List<User> users = jdbcTemplate.query(sql, new UserRowMapper());
+
             model.addAttribute("users", users);
             return "user";
         } catch (Exception e) {
