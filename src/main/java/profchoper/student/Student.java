@@ -14,8 +14,8 @@ public class Student {
 
     @Column(name = "email")
     private String email;
-
-    @OneToMany
+    
+    @ElementCollection
     private List<Integer> courseIds;
 
     public Student(int id, String name, String email, List<Integer> courseIds) {
