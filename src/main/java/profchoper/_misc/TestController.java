@@ -23,15 +23,6 @@ public class TestController {
         return "index";
     }
 
-    @GetMapping("/test")
-    public String test(Map<String, Object> model) {
-        LocalDate date = LocalDate.of(2017, 12, 4);
-        WeekCalendar wkCal = weekCalendarService.getStudentCalendarByCourse(50002, date);
-
-        model.put("calendar", wkCal.getMatrix());
-        return "test";
-    }
-
     @GetMapping("/student")
     public String student(Map<String, Object> model) {
         LocalDate date = LocalDate.of(2017, 12, 4);
@@ -53,11 +44,6 @@ public class TestController {
 
         model.put("calendar", wkCal.getMatrix());
         return "prof";
-    }
-
-    @GetMapping("/login")
-    public String login() {
-        return "login";
     }
 
     @GetMapping("/403")
