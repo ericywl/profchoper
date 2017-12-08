@@ -1,6 +1,8 @@
 package profchoper.student;
 
 
+import profchoper.course.Course;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -8,25 +10,19 @@ import java.util.List;
 public class Student {
     @Id
     private int id;
-
-    @Column(name = "name")
     private String name;
-
-    @Column(name = "email")
     private String email;
-
-    @ElementCollection
-    private List<Integer> courseIds;
+    private List<Course> enrolledCourses;
 
     public Student() {
         // default constructor
     }
 
-    public Student(int id, String name, String email, List<Integer> courseIds) {
+    public Student(int id, String name, String email, List<Course> enrolledCourses) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.courseIds = courseIds;
+        this.enrolledCourses = enrolledCourses;
     }
 
     @Override
@@ -58,11 +54,11 @@ public class Student {
         this.email = email;
     }
 
-    public List<Integer> getCourseIds() {
-        return courseIds;
+    public List<Course> getEnrolledCourses() {
+        return enrolledCourses;
     }
 
-    public void setCourseIds(List<Integer> courseIds) {
-        this.courseIds = courseIds;
+    public void setEnrolledCourses(List<Course> enrolledCourses) {
+        this.enrolledCourses = enrolledCourses;
     }
 }

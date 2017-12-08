@@ -1,13 +1,3 @@
-CREATE TABLE IF NOT EXISTS public.cuser
-(
-  id      SERIAL PRIMARY KEY NOT NULL,
-  first   VARCHAR(100),
-  last    VARCHAR(100),
-  email   VARCHAR(100),
-  company VARCHAR(150),
-  city    VARCHAR(100)
-);
-
 CREATE TABLE IF NOT EXISTS public.courses
 (
   id    INTEGER PRIMARY KEY,
