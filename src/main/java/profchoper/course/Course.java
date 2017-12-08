@@ -8,11 +8,7 @@ import javax.persistence.Id;
 public class Course {
     @Id
     private int id;
-
-    @Column(name = "name")
     private String name;
-
-    @Column(name = "alias")
     private String alias;
 
     public Course() {

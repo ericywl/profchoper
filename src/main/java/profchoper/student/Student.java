@@ -10,8 +10,14 @@ import java.util.List;
 public class Student {
     @Id
     private int id;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "email")
     private String email;
+
+    @OneToMany
     private List<Course> enrolledCourses;
 
     public Student() {
