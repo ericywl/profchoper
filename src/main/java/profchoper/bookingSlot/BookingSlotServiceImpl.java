@@ -72,7 +72,7 @@ public class BookingSlotServiceImpl implements BookingSlotService {
     }
 
     @Override
-    public List<BookingSlot> getSlotsByCourseId(int courseId) {
+    public List<BookingSlot> getSlotsByCourseId(String courseId) {
         List<Professor> professors = professorService.getProfessorsByCourseId(courseId);
         List<BookingSlot> output = new ArrayList<>();
 
@@ -97,7 +97,7 @@ public class BookingSlotServiceImpl implements BookingSlotService {
     }
 
     @Override
-    public List<BookingSlot> getSlotsByCourseAndSWeek(int courseId, LocalDate startDateOfSchoolWeek) {
+    public List<BookingSlot> getSlotsByCourseAndSWeek(String courseId, LocalDate startDateOfSchoolWeek) {
         List<BookingSlot> slotList = getSlotsBySchoolWeek(startDateOfSchoolWeek);
         List<BookingSlot> output = new ArrayList<>();
         List<Professor> professors = professorService.getProfessorsByCourseId(courseId);

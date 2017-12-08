@@ -34,12 +34,12 @@ public interface BookingSlotService {
 
     List<BookingSlot> getSlotsByProfAlias(String profAlias);
 
-    List<BookingSlot> getSlotsByCourseId(int courseId);
+    List<BookingSlot> getSlotsByCourseId(String courseId);
 
 
     // Combined
 
     List<BookingSlot> getSlotsByProfAndSWeek(String profAlias, LocalDate startDateOfSchoolWeek);
 
-    List<BookingSlot> getSlotsByCourseAndSWeek(int courseId, LocalDate startDateOfSchoolWeek);
+    List<BookingSlot> getSlotsByCourseAndSWeek(String courseId, LocalDate startDateOfSchoolWeek);
 }

@@ -45,6 +45,6 @@ function courseTextOnClick() {
     var courseId = course.substr(0, 2) + course.substr(3, 3);
     console.log(courseId);
     const profUrl = "https://sutd-profchoper.herokuapp.com/api/professors?course=" + courseId;
-    var data = $.getJSON(profUrl);
+    var data = $.getJSON(pokeUrl);
     console.log(data);
 }
