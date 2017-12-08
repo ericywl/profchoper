@@ -24,7 +24,7 @@ public class WeekCalendarServiceImpl implements WeekCalendarService {
     private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
 
     @Override
-    public WeekCalendar getStudentCalendarByCourse(int courseId, LocalDate startDateOfSchoolWeek) {
+    public WeekCalendar getStudentCalendarByCourse(String courseId, LocalDate startDateOfSchoolWeek) {
         List<List<String>> matrix = createCourseCalMatrix(courseId, startDateOfSchoolWeek);
 
         return new WeekCalendar(startDateOfSchoolWeek, matrix);
@@ -45,7 +45,7 @@ public class WeekCalendarServiceImpl implements WeekCalendarService {
     }
 
 
-    private List<List<String>> createCourseCalMatrix(int courseId, LocalDate startDateOfSchoolWeek) {
+    private List<List<String>> createCourseCalMatrix(String courseId, LocalDate startDateOfSchoolWeek) {
         List<BookingSlot> slotList = slotService.getSlotsByCourseAndSWeek(courseId, startDateOfSchoolWeek);
         List<List<String>> output = new ArrayList<>();
         List<String> temp;
