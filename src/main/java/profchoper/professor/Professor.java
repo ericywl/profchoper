@@ -16,7 +16,7 @@ public class Professor {
     private String alias;
 
     @Column(name = "office")
-    private String officeLocation;
+    private String office;
 
     @Column(name = "course_id")
     private int courseId;
@@ -25,11 +25,11 @@ public class Professor {
         // empty constructor
     }
 
-    public Professor(String name, String email, String alias, String officeLocation, int courseId) {
+    public Professor(String name, String email, String alias, String office, int courseId) {
         this.name = name;
         this.email = email;
         this.alias = alias;
-        this.officeLocation = officeLocation;
+        this.office = office;
         this.courseId = courseId;
     }
 
@@ -50,8 +50,8 @@ public class Professor {
         return name;
     }
 
-    public String getOfficeLocation() {
-        return officeLocation;
+    public String getOffice() {
+        return office;
     }
 
     public void setAlias(String alias) {
@@ -66,8 +66,8 @@ public class Professor {
         this.email = email;
     }
 
-    public void setOfficeLocation(String officeLocation) {
-        this.officeLocation = officeLocation;
+    public void setOffice(String office) {
+        this.office = office;
     }
 
     public int getCourseId() {
