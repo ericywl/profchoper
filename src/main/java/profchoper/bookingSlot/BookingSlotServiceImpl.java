@@ -98,16 +98,11 @@ public class BookingSlotServiceImpl implements BookingSlotService {
 
     @Override
     public List<BookingSlot> getSlotsByCourseAndSWeek(int courseId, LocalDate startDateOfSchoolWeek) {
-        List<BookingSlot> slotList = getSlotsBySchoolWeek(startDateOfSchoolWeek);
         List<BookingSlot> output = new ArrayList<>();
         List<Professor> professors = professorService.getProfessorsByCourseId(courseId);
 
-        for (BookingSlot slot : slotList) {
-            for (Professor prof : professors) {
-                if (slot.getProfAlias().equalsIgnoreCase(prof.getAlias()))
-                    output.add(slot);
-            }
-        }
+        for (Professor prof : professors)
+            output.addAll(getSlotsByProfAndSWeek(prof.getAlias(), startDateOfSchoolWeek));
 
         return output;
     }
