@@ -26,6 +26,45 @@ ul {
     margin-right: 10px;
 }
 
+#course-dropdown {
+    width: 60%;
+    float: left;
+}
+
+.course {
+    border-bottom-color: white;
+    border-top-color: white;
+    border-right-color: white;
+    border-radius: 0;
+    display: inline;
+    width: 100%;
+}
+
+.course ul li:hover {
+    background: #cccccc;
+}
+
+.course:active, .course:focus, .course:active:focus {
+    outline: none;
+}
+
+#instructor-dropdown {
+    width: 40%;
+    float: right;
+}
+
+.instructor {
+    border-bottom-color: white;
+    border-top-color: white;
+    border-radius: 0;
+    display: inline;
+    width: 100%;
+}
+
+.instructor:active, .instructor:focus, .instructor:active:focus {
+    outline: none;
+}
+
 /* Whole calendar */
 .calendar {
     width: 80%;
@@ -63,35 +102,6 @@ ul {
 #week-cal-header .next {
     float: right;
     padding-top: 10px;
-}
-
-.course {
-    border-bottom-color: white;
-    border-top-color: white;
-    border-right-color: white;
-    border-radius: 0;
-    display: inline;
-    width: 60%;
-}
-
-.course ul li:hover {
-    background: #cccccc;
-}
-
-.course:active, .course:focus, .course:active:focus {
-    outline: none;
-}
-
-.instructor {
-    border-bottom-color: white;
-    border-top-color: white;
-    border-radius: 0;
-    display: inline;
-    width: 40%;
-}
-
-.instructor:active, .instructor:focus, .instructor:active:focus {
-    outline: none;
 }
 
 th, td {

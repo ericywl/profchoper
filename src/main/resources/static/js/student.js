@@ -34,9 +34,9 @@ $(document).ready(function () {
         $("#myModal").modal();
     });
 
-    $(".dropdown-menu li").click(function () {
+    $("#course-dropdown-menu").find("li").click(function () {
         var course = $(this).text();
-        $("#coursechoicetext").html(course);
+        $("#course-choice-text").html(course);
 
         $.getJSON("https://sutd-profchoper.herokuapp.com/api/professors?course=50001", function (json) {
             console.log(json)

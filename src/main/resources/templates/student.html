@@ -107,26 +107,31 @@
     </div>
 
     <div id="week-cal-buttons">
-        <button class="course dropdown btn" id="course-choice" data-toggle="dropdown"
-                href="#course-choice">
-            <span class="choice-text" id="course-choice-text"
-                  th:text="${student.getEnrolledCourses()[0].toString()}">Course 1</span>
-            <span class="caret"></span>
-            <ul class="dropdown-menu">
-                <li th:text="${student.getEnrolledCourses()[0].toString()}">Course 1</li>
-                <li th:text="${student.getEnrolledCourses()[1].toString()}">Course 2</li>
-                <li th:text="${student.getEnrolledCourses()[2].toString()}">Course 3</li>
-                <li th:text="${student.getEnrolledCourses()[3].toString()}">Course 4</li>
+        <div class="dropdown" id="course-dropdown">
+            <button class="btn course dropdown-toggle" type="button" data-toggle="dropdown">
+                <span class="choice-text" id="course-choice-text"
+                      th:text="${student.getEnrolledCourses()[0].toString()}">Course 1</span>
+                <span class="caret"></span></button>
+            <ul id="course-dropdown-menu" class="dropdown-menu"
+                th:each="course : ${student.getEnrolledCourses()}">
+                <li>
+                    <a th:text="${student.getEnrolledCourses()[0].toString()}">
+                        Course Placeholder</a>
+                </li>
             </ul>
-        </button><!--
-        --><button class="instructor dropdown btn" id="prof-choice" data-toggle="dropdown"
-                   href="#prof-choice">
-        <span class="choice-text">Choose Instructor</span>
-        <span class="caret"></span>
-            <ul id="prof-choice-menu" class="dropdown-menu" th:each="prof : ${professors}">
-                <li th:text="${prof.getName()}">Prof Placeholder</li>
+        </div><!--
+        --><div class="dropdown" id="instructor-dropdown">
+            <button class="btn instructor dropdown-toggle" type="button" data-toggle="dropdown">
+                <span class="choice-text" id="instructor-choice-text"
+                      th:text="${professors.get(0).getName()}">Instructor 1</span>
+                <span class="caret"></span></button>
+            <ul id="instructor-dropdown-menu" class="dropdown-menu"
+                th:each="prof : ${professors}">
+                <li>
+                    <a th:text="${prof.getName()}">Instructor Placeholder</a>
+                </li>
             </ul>
-        </button>
+        </div>
     </div>
 
     <table class="week-cal" id="week-cal-table">
