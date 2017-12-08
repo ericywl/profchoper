@@ -8,244 +8,279 @@ body {
     font-family: Quicksand, sans-serif;
 }
 
-/* remove bullets */
-ul {
-    list-style-type: none;
-}
+   /* remove bullets */
+        ul {list-style-type: none;}
 
-/* Week header */
-.week {
-    padding: 70px 25px;
-    width: 80%;
-    background: #1DD118;
-    margin: auto;
-    text-align: center;
-}
+        /* Week header */
+        .week {
+            padding: 20px 50px 65px 25px;
+            width: 80%;
+            background: darkgrey;
+            margin: 0px 20px -13px 124px;
+            height: 10px;
+            text-align: center;
+        }
 
-.week ul li {
-    color: white;
-    font-size: 20px;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-}
+        .week ul li {
+            color: white;
+            font-size: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
 
-/* Previous button inside month header */
-.week .prev {
-    float: left;
-    padding-top: 10px;
-}
+        /* Previous button inside month header */
+        .week .prev {
+            float: left;
+            padding-top: 10px;
+        }
 
-/* Next button */
-.week .next {
-    float: right;
-    padding-top: 10px;
-}
+        /* Next button */
+        .week .next {
+            float: right;
+            padding-top: 10px;
+        }
 
-/*table header and data elements */
-th, td {
-    margin: auto;
-    text-align: center;
-    border-collapse: collapse;
-    outline: 1px solid #e3e3e3;
-}
+        /*table header and data elements */
+        .scheduler{
+            margin-bottom: 100px;
 
-td {
-    padding: 10px 10px;
-}
+        }
+        th,td
+        {
+            margin: auto;
+            text-align: center;
+            border-collapse: collapse;
+            outline: 1px solid #e3e3e3;
+        }
 
-th {
-    background: #666;
-    color: white;
-    padding: 5px 10px;
-}
+        td
+        {
+            padding: 10px 10px;
+        }
 
-td:hover {
-    cursor: pointer;
-    background: #666;
-    color: white;
-}
+        th
+        {
+            background: #666;
+            color: white;
+            padding: 5px 10px;
+        }
 
-table#week-cal-table {
-    width: 80%;
-    margin-left: 10%;
-    margin-right: 10%;
-    table-layout: fixed;
-}
+        td:hover
+        {
+            cursor: pointer;
+            background: green;
+            color: white;
+        }
 
-.page-header{
-    margin: 100px 20px 10px 20px;
-}
+        .page-header{
+            margin: 100px 20px 10px 20px;
+        }
 
 
-#calendar{
-    margin-bottom: 30px;
-}
-/*nav bav props*/
+    #calendar{
+        margin-bottom: 17px;
+    }
+        /*nav bav props*/
 
-.btn-lg {
+        .btn-lg {
     margin: 15px 30px 0px 40px;
     color: white;
 }
-.course{
-    margin-left: 10%;
+        .course{
+            margin-left: 10%;
+            display: inline;
+            width: 50%;
 
-}
-.instructor{
-    margin-left: 2%;
 
-}
-.logout{
-    margin-left: 90px;
-}
-.h4{
-    padding-left:55px;
-    font-size: 3.5rem;
-}
-.btn{
-    margin-top: 12.5px;
-}
-.showID{
-    float: right;
-    color: green;
-    margin-left: 95px;
-    overflow: auto;
-}
-/* successful appointment */
+        }
 
-.noticonfirm {
-    width:90%;
-    height: 63px;
-    margin-left: 50px;
-    margin-right: 50px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    background-color: white;
-    border: 2px solid green;
-    padding-left: 20px;
-    padding-right: 6px;
-    padding-bottom: 4px;
-    text-align: center;
-}
+        .instructor{
+            display: inline;
+            width: 30%;
+            margin-left: -4px;
 
-.noticonfirm:hover{
-    background: green;
-    color:white;
+        }
 
-}
-.noticonfirm:hover button{
-    display:inline-block;
-    overflow: auto;
+        .logout {
+            margin-left: 590px;
+            display: inline-block;
 
-}
-.noticonfirm:hover span{
-    display: inline-block;
-}
+        }
+        .h4{
+            padding-left:55px;
+            font-size: 3.5rem;
+        }
+        .btn{
+            margin-top: 12.5px;
+        }
+        .showID{
+            float: right;
+            color: green;
+            margin-left: 0px;
+            overflow: auto;
 
-.noticonfirm:hover{
-    font-size: 1.3em;
+        }
 
-}
-/* pending */
-.notipending {
-    width:90%;
-    height: 63px;
-    margin-left: 50px;
-    margin-right: 50px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    background-color: white;
-    border: 2px solid #4286f4;
-    padding-left: 20px;
-    padding-right: 6px;
-    padding-bottom: 4px;
-    text-align: center;
-}
+        /* successful appointment */
 
-.notipending:hover{
-    background: #4286f4;
-    color:white;
+        .noticonfirm {
+            width:90%;
+            height: 63px;
+            margin-left: 50px;
+            margin-right: 50px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            background-color: white;
+            border: 2px solid #26e073;
+            padding-left: 20px;
+            padding-right: 6px;
+            padding-bottom: 4px;
+            text-align: center;
+        }
 
-}
-.notipending:hover button{
-    display:inline-block;
-    overflow: auto;
+        .noticonfirm:hover{
+            background: #26e073;
+            color:white;
+            font-size: 1.3em;
+            height:100%;
+        }
+        .noticonfirm:hover button{
+            display:inline-block;
+            overflow: auto;
 
-}
-.notipending:hover span{
-    display: inline-block;
-}
+        }
+        .noticonfirm:hover span{
+            display: inline-block;
+        }
+        .noticonfirm:hover hr{
+            display: block;
+        }
+        .noticonfirm:hover .notimsg{
+            display:block;
+        }
+        /* pending */
+        .notipending {
+            width:90%;
+            height: 63px;
+            margin-left: 50px;
+            margin-right: 50px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            background-color: white;
+            border: 2px solid #4286f4;
+            padding-left: 20px;
+            padding-right: 6px;
+            padding-bottom: 4px;
+            text-align: center;
+        }
 
-.notipending:hover{
-    font-size: 1.3em;
+        .notipending:hover{
+            background: #4286f4;
+            color:white;
+            font-size: 1.3em;
+            height:100%;
+        }
+        .notipending:hover button{
+            display:inline-block;
+            overflow: auto;
 
-}
-/* cancel */
-.noticancel {
-    width:90%;
-    height: 63px;
-    margin-left: 50px;
-    margin-right: 50px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    background-color: white;
-    border: 2px solid #ed3b3b;
-    padding-left: 20px;
-    padding-right: 6px;
-    padding-bottom: 4px;
-    text-align: center;
-}
+        }
+        .notipending:hover span{
+            display: inline-block;
+        }
+        .notipending:hover hr{
+            display: block;
+        }
+        .notipending:hover .notimsg{
+            display:block;
+        }
+        /* cancel */
+        .noticancel {
+            width:90%;
+            height: 63px;
+            margin-left: 50px;
+            margin-right: 50px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            background-color: white;
+            border: 2px solid #ed3b3b;
+            padding-left: 20px;
+            padding-right: 6px;
+            padding-bottom: 4px;
+            text-align: center;
+        }
 
-.noticancel:hover{
-    background: #ed3b3b;
-    color:white;
+        .noticancel:hover{
+            background: #ed3b3b;
+            color:white;
+            height:100%;
+            font-size: 1.3em;
 
-}
-.noticancel:hover button{
-    display:inline-block;
-    overflow: auto;
+        }
+        .noticancel:hover button{
+            display:inline-block;
+            overflow: auto;
 
-}
-.noticancel:hover span{
-    display: inline-block;
-}
+        }
+        .noticancel:hover span{
+            display: inline-block;
+        }
 
-.noticancel:hover{
-    font-size: 1.3em;
+        .noticancel:hover hr{
+            display: block;
+        }
+        .noticancel:hover .notimsg{
+            display:block;
+        }
 
-}
 
-.notibtnbook{
-    display:none;
-    float:right;
-    overflow: auto;
-    margin: 0;
-    padding-top: 3px;
-    padding-bottom: 5px;
-    padding-right: 10px;
-    padding-left: 10px;
-    margin-bottom: 3px;
-}
+        .notibtnbook{
+            display:none;
+            float:right;
+            overflow: auto;
+            margin: 0;
+            padding-top: 3px;
+            padding-bottom: 5px;
+            padding-right: 10px;
+            padding-left: 10px;
+            margin-bottom: 3px;
+        }
 
-/* general noti */
-.notistatus{
-    display: none;
-    float: left;
-}
+        /* general noti */
+        hr{
+            display: none;
+            height: 1px;
+            border: 0;
+            border-top: 1px solid #ccc;
+            margin: 1em 0;
+            margin-right: 20px;
+            padding: 0;
+        }
 
-.notitext{
-    align-self: left;
-    padding-top: 15px;
-    font-size: 1.2em;
-    vertical-align: middle;
-}
-.notibtn{
-    display:none;
-    float:right;
-    overflow: auto;
-    margin: 0;
-    padding-top: 3px;
-    padding-bottom: 5px;
-    padding-right: 5px;
-    padding-left: 5px;
-    margin-bottom: 3px;
-}
+        .notistatus{
+            display: none;
+            float: left;
+        }
+
+        .notitext{
+            align-self: left;
+            padding-top: 15px;
+            font-size: 1.2em;
+            vertical-align: middle;
+        }
+        .notibtn{
+            display:none;
+            float:right;
+            overflow: auto;
+            margin: 0;
+            padding-top: 3px;
+            padding-bottom: 5px;
+            padding-right: 5px;
+            padding-left: 5px;
+            margin-bottom: 3px;
+        }
+        .notimsg{
+            display:none;
+            margin-left: 100px;
+            margin-right: 100px;
+        }
