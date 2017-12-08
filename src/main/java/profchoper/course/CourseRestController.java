@@ -19,7 +19,7 @@ public class CourseRestController {
     }
 
     @GetMapping("/api/courses/{id}")
-    public Course getCourse(@PathVariable int id) {
+    public Course getCourseById(@PathVariable int id) {
         return courseService.getCourseById(id);
     }
 }

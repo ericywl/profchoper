@@ -16,15 +16,10 @@ public class StudentResultSetExtractor implements ResultSetExtractor {
         String studentName = resultSet.getString("s_name");
         String studentEmail = resultSet.getString("s_email");
 
-
-        List<Course> courseList = new ArrayList<>();
+        List<Integer> courseList = new ArrayList<>();
         for (int i = 1; i < 5; i++) {
-            int courseId = resultSet.getInt("c" + i + "_id");
-            String courseName = resultSet.getString("c" + i + "_name");
-            String courseAlias = resultSet.getString("c" + i + "_alias");
-
-            Course course = new Course(courseId, courseName, courseAlias);
-            courseList.add(course);
+            int courseId = resultSet.getInt("course" + i + "_id");
+            courseList.add(courseId);
         }
 
         return new Student(studentId, studentName, studentEmail, courseList);

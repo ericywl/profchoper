@@ -19,7 +19,7 @@ public class ProfessorRestController {
     }
 
     @GetMapping("/api/professors/{alias}")
-    public Professor getProfessor(@PathVariable String alias) {
+    public Professor getProfessorByAlias(@PathVariable String alias) {
         return professorService.getProfessorByAlias(alias);
     }
 }

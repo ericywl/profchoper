@@ -1,21 +1,28 @@
 package profchoper.student;
 
 
-import profchoper.course.Course;
-
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
 public class Student {
-    private final int id;
-    private final String name;
-    private final String email;
-    private List<Course> enrolledCourses;
+    @Id
+    private int id;
 
-    public Student(int id, String name, String email, List<Course> enrolledCourses) {
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "email")
+    private String email;
+
+    @OneToMany
+    private List<Integer> courseIds;
+
+    public Student(int id, String name, String email, List<Integer> courseIds) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.enrolledCourses = enrolledCourses;
+        this.courseIds = courseIds;
     }
 
     @Override
@@ -35,11 +42,23 @@ public class Student {
         return email;
     }
 
-    public List<Course> getEnrolledCourses() {
-        return enrolledCourses;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setEnrolledCourses(List<Course> enrolledCourses) {
-        this.enrolledCourses = enrolledCourses;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public List<Integer> getCourseIds() {
+        return courseIds;
+    }
+
+    public void setCourseIds(List<Integer> courseIds) {
+        this.courseIds = courseIds;
     }
 }

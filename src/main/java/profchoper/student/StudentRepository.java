@@ -18,51 +18,20 @@ public class StudentRepository {
     }
 
     public List<Student> findAll() {
-        String selectSQL = "SELECT s.id as s_id, s.name as s_name, s.email as s_email, " +
-                "c1.id as c1_id, c1.name as c1_name, c1.alias as c1_alias, " +
-                "c2.id as c2_id, c2.name as c2_name, c2.alias as c2_alias," +
-                "c3.id as c3_id, c3.name as c3_name, c3.alias as c3_alias," +
-                "c4.id as c4_id, c4.name as c4_name, c4.alias as c4_alias " +
-                "FROM students s " +
-                "JOIN courses c1 ON s.course1_id = c1.id " +
-                "JOIN courses c2 ON s.course2_id = c2.id " +
-                "JOIN courses c3 ON s.course3_id = c3.id " +
-                "JOIN courses c4 ON s.course4_id = c4.id " +
-                "ORDER BY s_id";
+        String selectSQL = "SELECT * FROM students ORDER BY id";
 
         return jdbcTemplate.query(selectSQL, new StudentRowMapper());
     }
 
     public Student findById(int id) {
-        String selectSQL = "SELECT s.id as s_id, s.name as s_name, s.email as s_email, " +
-                "c1.id as c1_id, c1.name as c1_name, c1.alias as c1_alias, " +
-                "c2.id as c2_id, c2.name as c2_name, c2.alias as c2_alias," +
-                "c3.id as c3_id, c3.name as c3_name, c3.alias as c3_alias," +
-                "c4.id as c4_id, c4.name as c4_name, c4.alias as c4_alias " +
-                "FROM students s " +
-                "JOIN courses c1 ON s.course1_id = c1.id " +
-                "JOIN courses c2 ON s.course2_id = c2.id " +
-                "JOIN courses c3 ON s.course3_id = c3.id " +
-                "JOIN courses c4 ON s.course4_id = c4.id " +
-                "WHERE s.id = ?";
+        String selectSQL = "SELECT * FROM students WHERE id = ?";
 
         return (Student) jdbcTemplate.queryForObject(selectSQL, new Object[]{id},
                 new BeanPropertyRowMapper(Student.class));
     }
 
     public Student findByEmail(String email) {
-        String selectSQL = "SELECT s.id as s_id, " +
-                "s.name as s_name, s.email as s_email, " +
-                "c1.id as c1_id, c1.name as c1_name, c1.alias as c1_alias, " +
-                "c2.id as c2_id, c2.name as c2_name, c2.alias as c2_alias," +
-                "c3.id as c3_id, c3.name as c3_name, c3.alias as c3_alias," +
-                "c4.id as c4_id, c4.name as c4_name, c4.alias as c4_alias " +
-                "FROM students s " +
-                "JOIN courses c1 ON s.course1_id = c1.id " +
-                "JOIN courses c2 ON s.course2_id = c2.id " +
-                "JOIN courses c3 ON s.course3_id = c3.id " +
-                "JOIN courses c4 ON s.course4_id = c4.id " +
-                "WHERE s.email = ?";
+        String selectSQL = "SELECT * FROM students WHERE email = ?";
 
         return (Student) jdbcTemplate.queryForObject(selectSQL, new Object[]{email},
                 new BeanPropertyRowMapper(Student.class));
