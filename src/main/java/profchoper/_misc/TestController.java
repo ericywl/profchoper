@@ -46,7 +46,7 @@ public class TestController {
 
         String studentEmail = authFacade.getAuthentication().getName();
         Student student = studentService.getStudentByEmail(studentEmail);
-        int firstCourseId = student.getEnrolledCourses().get(0).getId();
+        String firstCourseId = student.getEnrolledCourses().get(0).getId();
         List<Professor> professors = professorService.getProfessorsByCourseId(firstCourseId);
 
         model.put("student", student);
