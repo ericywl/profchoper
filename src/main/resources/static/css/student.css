@@ -13,20 +13,23 @@ ul {
     list-style-type: none;
 }
 
-/* The whole week calendar */
-.week-cal {
+/* Whole calendar */
+.calendar {
     width: 80%;
-    margin-right: auto;
-    margin-left: auto;
+    margin: auto;
+}
+
+/* Week calendar table */
+#week-cal-table {
+    width: 100%;
     table-layout: fixed;
+    margin-bottom: 5%;
 }
 
 /* Week header */
 #week-cal-header {
-    padding: 20px 50px 65px 25px;
+    padding: 3% 5% 2% 5%;
     background: darkgrey;
-    margin-bottom: -13px;
-    height: 10px;
     text-align: center;
 }
 
@@ -49,10 +52,29 @@ ul {
     padding-top: 10px;
 }
 
-/* Table header and data elements */
-.scheduler {
-    margin-bottom: 100px;
+.course {
+    border-bottom-color: white;
+    border-top-color: white;
+    border-right-color: white;
+    border-radius: 0;
+    display: inline;
+    width: 60%;
+}
 
+.course:active, .course:focus, .course:active:focus {
+    outline: none;
+}
+
+.instructor {
+    border-bottom-color: white;
+    border-top-color: white;
+    border-radius: 0;
+    display: inline;
+    width: 40%;
+}
+
+.instructor:active, .instructor:focus, .instructor:active:focus {
+    outline: none;
 }
 
 th, td {
@@ -82,35 +104,19 @@ td:hover {
     margin: 7% 3% 2% 3%;
 }
 
-#calendar {
-    margin-bottom: 2%;
-}
-
 /* Nav bar props */
 .btn-lg {
-    margin: 5% 3% 0 2%;
     background: white;
     color: dodgerblue;
+    margin: .8% 3% 0 2%;
 }
 
 .btn-lg:hover {
     color: #1e70ff;
 }
 
-.course {
-    margin-left: 10%;
-    display: inline;
-    width: 50%;
-
-}
-
-.instructor {
-    display: inline;
-    width: 30%;
-    margin-left: -4px;
-}
-
 .logout {
+    margin-top: .8%;
     margin-left: 60%;
     display: inline-block;
 }
@@ -118,10 +124,6 @@ td:hover {
 .h4 {
     padding-left: 55px;
     font-size: 3.5rem;
-}
-
-.btn {
-    margin-top: 12.5px;
 }
 
 .showID {

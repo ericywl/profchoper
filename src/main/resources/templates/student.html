@@ -91,63 +91,67 @@
     <p id="notimsg" class="notimsg">Note: please bring along your stuff please bring along your stuffp</p>
 </div>
 
-<div class="page-header" id="calendar">
+<div class="page-header" id="calendar-header">
     <h1>Your calendar</h1>
 </div>
 
-<div class="week-cal" id="week-cal-header">
-    <ul>
-        <li class="prev">&#10094;</li>
-        <li class="next">&#10095;</li>
-        <li>
-            4 Sept - 8 Sept 2017<br>
-            <span style="font-size:18px">Week 12</span>
-        </li>
-    </ul>
+<div class="calendar">
+    <div class="week-cal" id="week-cal-header">
+        <ul>
+            <li class="prev">&#10094;</li>
+            <li class="next">&#10095;</li>
+            <li>
+                4 Sept - 8 Sept 2017<br>
+                <span style="font-size:18px">Week 12</span>
+            </li>
+        </ul>
+    </div>
+
+    <div id="week-cal-buttons">
+        <button class="course dropdown btn" id="coursechoice" data-toggle="dropdown"
+                href="#coursechoice">Choose Course
+            <span class="caret"></span>
+            <ul class="dropdown-menu">
+                <li><a href="#coursechoice">50-001 Introduction to Information System & Programming </a></li>
+                <li><a href="#coursechoice">50-002 Computation Structure</a></li>
+                <li><a href="#coursechoice">50-004 Introduction to Algorithm</a></li>
+            </ul>
+        </button><!--
+        --><button class="instructor dropdown btn btn-outline-secondary disabled" id="profchoice"
+                aria-disabled="true"
+                data-toggle="dropdown" href="#profchoice">Choose Instructor <span
+                class="caret"></span>
+            <ul class="dropdown-menu">
+                <li><a href="#profchoice">Oka Kurniawan</a></li>
+                <li><a href="#profchoice">Zhang Yue</a></li>
+                <li><a href="#profchoice">Yuen Chau</a></li>
+            </ul>
+        </button>
+    </div>
+
+    <table class="week-cal" id="week-cal-table">
+        <tr>
+            <th>Time</th>
+            <th scope="col">Monday</th>
+            <th scope="col">Tuesday</th>
+            <th scope="col">Wednesday</th>
+            <th scope="col">Thursday</th>
+            <th scope="col">Friday</th>
+        </tr>
+
+        <tr id="week-cal-row" th:each="row : ${calendar}">
+            <th th:text="${row[0]}"></th>
+            <!-- th:utext does not escape <br /> -->
+            <!-- replace \n from backend to <br /> for html frontend -->
+            <td th:utext="${#strings.replace(#strings.escapeXml(row[1]),'&#10;','&lt;br /&gt;')}"></td>
+            <td th:utext="${#strings.replace(#strings.escapeXml(row[2]),'&#10;','&lt;br /&gt;')}"></td>
+            <td th:utext="${#strings.replace(#strings.escapeXml(row[3]),'&#10;','&lt;br /&gt;')}"></td>
+            <td th:utext="${#strings.replace(#strings.escapeXml(row[4]),'&#10;','&lt;br /&gt;')}"></td>
+            <td th:utext="${#strings.replace(#strings.escapeXml(row[5]),'&#10;','&lt;br /&gt;')}"></td>
+        </tr>
+
+    </table>
 </div>
-
-<button class="course dropdown btn btn-outline-info" id="coursechoice" data-toggle="dropdown"
-        href="#coursechoice">Choose Course
-    <span class="caret"></span>
-    <ul class="dropdown-menu">
-        <li><a href="#coursechoice">50-001 Introduction to Information System & Programming </a></li>
-        <li><a href="#coursechoice">50-002 Computation Structure</a></li>
-        <li><a href="#coursechoice">50-004 Introduction to Algorithm</a></li>
-    </ul>
-</button>
-
-<button class="instructor dropdown btn btn-outline-secondary disabled" id="profchoice" aria-disabled="true"
-        data-toggle="dropdown" href="#profchoice">Choose Instructor <span
-        class="caret"></span>
-    <ul class="dropdown-menu">
-        <li><a href="#profchoice">Oka Kurniawan</a></li>
-        <li><a href="#profchoice">Zhang Yue</a></li>
-        <li><a href="#profchoice">Yuen Chau</a></li>
-    </ul>
-</button>
-
-<table class="week-cal" id="week-cal-table">
-    <tr>
-        <th>Time</th>
-        <th scope="col">Monday</th>
-        <th scope="col">Tuesday</th>
-        <th scope="col">Wednesday</th>
-        <th scope="col">Thursday</th>
-        <th scope="col">Friday</th>
-    </tr>
-
-    <tr id="week-cal-row" th:each="row : ${calendar}">
-        <th th:text="${row[0]}"></th>
-        <!-- th:utext does not escape <br /> -->
-        <!-- replace \n from backend to <br /> for html frontend -->
-        <td th:utext="${#strings.replace(#strings.escapeXml(row[1]),'&#10;','&lt;br /&gt;')}"></td>
-        <td th:utext="${#strings.replace(#strings.escapeXml(row[2]),'&#10;','&lt;br /&gt;')}"></td>
-        <td th:utext="${#strings.replace(#strings.escapeXml(row[3]),'&#10;','&lt;br /&gt;')}"></td>
-        <td th:utext="${#strings.replace(#strings.escapeXml(row[4]),'&#10;','&lt;br /&gt;')}"></td>
-        <td th:utext="${#strings.replace(#strings.escapeXml(row[5]),'&#10;','&lt;br /&gt;')}"></td>
-    </tr>
-
-</table>
 
 <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
