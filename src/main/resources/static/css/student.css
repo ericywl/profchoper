@@ -132,6 +132,7 @@ td:hover {
 }
 
 .showID {
+    font-size: larger;
     float: right;
     color: green;
     margin: 10px 10px 0;
@@ -259,7 +260,8 @@ hr {
     display: none;
     float: right;
     overflow: auto;
-    margin: 0 1.5% 0;
+    padding: auto;
+    margin: -3.5px 1.5% 0;
 }
 
 .notibtnbook {
