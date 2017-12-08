@@ -46,14 +46,16 @@ function courseTextOnClick() {
     console.log(courseId);
     const profUrl = "https://sutd-profchoper.herokuapp.com/api/professors?course=" + courseId;
 
-    var profs = [];
+    var profsHTML = "";
     var data = $.getJSON(profUrl, function (json) {
         if (json.length !== 0) {
             console.log(json);
 
             for (var i = 0; i < json.length; i++) {
-                console.log(json[i].name);
+                profsHTML = profsHTML + "<li>" + json[i].name + "</li>";
             }
+
+            $("#instructor-dropdown-menu").empty().append(profsHTML);
 
         } else {
             console.log("error");
