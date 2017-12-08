@@ -61,7 +61,7 @@ public class BookingSlotServiceImpl implements BookingSlotService {
     @Override
     public boolean deleteSlot(BookingSlot slot, String profAlias) {
         if (!slot.getBookStatus().equals(AVAIL)
-                || !slot.getProfAlias().equalsIgnoreCase(profAlias.toLowerCase())) return false;
+                || !slot.getProfAlias().equals(profAlias.toLowerCase())) return false;
 
         return slotDAO.delete(slot);
     }
@@ -98,10 +98,18 @@ public class BookingSlotServiceImpl implements BookingSlotService {
 
     @Override
     public List<BookingSlot> getSlotsByCourseAndSWeek(int courseId, LocalDate startDateOfSchoolWeek) {
+        List<BookingSlot> slotList = getSlotsBySchoolWeek(startDateOfSchoolWeek);
         List<BookingSlot> output = new ArrayList<>();
         List<Professor> professors = professorService.getProfessorsByCourseId(courseId);
 
-        return getSlotsByProfAndSWeek(professors.get(0).getAlias(), startDateOfSchoolWeek);
+        for (BookingSlot slot : slotList) {
+            for (Professor prof : professors) {
+                if (slot.getProfAlias().equalsIgnoreCase(prof.getAlias()))
+                    output.add(slot);
+            }
+        }
+
+        return output;
     }
 
     @Override

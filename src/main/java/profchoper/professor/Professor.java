@@ -11,11 +11,11 @@ public class Professor {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "email")
-    private String email;
-
     @Column(name = "alias")
     private String alias;
+
+    @Column(name = "email")
+    private String email;
 
     @Column(name = "office")
     private String office;
@@ -27,7 +27,7 @@ public class Professor {
         // default constructor
     }
 
-    public Professor(String name, String email, String alias, String office, Course course) {
+    public Professor(String name, String alias, String email, String office, Course course) {
         this.name = name;
         this.email = email;
         this.alias = alias;
