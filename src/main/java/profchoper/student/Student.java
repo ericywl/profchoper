@@ -3,13 +3,26 @@ package profchoper.student;
 
 import profchoper.course.Course;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
 public class Student {
-    private final int id;
-    private final String name;
-    private final String email;
+    @Id
+    private int id;
+
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "email")
+    private String email;
+
+    @OneToMany
     private List<Course> enrolledCourses;
+
+    public Student() {
+        // default constructor
+    }
 
     public Student(int id, String name, String email, List<Course> enrolledCourses) {
         this.id = id;
@@ -33,6 +46,18 @@ public class Student {
 
     public String getEmail() {
         return email;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public List<Course> getEnrolledCourses() {

@@ -78,7 +78,9 @@ ON CONFLICT (professor_alias, start_time)
 INSERT INTO users (username, password, enabled) VALUES
   ('eric@mymail.sutd.edu.sg', 'password', TRUE),
   ('wentat@mymail.sutd.edu.sg', 'password', TRUE),
-  ('ngaiman_cheung@sutd.edu.sg', 'prof_password', TRUE)
+  ('kok@mymail.sutd.edu.sg', 'password', TRUE),
+  ('ngaiman_cheung@sutd.edu.sg', 'prof_password', TRUE),
+  ('jit_biswas@sutd.edu.sg', 'prof_password', TRUE)
 ON CONFLICT (username)
   DO
   UPDATE SET
@@ -88,7 +90,9 @@ ON CONFLICT (username)
 INSERT INTO user_roles (username, role) VALUES
   ('eric@mymail.sutd.edu.sg', 'ROLE_STUDENT'),
   ('wentat@mymail.sutd.edu.sg', 'ROLE_STUDENT'),
-  ('ngaiman_cheung@sutd.edu.sg', 'ROLE_PROFESSOR')
+  ('kok@mymail.sutd.edu.sg', 'ROLE_STUDENT'),
+  ('ngaiman_cheung@sutd.edu.sg', 'ROLE_PROFESSOR'),
+  ('jit_biswas@sutd.edu.sg', 'ROLE_PROFESSOR')
 ON CONFLICT (username, role)
   DO NOTHING;
 

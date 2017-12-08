@@ -20,16 +20,6 @@ public class BookingSlot {
         this.timestamp = startTimestamp;
     }
 
-    // For inserting into database
-    public BookingSlot(String profAlias, LocalDateTime startDateTime) throws BookingSlotException {
-        LocalTime startTime = startDateTime.toLocalTime();
-        if (startTime.isBefore(DAY_FIRST_START_TIME) || startTime.isAfter(DAY_LAST_START_TIME))
-            throw new BookingSlotException("Start time must be within set boundaries.");
-
-        this.profAlias = profAlias;
-        this.timestamp = Timestamp.valueOf(startDateTime);
-    }
-
     public LocalDateTime getDateTime() {
         return timestamp.toLocalDateTime();
     }

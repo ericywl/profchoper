@@ -51,7 +51,7 @@ public class BookingSlotServiceImpl implements BookingSlotService {
     @Override
     public boolean confirmBookSlot(BookingSlot slot, String profAlias) {
         if (slot.getBookStatus().equals(AVAIL)
-                || !slot.getProfAlias().equals(profAlias)) return false;
+                || !slot.getProfAlias().equals(profAlias.toLowerCase())) return false;
 
         slot.setBookStatus(BOOKED);
 
@@ -61,14 +61,14 @@ public class BookingSlotServiceImpl implements BookingSlotService {
     @Override
     public boolean deleteSlot(BookingSlot slot, String profAlias) {
         if (!slot.getBookStatus().equals(AVAIL)
-                || !slot.getProfAlias().equals(profAlias)) return false;
+                || !slot.getProfAlias().equals(profAlias.toLowerCase())) return false;
 
         return slotDAO.delete(slot);
     }
 
     @Override
     public List<BookingSlot> getSlotsByProfAlias(String profAlias) {
-        return slotDAO.findByProfAlias(profAlias);
+        return slotDAO.findByProfAlias(profAlias.toLowerCase());
     }
 
     @Override
@@ -77,7 +77,7 @@ public class BookingSlotServiceImpl implements BookingSlotService {
         List<BookingSlot> output = new ArrayList<>();
 
         for (Professor prof : professors) {
-            output.addAll(getSlotsByProfAlias(prof.getAlias()));
+            output.addAll(getSlotsByProfAlias(prof.getAlias().toLowerCase()));
         }
 
         return output;
@@ -89,7 +89,7 @@ public class BookingSlotServiceImpl implements BookingSlotService {
         List<BookingSlot> output = new ArrayList<>();
 
         for (BookingSlot slot : slotList) {
-            if (slot.getProfAlias().equals(profAlias))
+            if (slot.getProfAlias().equals(profAlias.toLowerCase()))
                 output.add(slot);
         }
 
@@ -104,7 +104,7 @@ public class BookingSlotServiceImpl implements BookingSlotService {
 
         for (BookingSlot slot : slotList) {
             for (Professor prof : professors) {
-                if (slot.getProfAlias().equals(prof.getAlias()))
+                if (slot.getProfAlias().equals(prof.getAlias().toLowerCase()))
                     output.add(slot);
             }
         }

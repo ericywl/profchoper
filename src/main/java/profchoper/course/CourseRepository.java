@@ -1,5 +1,6 @@
 package profchoper.course;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -11,6 +12,7 @@ import java.util.List;
 public class CourseRepository {
     private final JdbcTemplate jdbcTemplate;
 
+    @Autowired
     public CourseRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
@@ -25,6 +27,6 @@ public class CourseRepository {
         String selectSQL = "SELECT * FROM courses WHERE id = ?";
 
         return (Course) jdbcTemplate.queryForObject(selectSQL, new Object[]{id},
-                new BeanPropertyRowMapper(Course.class));
+                new CourseRowMapper());
     }
 }
