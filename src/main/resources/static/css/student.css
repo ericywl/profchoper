@@ -13,6 +13,7 @@ ul {
     list-style-type: none;
 }
 
+/* General dropdown */
 .dropdown-menu {
     width: 75%;
 }
@@ -26,6 +27,7 @@ ul {
     margin-right: 10px;
 }
 
+/* Course dropdown select */
 #course-dropdown {
     width: 60%;
     float: left;
@@ -48,6 +50,8 @@ ul {
     outline: none;
 }
 
+
+/* Instructor dropdown select */
 #instructor-dropdown {
     width: 40%;
     float: right;
