@@ -61,6 +61,10 @@ ul {
     width: 60%;
 }
 
+.course ul li:hover {
+    background: #cccccc;
+}
+
 .course:active, .course:focus, .course:active:focus {
     outline: none;
 }
