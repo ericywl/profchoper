@@ -20,7 +20,12 @@ ul {
 
 .dropdown-menu li {
     padding: 5px 25px;
-    width: 99.8%;
+    width: 100%;
+}
+
+.dropdown-menu li:hover {
+    cursor: pointer;
+    background: #efefef;
 }
 
 .choice-text {
@@ -40,10 +45,6 @@ ul {
     border-radius: 0;
     display: inline;
     width: 100%;
-}
-
-.course ul li:hover {
-    background: #cccccc;
 }
 
 .course:active, .course:focus, .course:active:focus {

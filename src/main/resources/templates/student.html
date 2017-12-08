@@ -112,12 +112,10 @@
                 <span class="choice-text" id="course-choice-text"
                       th:text="${student.getEnrolledCourses()[0].toString()}">Course 1</span>
                 <span class="caret"></span></button>
-            <ul id="course-dropdown-menu" class="dropdown-menu"
-                th:each="course : ${student.getEnrolledCourses()}">
-                <li>
-                    <a th:text="${course.toString()}">
-                        Course Placeholder</a>
-                </li>
+            <ul id="course-dropdown-menu" class="dropdown-menu">
+                <th:block th:each="course : ${student.getEnrolledCourses()}">
+                    <li th:text="${course.toString()}">Course Placeholder</li>
+                </th:block>
             </ul>
         </div>
 
@@ -125,11 +123,10 @@
             <button class="btn instructor dropdown-toggle" type="button" data-toggle="dropdown">
                 <span class="choice-text" id="instructor-choice-text">Choose Instructor</span>
                 <span class="caret"></span></button>
-            <ul id="instructor-dropdown-menu" class="dropdown-menu"
-                th:each="prof : ${professors}">
-                <li>
-                    <span th:text="${prof.getName()}">Instructor Placeholder</span>
-                </li>
+            <ul id="instructor-dropdown-menu" class="dropdown-menu">
+                <th:block th:each="prof : ${professors}">
+                    <li th:text="${prof.getName()}">Instructor Placeholder</li>
+                </th:block>
             </ul>
         </div>
     </div>
