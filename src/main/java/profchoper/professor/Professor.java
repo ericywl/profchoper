@@ -23,6 +23,7 @@ public class Professor {
     @OneToOne
     private Course course;
 
+
     public Professor() {
         // default constructor
     }

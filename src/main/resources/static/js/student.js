@@ -34,13 +34,16 @@ $(document).ready(function () {
         $("#myModal").modal();
     });
 
-    $("#course-dropdown-menu").find("li").click(function () {
-        var course = $(this).text();
-        $("#course-choice-text").html(course);
+    $("#course-dropdown-menu").find("li").click(courseTextOnClick);
 
-        $.getJSON("https://sutd-profchoper.herokuapp.com/api/professors?course=50001", function (json) {
-            console.log(json)
-        })
-
-    });
 });
+
+function courseTextOnClick() {
+    var course = $(this).text();
+    $("#course-choice-text").html(course);
+
+    var courseId = course.substr(0, 2) + course.substr(3, 3);
+    const profUrl = "/api/professors?course=" + courseId;
+    var data = $.getJSON(profUrl);
+    console.log(data);
+}

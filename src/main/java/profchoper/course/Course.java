@@ -8,8 +8,13 @@ import javax.persistence.Id;
 public class Course {
     @Id
     private int id;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "alias")
     private String alias;
+
 
     public Course() {
         // default constructor
@@ -24,8 +29,7 @@ public class Course {
     @Override
     public String toString() {
         String idStr = String.valueOf(id);
-        if (idStr.length() == 4)
-            idStr = "0" + idStr;
+        if (idStr.length() == 4) idStr = "0" + idStr;
 
         idStr = idStr.substring(0, 2) + "." + idStr.substring(2,5);
         return  idStr + " " + name;
