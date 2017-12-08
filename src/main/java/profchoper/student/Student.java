@@ -14,7 +14,7 @@ public class Student {
 
     @Column(name = "email")
     private String email;
-    
+
     @ElementCollection
     private List<Integer> courseIds;
 
