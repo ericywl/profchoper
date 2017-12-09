@@ -1,351 +1,93 @@
 @font-face {
-    font-family: Quicksand;
-    src: url("https://fonts.gstatic.com/s/quicksand/v7/sKd0EMYPAh5PYCRKSryvW5Bw1xU1rKptJj_0jans920.woff2");
-}
+            font-family: Quicksand;
+            src: url("https://fonts.gstatic.com/s/quicksand/v7/sKd0EMYPAh5PYCRKSryvW5Bw1xU1rKptJj_0jans920.woff2");
+        }
+        body
+        {
+            font-family: Quicksand;
+        }
+        /* remove bullets */
+        ul {list-style-type: none;}
 
-/* Main body*/
-html, body {
-    font-family: Quicksand, sans-serif;
-    height: 100%;
-    width: 100%;
-    font-size: 16px;
-}
+        /* Week header */
+        .week {
+            padding: 20px 50px 65px 25px;
+            width: 80%;
+            background: darkgrey;
+            margin: auto;
+            height: 10px;
+            text-align: center;
+        }
 
-/* Remove bullets */
-ul {
-    list-style-type: none;
-}
+        .week ul li {
+            color: white;
+            font-size: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
 
-/* Nav bar props */
-.navbar {
-    width: 100%;
-    height: 9%;
-    padding: 5px;
-}
+        /* Previous button inside month header */
+        .week .prev {
+            float: left;
+            padding-top: 10px;
+        }
 
-.navbar-btn {
-    font-size: 24px;
-}
+        /* Next button */
+        .week .next {
+            float: right;
+            padding-top: 10px;
+        }
 
-.btn-lg {
-    background: white;
-    color: dodgerblue;
-    margin: .8% 3% 0 2%;
-}
+        /*table header and data elements */
+        .scheduler{
+            margin-bottom: 100px;
 
-.btn-lg:hover {
-    color: #1e70ff;
-}
+        }
+        th,td
+        {
+            margin: auto;
+            text-align: center;
+            border-collapse: collapse;
+            outline: 1px solid #e3e3e3;
+        }
 
-.logout {
-    margin-left: 58%;
-    display: inline-block;
-    font-size: 18px;
-}
+        td
+        {
+            padding: 10px 10px;
+        }
 
-.h4 {
-    padding-left: 55px;
-    font-size: 3.5rem;
-}
+        th
+        {
+            background: #666;
+            color: white;
+            padding: 5px 10px;
+        }
 
-.showID {
-    font-size: larger;
-    float: right;
-    color: green;
-    margin: 10px 10px 0;
-    padding: 5px;
-    overflow: auto;
-}
+        td:hover
+        {
+            cursor: pointer;
+            background: green;
+            color: white;
+        }
 
-/* Week header */
-#week-cal-header {
-    width: 100%;
-    height: 28%;
-    padding: 3% 5% 2% 5%;
-    background: darkgrey;
-    text-align: center;
-}
+        .page-header{
+            margin: 100px 20px 10px 20px;
+        }
 
-#week-cal-header ul li {
-    color: white;
-    font-size: 28px;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-}
+        .h4{
+            padding-left:55px;
+            font-size: 3.5rem;
+        }
+        .logout {
+            margin-left: 800px;
+            margin-top: 20px;
 
-/* Previous button inside month header */
-#week-cal-header .prev {
-    float: left;
-    padding-top: 10px;
-}
 
-/* Next button */
-#week-cal-header .next {
-    float: right;
-    padding-top: 10px;
-}
+        }
+        .showID{
+            float: right;
+            color: green;
+            margin-left: 0px;
+            overflow: auto;
 
-#week-cal-buttons {
-    width: 100%;
-    height: 8%;
-}
-
-.dropdown {
-    width: 100%;
-    height: 100%;
-}
-
-.dropdown-toggle {
-    width: 100%;
-    height: 100%;
-}
-
-/* General dropdown */
-.dropdown-menu {
-    width: 75%;
-}
-
-.dropdown-menu li {
-    padding: 5px 25px;
-    width: 100%;
-}
-
-.dropdown-menu li:hover {
-    cursor: pointer;
-    background: #efefef;
-}
-
-.choice-text {
-    margin-right: 10px;
-    font-size: 20px;
-}
-
-/* Course dropdown select */
-#course-dropdown {
-    width: 60%;
-    float: left;
-}
-
-#course-dropdown-menu li {
-    font-size: 18px;
-}
-
-.course {
-    border-bottom-color: white;
-    border-top-color: white;
-    border-right-color: white;
-    border-radius: 0;
-    display: inline;
-    width: 100%;
-}
-
-.course:active, .course:focus, .course:active:focus {
-    outline: none;
-}
-
-/* Instructor dropdown select */
-#instructor-dropdown {
-    width: 40%;
-    height: 100%;
-    float: right;
-}
-
-#instructor-dropdown-menu li {
-    font-size: 18px;
-}
-
-.instructor {
-    border-bottom-color: white;
-    border-top-color: white;
-    border-radius: 0;
-    display: inline;
-    width: 100%;
-}
-
-.instructor:active, .instructor:focus, .instructor:active:focus {
-    outline: none;
-}
-
-/* Whole calendar */
-.calendar {
-    width: 80%;
-    height: 60%;
-    margin: auto;
-    font-size: 18px;
-}
-
-/* Week calendar table */
-#week-cal-table {
-    width: 100%;
-    height: 60%;
-    table-layout: fixed;
-    margin-bottom: 5%;
-}
-
-th, td {
-    margin: auto;
-    text-align: center;
-    border-collapse: collapse;
-    outline: 1px solid #e3e3e3;
-    height: 50px;
-}
-
-td {
-    padding: 10px;
-}
-
-th {
-    background: #666;
-    color: white;
-    padding: 5px 10px;
-}
-
-.page-header {
-    margin: 7% 3% 2% 3%;
-}
-
-.page-header h1 {
-    font-size: 40px;
-}
-
-/* Noticonfirm and Notipending hover */
-.noticonfirm:hover .notibtn, .notipending:hover .notibtn {
-    display: inline-block;
-    overflow: auto;
-}
-
-.noticonfirm:hover span, .notipending:hover span {
-    display: inline-block;
-}
-
-.noticonfirm:hover hr, .notipending:hover hr {
-    display: block;
-}
-
-.noticonfirm:hover .notimsg, .notipending:hover .notimsg {
-    display: block;
-}
-
-/* Successful booking */
-.noticonfirm {
-    width: 90%;
-    height: 8%;
-    margin: 10px 6% 10px 4%;
-    background-color: white;
-    border: 2px solid #26e073;
-    padding: .5% 1%;
-    text-align: center;
-}
-
-.noticonfirm:hover {
-    background: #26e073;
-    color: white;
-    font-size: 1.3em;
-    text-align: center;
-}
-
-/* Pending */
-.notipending {
-    width: 90%;
-    height: 8%;
-    margin: 10px 6% 10px 4%;
-    background-color: white;
-    border: 2px solid #4286f4;
-    padding: .5% 1%;
-    text-align: center;
-}
-
-.notipending:hover {
-    background: #4286f4;
-    color: white;
-    font-size: 1.3em;
-    text-align: center;
-}
-
-/* Cancelled */
-.noticancel {
-    width: 90%;
-    height: 8%;
-    margin: 10px 6% 10px 4%;
-    background-color: white;
-    border: 2px solid #ed3b3b;
-    padding: .5% 1%;
-    text-align: center;
-}
-
-.noticancel:hover {
-    background: #ed3b3b;
-    color: white;
-    height: 16%;
-    font-size: 1.3em;
-    text-align: center;
-}
-
-.noticancel:hover .notibtnbook {
-    display: inline-block;
-    overflow: auto;
-}
-
-.noticancel:hover span {
-    display: inline-block;
-}
-
-.noticancel:hover hr {
-    display: block;
-}
-
-.noticancel:hover .notimsg {
-    display: block;
-}
-
-/* General notification */
-hr {
-    display: none;
-    height: 1px;
-    border: 0;
-    border-top: 1px solid #ccc;
-    margin: 1em 20px 1em 0;
-    padding: 0;
-}
-
-.notistatus {
-    display: none;
-    float: left;
-}
-
-.notitext {
-    padding-top: 15px;
-    font-size: 1.2em;
-}
-
-.notibtn {
-    display: none;
-    float: right;
-    overflow: auto;
-    padding: auto;
-    margin: -7px 1.5% 0;
-    font-size: 18px;
-}
-
-.notibtnbook {
-    display: none;
-    float: right;
-    overflow: auto;
-    padding: auto;
-    margin: -7px 1.5% 0;
-    font-size: 18px;
-}
-
-.notimsg {
-    display: none;
-    margin-left: 100px;
-    margin-right: 100px;
-}
-
-.noselect {
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* Internet Explorer/Edge */
-    user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
-}
+        }
