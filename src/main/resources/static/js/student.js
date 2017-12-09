@@ -88,6 +88,9 @@ function courseTextOnClick() {
 }
 
 function profTextOnClick() {
+    var headerDate = $("#week-cal-header-date").text();
+
+
     var profName = $(this).text();
     $("#instructor-choice-text").text(profName);
 

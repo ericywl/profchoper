@@ -19,10 +19,16 @@ public class WeekCalendar {
         this.matrix = matrix;
     }
 
-    public String getHeader() {
+    public String getHeaderDate() {
         LocalDate endDateOfSchoolWeek = startDateOfSchoolWeek.plus(5, ChronoUnit.DAYS);
 
         return DAY_MONTH.format(startDateOfSchoolWeek) + " - " + DAY_MONTH.format(endDateOfSchoolWeek);
+    }
+
+    public String getHeaderWeek() {
+        long weekNo = ChronoUnit.WEEKS.between(startDateOfSchoolTerm, startDateOfSchoolWeek) + 1;
+
+        return "Week" + weekNo;
     }
 
     public List<List<String>> getMatrix() {
@@ -55,5 +61,9 @@ public class WeekCalendar {
 
         System.out.println(DAY_MONTH.format(startDateOfSchoolWeek)
                 + " - " + DAY_MONTH.format(endDateOfSchoolWeek));
+
+        LocalDate startDateOfSchoolTerm = LocalDate.of(2017, 9, 11);
+
+        System.out.println(ChronoUnit.WEEKS.between(startDateOfSchoolTerm, startDateOfSchoolTerm) + 1);
     }
 }
