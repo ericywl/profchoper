@@ -52,7 +52,7 @@ function courseTextOnClick() {
             console.log(json);
 
             for (var i = 0; i < json.length; i++) {
-                profsHTML = profsHTML + "<li class='course-dropdown-menu-text'>" + json[i].name + "</li>";
+                profsHTML = profsHTML + "<li class='instructor-dropdown-menu-text'>" + json[i].name + "</li>";
             }
 
             $("#instructor-choice-text").text("Choose Instructor");
