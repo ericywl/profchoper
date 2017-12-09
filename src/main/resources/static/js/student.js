@@ -34,8 +34,8 @@ $(document).ready(function () {
         $("#myModal").modal();
     });
 
-    $("#course-dropdown-menu").find("li").click(courseTextOnClick);
-    $("#instructor-dropdown-menu").find("li").click(profTextOnClick);
+    $("#course-dropdown-menu").on("click", ".course-dropdown-menu-text", courseTextOnClick);
+    $("#instructor-dropdown-menu").on("click", ".instructor-dropdown-menu-text", profTextOnClick);
 });
 
 function courseTextOnClick() {
@@ -47,12 +47,12 @@ function courseTextOnClick() {
     const profUrl = "https://sutd-profchoper.herokuapp.com/api/professors?course=" + courseId;
 
     var profsHTML = "";
-    var data = $.getJSON(profUrl, function (json) {
+    return $.getJSON(profUrl, function (json) {
         if (json.length !== 0) {
             console.log(json);
 
             for (var i = 0; i < json.length; i++) {
-                profsHTML = profsHTML + "<li>" + json[i].name + "</li>";
+                profsHTML = profsHTML + "<li class='course-dropdown-menu-text'>" + json[i].name + "</li>";
             }
 
             $("#instructor-choice-text").text("Choose Instructor");
