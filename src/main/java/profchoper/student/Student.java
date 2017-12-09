@@ -20,6 +20,7 @@ public class Student {
     @OneToMany
     private List<Course> enrolledCourses;
 
+
     public Student() {
         // default constructor
     }

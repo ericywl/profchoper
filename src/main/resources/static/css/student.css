@@ -4,8 +4,11 @@
 }
 
 /* Main body*/
-body {
+html, body {
     font-family: Quicksand, sans-serif;
+    height: 100%;
+    width: 100%;
+    font-size: 16px;
 }
 
 /* Remove bullets */
@@ -13,46 +16,191 @@ ul {
     list-style-type: none;
 }
 
-/* The whole week calendar */
-.week-cal {
+/* Nav bar props */
+.navbar {
+    width: 100%;
+    height: 9%;
+    padding: 5px;
+}
+
+.navbar-btn {
+    font-size: 22px;
+}
+
+.btn-lg {
+    background: white;
+    color: dodgerblue;
+    margin: 15px auto 0 30px;
+}
+
+.btn-lg:hover {
+    color: #1e70ff;
+}
+
+.btn-lg:focus {
+    color: dodgerblue;
+}
+
+.logout {
+    margin: 20px auto 0 auto;
+    display: inline-block;
+    font-size: 18px;
+    float: right;
+    overflow: hidden;
+}
+
+.h4 {
+    padding-left: 55px;
+    font-size: 3.5rem;
+}
+
+/* Whole calendar */
+.calendar {
     width: 80%;
-    margin-right: auto;
-    margin-left: auto;
-    table-layout: fixed;
+    height: 60%;
+    margin: auto;
+    font-size: 18px;
 }
 
 /* Week header */
 #week-cal-header {
-    padding: 20px 50px 65px 25px;
+    width: 100%;
+    height: 28%;
+    padding: 3% 5% 2% 5%;
     background: darkgrey;
-    margin-bottom: -13px;
-    height: 10px;
     text-align: center;
 }
 
 #week-cal-header ul li {
     color: white;
-    font-size: 20px;
+    font-size: 28px;
     text-transform: uppercase;
     letter-spacing: 3px;
 }
 
 /* Previous button inside month header */
 #week-cal-header .prev {
-    float: left;
-    padding-top: 10px;
+    left: 18%;
+    font-size: 40px;
+    position: absolute;
+    color: white;
 }
 
 /* Next button */
 #week-cal-header .next {
-    float: right;
-    padding-top: 10px;
+    right: 18%;
+    font-size: 40px;
+    position: absolute;
+    color: white;
 }
 
-/* Table header and data elements */
-.scheduler {
-    margin-bottom: 100px;
 
+#week-cal-header .prev:hover, #week-cal-header .next:hover {
+    margin-left: -10px;
+    margin-top: -10px;
+    font-size: 60px;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#week-cal-header .prev:active, #week-cal-header .next:active {
+    margin-left: -5px;
+    margin-top: -5px;
+    font-size: 50px;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Buttons for course and instructor */
+#week-cal-buttons {
+    width: 100%;
+    height: 8%;
+}
+
+.dropdown {
+    width: 100%;
+    height: 100%;
+}
+
+.dropdown-toggle {
+    width: 100%;
+    height: 100%;
+}
+
+/* General dropdown */
+.dropdown-menu {
+    width: 75%;
+}
+
+.dropdown-menu li {
+    padding: 5px 25px;
+    width: 100%;
+}
+
+.dropdown-menu li:hover {
+    cursor: pointer;
+    background: #efefef;
+}
+
+.choice-text {
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+/* Course dropdown select */
+#course-dropdown {
+    width: 60%;
+    float: left;
+}
+
+#course-dropdown-menu li {
+    font-size: 18px;
+}
+
+.course {
+    border-bottom-color: white;
+    border-top-color: white;
+    border-right-color: white;
+    border-radius: 0;
+    display: inline;
+    width: 100%;
+}
+
+.course:active, .course:focus, .course:active:focus {
+    outline: none;
+}
+
+/* Instructor dropdown select */
+#instructor-dropdown {
+    width: 40%;
+    height: 100%;
+    float: right;
+}
+
+#instructor-dropdown-menu li {
+    font-size: 18px;
+}
+
+.instructor {
+    border-bottom-color: white;
+    border-top-color: white;
+    border-radius: 0;
+    display: inline;
+    width: 100%;
+}
+
+.instructor:active, .instructor:focus, .instructor:active:focus {
+    outline: none;
+}
+
+/* Week calendar table */
+#week-cal-table {
+    width: 100%;
+    height: 60%;
+    table-layout: fixed;
+    margin-bottom: 5%;
 }
 
 th, td {
@@ -60,10 +208,11 @@ th, td {
     text-align: center;
     border-collapse: collapse;
     outline: 1px solid #e3e3e3;
+    height: 45px;
 }
 
 td {
-    padding: 10px 10px;
+    padding: 10px;
 }
 
 th {
@@ -72,60 +221,12 @@ th {
     padding: 5px 10px;
 }
 
-td:hover {
-    cursor: pointer;
-    background: green;
-    color: white;
-}
-
 .page-header {
-    margin: 100px 20px 10px 20px;
+    margin: 10% 3% 2% 3%;
 }
 
-#calendar {
-    margin-bottom: 17px;
-}
-
-/* Nav bar props */
-.btn-lg {
-    margin: 15px 30px 0 40px;
-    color: white;
-}
-
-.course {
-    margin-left: 10%;
-    display: inline;
-    width: 50%;
-
-}
-
-.instructor {
-    display: inline;
-    width: 30%;
-    margin-left: -4px;
-
-}
-
-.logout {
-    margin-left: 590px;
-    display: inline-block;
-
-}
-
-.h4 {
-    padding-left: 55px;
-    font-size: 3.5rem;
-}
-
-.btn {
-    margin-top: 12.5px;
-}
-
-.showID {
-    float: right;
-    color: green;
-    margin-left: 0;
-    overflow: auto;
+.page-header h1 {
+    font-size: 40px;
 }
 
 /* Noticonfirm and Notipending hover */
@@ -146,16 +247,14 @@ td:hover {
     display: block;
 }
 
-/* Successful appointment */
+/* Successful booking */
 .noticonfirm {
     width: 90%;
-    height: 63px;
-    margin: 10px 50px;
+    height: 8%;
+    margin: 10px 6% 10px 4%;
     background-color: white;
     border: 2px solid #26e073;
-    padding-left: 20px;
-    padding-right: 6px;
-    padding-bottom: 4px;
+    padding: .5% 1.5%;
     text-align: center;
 }
 
@@ -163,19 +262,17 @@ td:hover {
     background: #26e073;
     color: white;
     font-size: 1.3em;
-    height: 100%;
+    text-align: center;
 }
 
 /* Pending */
 .notipending {
     width: 90%;
-    height: 63px;
-    margin: 10px 50px;
+    height: 8%;
+    margin: 10px 6% 10px 4%;
     background-color: white;
     border: 2px solid #4286f4;
-    padding-left: 20px;
-    padding-right: 6px;
-    padding-bottom: 4px;
+    padding: .5% 1.5%;
     text-align: center;
 }
 
@@ -183,27 +280,26 @@ td:hover {
     background: #4286f4;
     color: white;
     font-size: 1.3em;
-    height: 100%;
+    text-align: center;
 }
 
-/* Cancel */
+/* Cancelled */
 .noticancel {
     width: 90%;
-    height: 63px;
-    margin: 10px 50px;
+    height: 8%;
+    margin: 10px 6% 10px 4%;
     background-color: white;
     border: 2px solid #ed3b3b;
-    padding-left: 20px;
-    padding-right: 6px;
-    padding-bottom: 4px;
+    padding: .5% 1.5%;
     text-align: center;
 }
 
 .noticancel:hover {
     background: #ed3b3b;
     color: white;
-    height: 100%;
+    height: 16%;
     font-size: 1.3em;
+    text-align: center;
 }
 
 .noticancel:hover .notibtnbook {
@@ -239,17 +335,17 @@ hr {
 }
 
 .notitext {
-    align-self: left;
     padding-top: 15px;
     font-size: 1.2em;
-    vertical-align: middle;
 }
 
 .notibtn {
     display: none;
     float: right;
     overflow: auto;
-    margin: -2px 20px 0;
+    padding: auto;
+    margin: -7px 1.5% 0;
+    font-size: 18px;
 }
 
 .notibtnbook {
@@ -257,11 +353,20 @@ hr {
     float: right;
     overflow: auto;
     padding: auto;
-    margin: -2px 20px 0;
+    margin: -7px 1.5% 0;
+    font-size: 18px;
 }
 
 .notimsg {
     display: none;
     margin-left: 100px;
     margin-right: 100px;
+}
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
 }

@@ -1,22 +1,65 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" lang="en">
 <head>
     <title>SUTD ProfChoper</title>
+    <meta charset="UTF-8">
 
+    <link href="@{/resources/css/bootstrap-3.3.2-dist/bootstrap.min.css}" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" media="all" href="../static/css/index.css"
+          th:href="@{/css/index.css}"/>
 
 </head>
 <body>
 
-<div class="container">
 
-    <div class="starter-template">
-        <h1>Get Chope-ing now!</h1>
-        <h2>1. Visit <a th:href="@{/prof}">Prof page</a></h2>
-        <h2>2. Visit <a th:href="@{/student}">Student page</a></h2>
-    </div>
+<div class="openingtext noselect">
+    <h1>Goodbye emails.</h1>
+    <h1 id="helloprof">Hello <em>Profchoper</em></h1>
+</div>
+
+<div class="form noselect">
+    <form th:action="@{/}" method="post">
+        <div class="credentials">
+            <p class="h4"><strong>Enter your SUTD email:</strong></p>
+            <input type="email" name="username" id="username" placeholder="example@(mymail.)sutd.edu.sg"
+                   required="required"/>
+
+            <br><br>
+
+            <p class="h4"><strong>Enter your SUTD password:</strong></p>
+            <input type="password" name="password" id="password" placeholder="Get it right, no need to retype"
+                   required="required">
+
+            <br><br>
+        </div>
+
+        <div id="remember-me">
+            <label>
+                <input name="rememberme" type="checkbox">Remember me<br>
+            </label>
+        </div>
+        <br>
+
+        <input type="submit" value="Login" id="submit">
+
+        <div class="alert">
+            <div th:if="${param.error}">
+                <div class="alert-danger">
+                    Invalid username and password.
+                </div>
+            </div>
+
+            <div th:if="${param.logout}">
+                <div class="alert-info">
+                    You have been logged out.
+                </div>
+            </div>
+        </div>
+
+    </form>
+
 
 </div>
-<!-- /.container -->
 
 </body>
 </html>

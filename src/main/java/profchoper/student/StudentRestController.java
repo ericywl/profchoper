@@ -26,8 +26,8 @@ public class StudentRestController {
         return studentService.getStudentById(id);
     }
 
-    @GetMapping("/api/students")
-    public Student getStudentByEmail(@RequestParam("email") String emailName) {
-        return studentService.getStudentByEmail(emailName + STUDENT_EMAIL_DOMAIN);
+    @GetMapping(value = "/api/students", params = "email")
+    public Student getStudentByEmail(@RequestParam String email) {
+        return studentService.getStudentByEmail(email + STUDENT_EMAIL_DOMAIN);
     }
 }

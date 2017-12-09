@@ -17,7 +17,7 @@ public class StudentRowMapper implements RowMapper {
 
         List<Course> courseList = new ArrayList<>();
         for (int j = 1; j < 5; j++) {
-            int courseId = resultSet.getInt("c" + j + "_id");
+            String courseId = resultSet.getString("c" + j + "_id");
             String courseName = resultSet.getString("c" + j + "_name");
             String courseAlias = resultSet.getString("c" + j + "_alias");
 
