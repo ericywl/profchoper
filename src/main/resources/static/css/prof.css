@@ -4,8 +4,11 @@
 }
 
 /* Main body*/
-body {
+html, body {
     font-family: Quicksand, sans-serif;
+    height: 100%;
+    width: 100%;
+    font-size: 16px;
 }
 
 /* Remove bullets */
@@ -13,21 +16,51 @@ ul {
     list-style-type: none;
 }
 
-/* Whole calendar */
-.calendar {
-    width: 80%;
-    margin: auto;
+/* Nav bar props */
+.navbar {
+    width: 100%;
+    height: 9%;
+    padding: 5px;
 }
 
-/* Week calendar table */
-#week-cal-table {
-    width: 100%;
-    table-layout: fixed;
-    margin-bottom: 5%;
+.navbar-btn {
+    font-size: 24px;
+}
+
+.btn-lg {
+    background: white;
+    color: dodgerblue;
+    margin: .8% 3% 0 2%;
+}
+
+.btn-lg:hover {
+    color: #1e70ff;
+}
+
+.logout {
+    margin-left: 58%;
+    display: inline-block;
+    font-size: 18px;
+}
+
+.h4 {
+    padding-left: 55px;
+    font-size: 3.5rem;
+}
+
+.showID {
+    font-size: larger;
+    float: right;
+    color: green;
+    margin: 10px 10px 0;
+    padding: 5px;
+    overflow: auto;
 }
 
 /* Week header */
 #week-cal-header {
+    width: 100%;
+    height: 28%;
     padding: 3% 5% 2% 5%;
     background: darkgrey;
     text-align: center;
@@ -35,7 +68,7 @@ ul {
 
 #week-cal-header ul li {
     color: white;
-    font-size: 20px;
+    font-size: 28px;
     text-transform: uppercase;
     letter-spacing: 3px;
 }
@@ -52,17 +85,73 @@ ul {
     padding-top: 10px;
 }
 
+#week-cal-buttons {
+    width: 100%;
+    height: 8%;
+}
+
+.dropdown {
+    width: 100%;
+    height: 100%;
+}
+
+.dropdown-toggle {
+    width: 100%;
+    height: 100%;
+}
+
+/* General dropdown */
+.dropdown-menu {
+    width: 75%;
+}
+
+.dropdown-menu li {
+    padding: 5px 25px;
+    width: 100%;
+}
+
+.dropdown-menu li:hover {
+    cursor: pointer;
+    background: #efefef;
+}
+
+.choice-text {
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+/* Course dropdown select */
+#course-dropdown {
+    width: 60%;
+    float: left;
+}
+
+#course-dropdown-menu li {
+    font-size: 18px;
+}
+
 .course {
     border-bottom-color: white;
     border-top-color: white;
     border-right-color: white;
     border-radius: 0;
     display: inline;
-    width: 60%;
+    width: 100%;
 }
 
 .course:active, .course:focus, .course:active:focus {
     outline: none;
+}
+
+/* Instructor dropdown select */
+#instructor-dropdown {
+    width: 40%;
+    height: 100%;
+    float: right;
+}
+
+#instructor-dropdown-menu li {
+    font-size: 18px;
 }
 
 .instructor {
@@ -70,11 +159,27 @@ ul {
     border-top-color: white;
     border-radius: 0;
     display: inline;
-    width: 40%;
+    width: 100%;
 }
 
 .instructor:active, .instructor:focus, .instructor:active:focus {
     outline: none;
+}
+
+/* Whole calendar */
+.calendar {
+    width: 80%;
+    height: 60%;
+    margin: auto;
+    font-size: 18px;
+}
+
+/* Week calendar table */
+#week-cal-table {
+    width: 100%;
+    height: 60%;
+    table-layout: fixed;
+    margin-bottom: 5%;
 }
 
 th, td {
@@ -82,10 +187,11 @@ th, td {
     text-align: center;
     border-collapse: collapse;
     outline: 1px solid #e3e3e3;
+    height: 50px;
 }
 
 td {
-    padding: 10px 10px;
+    padding: 10px;
 }
 
 th {
@@ -94,44 +200,12 @@ th {
     padding: 5px 10px;
 }
 
-td:hover {
-    cursor: pointer;
-    background: green;
-    color: white;
-}
-
 .page-header {
     margin: 7% 3% 2% 3%;
 }
 
-/* Nav bar props */
-.btn-lg {
-    background: white;
-    color: dodgerblue;
-    margin: .8% 3% 0 2%;
-}
-
-.btn-lg:hover {
-    color: #1e70ff;
-}
-
-.logout {
-    margin-top: .8%;
-    margin-left: 60%;
-    display: inline-block;
-}
-
-.h4 {
-    padding-left: 55px;
-    font-size: 3.5rem;
-}
-
-.showID {
-    float: right;
-    color: green;
-    margin: 10px 10px 0;
-    padding: 5px;
-    overflow: auto;
+.page-header h1 {
+    font-size: 40px;
 }
 
 /* Noticonfirm and Notipending hover */
@@ -155,13 +229,11 @@ td:hover {
 /* Successful booking */
 .noticonfirm {
     width: 90%;
-    height: 63px;
+    height: 8%;
     margin: 10px 6% 10px 4%;
     background-color: white;
     border: 2px solid #26e073;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 4px;
+    padding: .5% 1%;
     text-align: center;
 }
 
@@ -175,13 +247,11 @@ td:hover {
 /* Pending */
 .notipending {
     width: 90%;
-    height: 63px;
+    height: 8%;
     margin: 10px 6% 10px 4%;
     background-color: white;
     border: 2px solid #4286f4;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 4px;
+    padding: .5% 1%;
     text-align: center;
 }
 
@@ -195,20 +265,18 @@ td:hover {
 /* Cancelled */
 .noticancel {
     width: 90%;
-    height: 63px;
+    height: 8%;
     margin: 10px 6% 10px 4%;
     background-color: white;
     border: 2px solid #ed3b3b;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 4px;
+    padding: .5% 1%;
     text-align: center;
 }
 
 .noticancel:hover {
     background: #ed3b3b;
     color: white;
-    height: 100%;
+    height: 16%;
     font-size: 1.3em;
     text-align: center;
 }
@@ -254,7 +322,9 @@ hr {
     display: none;
     float: right;
     overflow: auto;
-    margin: 0 1.5% 0;
+    padding: auto;
+    margin: -7px 1.5% 0;
+    font-size: 18px;
 }
 
 .notibtnbook {
@@ -262,7 +332,8 @@ hr {
     float: right;
     overflow: auto;
     padding: auto;
-    margin: 0 1.5% 0;
+    margin: -7px 1.5% 0;
+    font-size: 18px;
 }
 
 .notimsg {

@@ -40,6 +40,32 @@ ON CONFLICT (name)
     office    = EXCLUDED.office,
     course_id = EXCLUDED.course_id;
 
+
+CREATE TABLE IF NOT EXISTS bookings_temp
+(
+  start_time      TIMESTAMP   NOT NULL,
+  professor_alias VARCHAR(10) NOT NULL REFERENCES professors (alias)
+);
+
+BEGIN;
+INSERT INTO bookings_temp (professor_alias, start_time)
+  SELECT
+    professor_alias,
+    start_time + INTERVAL '7 days'
+  FROM bookings
+ON CONFLICT (professor_alias, start_time)
+  DO NOTHING;
+
+INSERT INTO bookings (professor_alias, start_time)
+  SELECT
+    professor_alias,
+    start_time
+  FROM bookings_temp
+ON CONFLICT (professor_alias, start_time)
+  DO NOTHING;
+COMMIT;
+
+
 INSERT INTO bookings (professor_alias, start_time) VALUES
   ('zy', make_timestamp(2017, 12, 6, 11, 0, 0)),
   ('zy', make_timestamp(2017, 12, 6, 11, 30, 0)),

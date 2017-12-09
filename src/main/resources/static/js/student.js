@@ -1,14 +1,14 @@
 $(document).ready(function () {
     smoothScrollTo();
 
-    //
+    // INSERT MODAL HERE
     var calendar = $(".calendar");
     calendar.on("click", "table td", function () {
         $("#myModal").modal();
     });
 
 
-    // Hover on table cell changes its color and background
+    // Hover on table cell changes its color and background if there's text in it
     calendar.on("mouseover", "table td", function () {
         var cell = $(this);
         if (cell.text() !== "") {
@@ -29,13 +29,12 @@ $(document).ready(function () {
 function courseTextOnClick() {
     var headerDate = $("#week-cal-header-date").text();
     var appendedDate = headerDate.substr(0, 11).replace(/ /g, "-");
-    console.log(appendedDate);
 
     var courseString = $(this).text();
     $("#course-choice-text").text(courseString);
 
     var courseId = courseString.substr(0, 2) + courseString.substr(3, 3);
-    console.log(courseId);
+    console.log("Refreshed calendar.")
 
     // Replacing student calendar
     const studentCalUrl
@@ -74,7 +73,6 @@ function courseTextOnClick() {
 function profTextOnClick() {
     var headerDate = $("#week-cal-header-date").text();
     var appendedDate = headerDate.substr(0, 11).replace(/ /g, "-");
-    console.log(appendedDate);
 
     var profName = $(this).text();
     $("#instructor-choice-text").text(profName);
@@ -88,7 +86,7 @@ function profTextOnClick() {
             const studentCalUrl
                 = "/student/calendar?date=" + appendedDate + "&prof=" + profAlias + "&course=null";
             $("#week-cal-table").load(studentCalUrl, function () {
-                console.log("refresh")
+                console.log("Refreshed calendar.")
             });
 
         } else {
@@ -99,7 +97,43 @@ function profTextOnClick() {
     return profName;
 }
 
-// Always run smoothScrollTo
+function nextBtnOnClick() {
+    var profName = $("#instructor-choice-text").text();
+
+    var courseString = $("#course-choice-text").text();
+    var courseId = courseString.substr(0, 2) + courseString.substr(3, 3);
+
+    var headerDate = $("#week-cal-header-date").text();
+    var startDate = headerDate.substr(0, 11).replace(/ /g, "-");
+    var appendedDate = new Date(startDate);
+
+    if (profName === "Choose Instructor") {
+        const studentCalUrl
+            = "/student/calendar?date=" + appendedDate + "&prof=null" + "&course=" + courseId;
+        $("#week-cal-table").load(studentCalUrl, function () {
+            console.log("Refreshed calendar.")
+        })
+
+    } else {
+        const profApi = "/api/professors?name=" + profName;
+        $.getJSON(profApi, function (json) {
+            if (json.length !== 0) {
+                var profAlias = json.alias;
+
+                const studentCalUrl
+                    = "/student/calendar?date=" + appendedDate + "&prof=" + profAlias + "&course=null";
+                $("#week-cal-table").load(studentCalUrl, function () {
+                    console.log("Refreshed calendar.")
+                })
+
+            } else {
+                console.log("Error getting prof alias.")
+            }
+        })
+    }
+}
+
+// Smooth scroll to anchor href
 function smoothScrollTo() {
     // Select all links with hashes and remove links that don't actually link to anything
     $('a[href*="#"]').not('[href="#"]').not('[href="#0"]')
