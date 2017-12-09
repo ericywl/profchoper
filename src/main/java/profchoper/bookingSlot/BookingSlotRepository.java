@@ -29,6 +29,13 @@ public class BookingSlotRepository {
         return jdbcTemplate.query(selectSQL, new Object[]{profAlias}, new BookingSlotRowMapper());
     }
 
+    public List<BookingSlot> findByStudentId(int studentId) {
+        String selectSQL = "SELECT * FROM bookings WHERE student_id = ? " +
+                "ORDER BY start_time, professor_alias";
+
+        return jdbcTemplate.query(selectSQL, new Object[]{studentId}, new BookingSlotRowMapper());
+    }
+
     public List<BookingSlot> findByDateTime(Timestamp startTimestamp) {
         String selectSQL = "SELECT * FROM bookings WHERE start_time = ? ORDER BY professor_alias";
 
@@ -65,7 +72,7 @@ public class BookingSlotRepository {
         String updateSQL = "UPDATE bookings SET book_status = ?, student_id = ? " +
                 "WHERE professor_alias = ? AND start_time = ?";
 
-        int i = jdbcTemplate.update(updateSQL, bookStatus, studentId, startTimestamp);
+        int i = jdbcTemplate.update(updateSQL, bookStatus, studentId, profAlias, startTimestamp);
         return i == 1;
     }
 

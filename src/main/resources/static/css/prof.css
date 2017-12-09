@@ -24,29 +24,23 @@ ul {
 }
 
 .navbar-btn {
-    font-size: 22px;
+    font-size: 24px;
 }
 
 .btn-lg {
     background: white;
     color: dodgerblue;
-    margin: 15px auto 0 30px;
+    margin: .8% 3% 0 2%;
 }
 
 .btn-lg:hover {
     color: #1e70ff;
 }
 
-.btn-lg:focus {
-    color: dodgerblue;
-}
-
 .logout {
-    margin: 20px auto 0 auto;
+    margin-left: 58%;
     display: inline-block;
     font-size: 18px;
-    float: right;
-    overflow: hidden;
 }
 
 .h4 {
@@ -54,12 +48,13 @@ ul {
     font-size: 3.5rem;
 }
 
-/* Whole calendar */
-.calendar {
-    width: 80%;
-    height: 60%;
-    margin: auto;
-    font-size: 18px;
+.showID {
+    font-size: larger;
+    float: right;
+    color: green;
+    margin: 10px 10px 0;
+    padding: 5px;
+    overflow: auto;
 }
 
 /* Week header */
@@ -80,40 +75,16 @@ ul {
 
 /* Previous button inside month header */
 #week-cal-header .prev {
-    left: 18%;
-    font-size: 40px;
-    position: absolute;
-    color: white;
+    float: left;
+    padding-top: 10px;
 }
 
 /* Next button */
 #week-cal-header .next {
-    right: 18%;
-    font-size: 40px;
-    position: absolute;
-    color: white;
+    float: right;
+    padding-top: 10px;
 }
 
-
-#week-cal-header .prev:hover, #week-cal-header .next:hover {
-    margin-left: -10px;
-    margin-top: -10px;
-    font-size: 60px;
-    color: white;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-#week-cal-header .prev:active, #week-cal-header .next:active {
-    margin-left: -5px;
-    margin-top: -5px;
-    font-size: 50px;
-    color: white;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-/* Buttons for course and instructor */
 #week-cal-buttons {
     width: 100%;
     height: 8%;
@@ -195,6 +166,14 @@ ul {
     outline: none;
 }
 
+/* Whole calendar */
+.calendar {
+    width: 80%;
+    height: 60%;
+    margin: auto;
+    font-size: 18px;
+}
+
 /* Week calendar table */
 #week-cal-table {
     width: 100%;
@@ -208,7 +187,7 @@ th, td {
     text-align: center;
     border-collapse: collapse;
     outline: 1px solid #e3e3e3;
-    height: 45px;
+    height: 50px;
 }
 
 td {
@@ -222,7 +201,7 @@ th {
 }
 
 .page-header {
-    margin: 10% 3% 2% 3%;
+    margin: 7% 3% 2% 3%;
 }
 
 .page-header h1 {
@@ -254,7 +233,7 @@ th {
     margin: 10px 6% 10px 4%;
     background-color: white;
     border: 2px solid #26e073;
-    padding: .5% 1.5%;
+    padding: .5% 1%;
     text-align: center;
 }
 
@@ -272,7 +251,7 @@ th {
     margin: 10px 6% 10px 4%;
     background-color: white;
     border: 2px solid #4286f4;
-    padding: .5% 1.5%;
+    padding: .5% 1%;
     text-align: center;
 }
 
@@ -290,7 +269,7 @@ th {
     margin: 10px 6% 10px 4%;
     background-color: white;
     border: 2px solid #ed3b3b;
-    padding: .5% 1.5%;
+    padding: .5% 1%;
     text-align: center;
 }
 
