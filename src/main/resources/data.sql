@@ -71,7 +71,12 @@ INSERT INTO bookings (professor_alias, start_time) VALUES
   ('norman', make_timestamp(2017, 12, 7, 15, 0, 0)),
   ('norman', make_timestamp(2017, 12, 7, 15, 30, 0)),
   ('norman', make_timestamp(2017, 12, 7, 16, 00, 0)),
-  ('norman', make_timestamp(2017, 12, 7, 16, 30, 0))
+  ('norman', make_timestamp(2017, 12, 7, 16, 30, 0)),
+
+  ('jit', make_timestamp(2017, 12, 4, 14, 0, 0)),
+  ('jit', make_timestamp(2017, 12, 4, 14, 30, 0)),
+  ('jit', make_timestamp(2017, 12, 4, 15, 00, 0)),
+  ('jit', make_timestamp(2017, 12, 4, 15, 30, 0))
 ON CONFLICT (professor_alias, start_time)
   DO NOTHING;
 

@@ -200,12 +200,6 @@ th {
     padding: 5px 10px;
 }
 
-td:hover {
-    cursor: pointer;
-    background: green;
-    color: white;
-}
-
 .page-header {
     margin: 7% 3% 2% 3%;
 }

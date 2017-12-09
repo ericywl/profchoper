@@ -27,9 +27,22 @@ $(document).ready(function () {
             }
         });
 
-    $("table td").click(function () {
+    var calendar = $(".calendar");
+    calendar.on("click", "table td", function () {
         $("#myModal").modal();
     });
+
+    calendar.on("mouseover", "table td", function () {
+        var cell = $(this);
+        if (cell.text() !== "") {
+            cell.css({cursor: 'pointer', background: 'green', color: 'white'});
+        }
+    });
+
+    calendar.on("mouseout", "table td", function () {
+       $(this).css({cursor: 'default', background: 'white', color: '#111111'});
+    });
+
 
     $("#course-dropdown-menu").on("click", ".course-dropdown-menu-text", courseTextOnClick);
     $("#instructor-dropdown-menu").on("click", ".instructor-dropdown-menu-text", profTextOnClick);
