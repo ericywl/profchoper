@@ -44,7 +44,8 @@ public class TestController {
         LocalDate date = LocalDate.of(2017, 12, 4);
         WeekCalendar wkCal = weekCalendarService.getStudentCalendarByCourse("50002", date);
 
-        String studentEmail = authFacade.getAuthentication().getName();
+        // String studentEmail = authFacade.getAuthentication().getName();
+        String studentEmail = "eric@mymail.sutd.edu.sg";
         Student student = studentService.getStudentByEmail(studentEmail);
         String firstCourseId = student.getEnrolledCourses().get(0).getId();
         List<Professor> professors = professorService.getProfessorsByCourseId(firstCourseId);
