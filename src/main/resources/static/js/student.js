@@ -1,36 +1,12 @@
 $(document).ready(function () {
-    // Select all links with hashes
-    $('a[href*="#"]')
-    // Remove links that don't actually link to anything
-        .not('[href="#"]')
-        .not('[href="#0"]')
-        .click(function (event) {
-            // On-page links
-            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '')
-                && location.hostname == this.hostname) {
-                // Figure out element to scroll to
-                var target = $(this.hash);
-                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-                // Does a scroll target exist?
-                if (target.length) {
-                    // Only prevent default if animation is actually gonna happen
-                    event.preventDefault();
-                    $('html, body').animate({
-                        scrollTop: target.offset().top
-                    }, 1000, function () {
-                        // Callback after animation
-                        // Must change focus!
-                        var $target = $(target);
-                        $target.focus();
-                    });
-                }
-            }
-        });
+    smoothScrollTo();
 
+    //
     var calendar = $(".calendar");
     calendar.on("click", "table td", function () {
         $("#myModal").modal();
     });
+
 
     // Hover on table cell changes its color and background
     calendar.on("mouseover", "table td", function () {
@@ -41,7 +17,7 @@ $(document).ready(function () {
     });
 
     calendar.on("mouseout", "table td", function () {
-       $(this).css({cursor: 'default', background: 'white', color: '#111111'});
+        $(this).css({cursor: 'default', background: 'white', color: '#111111'});
     });
 
 
@@ -49,7 +25,12 @@ $(document).ready(function () {
     $("#instructor-dropdown-menu").on("click", ".instructor-dropdown-menu-text", profTextOnClick);
 });
 
+// When course dropdown text is clicked, replace student calendar with the course
 function courseTextOnClick() {
+    var headerDate = $("#week-cal-header-date").text();
+    var appendedDate = headerDate.substr(0, 11).replace(/ /g, "-");
+    console.log(appendedDate);
+
     var courseString = $(this).text();
     $("#course-choice-text").text(courseString);
 
@@ -57,7 +38,8 @@ function courseTextOnClick() {
     console.log(courseId);
 
     // Replacing student calendar
-    const studentCalUrl = "/student/calendar?course=" + courseId + "&prof=null";
+    const studentCalUrl
+        = "/student/calendar?date=" + appendedDate + "&prof=null" + "&course=" + courseId;
     $("#week-cal-table").load(studentCalUrl);
 
     const profApi = "/api/professors?course=" + courseId;
@@ -79,6 +61,7 @@ function courseTextOnClick() {
 
         } else {
             // Disabled the instructor button
+            $("#instructor-choice-text").text("Choose Instructor");
             $(".instructor").prop("disabled", true);
             console.log("Error getting prof list.");
         }
@@ -87,9 +70,11 @@ function courseTextOnClick() {
     return courseId;
 }
 
+// When instructor dropdown text is clicked, replace student calendar with prof
 function profTextOnClick() {
     var headerDate = $("#week-cal-header-date").text();
-
+    var appendedDate = headerDate.substr(0, 11).replace(/ /g, "-");
+    console.log(appendedDate);
 
     var profName = $(this).text();
     $("#instructor-choice-text").text(profName);
@@ -100,7 +85,8 @@ function profTextOnClick() {
             console.log(json);
             var profAlias = json.alias;
 
-            const studentCalUrl = "/student/calendar?prof=" + profAlias + "&course=null";
+            const studentCalUrl
+                = "/student/calendar?date=" + appendedDate + "&prof=" + profAlias + "&course=null";
             $("#week-cal-table").load(studentCalUrl, function () {
                 console.log("refresh")
             });
@@ -111,4 +97,33 @@ function profTextOnClick() {
     });
 
     return profName;
+}
+
+// Always run smoothScrollTo
+function smoothScrollTo() {
+    // Select all links with hashes and remove links that don't actually link to anything
+    $('a[href*="#"]').not('[href="#"]').not('[href="#0"]')
+        .click(function (event) {
+
+            // On-page links
+            if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '')
+                && location.hostname === this.hostname) {
+
+                // Figure out element to scroll to
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+
+                if (target.length) {
+                    // Only prevent default if animation is actually gonna happen
+                    event.preventDefault();
+                    $('html, body').animate({
+                        scrollTop: target.offset().top
+                    }, 1000, function () {
+                        // Callback after animation and change focus
+                        var $target = $(target);
+                        $target.focus();
+                    });
+                }
+            }
+        });
 }

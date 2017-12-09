@@ -15,6 +15,7 @@ import profchoper.student.StudentService;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
@@ -24,6 +25,8 @@ public class StudentCalendarController {
     private final StudentService studentService;
     private final ProfessorService professorService;
     private final ProfChoperAuthFacade authFacade;
+
+    private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
 
     @Autowired
     public StudentCalendarController(WeekCalendarService weekCalendarService, StudentService studentService,
@@ -61,15 +64,11 @@ public class StudentCalendarController {
         return "student";
     }
 
-    @GetMapping(value = "/student/calendar", params = {"course", "prof"})
-    public String getStudentCalendar(@RequestParam String course,
+    @GetMapping(value = "/student/calendar", params = {"date", "course", "prof"})
+    public String getStudentCalendar(@RequestParam String date, @RequestParam String course,
                                      @RequestParam String prof, Model model) {
-        LocalDate currDate = LocalDate.now();
-        if (currDate.getDayOfWeek().equals(DayOfWeek.SATURDAY)
-                || currDate.getDayOfWeek().equals(DayOfWeek.SUNDAY))
-            currDate = currDate.plus(3, ChronoUnit.DAYS);
 
-        LocalDate startDateOfSchoolWeek = currDate.with(DayOfWeek.MONDAY);
+        LocalDate startDateOfSchoolWeek = LocalDate.parse(date, dtf);
         LocalDate startDateOfSchoolTerm = LocalDate.of(2017, 9, 11);
 
         WeekCalendar wkCal;
