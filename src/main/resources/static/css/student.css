@@ -23,6 +23,10 @@ ul {
     padding: 5px;
 }
 
+.navbar-btn {
+    font-size: 24px;
+}
+
 .btn-lg {
     background: white;
     color: dodgerblue;
@@ -34,9 +38,9 @@ ul {
 }
 
 .logout {
-    margin-top: .8%;
-    margin-left: 60%;
+    margin-left: 58%;
     display: inline-block;
+    font-size: 18px;
 }
 
 .h4 {
@@ -321,7 +325,8 @@ hr {
     float: right;
     overflow: auto;
     padding: auto;
-    margin: -3.5px 1.5% 0;
+    margin: -7px 1.5% 0;
+    font-size: 18px;
 }
 
 .notibtnbook {
@@ -329,7 +334,8 @@ hr {
     float: right;
     overflow: auto;
     padding: auto;
-    margin: 0 1.5% 0;
+    margin: -7px 1.5% 0;
+    font-size: 18px;
 }
 
 .notimsg {

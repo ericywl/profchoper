@@ -6,11 +6,8 @@ $(document).ready(function () {
         .not('[href="#0"]')
         .click(function (event) {
             // On-page links
-            if (
-                location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '')
-                &&
-                location.hostname == this.hostname
-            ) {
+            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '')
+                && location.hostname == this.hostname) {
                 // Figure out element to scroll to
                 var target = $(this.hash);
                 target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
@@ -56,7 +53,8 @@ function courseTextOnClick() {
             console.log(json);
 
             for (var i = 0; i < json.length; i++) {
-                profListHtml = profListHtml + "<li class='instructor-dropdown-menu-text'>" + json[i].name + "</li>";
+                profListHtml = profListHtml +
+                    "<li class='instructor-dropdown-menu-text'>" + json[i].name + "</li>";
             }
 
             // Replacing instructor choice text and dropdown menu list
@@ -76,20 +74,20 @@ function profTextOnClick() {
     $("#instructor-choice-text").text(profName);
 
     const profApi = "/api/professors?name=" + profName;
-    var profAlias;
     $.getJSON(profApi, function (json) {
-       if (json.length !== 0) {
-           console.log(json);
-           profAlias = json.alias;
+        if (json.length !== 0) {
+            console.log(json);
+            var profAlias = json.alias;
 
-       } else {
-           console.log("Error getting prof alias.");
-           profAlias = "oka";
-       }
+            const studentCalUrl = "/student/calendar?prof=" + profAlias + "&course=null";
+            $("#week-cal-table").load(studentCalUrl, function () {
+                console.log("refresh")
+            });
+
+        } else {
+            console.log("Error getting prof alias.");
+        }
     });
 
-    const studentCalUrl = "/student/calendar?prof=" + profAlias + "&course=null";
-    $("#week-cal-table").load(studentCalUrl, function () {
-        console.log("refresh")
-    });
+    return profName;
 }
