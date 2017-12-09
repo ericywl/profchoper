@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>SUTD ProfChoper</title>
+</head>
+<body>
+
+<table class="week-cal" id="week-cal-table" th:fragment="student_cal">
+    <tr>
+        <th>Time</th>
+        <th scope="col">Monday</th>
+        <th scope="col">Tuesday</th>
+        <th scope="col">Wednesday</th>
+        <th scope="col">Thursday</th>
+        <th scope="col">Friday</th>
+    </tr>
+
+    <tr id="week-cal-row" th:each="row : ${calendar}">
+        <th th:text="${row[0]}"></th>
+        <!-- th:utext does not escape <br /> -->
+        <!-- replace \n from backend to <br /> for html frontend -->
+        <td th:utext="${#strings.replace(#strings.escapeXml(row[1]),'&#10;','&lt;br /&gt;')}"></td>
+        <td th:utext="${#strings.replace(#strings.escapeXml(row[2]),'&#10;','&lt;br /&gt;')}"></td>
+        <td th:utext="${#strings.replace(#strings.escapeXml(row[3]),'&#10;','&lt;br /&gt;')}"></td>
+        <td th:utext="${#strings.replace(#strings.escapeXml(row[4]),'&#10;','&lt;br /&gt;')}"></td>
+        <td th:utext="${#strings.replace(#strings.escapeXml(row[5]),'&#10;','&lt;br /&gt;')}"></td>
+    </tr>
+
+</table>
+
+</body>
+</html>

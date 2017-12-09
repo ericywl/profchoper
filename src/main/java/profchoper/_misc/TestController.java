@@ -2,7 +2,6 @@ package profchoper._misc;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,7 +17,6 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 @Controller
 public class TestController {
@@ -62,7 +60,6 @@ public class TestController {
     @GetMapping(value = "/student", params = {"course", "prof"})
     public String getStudentCalendar(@RequestParam String course, @RequestParam String prof,
                                      Map<String, Object> model) {
-
         LocalDate date = LocalDate.now().with(DayOfWeek.MONDAY);
         WeekCalendar wkCal;
 
@@ -72,12 +69,8 @@ public class TestController {
             wkCal = weekCalendarService.getStudentCalendarByCourse(course, date);
         }
 
-        String studentEmail = "eric@mymail.sutd.edu.sg";
-        Student student = studentService.getStudentByEmail(studentEmail);
-
-        model.put("student", student);
         model.put("calendar", wkCal.getMatrix());
-        return "student";
+        return "student :: student_cal";
     }
 
     @PutMapping("/student")
