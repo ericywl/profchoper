@@ -73,12 +73,13 @@ public class StudentCalendarController {
 
         WeekCalendar wkCal;
 
-        if (!prof.equals("null")) {
-            wkCal = weekCalendarService
-                    .getStudentCalendarByProf(prof, startDateOfSchoolTerm, startDateOfSchoolWeek);
-        } else {
+        if (prof.equals("null")) {
             wkCal = weekCalendarService
                     .getStudentCalendarByCourse(course, startDateOfSchoolTerm, startDateOfSchoolWeek);
+
+        } else {
+            wkCal = weekCalendarService
+                    .getStudentCalendarByProf(prof, startDateOfSchoolTerm, startDateOfSchoolWeek);
         }
 
         model.addAttribute("calendar", wkCal);

@@ -5,6 +5,7 @@ $(document).ready(function () {
     var calendar = $(".calendar");
     calendar.on("click", "table td", function () {
         $("#myModal").modal();
+        alert($(this).text())
     });
 
 
@@ -23,6 +24,10 @@ $(document).ready(function () {
 
     $("#course-dropdown-menu").on("click", ".course-dropdown-menu-text", courseTextOnClick);
     $("#instructor-dropdown-menu").on("click", ".instructor-dropdown-menu-text", profTextOnClick);
+
+    var weekCalHeaderContainer = $("#week-cal-header-container");
+    weekCalHeaderContainer.find(".next").click(btnOnClick);
+    weekCalHeaderContainer.find(".prev").click(btnOnClick);
 });
 
 // When course dropdown text is clicked, replace student calendar with the course
@@ -34,11 +39,10 @@ function courseTextOnClick() {
     $("#course-choice-text").text(courseString);
 
     var courseId = courseString.substr(0, 2) + courseString.substr(3, 3);
-    console.log("Refreshed calendar.")
+    console.log("Refreshed calendar.");
 
     // Replacing student calendar
-    const studentCalUrl
-        = "/student/calendar?date=" + appendedDate + "&prof=null" + "&course=" + courseId;
+    const studentCalUrl = "/student/calendar?date=" + appendedDate + "&course=" + courseId + "&prof=null";
     $("#week-cal-table").load(studentCalUrl);
 
     const profApi = "/api/professors?course=" + courseId;
@@ -77,14 +81,18 @@ function profTextOnClick() {
     var profName = $(this).text();
     $("#instructor-choice-text").text(profName);
 
+    var courseString = $("#course-choice-text").text();
+    var courseId = courseString.substr(0, 2) + courseString.substr(3, 3);
+
     const profApi = "/api/professors?name=" + profName;
     $.getJSON(profApi, function (json) {
         if (json.length !== 0) {
             console.log(json);
             var profAlias = json.alias;
 
-            const studentCalUrl
-                = "/student/calendar?date=" + appendedDate + "&prof=" + profAlias + "&course=null";
+            const studentCalUrl = "/student/calendar?date=" + appendedDate
+                + "&course=" + courseId + "&prof=" + profAlias;
+
             $("#week-cal-table").load(studentCalUrl, function () {
                 console.log("Refreshed calendar.")
             });
@@ -97,19 +105,46 @@ function profTextOnClick() {
     return profName;
 }
 
-function nextBtnOnClick() {
+function btnOnClick() {
     var profName = $("#instructor-choice-text").text();
 
     var courseString = $("#course-choice-text").text();
     var courseId = courseString.substr(0, 2) + courseString.substr(3, 3);
 
-    var headerDate = $("#week-cal-header-date").text();
-    var startDate = headerDate.substr(0, 11).replace(/ /g, "-");
-    var appendedDate = new Date(startDate);
+    var weekCalHeaderDate = $("#week-cal-header-date");
+    var startDate = weekCalHeaderDate.text().substr(0, 11).replace(/ /g, "-");
+    var endDate = weekCalHeaderDate.text().substr(14, 11).replace(/ /g, "-");
+
+    var now = new Date().if()
+
+    var newStartDate;
+    var newEndDate;
+
+    var weekCalHeaderWeek = $("#week-cal-header-week");
+    var newWeek;
+
+    if ($(this).is(".next")) {
+        newStartDate = endDateFormat(startDate, 7);
+        newEndDate = endDateFormat(endDate, 7);
+        newWeek = checkTermDate(weekCalHeaderWeek.text(), newStartDate, 1);
+
+    } else if ($(this).is(".prev")) {
+        newStartDate = endDateFormat(startDate, -7);
+        newEndDate = endDateFormat(endDate, -7);
+        newWeek = checkTermDate(weekCalHeaderWeek.text(), newStartDate, -1);
+
+    } else {
+        console.log("Error btnOnClick should not each here.")
+    }
+
+    weekCalHeaderDate.empty().append(newStartDate + " - " + newEndDate);
+    weekCalHeaderWeek.empty().append(newWeek);
+
 
     if (profName === "Choose Instructor") {
-        const studentCalUrl
-            = "/student/calendar?date=" + appendedDate + "&prof=null" + "&course=" + courseId;
+        const studentCalUrl = "/student/calendar?date=" + startDate
+            + "&prof=null" + "&course=" + courseId;
+
         $("#week-cal-table").load(studentCalUrl, function () {
             console.log("Refreshed calendar.")
         })
@@ -120,8 +155,9 @@ function nextBtnOnClick() {
             if (json.length !== 0) {
                 var profAlias = json.alias;
 
-                const studentCalUrl
-                    = "/student/calendar?date=" + appendedDate + "&prof=" + profAlias + "&course=null";
+                const studentCalUrl = "/student/calendar?date=" + startDate
+                    + "&course=" + courseId + "&prof=" + profAlias;
+
                 $("#week-cal-table").load(studentCalUrl, function () {
                     console.log("Refreshed calendar.")
                 })
@@ -131,6 +167,41 @@ function nextBtnOnClick() {
             }
         })
     }
+
+}
+
+function checkTermDate(week, date, oneOrNegOne) {
+    startTermDates = ["10 Sep 2018", "22 Jan 2018", "14 May 2018"];
+    endTermDates = ["11 Dec 2017", "13 Aug 2018", "23 Apr 2018"];
+    var output;
+
+    if (week === "Vacation" && $.inArray(date, startTermDates) !== -1)
+        return "Week 1";
+
+    if (week === "Vacation" && $.inArray(date, endTermDates) !== -1)
+        return "Week 14";
+
+    if (week === "Vacation" && $.inArray(date, startTermDates) === -1
+        && $.inArray(date.substr(0, 6), startTermDates) === -1) return "Vacation";
+
+    var weekNo = parseInt(week.substr(5, 2)) + oneOrNegOne;
+    if (weekNo > 14 || weekNo < 1) output = "Vacation";
+    else output = "Week " + weekNo;
+
+    return output;
+}
+
+function endDateFormat(date, days) {
+    var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+    var dateObj = new Date(date);
+    dateObj.setDate(dateObj.getDate() + days);
+
+    var newDate = dateObj.getDate().toString();
+    var newMonth = months[dateObj.getMonth()];
+    var newYear = dateObj.getFullYear().toString();
+
+    return (newDate[1] ? newDate : "0" + newDate[0]) + " " + newMonth + " " + newYear;
 }
 
 // Smooth scroll to anchor href

@@ -28,7 +28,7 @@ public class WeekCalendar {
     public String getHeaderWeek() {
         long weekNo = ChronoUnit.WEEKS.between(startDateOfSchoolTerm, startDateOfSchoolWeek) + 1;
 
-        return "Week" + weekNo;
+        return "Week " + weekNo;
     }
 
     public List<List<String>> getMatrix() {

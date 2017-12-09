@@ -33,7 +33,6 @@
             <a class="btn navbar-btn btn-lg" href="#calendar"><strong>Chope a slot</strong></a>
 
             <a class="btn btn-danger logout" th:href="@{/logout}">Logout</a>
-            <p class="showID" th:text="${student.getId()}">100XXXX</p>
         </div>
 
 
@@ -104,7 +103,7 @@
 
 <div class="calendar noselect">
     <div class="week-cal" id="week-cal-header">
-        <ul>
+        <ul id="week-cal-header-container">
             <li class="prev">&#10094;</li>
             <li class="next">&#10095;</li>
             <li class="week-cal-header-text">
