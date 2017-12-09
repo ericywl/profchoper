@@ -45,7 +45,7 @@ function courseTextOnClick() {
     var courseId = course.substr(0, 2) + course.substr(3, 3);
     console.log(courseId);
 
-    $("#week-cal-table").load("/student?course=" + courseId + "prof=a", function () {
+    $("#week-cal-table").load("/student/calendar?course=" + courseId + "prof=a", function () {
         console.log("refresh")
     });
 

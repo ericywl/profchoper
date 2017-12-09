@@ -32,7 +32,7 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <a class="btn navbar-btn btn-lg" href="#calendar"><strong>Chope a slot</strong></a>
 
-            <p class="showID" th:text="${student.getId()}"></p>
+            <p class="showID" th:text="${student.getId()}">100XXXX</p>
             <a class="btn btn-danger logout" th:href="@{/logout}">Logout</a>
         </div>
     </div>
@@ -139,7 +139,7 @@
         </div>
     </div>
 
-    <table class="week-cal" id="week-cal-table" th:replace="fragments/student_cal">
+    <table class="week-cal" id="week-cal-table">
         <tr>
             <th>Time</th>
             <th scope="col">Monday</th>
@@ -159,7 +159,6 @@
             <td th:utext="${#strings.replace(#strings.escapeXml(row[4]),'&#10;','&lt;br /&gt;')}"></td>
             <td th:utext="${#strings.replace(#strings.escapeXml(row[5]),'&#10;','&lt;br /&gt;')}"></td>
         </tr>
-
     </table>
 </div>
 

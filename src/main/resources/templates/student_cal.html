@@ -2,11 +2,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title>SUTD ProfChoper</title>
+    <title>Title</title>
 </head>
 <body>
 
-<table class="week-cal" id="week-cal-table" th:fragment="student_cal">
+<table class="week-cal" id="week-cal-table">
     <tr>
         <th>Time</th>
         <th scope="col">Monday</th>
@@ -26,7 +26,6 @@
         <td th:utext="${#strings.replace(#strings.escapeXml(row[4]),'&#10;','&lt;br /&gt;')}"></td>
         <td th:utext="${#strings.replace(#strings.escapeXml(row[5]),'&#10;','&lt;br /&gt;')}"></td>
     </tr>
-
 </table>
 
 </body>
