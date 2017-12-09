@@ -23,24 +23,27 @@ public class WeekCalendarServiceImpl implements WeekCalendarService {
     private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
 
     @Override
-    public WeekCalendar getStudentCalendarByCourse(String courseId, LocalDate startDateOfSchoolWeek) {
+    public WeekCalendar getStudentCalendarByCourse(String courseId, LocalDate startDateOfSchoolTerm,
+                                                   LocalDate startDateOfSchoolWeek) {
         List<List<String>> matrix = createCourseCalMatrix(courseId, startDateOfSchoolWeek);
 
-        return new WeekCalendar(startDateOfSchoolWeek, matrix);
+        return new WeekCalendar(startDateOfSchoolTerm, startDateOfSchoolWeek, matrix);
     }
 
     @Override
-    public WeekCalendar getStudentCalendarByProf(String profAlias, LocalDate startDateOfSchoolWeek) {
+    public WeekCalendar getStudentCalendarByProf(String profAlias, LocalDate startDateOfSchoolTerm,
+                                                 LocalDate startDateOfSchoolWeek) {
         List<List<String>> matrix = createProfCalMatrix(profAlias, startDateOfSchoolWeek, STUDENT);
 
-        return new WeekCalendar(startDateOfSchoolWeek, matrix);
+        return new WeekCalendar(startDateOfSchoolTerm, startDateOfSchoolWeek, matrix);
     }
 
     @Override
-    public WeekCalendar getProfCalendar(String profAlias, LocalDate startDateOfSchoolWeek) {
+    public WeekCalendar getProfCalendar(String profAlias, LocalDate startDateOfSchoolTerm,
+                                        LocalDate startDateOfSchoolWeek) {
         List<List<String>> matrix = createProfCalMatrix(profAlias, startDateOfSchoolWeek, PROF);
 
-        return new WeekCalendar(startDateOfSchoolWeek, matrix);
+        return new WeekCalendar(startDateOfSchoolTerm, startDateOfSchoolWeek, matrix);
     }
 
 

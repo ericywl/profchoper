@@ -108,7 +108,7 @@
             <li class="prev">&#10094;</li>
             <li class="next">&#10095;</li>
             <li>
-                4 Sept - 8 Sept 2017<br>
+                <span th:text="${calendar.getHeader()}">Test</span><br>
                 <span style="font-size:18px">Week 12</span>
             </li>
         </ul>
@@ -154,7 +154,7 @@
             <th scope="col">Friday</th>
         </tr>
 
-        <tr id="week-cal-row" th:each="row : ${calendar}">
+        <tr id="week-cal-row" th:each="row : ${calendar.getMatrix()}">
             <th th:text="${row[0]}"></th>
             <!-- th:utext does not escape <br /> -->
             <!-- replace \n from backend to <br /> for html frontend -->

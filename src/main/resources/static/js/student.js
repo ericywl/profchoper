@@ -32,6 +32,7 @@ $(document).ready(function () {
         $("#myModal").modal();
     });
 
+    // Hover on table cell changes its color and background
     calendar.on("mouseover", "table td", function () {
         var cell = $(this);
         if (cell.text() !== "") {

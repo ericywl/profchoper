@@ -12,9 +12,11 @@ public interface BookingSlotService {
 
     // Slot related methods
 
-    boolean bookSlot(BookingSlot slot, int studentID);
+    boolean bookSlot(BookingSlot slot, int studentId);
 
-    boolean cancelBookSlot(BookingSlot slot, int studentID);
+    boolean cancelBookSlot(BookingSlot slot, int studentId);
+
+    boolean rejectBookSlot(BookingSlot slot, String profAlias);
 
     boolean confirmBookSlot(BookingSlot slot, String profAlias);
 
@@ -35,6 +37,11 @@ public interface BookingSlotService {
     List<BookingSlot> getSlotsByProfAlias(String profAlias);
 
     List<BookingSlot> getSlotsByCourseId(String courseId);
+
+
+    // Student related queries
+
+    List<BookingSlot> getSlotsByStudentId(int studentId);
 
 
     // Combined

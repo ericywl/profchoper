@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS public.courses
 (
   id    VARCHAR(10) PRIMARY KEY,
   name  VARCHAR(150) NOT NULL,
-  alias VARCHAR(20) NOT NULL
+  alias VARCHAR(20)  NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS public.students

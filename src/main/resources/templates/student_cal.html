@@ -16,7 +16,7 @@
         <th scope="col">Friday</th>
     </tr>
 
-    <tr id="week-cal-row" th:each="row : ${calendar}">
+    <tr id="week-cal-row" th:each="row : ${calendar.getMatrix()}">
         <th th:text="${row[0]}"></th>
         <!-- th:utext does not escape <br /> -->
         <!-- replace \n from backend to <br /> for html frontend -->

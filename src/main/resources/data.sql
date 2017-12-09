@@ -80,6 +80,14 @@ INSERT INTO bookings (professor_alias, start_time) VALUES
 ON CONFLICT (professor_alias, start_time)
   DO NOTHING;
 
+CREATE TABLE IF NOT EXISTS bookings_temp
+(
+  id              SERIAL PRIMARY KEY,
+  start_time      TIMESTAMP   NOT NULL,
+  professor_alias VARCHAR(10) NOT NULL,
+  UNIQUE (professor_alias, start_time)
+);
+
 INSERT INTO users (username, password, enabled) VALUES
   ('eric@mymail.sutd.edu.sg', 'password', TRUE),
   ('wentat@mymail.sutd.edu.sg', 'password', TRUE),

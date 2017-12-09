@@ -17,58 +17,74 @@ import static profchoper._misc.Constant.*;
 @Service
 public class BookingSlotServiceImpl implements BookingSlotService {
     @Autowired
-    private BookingSlotRepository slotDAO;
+    private BookingSlotRepository slotRepository;
 
     @Autowired
     private ProfessorService professorService;
 
     @Override
     public List<BookingSlot> getAllSlots() {
-        return slotDAO.findAll();
+        return slotRepository.findAll();
     }
 
     @Override
-    public boolean bookSlot(BookingSlot slot, int studentID) {
-        if (!slot.getBookStatus().equals(AVAIL)) return false;
+    public boolean bookSlot(BookingSlot slot, int studentId) {
+        if (!slot.getBookStatus().equalsIgnoreCase(AVAIL)) return false;
 
         slot.setBookStatus(PENDING);
-        slot.setStudentId(studentID);
+        slot.setStudentId(studentId);
 
-        return slotDAO.update(slot);
+        return slotRepository.update(slot);
     }
 
     @Override
-    public boolean cancelBookSlot(BookingSlot slot, int studentID) {
-        if (slot.getBookStatus().equals(AVAIL)
-                || slot.getStudentId() != studentID) return false;
+    public boolean cancelBookSlot(BookingSlot slot, int studentId) {
+        if (slot.getBookStatus().equalsIgnoreCase(AVAIL)
+                || slot.getStudentId() != studentId) return false;
 
         slot.setBookStatus(AVAIL);
         slot.setStudentId(null);
 
-        return slotDAO.update(slot);
+        return slotRepository.update(slot);
+    }
+
+    @Override
+    public boolean rejectBookSlot(BookingSlot slot, String profAlias) {
+        if (slot.getBookStatus().equalsIgnoreCase(AVAIL)
+                || !slot.getProfAlias().equalsIgnoreCase(profAlias)) return false;
+
+        slot.setBookStatus(AVAIL);
+
+        return slotRepository.update(slot);
     }
 
     @Override
     public boolean confirmBookSlot(BookingSlot slot, String profAlias) {
-        if (slot.getBookStatus().equals(AVAIL)
+        if (slot.getBookStatus().equalsIgnoreCase(AVAIL)
                 || !slot.getProfAlias().equals(profAlias.toLowerCase())) return false;
 
         slot.setBookStatus(BOOKED);
 
-        return slotDAO.update(slot);
+        return slotRepository.update(slot);
     }
 
     @Override
     public boolean deleteSlot(BookingSlot slot, String profAlias) {
-        if (!slot.getBookStatus().equals(AVAIL)
+        if (!slot.getBookStatus().equalsIgnoreCase(AVAIL)
                 || !slot.getProfAlias().equals(profAlias.toLowerCase())) return false;
 
-        return slotDAO.delete(slot);
+        return slotRepository.delete(slot);
     }
 
     @Override
     public List<BookingSlot> getSlotsByProfAlias(String profAlias) {
-        return slotDAO.findByProfAlias(profAlias.toLowerCase());
+        return slotRepository.findByProfAlias(profAlias.toLowerCase());
+    }
+
+
+    @Override
+    public List<BookingSlot> getSlotsByStudentId(int studentId) {
+        return slotRepository.findByStudentId(studentId);
     }
 
     @Override
@@ -115,7 +131,7 @@ public class BookingSlotServiceImpl implements BookingSlotService {
     @Override
     public List<BookingSlot> getSlotsByDateTime(LocalDateTime dateTime) {
         Timestamp timestamp = Timestamp.valueOf(dateTime);
-        return slotDAO.findByDateTime(timestamp);
+        return slotRepository.findByDateTime(timestamp);
     }
 
     @Override
@@ -152,6 +168,6 @@ public class BookingSlotServiceImpl implements BookingSlotService {
 
         Timestamp startTimestamp = Timestamp.valueOf(startDateTime);
         Timestamp endTimestamp = Timestamp.valueOf(endDateTime);
-        return slotDAO.findByDateTimeRange(startTimestamp, endTimestamp);
+        return slotRepository.findByDateTimeRange(startTimestamp, endTimestamp);
     }
 }
