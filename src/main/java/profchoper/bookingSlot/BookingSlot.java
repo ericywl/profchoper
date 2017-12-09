@@ -1,7 +1,6 @@
 package profchoper.bookingSlot;
 
 
-import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -10,23 +9,10 @@ import java.time.LocalTime;
 
 import static profchoper._misc.Constant.*;
 
-@Entity
 public class BookingSlot {
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-
-    @Column(name = "start_time")
     private Timestamp timestamp;
-
-    @Column(name = "professor_alias")
     private String profAlias;
-
-    @Column(name = "student_id")
     private Integer studentId = null;
-
-    @Column(name = "book_status")
     private String bookStatus = AVAIL;
 
 
@@ -94,14 +80,6 @@ public class BookingSlot {
 
     public String getBookStatus() {
         return bookStatus;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public void setTimestamp(Timestamp timestamp) {

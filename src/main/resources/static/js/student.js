@@ -60,8 +60,12 @@ function courseTextOnClick() {
             // Replacing instructor choice text and dropdown menu list
             $("#instructor-choice-text").text("Choose Instructor");
             $("#instructor-dropdown-menu").empty().append(profListHtml);
+            // Enable the instructor button
+            $(".instructor").prop("disabled", false);
 
         } else {
+            // Disabled the instructor button
+            $(".instructor").prop("disabled", true);
             console.log("Error getting prof list.");
         }
     });
