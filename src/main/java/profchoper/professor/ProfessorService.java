@@ -8,4 +8,6 @@ public interface ProfessorService {
     List<Professor> getProfessorsByCourseId(String courseId);
 
     Professor getProfessorByAlias(String alias);
+
+    Professor getProfessorByName(String name);
 }

@@ -24,6 +24,11 @@ public class ProfessorRestController {
         return professorService.getProfessorByAlias(alias);
     }
 
+    @GetMapping(value = "/api/professors", params = "name")
+    public Professor getProfessorByName(@RequestParam String name) {
+        return professorService.getProfessorByName(name);
+    }
+
     @GetMapping(value = "/api/professors", params = "course")
     public List<Professor> getProfessorsByCourse(@RequestParam String course) {
         return professorService.getProfessorsByCourseId(course);

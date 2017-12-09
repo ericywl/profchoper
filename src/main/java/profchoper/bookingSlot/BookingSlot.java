@@ -10,10 +10,15 @@ import java.time.LocalTime;
 import static profchoper._misc.Constant.*;
 
 public class BookingSlot {
-    private final Timestamp timestamp;
-    private final String profAlias;
+    private Timestamp timestamp;
+    private String profAlias;
     private Integer studentId = null;
     private String bookStatus = AVAIL;
+
+
+    public BookingSlot() {
+        // default constructor
+    }
 
     public BookingSlot(String profAlias, Timestamp startTimestamp) {
         this.profAlias = profAlias;
@@ -75,5 +80,13 @@ public class BookingSlot {
 
     public String getBookStatus() {
         return bookStatus;
+    }
+
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setProfAlias(String profAlias) {
+        this.profAlias = profAlias;
     }
 }

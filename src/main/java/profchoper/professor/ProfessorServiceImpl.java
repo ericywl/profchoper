@@ -21,4 +21,9 @@ public class ProfessorServiceImpl implements ProfessorService{
     public Professor getProfessorByAlias(String alias) {
         return professorRepository.findByAlias(alias);
     }
+
+    @Override
+    public Professor getProfessorByName(String name) {
+        return professorRepository.findByName(name);
+    }
 }

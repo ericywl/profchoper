@@ -4,13 +4,129 @@
 }
 
 /* Main body*/
-body {
+html, body {
     font-family: Quicksand, sans-serif;
+    height: 100%;
+    width: 100%;
+    font-size: 16px;
 }
 
 /* Remove bullets */
 ul {
     list-style-type: none;
+}
+
+/* Nav bar props */
+.navbar {
+    width: 100%;
+    height: 9%;
+    padding: 5px;
+}
+
+.navbar-btn {
+    font-size: 22px;
+}
+
+.btn-lg {
+    background: white;
+    color: dodgerblue;
+    margin: 15px auto 0 30px;
+}
+
+.btn-lg:hover {
+    color: #1e70ff;
+}
+
+.btn-lg:focus {
+    color: dodgerblue;
+}
+
+.logout {
+    margin: 20px auto 0 auto;
+    display: inline-block;
+    font-size: 18px;
+    float: right;
+    overflow: hidden;
+}
+
+.h4 {
+    padding-left: 55px;
+    font-size: 3.5rem;
+}
+
+/* Whole calendar */
+.calendar {
+    width: 80%;
+    height: 60%;
+    margin: auto;
+    font-size: 18px;
+}
+
+/* Week header */
+#week-cal-header {
+    width: 100%;
+    height: 28%;
+    padding: 3% 5% 2% 5%;
+    background: darkgrey;
+    text-align: center;
+}
+
+#week-cal-header ul li {
+    color: white;
+    font-size: 28px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+/* Previous button inside month header */
+#week-cal-header .prev {
+    left: 18%;
+    font-size: 40px;
+    position: absolute;
+    color: white;
+}
+
+/* Next button */
+#week-cal-header .next {
+    right: 18%;
+    font-size: 40px;
+    position: absolute;
+    color: white;
+}
+
+
+#week-cal-header .prev:hover, #week-cal-header .next:hover {
+    margin-left: -10px;
+    margin-top: -10px;
+    font-size: 60px;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#week-cal-header .prev:active, #week-cal-header .next:active {
+    margin-left: -5px;
+    margin-top: -5px;
+    font-size: 50px;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Buttons for course and instructor */
+#week-cal-buttons {
+    width: 100%;
+    height: 8%;
+}
+
+.dropdown {
+    width: 100%;
+    height: 100%;
+}
+
+.dropdown-toggle {
+    width: 100%;
+    height: 100%;
 }
 
 /* General dropdown */
@@ -30,12 +146,17 @@ ul {
 
 .choice-text {
     margin-right: 10px;
+    font-size: 20px;
 }
 
 /* Course dropdown select */
 #course-dropdown {
     width: 60%;
     float: left;
+}
+
+#course-dropdown-menu li {
+    font-size: 18px;
 }
 
 .course {
@@ -51,11 +172,15 @@ ul {
     outline: none;
 }
 
-
 /* Instructor dropdown select */
 #instructor-dropdown {
     width: 40%;
+    height: 100%;
     float: right;
+}
+
+#instructor-dropdown-menu li {
+    font-size: 18px;
 }
 
 .instructor {
@@ -70,43 +195,12 @@ ul {
     outline: none;
 }
 
-/* Whole calendar */
-.calendar {
-    width: 80%;
-    margin: auto;
-}
-
 /* Week calendar table */
 #week-cal-table {
     width: 100%;
+    height: 60%;
     table-layout: fixed;
     margin-bottom: 5%;
-}
-
-/* Week header */
-#week-cal-header {
-    padding: 3% 5% 2% 5%;
-    background: darkgrey;
-    text-align: center;
-}
-
-#week-cal-header ul li {
-    color: white;
-    font-size: 20px;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-}
-
-/* Previous button inside month header */
-#week-cal-header .prev {
-    float: left;
-    padding-top: 10px;
-}
-
-/* Next button */
-#week-cal-header .next {
-    float: right;
-    padding-top: 10px;
 }
 
 th, td {
@@ -114,7 +208,7 @@ th, td {
     text-align: center;
     border-collapse: collapse;
     outline: 1px solid #e3e3e3;
-    height: 40px;
+    height: 45px;
 }
 
 td {
@@ -127,45 +221,12 @@ th {
     padding: 5px 10px;
 }
 
-td:hover {
-    cursor: pointer;
-    background: green;
-    color: white;
-}
-
 .page-header {
-    margin: 7% 3% 2% 3%;
+    margin: 10% 3% 2% 3%;
 }
 
-/* Nav bar props */
-.btn-lg {
-    background: white;
-    color: dodgerblue;
-    margin: .8% 3% 0 2%;
-}
-
-.btn-lg:hover {
-    color: #1e70ff;
-}
-
-.logout {
-    margin-top: .8%;
-    margin-left: 60%;
-    display: inline-block;
-}
-
-.h4 {
-    padding-left: 55px;
-    font-size: 3.5rem;
-}
-
-.showID {
-    font-size: larger;
-    float: right;
-    color: green;
-    margin: 10px 10px 0;
-    padding: 5px;
-    overflow: auto;
+.page-header h1 {
+    font-size: 40px;
 }
 
 /* Noticonfirm and Notipending hover */
@@ -189,13 +250,11 @@ td:hover {
 /* Successful booking */
 .noticonfirm {
     width: 90%;
-    height: 63px;
+    height: 8%;
     margin: 10px 6% 10px 4%;
     background-color: white;
     border: 2px solid #26e073;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 4px;
+    padding: .5% 1.5%;
     text-align: center;
 }
 
@@ -209,13 +268,11 @@ td:hover {
 /* Pending */
 .notipending {
     width: 90%;
-    height: 63px;
+    height: 8%;
     margin: 10px 6% 10px 4%;
     background-color: white;
     border: 2px solid #4286f4;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 4px;
+    padding: .5% 1.5%;
     text-align: center;
 }
 
@@ -229,20 +286,18 @@ td:hover {
 /* Cancelled */
 .noticancel {
     width: 90%;
-    height: 63px;
+    height: 8%;
     margin: 10px 6% 10px 4%;
     background-color: white;
     border: 2px solid #ed3b3b;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 4px;
+    padding: .5% 1.5%;
     text-align: center;
 }
 
 .noticancel:hover {
     background: #ed3b3b;
     color: white;
-    height: 100%;
+    height: 16%;
     font-size: 1.3em;
     text-align: center;
 }
@@ -289,7 +344,8 @@ hr {
     float: right;
     overflow: auto;
     padding: auto;
-    margin: -3.5px 1.5% 0;
+    margin: -7px 1.5% 0;
+    font-size: 18px;
 }
 
 .notibtnbook {
@@ -297,7 +353,8 @@ hr {
     float: right;
     overflow: auto;
     padding: auto;
-    margin: 0 1.5% 0;
+    margin: -7px 1.5% 0;
+    font-size: 18px;
 }
 
 .notimsg {

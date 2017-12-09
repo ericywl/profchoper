@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import profchoper.bookingSlot.BookingSlot;
 import profchoper.bookingSlot.BookingSlotService;
-import sun.security.x509.AVA;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -24,28 +23,31 @@ public class WeekCalendarServiceImpl implements WeekCalendarService {
     private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
 
     @Override
-    public WeekCalendar getStudentCalendarByCourse(int courseId, LocalDate startDateOfSchoolWeek) {
+    public WeekCalendar getStudentCalendarByCourse(String courseId, LocalDate startDateOfSchoolTerm,
+                                                   LocalDate startDateOfSchoolWeek) {
         List<List<String>> matrix = createCourseCalMatrix(courseId, startDateOfSchoolWeek);
 
-        return new WeekCalendar(startDateOfSchoolWeek, matrix);
+        return new WeekCalendar(startDateOfSchoolTerm, startDateOfSchoolWeek, matrix);
     }
 
     @Override
-    public WeekCalendar getStudentCalendarByProf(String profAlias, LocalDate startDateOfSchoolWeek) {
+    public WeekCalendar getStudentCalendarByProf(String profAlias, LocalDate startDateOfSchoolTerm,
+                                                 LocalDate startDateOfSchoolWeek) {
         List<List<String>> matrix = createProfCalMatrix(profAlias, startDateOfSchoolWeek, STUDENT);
 
-        return new WeekCalendar(startDateOfSchoolWeek, matrix);
+        return new WeekCalendar(startDateOfSchoolTerm, startDateOfSchoolWeek, matrix);
     }
 
     @Override
-    public WeekCalendar getProfCalendar(String profAlias, LocalDate startDateOfSchoolWeek) {
+    public WeekCalendar getProfCalendar(String profAlias, LocalDate startDateOfSchoolTerm,
+                                        LocalDate startDateOfSchoolWeek) {
         List<List<String>> matrix = createProfCalMatrix(profAlias, startDateOfSchoolWeek, PROF);
 
-        return new WeekCalendar(startDateOfSchoolWeek, matrix);
+        return new WeekCalendar(startDateOfSchoolTerm, startDateOfSchoolWeek, matrix);
     }
 
 
-    private List<List<String>> createCourseCalMatrix(int courseId, LocalDate startDateOfSchoolWeek) {
+    private List<List<String>> createCourseCalMatrix(String courseId, LocalDate startDateOfSchoolWeek) {
         List<BookingSlot> slotList = slotService.getSlotsByCourseAndSWeek(courseId, startDateOfSchoolWeek);
         List<List<String>> output = new ArrayList<>();
         List<String> temp;

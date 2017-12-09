@@ -28,7 +28,7 @@ public class Course {
 
     @Override
     public String toString() {
-        return id.substring(0,2) + id.substring(2,5) + " " + name;
+        return id.substring(0, 2) + "." + id.substring(2, 5) + " " + name;
     }
 
     public String getId() {
