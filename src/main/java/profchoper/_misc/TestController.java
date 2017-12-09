@@ -64,7 +64,7 @@ public class TestController {
         LocalDate date = LocalDate.now().with(DayOfWeek.MONDAY);
         WeekCalendar wkCal;
 
-        if (!prof.equals("a")) {
+        if (!prof.equals("null")) {
             wkCal = weekCalendarService.getStudentCalendarByProf(prof, date);
         } else {
             wkCal = weekCalendarService.getStudentCalendarByCourse(course, date);

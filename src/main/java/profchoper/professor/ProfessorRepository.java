@@ -51,4 +51,16 @@ public class ProfessorRepository {
         return (Professor) jdbcTemplate.queryForObject(selectSQL, new Object[]{alias},
                 new ProfessorRowMapper());
     }
+
+    public Professor findByName(String name) {
+        String selectSQL = "SELECT p.name AS p_name, p.email AS p_email, " +
+                "p.alias AS p_alias, p.office AS p_office, " +
+                "c.name AS c_name, c.id AS c_id, c.alias AS c_alias " +
+                "FROM professors p " +
+                "JOIN courses c ON p.course_id = c.id " +
+                "WHERE p.name = ?";
+
+        return (Professor) jdbcTemplate.queryForObject(selectSQL, new Object[]{name},
+                new ProfessorRowMapper());
+    }
 }

@@ -39,37 +39,57 @@ $(document).ready(function () {
 });
 
 function courseTextOnClick() {
-    var course = $(this).text();
-    $("#course-choice-text").text(course);
+    var courseString = $(this).text();
+    $("#course-choice-text").text(courseString);
 
-    var courseId = course.substr(0, 2) + course.substr(3, 3);
+    var courseId = courseString.substr(0, 2) + courseString.substr(3, 3);
     console.log(courseId);
 
-    $("#week-cal-table").load("/student/calendar?course=" + courseId + "prof=a", function () {
-        console.log("refresh")
-    });
+    // Replacing student calendar
+    const studentCalUrl = "/student/calendar?course=" + courseId + "&prof=null";
+    $("#week-cal-table").load(studentCalUrl);
 
-    const profUrl = "/api/professors?course=" + courseId;
-
-    var profsHTML = "";
-    return $.getJSON(profUrl, function (json) {
+    const profApi = "/api/professors?course=" + courseId;
+    var profListHtml = "";
+    $.getJSON(profApi, function (json) {
         if (json.length !== 0) {
             console.log(json);
 
             for (var i = 0; i < json.length; i++) {
-                profsHTML = profsHTML + "<li class='instructor-dropdown-menu-text'>" + json[i].name + "</li>";
+                profListHtml = profListHtml + "<li class='instructor-dropdown-menu-text'>" + json[i].name + "</li>";
             }
 
+            // Replacing instructor choice text and dropdown menu list
             $("#instructor-choice-text").text("Choose Instructor");
-            $("#instructor-dropdown-menu").empty().append(profsHTML);
+            $("#instructor-dropdown-menu").empty().append(profListHtml);
 
         } else {
-            console.log("error");
+            console.log("Error getting prof list.");
         }
     });
+
+    return courseId;
 }
 
 function profTextOnClick() {
-    var prof = $(this).text();
-    $("#instructor-choice-text").text(prof);
+    var profName = $(this).text();
+    $("#instructor-choice-text").text(profName);
+
+    const profApi = "/api/professors?name=" + profName;
+    var profAlias;
+    $.getJSON(profApi, function (json) {
+       if (json.length !== 0) {
+           console.log(json);
+           profAlias = json.alias;
+
+       } else {
+           console.log("Error getting prof alias.");
+           profAlias = "oka";
+       }
+    });
+
+    const studentCalUrl = "/student/calendar?prof=" + profAlias + "&course=null";
+    $("#week-cal-table").load(studentCalUrl, function () {
+        console.log("refresh")
+    });
 }
