@@ -29,7 +29,7 @@
             </button>
             <p class="navbar-brand h4">ProfChoper</p>
         </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
+        <div class="collapse navbar-collapse" id="chope-nav-bar">
             <a class="btn navbar-btn btn-lg" href="#calendar"><strong>Chope a slot</strong></a>
 
             <a class="btn btn-danger logout" th:href="@{/logout}">Logout</a>
@@ -39,7 +39,7 @@
     </div>
 </nav>
 
-<div class="modal fad noselect" id="myModal" role="dialog">
+<div class="modal fade noselect" id="myModal" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
@@ -57,6 +57,29 @@
     </div>
 </div>
 
+<!-- Cancel modal -->
+<div class="modal fade noselect" id="cancel-modal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Cancel slot</h4>
+            </div>
+
+            <div class="modal-body">
+                <p>Are you sure you want to cancel the booking on<br/>
+                    <span id="cancel-modal-text">Text placeholder</span>?
+                </p>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" id="cancel" class="btn btn-default" data-dismiss="modal">Yes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="page-header noti noselect">
     <h1>Your schedules</h1>
 </div>
@@ -66,29 +89,29 @@
 <!--if got notification-->
 <div class="noticonfirm noselect">
     <!--get slot info-->
-    <p class="notitext">
+    <p class="notitext-container">
         <span class="notistatus">Confirmed</span>
-        4/12 prof oka from 3:30 - 4:00
-        <a class="notibtn btn btn-danger" href="#calendar">Cancel Slot</a>
+        <span class="notitext">04/12 : 15:30 to 16:00 with prof. Oka Kurniawan</span>
+        <a class="notibtn btn btn-danger">Cancel Slot</a>
     </p>
 </div>
 
 <!--if got notification-->
 <div class="notipending noselect">
     <!--get slot info-->
-    <p class="notitext">
+    <p class="notitext-container">
         <span class="notistatus">Pending</span>
-        4/12 prof oka from 3:30 - 4:00 bla bla
-        <a class="notibtn btn btn-danger" href="#calendar">Cancel Slot</a>
+        <span class="notitext">04/12 : 15:30 to 16:00 with prof. Oka Kurniawan</span>
+        <a class="notibtn btn btn-danger">Cancel Slot</a>
     </p>
 </div>
 
 <!--if got notification-->
 <div class="noticancel noselect">
     <!--get slot info-->
-    <p class="notitext">
+    <p class="notitext-container">
         <span class="notistatus">Cancelled</span>
-        4/12 prof oka from 3:30 - 4:00
+        <span class="notitext">04/12 : 15:30 to 16:00 with prof. Oka Kurniawan</span>
         <a class="notibtnbook btn btn-success" href="#calendar">Book Another</a>
     </p>
 
@@ -130,15 +153,15 @@
             </ul>
         </div>
 
-        <div class="dropdown" id="instructor-dropdown">
-            <button class="btn instructor dropdown-toggle" type="button"
+        <div class="dropdown" id="prof-dropdown">
+            <button class="btn prof dropdown-toggle" type="button"
                     data-toggle="dropdown">
-                <span class="choice-text" id="instructor-choice-text">Choose Instructor</span>
+                <span class="choice-text" id="prof-choice-text">Choose Prof</span>
                 <span class="caret"></span></button>
-            <ul id="instructor-dropdown-menu" class="dropdown-menu">
+            <ul id="prof-dropdown-menu" class="dropdown-menu">
                 <th:block th:each="prof : ${professors}">
-                    <li class="instructor-dropdown-menu-text"
-                        th:text="${prof.getName()}">Instructor Placeholder
+                    <li class="prof-dropdown-menu-text"
+                        th:text="${prof.getName()}">Prof Placeholder
                     </li>
                 </th:block>
             </ul>

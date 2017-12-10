@@ -112,6 +112,19 @@ public class BookingSlotServiceImpl implements BookingSlotService {
         return output;
     }
 
+    public List<BookingSlot> getSlotsByStudentAndSWeek(int studentId, LocalDate startDateOfSchoolWeek) {
+        LocalDate endDateOfSchoolWeek = startDateOfSchoolWeek.plus(5, ChronoUnit.DAYS);
+        List<BookingSlot> studentSlots = getSlotsByStudentId(studentId);
+        List<BookingSlot> output = new ArrayList<>();
+
+        for (BookingSlot slot : studentSlots) {
+            if (!(slot.getDate().isBefore(startDateOfSchoolWeek)
+                    || slot.getDate().isAfter(endDateOfSchoolWeek))) output.add(slot);
+        }
+
+        return output;
+    }
+
     @Override
     public List<BookingSlot> getSlotsByCourseAndSWeek(String courseId, LocalDate startDateOfSchoolWeek) {
         List<BookingSlot> slotList = getSlotsBySchoolWeek(startDateOfSchoolWeek);

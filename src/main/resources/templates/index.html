@@ -4,7 +4,7 @@
     <title>SUTD ProfChoper</title>
     <meta charset="UTF-8">
 
-    <link href="@{/resources/css/bootstrap-3.3.2-dist/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/resources/css/bootstrap-3.3.2-dist/bootstrap.min.css}" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" media="all" href="../static/css/index.css"
           th:href="@{/css/index.css}"/>
 
@@ -13,12 +13,12 @@
 
 
 <div class="openingtext noselect">
-    <h1>Goodbye emails.</h1>
-    <h1 id="helloprof">Hello <em>Profchoper</em></h1>
+    <h1>Goodbye back & forth emailing. </h1>
+    <h1 id="helloprof">Hello <em>Profchoper.</em></h1>
 </div>
 
 <div class="form noselect">
-    <form th:action="@{/}" method="post">
+    <form th:action="@{/}" method="post" novalidate="novalidate">
         <div class="credentials">
             <p class="h4"><strong>Enter your SUTD email:</strong></p>
             <input type="email" name="username" id="username" placeholder="example@(mymail.)sutd.edu.sg"
@@ -35,8 +35,10 @@
 
         <div id="remember-me">
             <label>
-                <input name="rememberme" type="checkbox">Remember me<br>
+                <input name="rememberme" type="checkbox">
             </label>
+
+            <div style="float: right;">Remember me</div>
         </div>
         <br>
 
@@ -45,7 +47,7 @@
         <div class="alert">
             <div th:if="${param.error}">
                 <div class="alert-danger">
-                    Invalid username and password.
+                    Invalid email and password.
                 </div>
             </div>
 

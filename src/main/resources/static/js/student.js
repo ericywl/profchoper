@@ -1,11 +1,22 @@
 $(document).ready(function () {
     smoothScrollTo();
 
-    // INSERT MODAL HERE
+    // Modal for cancelling slot popup
+    $(".notibtn").click(function () {
+        var text = $(this).parent().find(".notitext").text();
+        var border = $(this).parent().parent().css('border').split(" ");
+        var textColor = border[2] + " " + border[3] + " " + border[4];
+
+        var cancelModalText = $("#cancel-modal-text");
+        cancelModalText.empty().append(text);
+        cancelModalText.css({color: textColor});
+        $("#cancel-modal").modal();
+    });
+
+    // INSERT CALENDAR MODAL HERE
     var calendar = $(".calendar");
     calendar.on("click", "table td", function () {
         $("#myModal").modal();
-        alert($(this).text())
     });
 
 
@@ -23,7 +34,7 @@ $(document).ready(function () {
 
 
     $("#course-dropdown-menu").on("click", ".course-dropdown-menu-text", courseTextOnClick);
-    $("#instructor-dropdown-menu").on("click", ".instructor-dropdown-menu-text", profTextOnClick);
+    $("#prof-dropdown-menu").on("click", ".prof-dropdown-menu-text", profTextOnClick);
 
     var weekCalHeaderContainer = $("#week-cal-header-container");
     weekCalHeaderContainer.find(".next").click(btnOnClick);
@@ -51,19 +62,19 @@ function courseTextOnClick() {
         if (json.length !== 0) {
             for (var i = 0; i < json.length; i++) {
                 profListHtml = profListHtml +
-                    "<li class='instructor-dropdown-menu-text'>" + json[i].name + "</li>";
+                    "<li class='prof-dropdown-menu-text'>" + json[i].name + "</li>";
             }
 
-            // Replacing instructor choice text and dropdown menu list
-            $("#instructor-choice-text").text("Choose Instructor");
-            $("#instructor-dropdown-menu").empty().append(profListHtml);
-            // Enable the instructor button
-            $(".instructor").prop("disabled", false);
+            // Replacing prof choice text and dropdown menu list
+            $("#prof-choice-text").text("Choose prof");
+            $("#prof-dropdown-menu").empty().append(profListHtml);
+            // Enable the prof button
+            $(".prof").prop("disabled", false);
 
         } else {
-            // Disabled the instructor button
-            $("#instructor-choice-text").text("Choose Instructor");
-            $(".instructor").prop("disabled", true);
+            // Disabled the prof button
+            $("#prof-choice-text").text("Choose prof");
+            $(".prof").prop("disabled", true);
             console.log("Error getting prof list.");
         }
     });
@@ -71,13 +82,13 @@ function courseTextOnClick() {
     return courseId;
 }
 
-// When instructor dropdown text is clicked, replace student calendar with prof
+// When prof dropdown text is clicked, replace student calendar with prof
 function profTextOnClick() {
     var headerDate = $("#week-cal-header-date").text();
     var appendedDate = headerDate.substr(0, 11).replace(/ /g, "-");
 
     var profName = $(this).text();
-    $("#instructor-choice-text").text(profName);
+    $("#prof-choice-text").text(profName);
 
     var courseString = $("#course-choice-text").text();
     var courseId = courseString.substr(0, 2) + courseString.substr(3, 3);
@@ -132,12 +143,12 @@ function btnOnClick() {
 
     var appendedDate = newStartDate.replace(/ /g, "-");
 
-    var profName = $("#instructor-choice-text").text();
+    var profName = $("#prof-choice-text").text();
 
     var courseString = $("#course-choice-text").text();
     var courseId = courseString.substr(0, 2) + courseString.substr(3, 3);
 
-    if (profName === "Choose Instructor") {
+    if (profName === "Choose prof") {
         const studentCalUrl = "/student/calendar?date=" + appendedDate
             + "&prof=null" + "&course=" + courseId;
 

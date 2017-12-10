@@ -11,6 +11,26 @@ html, body {
     font-size: 16px;
 }
 
+.modal {
+    text-align: center;
+    font-size: 22px;
+}
+
+@media screen and (min-width: 768px) {
+    .modal:before {
+        display: inline-block;
+        vertical-align: middle;
+        content: " ";
+        height: 100%;
+    }
+}
+
+.modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+}
+
 /* Remove bullets */
 ul {
     list-style-type: none;
@@ -113,7 +133,7 @@ ul {
     cursor: pointer;
 }
 
-/* Buttons for course and instructor */
+/* Buttons for course and prof */
 #week-cal-buttons {
     width: 100%;
     height: 8%;
@@ -172,18 +192,18 @@ ul {
     outline: none;
 }
 
-/* Instructor dropdown select */
-#instructor-dropdown {
+/* prof dropdown select */
+#prof-dropdown {
     width: 40%;
     height: 100%;
     float: right;
 }
 
-#instructor-dropdown-menu li {
+#prof-dropdown-menu li {
     font-size: 18px;
 }
 
-.instructor {
+.prof {
     border-bottom-color: white;
     border-top-color: white;
     border-radius: 0;
@@ -191,7 +211,7 @@ ul {
     width: 100%;
 }
 
-.instructor:active, .instructor:focus, .instructor:active:focus {
+.prof:active, .prof:focus, .prof:active:focus {
     outline: none;
 }
 
@@ -208,7 +228,7 @@ th, td {
     text-align: center;
     border-collapse: collapse;
     outline: 1px solid #e3e3e3;
-    height: 45px;
+    height: 55px;
 }
 
 td {
@@ -222,7 +242,7 @@ th {
 }
 
 .page-header {
-    margin: 10% 3% 2% 3%;
+    margin: 7% 3% 2% 3%;
 }
 
 .page-header h1 {
@@ -253,13 +273,13 @@ th {
     height: 8%;
     margin: 10px 6% 10px 4%;
     background-color: white;
-    border: 2px solid #26e073;
+    border: 2px solid #26d055;
     padding: .5% 1.5%;
     text-align: center;
 }
 
 .noticonfirm:hover {
-    background: #26e073;
+    background: #26d055;
     color: white;
     font-size: 1.3em;
     text-align: center;
@@ -334,7 +354,7 @@ hr {
     float: left;
 }
 
-.notitext {
+.notitext-container {
     padding-top: 15px;
     font-size: 1.2em;
 }
