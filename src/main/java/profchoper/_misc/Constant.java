@@ -23,6 +23,8 @@ public class Constant {
     public static final String AVAIL = "AVAILABLE";
     public static final String PENDING = "PENDING";
     public static final String BOOKED = "BOOKED";
+    public static final String REJECTED = "REJECT";
+    public static final String CANCELLED = "CANCELLED";
 
     public static final String STUDENT_EMAIL_DOMAIN = "@mymail.sutd.edu.sg";
     public static final String PROF_EMAIL_DOMAIN = "@sutd.edu.sg";

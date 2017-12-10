@@ -109,7 +109,8 @@ public class StudentCalendarController {
 
     @ResponseStatus(value = HttpStatus.OK)
     @PutMapping(value = "/student", params = {"action"})
-    public StudentCalendarResponse cancelSlot(@RequestBody BookingSlotJS slotJS, @RequestParam String action) {
+    public StudentCalendarResponse cancelSlot(@RequestBody BookingSlotJS slotJS, @RequestParam String
+            action) {
         // String studentEmail = authFacade.getAuthentication().getName();
         String studentEmail = "eric@mymail.sutd.edu.sg";
         Student student = studentService.getStudentByEmail(studentEmail);
@@ -117,13 +118,22 @@ public class StudentCalendarController {
         Timestamp time = Timestamp.valueOf(LocalDateTime.parse(slotJS.getTime(), DATE_TIME_FORMATTER));
         BookingSlot slot = new BookingSlot(slotJS.getProfAlias(), time);
 
-        if (action.equalsIgnoreCase("book"))
-            bookingSlotService.bookSlot(slot, student.getId());
+        if (action.equalsIgnoreCase("book")) {
+            boolean isDone = bookingSlotService.bookSlot(slot, student.getId());
+            if (isDone)
+                return new StudentCalendarResponse("BOOK_DONE", slot);
+            else
+                return new StudentCalendarResponse("BOOK_FAIL", slot);
 
-        else if (action.equalsIgnoreCase("cancel"))
-            bookingSlotService.cancelBookSlot(slot, student.getId());
+        } else if (action.equalsIgnoreCase("cancel")) {
+            boolean isDone = bookingSlotService.cancelBookSlot(slot, student.getId());
+            if (isDone)
+                return new StudentCalendarResponse("CANCEL_DONE", slot);
+            else
+                return new StudentCalendarResponse("CANCEL_FAIL", slot);
+        }
 
-        return null;
+        return new StudentCalendarResponse("ERROR", null);
     }
 
 }

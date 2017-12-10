@@ -47,7 +47,14 @@ public class BookingSlot {
 
     @Override
     public String toString() {
-        return super.toString();
+        return getDayWeekYear(getDate()) + " : " + getStartTime() + " to " + getEndTime()
+                + " with Prof. " + getProfAlias().toUpperCase();
+    }
+
+    private String getDayWeekYear(LocalDate data) {
+        String dataString = data.toString();
+        String[] dataArr = dataString.split("-");
+        return dataArr[2] + "/" + dataArr[1] + "/" + dataArr[0];
     }
 
     @Override

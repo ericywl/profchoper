@@ -75,7 +75,7 @@ ul {
 }
 
 /* Whole calendar */
-.calendar {
+#calendar {
     width: 80%;
     height: 60%;
     margin: auto;
@@ -383,6 +383,13 @@ hr {
     margin-right: 100px;
 }
 
+/* No appointment text */
+#nonoti{
+    text-align: center;
+    color: #a3a3a3;
+}
+
+/* Make it so the text can't be selected */
 .noselect {
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
@@ -391,6 +398,7 @@ hr {
     user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
 }
 
+/* */
 #snackbar {
     visibility: hidden;
     min-width: 250px;

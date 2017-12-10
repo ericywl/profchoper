@@ -21,7 +21,7 @@ $(document).ready(function () {
     });
 
     // Table cell modal popup
-    var calendar = $(".calendar");
+    var calendar = $("#calendar");
     calendar.on("click", "table td", tableCellOnClick);
 
     // Hover on table cell changes its color and background if there's text in it
@@ -107,7 +107,8 @@ function cancelModalBtnOnClick(event) {
                     contentType: "application/json",
                     type: "PUT",
                     data: JSON.stringify(bookSlot),
-                    success: function () {
+                    success: function (result) {
+
                         showSnackbar();
                         console.log("DONE")
                     },
