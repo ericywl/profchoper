@@ -1,4 +1,4 @@
-package profchoper.bookingSlot;
+package profchoper.booking;
 
 
 import java.time.LocalDate;
@@ -19,6 +19,8 @@ public interface BookingSlotService {
     boolean rejectBookSlot(BookingSlot slot, String profAlias);
 
     boolean confirmBookSlot(BookingSlot slot, String profAlias);
+
+    boolean addSlot(BookingSlot slot);
 
     boolean deleteSlot(BookingSlot slot, String profAlias);
 
@@ -49,4 +51,6 @@ public interface BookingSlotService {
     List<BookingSlot> getSlotsByProfAndSWeek(String profAlias, LocalDate startDateOfSchoolWeek);
 
     List<BookingSlot> getSlotsByCourseAndSWeek(String courseId, LocalDate startDateOfSchoolWeek);
+
+    List<BookingSlot> getSlotsByStudentAndSWeek(int studentId, LocalDate startDateOfSchoolWeek);
 }

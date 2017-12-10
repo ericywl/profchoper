@@ -1,4 +1,4 @@
-package profchoper.bookingSlot;
+package profchoper.booking;
 
 
 import java.sql.Timestamp;
@@ -6,6 +6,7 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 
 import static profchoper._misc.Constant.*;
 
@@ -14,7 +15,6 @@ public class BookingSlot {
     private String profAlias;
     private Integer studentId = null;
     private String bookStatus = AVAIL;
-
 
     public BookingSlot() {
         // default constructor
@@ -37,10 +37,25 @@ public class BookingSlot {
         return timestamp.toLocalDateTime().toLocalDate();
     }
 
-    public LocalTime getTime() {
+    public LocalTime getStartTime() {
         return timestamp.toLocalDateTime().toLocalTime();
     }
 
+    public LocalTime getEndTime() {
+        return getStartTime().plus(30, ChronoUnit.MINUTES);
+    }
+
+    @Override
+    public String toString() {
+        return getDayWeekYear(getDate()) + " : " + getStartTime() + " to " + getEndTime()
+                + " with Prof. " + getProfAlias().toUpperCase();
+    }
+
+    private String getDayWeekYear(LocalDate data) {
+        String dataString = data.toString();
+        String[] dataArr = dataString.split("-");
+        return dataArr[2] + "/" + dataArr[1] + "/" + dataArr[0];
+    }
 
     @Override
     public boolean equals(Object obj) {

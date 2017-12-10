@@ -1,4 +1,4 @@
-package profchoper.bookingSlot;
+package profchoper.booking;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -69,6 +69,11 @@ public class BookingSlotServiceImpl implements BookingSlotService {
     }
 
     @Override
+    public boolean addSlot(BookingSlot slot) {
+        return slotRepository.create(slot);
+    }
+
+    @Override
     public boolean deleteSlot(BookingSlot slot, String profAlias) {
         if (!slot.getBookStatus().equalsIgnoreCase(AVAIL)
                 || !slot.getProfAlias().equals(profAlias.toLowerCase())) return false;
@@ -112,6 +117,7 @@ public class BookingSlotServiceImpl implements BookingSlotService {
         return output;
     }
 
+    @Override
     public List<BookingSlot> getSlotsByStudentAndSWeek(int studentId, LocalDate startDateOfSchoolWeek) {
         LocalDate endDateOfSchoolWeek = startDateOfSchoolWeek.plus(5, ChronoUnit.DAYS);
         List<BookingSlot> studentSlots = getSlotsByStudentId(studentId);

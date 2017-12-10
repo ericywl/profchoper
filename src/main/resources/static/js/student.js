@@ -1,7 +1,7 @@
 $(document).ready(function () {
     smoothScrollTo();
 
-    // Modal for cancelling slot popup
+    // Cancel slot modal popup
     $(".notibtn").click(function () {
         var text = $(this).parent().find(".notitext").text();
         var border = $(this).parent().parent().css('border').split(" ");
@@ -10,15 +10,19 @@ $(document).ready(function () {
         var cancelModalText = $("#cancel-modal-text");
         cancelModalText.empty().append(text);
         cancelModalText.css({color: textColor});
-        $("#cancel-modal").modal();
+        $("#cancel-modal").modal('toggle', $(this));
     });
 
-    // INSERT CALENDAR MODAL HERE
-    var calendar = $(".calendar");
-    calendar.on("click", "table td", function () {
-        $("#myModal").modal();
+    var cancelModal = $("#cancel-modal");
+    cancelModal.on('show.bs.modal', function (event) {
+        var caller = event.relatedTarget;
+        var cancelModalFooter = cancelModal.find(".modal-footer");
+        cancelModalFooter.on("click", "#cancel", {caller: caller}, cancelModalBtnOnClick);
     });
 
+    // Table cell modal popup
+    var calendar = $("#calendar");
+    calendar.on("click", "table td", tableCellOnClick);
 
     // Hover on table cell changes its color and background if there's text in it
     calendar.on("mouseover", "table td", function () {
@@ -32,14 +36,94 @@ $(document).ready(function () {
         $(this).css({cursor: 'default', background: 'white', color: '#111111'});
     });
 
-
+    // Dropdown menu click text
     $("#course-dropdown-menu").on("click", ".course-dropdown-menu-text", courseTextOnClick);
     $("#prof-dropdown-menu").on("click", ".prof-dropdown-menu-text", profTextOnClick);
 
+    // Calendar header left & right buttons
     var weekCalHeaderContainer = $("#week-cal-header-container");
     weekCalHeaderContainer.find(".next").click(btnOnClick);
     weekCalHeaderContainer.find(".prev").click(btnOnClick);
 });
+
+// Create radio button in modal
+function makeRadioButton(name, value, text) {
+    var label = document.createElement("label");
+    var radio = document.createElement("input");
+    radio.type = "radio";
+    radio.name = name;
+    radio.value = value;
+
+    label.append(radio);
+    label.append(" " + text);
+
+    return label;
+}
+
+// When a table cell is clicked, modal shows up if there's text
+function tableCellOnClick() {
+    var textArr = ($(this).html().split(', '));
+    var radioHome = $("#radio-home");
+    $(radioHome).empty();
+    for (var i = 0; i < textArr.length; i++) {
+        const profApi = "/api/professors/" + textArr[i].toLowerCase();
+        $.getJSON(profApi, function (json) {
+            if (json.name !== 0) {
+                var fullName = json.name;
+                var profRadioBtn = makeRadioButton("profbutton", fullName, fullName);
+                radioHome.append(profRadioBtn);
+                radioHome.append("<br/>");
+            } else {
+                console.log("ERROR: Can't get prof alias for " + fullName)
+            }
+        });
+    }
+
+    // Show modal if it has text
+    if ($(this).text() !== "") {
+        $("#myModal").modal();
+    }
+}
+
+// Confirm cancel slot booking in modal
+function cancelModalBtnOnClick(event) {
+    var caller = event.data.caller;
+
+    if (caller.hasClass('notibtn')) {
+        var text = caller.parent().find($(".notitext")).text();
+        var profName = text.split(". ")[1];
+        var time = text.split(" to ")[0];
+
+        const profApi = "/api/professors?name=" + profName;
+        $.getJSON(profApi, function (json) {
+            if (json.length !== 0) {
+                var bookSlot = {
+                    profAlias: json.alias,
+                    time: time
+                };
+
+                $.ajax({
+                    url: "/student?action=cancel",
+                    contentType: "application/json",
+                    type: "PUT",
+                    data: JSON.stringify(bookSlot),
+                    success: function (result) {
+
+                        showSnackbar();
+                        console.log("DONE")
+                    },
+                    error: function (e) {
+                        console.log("ERROR: " + e)
+                    }
+                })
+
+            } else {
+                console.log("ERROR: Can't get prof alias.")
+            }
+
+        });
+    }
+}
 
 // When course dropdown text is clicked, replace student calendar with the course
 function courseTextOnClick() {
@@ -52,7 +136,7 @@ function courseTextOnClick() {
     var courseId = courseString.substr(0, 2) + courseString.substr(3, 3);
     console.log("Refreshed course calendar.");
 
-    // Replacing student calendar
+    // Calendar refresh
     const studentCalUrl = "/student/calendar?date=" + appendedDate + "&course=" + courseId + "&prof=null";
     $("#week-cal-table").load(studentCalUrl);
 
@@ -75,7 +159,7 @@ function courseTextOnClick() {
             // Disabled the prof button
             $("#prof-choice-text").text("Choose Prof");
             $(".prof").prop("disabled", true);
-            console.log("Error getting prof list.");
+            console.log("ERROR: Can't get prof list.");
         }
     });
 
@@ -93,6 +177,7 @@ function profTextOnClick() {
     var courseString = $("#course-choice-text").text();
     var courseId = courseString.substr(0, 2) + courseString.substr(3, 3);
 
+    // Calendar refresh
     const profApi = "/api/professors?name=" + profName;
     $.getJSON(profApi, function (json) {
         if (json.length !== 0) {
@@ -106,13 +191,14 @@ function profTextOnClick() {
             });
 
         } else {
-            console.log("Error getting prof alias.");
+            console.log("ERROR: Can't get prof alias.");
         }
     });
 
     return profName;
 }
 
+// Next or previous calendar button
 function btnOnClick() {
     var weekCalHeaderDate = $("#week-cal-header-date");
     var startDate = weekCalHeaderDate.text().substr(0, 11).replace(/ /g, "-");
@@ -124,18 +210,20 @@ function btnOnClick() {
     var weekCalHeaderWeek = $("#week-cal-header-week");
     var newWeek;
 
+    // If next, increment date
+    // Else, decrement date
     if ($(this).is(".next")) {
-        newStartDate = endDateFormat(startDate, 7);
-        newEndDate = endDateFormat(endDate, 7);
+        newStartDate = dateFormat(startDate, 7);
+        newEndDate = dateFormat(endDate, 7);
         newWeek = checkTermDate(weekCalHeaderWeek.text(), newStartDate, 1);
 
     } else if ($(this).is(".prev")) {
-        newStartDate = endDateFormat(startDate, -7);
-        newEndDate = endDateFormat(endDate, -7);
+        newStartDate = dateFormat(startDate, -7);
+        newEndDate = dateFormat(endDate, -7);
         newWeek = checkTermDate(weekCalHeaderWeek.text(), newStartDate, -1);
 
     } else {
-        console.log("Error btnOnClick should not each here.")
+        console.log("ERROR: btnOnClick should not reach here.")
     }
 
     weekCalHeaderDate.empty().append(newStartDate + " - " + newEndDate);
@@ -148,6 +236,7 @@ function btnOnClick() {
     var courseString = $("#course-choice-text").text();
     var courseId = courseString.substr(0, 2) + courseString.substr(3, 3);
 
+    // Calendar refresh
     if (profName === "Choose Prof") {
         const studentCalUrl = "/student/calendar?date=" + appendedDate
             + "&prof=null" + "&course=" + courseId;
@@ -170,12 +259,13 @@ function btnOnClick() {
                 })
 
             } else {
-                console.log("Error getting prof alias.")
+                console.log("ERROR: Can't get prof alias.")
             }
         })
     }
 }
 
+// Checking for specific term dates
 function checkTermDate(week, date, oneOrNegOne) {
     startTermDates = ["10 Sep 2018", "22 Jan 2018", "14 May 2018"];
     endTermDates = ["11 Dec 2017", "13 Aug 2018", "23 Apr 2018"];
@@ -197,7 +287,8 @@ function checkTermDate(week, date, oneOrNegOne) {
     return output;
 }
 
-function endDateFormat(date, days) {
+// Format the date so that its dd-MMM-yyyy
+function dateFormat(date, days) {
     var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
     var dateObj = new Date(date);
@@ -215,8 +306,6 @@ function smoothScrollTo() {
     // Select all links with hashes and remove links that don't actually link to anything
     $('a[href*="#"]').not('[href="#"]').not('[href="#0"]')
         .click(function (event) {
-
-            // On-page links
             if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '')
                 && location.hostname === this.hostname) {
 
@@ -237,4 +326,15 @@ function smoothScrollTo() {
                 }
             }
         });
+}
+
+// Show the snackbar for 3s
+function showSnackbar() {
+    var snackbar = $("#snackbar");
+    console.log("In snackbar");
+    snackbar.addClass("show");
+
+    setTimeout(function () {
+        snackbar.removeClass("show");
+    }, 3000);
 }
