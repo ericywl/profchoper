@@ -65,9 +65,13 @@ public class StudentCalendarController {
                 .getStudentCalendarByCourse(student.getId(), firstCourseId, startDateOfSchoolTerm,
                         startDateOfSchoolWeek);
 
+        List<BookingSlot> studentBookings
+                = bookingSlotService.getSlotsByStudentAndSWeek(student.getId(), startDateOfSchoolWeek);
+
         model.addAttribute("student", student);
         model.addAttribute("professors", professors);
         model.addAttribute("calendar", wkCal);
+        model.addAttribute("bookings", studentBookings);
 
         return "student";
     }

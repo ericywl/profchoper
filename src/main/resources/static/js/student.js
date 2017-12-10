@@ -1,7 +1,7 @@
 $(document).ready(function () {
     smoothScrollTo();
 
-    // Modal for cancelling slot popup
+    // Cancel slot modal popup
     $(".notibtn").click(function () {
         var text = $(this).parent().find(".notitext").text();
         var border = $(this).parent().parent().css('border').split(" ");
@@ -10,8 +10,20 @@ $(document).ready(function () {
         var cancelModalText = $("#cancel-modal-text");
         cancelModalText.empty().append(text);
         cancelModalText.css({color: textColor});
-        $("#cancel-modal").modal();
+        $("#cancel-modal").modal('toggle', $(this));
     });
+
+    var cancelModal = $("#cancel-modal");
+    cancelModal.on('show.bs.modal', function (event) {
+        var caller = event.relatedTarget;
+        console.log(caller);
+
+        var cancelModalFooter = cancelModal.find(".modal-footer");
+        cancelModalFooter.on("click", "#cancel", {caller: caller}, cancelModalBtnOnClick);
+    });
+
+
+
 
     // INSERT CALENDAR MODAL HERE
     var calendar = $(".calendar");
@@ -40,6 +52,23 @@ $(document).ready(function () {
     weekCalHeaderContainer.find(".next").click(btnOnClick);
     weekCalHeaderContainer.find(".prev").click(btnOnClick);
 });
+
+function cancelModalBtnOnClick() {
+    // var bookSlot;
+    // console.log();
+
+    /*
+    $.ajax({
+        url: "/student/cancel",
+        contentType: "application/json",
+        method: "PUT",
+        data: {},
+        success: function () {
+
+        }
+    })
+    */
+}
 
 // When course dropdown text is clicked, replace student calendar with the course
 function courseTextOnClick() {
