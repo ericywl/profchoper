@@ -23,8 +23,8 @@
             <p class="navbar-brand h4">ProfChoper</p></div>
         <div>
 
-            <button class="btn btn-danger logout"><a href="loginpage.html"> Log out</a></button>
-            <h7 class="showID" th:text="${profName.toString()}"> Prof Name</h7>
+            <button class="btn btn-danger logout"><a th:href="@{/logout}"> Log out</a></button>
+            <h5 class="profName" th:text="${profName.toString()}"> Prof Name</h5>
         </div>
 
 

@@ -15,7 +15,7 @@ ul {
 /* Week header */
 .week {
     padding: 20px 50px 65px 25px;
-    width: 100%;
+    width: 80%;
     background: darkgrey;
     margin: auto;
     height: 10px;
@@ -44,7 +44,7 @@ ul {
 /*table header and data elements */
 .scheduler {
     margin-bottom: 100px;
-    position: relative;
+
 
 }
 
@@ -81,17 +81,13 @@ td:hover {
 }
 
 .logout {
-    margin-left: 800px;
+    margin-left: 980px;
     margin-top: 20px;
 
 }
-
-.showID {
+.profName{
+    color: lightskyblue;
     float: right;
-    color: green;
-    margin-left: 0px;
-    overflow: auto;
-
 }
 /* Pending */
 .notipending {
