@@ -62,7 +62,8 @@ public class StudentCalendarController {
 
         List<Professor> professors = professorService.getProfessorsByCourseId(firstCourseId);
         WeekCalendar wkCal = weekCalendarService
-                .getStudentCalendarByCourse(firstCourseId, startDateOfSchoolTerm, startDateOfSchoolWeek);
+                .getStudentCalendarByCourse(student.getId(), firstCourseId, startDateOfSchoolTerm,
+                        startDateOfSchoolWeek);
 
         model.addAttribute("student", student);
         model.addAttribute("professors", professors);
