@@ -13,7 +13,7 @@
             src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../static/js/student.js" th:src="@{/js/prof.js}"></script>
+
 
 </head>
 <body>
@@ -30,6 +30,36 @@
 
     </div>
 </nav>
+
+<div class="page-header noti noselect">
+    <h1>Your schedules</h1>
+</div>
+
+<!--if got notification-->
+<div class="notipending noselect">
+    <!--get slot info-->
+    <p class="notitext-container">
+        <span class="notistatus">Pending</span>
+        <span class="notitext">04/12 : 15:30 to 16:00 with prof. Oka Kurniawan</span>
+        <a class="notibtnbook btn btn-success" href="#calendar">Confirm</a>
+        <a class="notibtn btn btn-danger">Reject</a>
+
+    </p>
+</div>
+
+<!--if got notification-->
+<div class="noticancel noselect">
+    <!--get slot info-->
+    <p class="notitext-container">
+        <span class="notistatus">Cancelled</span>
+        <span class="notitext">04/12 : 15:30 to 16:00 with prof. Oka Kurniawan</span>
+
+    </p>
+
+    <!--if got msg-->
+    <hr>
+    <p id="notimsg" class="notimsg">Note: please bring along your stuff please bring along your stuffp</p>
+</div>
 
 <div class="page-header" id="calendar">
     <h1>Your calendar</h1>
@@ -54,7 +84,7 @@
         <th scope="col">Friday</th>
     </tr>
 
-    <tr id="week-cal-row" th:each="row : ${calendar}">
+    <tr id="week-cal-row" th:each="row : ${calendar.getMatrix()}">
         <th th:text="${row[0]}"></th>
         <!-- th:utext does not escape <br /> -->
         <!-- replace \n from backend to <br /> for html frontend -->
@@ -67,11 +97,6 @@
 
 </table>
 
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../static/js/student.js" th:src="@{/js/student.js}"></script>
 
 </body>
 </html>
