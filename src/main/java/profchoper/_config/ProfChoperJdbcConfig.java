@@ -16,7 +16,7 @@ public class ProfChoperJdbcConfig {
     public String dbUrl;
 
     @Bean(name = "profChoperDataSource")
-    public DataSource dataSource() throws SQLException {
+    public DataSource dataSource() {
         if (dbUrl == null || dbUrl.isEmpty()) {
             return new HikariDataSource();
         } else {

@@ -47,7 +47,7 @@ public class StudentRepository {
                 "WHERE s.id = ?";
 
         return (Student) jdbcTemplate.queryForObject(selectSQL, new Object[]{id},
-                new BeanPropertyRowMapper(Student.class));
+                new StudentRowMapper());
     }
 
     public Student findByEmail(String email) {
@@ -65,6 +65,6 @@ public class StudentRepository {
                 "WHERE s.email = ?";
 
         return (Student) jdbcTemplate.queryForObject(selectSQL, new Object[]{email},
-                new BeanPropertyRowMapper(Student.class));
+                new StudentRowMapper());
     }
 }

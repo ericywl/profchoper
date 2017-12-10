@@ -3,34 +3,37 @@ package profchoper.professor;
 
 import profchoper.course.Course;
 
+import javax.persistence.*;
+
+@Entity
 public class Professor {
+    @Id
+    @Column(name = "name")
     private String name;
-    private String email;
+
+    @Column(name = "alias")
     private String alias;
-    private String officeLocation;
-    private Course course = null;
 
-    public Professor(String name, String alias, String email, String officeLocation) {
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "office")
+    private String office;
+
+    @OneToOne
+    private Course course;
+
+
+    public Professor() {
+        // default constructor
+    }
+
+    public Professor(String name, String alias, String email, String office, Course course) {
         this.name = name;
-        this.alias = alias;
-        this.email = email;
-        this.officeLocation = officeLocation;
-    }
-
-    public Professor(String name, String email, String alias, String officeLocation, Course course) {
-        this.name = name;
         this.email = email;
         this.alias = alias;
-        this.officeLocation = officeLocation;
+        this.office = office;
         this.course = course;
-    }
-
-    public void setCourse(Course course) {
-        this.course = course;
-    }
-
-    public void setOfficeLocation(String officeLocation) {
-        this.officeLocation = officeLocation;
     }
 
     @Override
@@ -46,12 +49,16 @@ public class Professor {
         return alias;
     }
 
-    public Course getCourse() {
-        return course;
-    }
-
     public String getName() {
         return name;
+    }
+
+    public String getOffice() {
+        return office;
+    }
+
+    public void setAlias(String alias) {
+        this.alias = alias;
     }
 
     public void setName(String name) {
@@ -62,11 +69,15 @@ public class Professor {
         this.email = email;
     }
 
-    public void setAlias(String alias) {
-        this.alias = alias;
+    public void setOffice(String office) {
+        this.office = office;
     }
 
-    public String getOfficeLocation() {
-        return officeLocation;
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
     }
 }

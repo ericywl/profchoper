@@ -1,150 +1,52 @@
 package profchoper.bookingSlot;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import profchoper.professor.Professor;
-import profchoper.professor.ProfessorService;
-import profchoper.student.Student;
-import profchoper.student.StudentService;
 
-import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
 import java.util.List;
 
-import static profchoper._misc.Constant.*;
+public interface BookingSlotService {
 
-@Service
-public class BookingSlotService {
-    private final BookingSlotRepository slotDAO;
-    private final StudentService studentService;
-    private final ProfessorService professorService;
+    List<BookingSlot> getAllSlots();
 
-    @Autowired
-    public BookingSlotService(BookingSlotRepository slotDAO, StudentService studentService,
-                              ProfessorService professorService) {
-        this.slotDAO = slotDAO;
-        this.studentService = studentService;
-        this.professorService = professorService;
-    }
 
-    public List<BookingSlot> getAllSlots() {
-        return initBookingSlots(slotDAO.findAll());
-    }
+    // Slot related methods
 
-    public List<BookingSlot> getSlotsByProfAlias(String profAlias) {
-        return initBookingSlots(slotDAO.findByProfAlias(profAlias));
-    }
+    boolean bookSlot(BookingSlot slot, int studentId);
 
-    public List<BookingSlot> getSlotsByDateTime(LocalDateTime dateTime) {
-        Timestamp timestamp = Timestamp.valueOf(dateTime);
-        return initBookingSlots(slotDAO.findByDateTime(timestamp));
-    }
+    boolean cancelBookSlot(BookingSlot slot, int studentId);
 
-    public List<BookingSlot> getSlotsByDate(LocalDate date) {
-        return getSlotsByDateRangeType(DATE, date);
-    }
+    boolean rejectBookSlot(BookingSlot slot, String profAlias);
 
-    public List<BookingSlot> getSlotsBySchoolWeek(LocalDate startDateOfSchoolWeek) {
-        return getSlotsByDateRangeType(SCHOOL_WEEK, startDateOfSchoolWeek);
-    }
+    boolean confirmBookSlot(BookingSlot slot, String profAlias);
 
-    public List<BookingSlot> getSlotsByWeek(LocalDate startDateOfWeek) {
-        return getSlotsByDateRangeType(WEEK, startDateOfWeek);
-    }
+    boolean deleteSlot(BookingSlot slot, String profAlias);
 
-    public List<BookingSlot> getSlotsByMonth(LocalDate startDateOfMonth) {
-        return getSlotsByDateRangeType(MONTH, startDateOfMonth);
-    }
 
-    public List<BookingSlot> getSlotsByTerm(LocalDate startDateOfTerm) {
-        return getSlotsByDateRangeType(TERM, startDateOfTerm);
-    }
+    // Date and Time related queries
 
-    public boolean bookSlot(BookingSlot slot, Student student) {
-        if (!slot.getBookStatus().equals(AVAIL)) return false;
+    List<BookingSlot> getSlotsByDateTime(LocalDateTime dateTime);
 
-        slot.setBookStatus(PENDING);
-        slot.setStudent(student);
+    List<BookingSlot> getSlotsByDate(LocalDate date);
 
-        return slotDAO.update(slot);
-    }
+    List<BookingSlot> getSlotsBySchoolWeek(LocalDate startDateOfSchoolWeek);
 
-    public boolean cancelBookSlot(BookingSlot slot, int studentID) {
-        if (slot.getBookStatus().equals(AVAIL)
-                || slot.getStudent().getId() != studentID) return false;
 
-        slot.setBookStatus(AVAIL);
-        slot.setStudent(studentService.getStudentById(studentID));
-        return slotDAO.update(slot);
-    }
+    // Professor related queries
 
-    public boolean confirmBookSlot(BookingSlot slot, String profAlias) {
-        if (slot.getBookStatus().equals(AVAIL)) return false;
+    List<BookingSlot> getSlotsByProfAlias(String profAlias);
 
-        if (!slot.getProfessor().getAlias().equals(profAlias)) return false;
+    List<BookingSlot> getSlotsByCourseId(String courseId);
 
-        slot.setBookStatus(BOOKED);
-        return slotDAO.update(slot);
-    }
 
-    public boolean deleteSlot(BookingSlot slot, String profAlias) {
-        if (!slot.getBookStatus().equals(AVAIL)) return false;
+    // Student related queries
 
-        if (!slot.getProfessor().getAlias().equals(profAlias)) return false;
+    List<BookingSlot> getSlotsByStudentId(int studentId);
 
-        return slotDAO.delete(slot);
-    }
 
-    private List<BookingSlot> getSlotsByDateRangeType(String type, LocalDate startDate) {
-        LocalDateTime startDateTime = startDate.atStartOfDay();
-        LocalDateTime endDateTime;
+    // Combined
 
-        switch (type) {
-            case DATE:
-                endDateTime = startDateTime.plus(1, ChronoUnit.DAYS);
-                break;
+    List<BookingSlot> getSlotsByProfAndSWeek(String profAlias, LocalDate startDateOfSchoolWeek);
 
-            case SCHOOL_WEEK:
-                endDateTime = startDateTime.plus(5, ChronoUnit.DAYS);
-                break;
-
-            case WEEK:
-                endDateTime = startDateTime.plus(1, ChronoUnit.WEEKS);
-                break;
-
-            case MONTH:
-                endDateTime = startDateTime.plus(1, ChronoUnit.MONTHS);
-                break;
-
-            case TERM:
-                endDateTime = startDateTime.plus(14, ChronoUnit.MONTHS);
-                break;
-
-            default:
-                endDateTime = startDateTime.plus(SLOT_TIME, ChronoUnit.MINUTES);
-                break;
-        }
-
-        Timestamp startTimestamp = Timestamp.valueOf(startDateTime);
-        Timestamp endTimestamp = Timestamp.valueOf(endDateTime);
-
-        List<BookingSlotModel> bsmList = slotDAO.findByDateTimeRange(startTimestamp, endTimestamp);
-        return initBookingSlots(bsmList);
-    }
-
-    private List<BookingSlot> initBookingSlots(List<BookingSlotModel> bsmList) {
-        List<BookingSlot> output = new ArrayList<>();
-
-        for (BookingSlotModel bsm : bsmList) {
-            Professor prof = professorService.getProfessorByAlias(bsm.getProfAlias());
-            Student student = studentService.getStudentById(bsm.getStudentId());
-
-            output.add(new BookingSlot(bsm.getTimestamp(), prof, student, bsm.getBookStatus()));
-        }
-
-        return output;
-    }
+    List<BookingSlot> getSlotsByCourseAndSWeek(String courseId, LocalDate startDateOfSchoolWeek);
 }

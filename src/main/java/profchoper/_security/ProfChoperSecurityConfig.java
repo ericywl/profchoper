@@ -17,9 +17,9 @@ import static profchoper._misc.Constant.STUDENT;
 @Configuration
 public class ProfChoperSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final DataSource dataSource;
-    private final AccessDeniedHandler accessDeniedHandler;
-    private final AuthenticationSuccessHandler successHandler;
+    private DataSource dataSource;
+    private AccessDeniedHandler accessDeniedHandler;
+    private AuthenticationSuccessHandler successHandler;
 
     @Autowired
     public ProfChoperSecurityConfig(@Qualifier("profChoperDataSource") DataSource dataSource,
@@ -43,14 +43,14 @@ public class ProfChoperSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/").permitAll()
-                .antMatchers("/test").permitAll()
+                .antMatchers("/api/**").permitAll()
                 .antMatchers("/prof/**").hasAnyRole(PROF)
-                .antMatchers("/student/**").hasAnyRole(STUDENT)
+                // .antMatchers("/student/**").hasAnyRole(STUDENT)
+                .antMatchers("/student/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().successHandler(successHandler)
-                .loginPage("/login")
+                .loginPage("/")
                 .permitAll()
                 .and()
                 .logout()

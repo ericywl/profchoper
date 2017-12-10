@@ -9,10 +9,21 @@
     <link rel="stylesheet" type="text/css" media="all" href="../static/css/student.css"
           th:href="@{/css/student.css}"/>
 
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../static/js/student.js" th:src="@{/js/student.js}"></script>
+
 </head>
 <body>
+<<<<<<< HEAD
 <!-- Nav bar -->  
 <nav class="navbar navbar-inverse navbar-fixed-top">
+=======
+<!-- Nav bar -->
+<nav class="navbar navbar-inverse navbar-fixed-top noselect">
+>>>>>>> ericywl/master
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -23,6 +34,7 @@
             </button>
             <p class="navbar-brand h4">ProfChoper</p>
         </div>
+<<<<<<< HEAD
         <div class="collapse navbar-collapse" id="myNavbar">
             <button class="btn navbar-btn btn-lg"><a href="#calendar"> Chope a slot</a></button>
         <button class="course dropdown btn btn-outline-info"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Choose Course <span class="caret"></span></a>
@@ -101,50 +113,169 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
+=======
+        <div class="collapse navbar-collapse" id="chope-nav-bar">
+            <a class="btn navbar-btn btn-lg" href="#calendar"><strong>Chope a slot</strong></a>
+
+            <a class="btn btn-danger logout" th:href="@{/logout}">Logout</a>
+        </div>
+
+
+    </div>
+</nav>
+
+<div class="modal fade noselect" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <p id="text">Some text in the modal.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
 </div>
 
-<div class="week">
-    <ul>
-        <li class="prev">&#10094;</li>
-        <li class="next">&#10095;</li>
-        <li>
-            4 Sept - 8 Sept 2017<br>
-            <span style="font-size:18px">Week 12</span>
-        </li>
-    </ul>
+<!-- Cancel modal -->
+<div class="modal fade noselect" id="cancel-modal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Cancel slot</h4>
+            </div>
+
+            <div class="modal-body">
+                <p>Are you sure you want to cancel the booking on<br/>
+                    <span id="cancel-modal-text">Text placeholder</span>?
+                </p>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" id="cancel" class="btn btn-default" data-dismiss="modal">Yes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+>>>>>>> ericywl/master
+            </div>
+        </div>
+    </div>
 </div>
 
-<table id="week-cal-table">
-    <tr>
-        <th>Time</th>
-        <th scope="col">Monday</th>
-        <th scope="col">Tuesday</th>
-        <th scope="col">Wednesday</th>
-        <th scope="col">Thursday</th>
-        <th scope="col">Friday</th>
-    </tr>
+<div class="page-header noti noselect">
+    <h1>Your schedules</h1>
+</div>
 
-    <tr id="week-cal-row" th:each="row : ${calendar}">
-        <th th:text="${row[0]}"></th>
-        <!-- th:utext does not escape <br /> -->
-        <!-- replace \n from backend to <br /> for html frontend -->
-        <td th:utext="${#strings.replace(#strings.escapeXml(row[1]),'&#10;','&lt;br /&gt;')}"></td>
-        <td th:utext="${#strings.replace(#strings.escapeXml(row[2]),'&#10;','&lt;br /&gt;')}"></td>
-        <td th:utext="${#strings.replace(#strings.escapeXml(row[3]),'&#10;','&lt;br /&gt;')}"></td>
-        <td th:utext="${#strings.replace(#strings.escapeXml(row[4]),'&#10;','&lt;br /&gt;')}"></td>
-        <td th:utext="${#strings.replace(#strings.escapeXml(row[5]),'&#10;','&lt;br /&gt;')}"></td>
-    </tr>
+<!--NOTIFICATIONS-->
 
-</table>
+<!--if got notification-->
+<div class="noticonfirm noselect">
+    <!--get slot info-->
+    <p class="notitext-container">
+        <span class="notistatus">Confirmed</span>
+        <span class="notitext">04/12 : 15:30 to 16:00 with prof. Oka Kurniawan</span>
+        <a class="notibtn btn btn-danger">Cancel Slot</a>
+    </p>
+</div>
 
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../static/js/student.js" th:src="@{/js/student.js}"></script>
+<!--if got notification-->
+<div class="notipending noselect">
+    <!--get slot info-->
+    <p class="notitext-container">
+        <span class="notistatus">Pending</span>
+        <span class="notitext">04/12 : 15:30 to 16:00 with prof. Oka Kurniawan</span>
+        <a class="notibtn btn btn-danger">Cancel Slot</a>
+    </p>
+</div>
+
+<!--if got notification-->
+<div class="noticancel noselect">
+    <!--get slot info-->
+    <p class="notitext-container">
+        <span class="notistatus">Cancelled</span>
+        <span class="notitext">04/12 : 15:30 to 16:00 with prof. Oka Kurniawan</span>
+        <a class="notibtnbook btn btn-success" href="#calendar">Book Another</a>
+    </p>
+
+    <!--if got msg-->
+    <hr>
+    <p id="notimsg" class="notimsg">Note: please bring along your stuff please bring along your stuffp</p>
+</div>
+
+<div class="page-header noselect" id="calendar">
+    <h1>Your calendar</h1>
+</div>
+
+<div class="calendar noselect">
+    <div class="week-cal" id="week-cal-header">
+        <ul id="week-cal-header-container">
+            <li class="prev">&#10094;</li>
+            <li class="next">&#10095;</li>
+            <li class="week-cal-header-text">
+                <span id="week-cal-header-date"
+                      th:text="${calendar.getHeaderDate()}">Test Date - Date 20XX</span><br>
+                <span style="font-size:18px" id="week-cal-header-week"
+                      th:text="${calendar.getHeaderWeek()}">Week Test</span>
+            </li>
+        </ul>
+    </div>
+
+    <div id="week-cal-buttons">
+        <div class="dropdown" id="course-dropdown">
+            <button class="btn course dropdown-toggle" type="button" data-toggle="dropdown">
+                <span class="choice-text" id="course-choice-text"
+                      th:text="${student.getEnrolledCourses()[0].toString()}">Course 1</span>
+                <span class="caret"></span></button>
+            <ul id="course-dropdown-menu" class="dropdown-menu">
+                <th:block th:each="course : ${student.getEnrolledCourses()}">
+                    <li class="course-dropdown-menu-text"
+                        th:text="${course.toString()}">Course Placeholder
+                    </li>
+                </th:block>
+            </ul>
+        </div>
+
+        <div class="dropdown" id="prof-dropdown">
+            <button class="btn prof dropdown-toggle" type="button"
+                    data-toggle="dropdown">
+                <span class="choice-text" id="prof-choice-text">Choose Prof</span>
+                <span class="caret"></span></button>
+            <ul id="prof-dropdown-menu" class="dropdown-menu">
+                <th:block th:each="prof : ${professors}">
+                    <li class="prof-dropdown-menu-text"
+                        th:text="${prof.getName()}">Prof Placeholder
+                    </li>
+                </th:block>
+            </ul>
+        </div>
+    </div>
+
+    <table class="week-cal" id="week-cal-table">
+        <tr>
+            <th>Time</th>
+            <th scope="col">Monday</th>
+            <th scope="col">Tuesday</th>
+            <th scope="col">Wednesday</th>
+            <th scope="col">Thursday</th>
+            <th scope="col">Friday</th>
+        </tr>
+
+        <tr id="week-cal-row" th:each="row : ${calendar.getMatrix()}">
+            <th th:text="${row[0]}"></th>
+            <!-- th:utext does not escape <br /> -->
+            <!-- replace \n from backend to <br /> for html frontend -->
+            <td th:utext="${#strings.replace(#strings.escapeXml(row[1]),'&#10;','&lt;br /&gt;')}"></td>
+            <td th:utext="${#strings.replace(#strings.escapeXml(row[2]),'&#10;','&lt;br /&gt;')}"></td>
+            <td th:utext="${#strings.replace(#strings.escapeXml(row[3]),'&#10;','&lt;br /&gt;')}"></td>
+            <td th:utext="${#strings.replace(#strings.escapeXml(row[4]),'&#10;','&lt;br /&gt;')}"></td>
+            <td th:utext="${#strings.replace(#strings.escapeXml(row[5]),'&#10;','&lt;br /&gt;')}"></td>
+        </tr>
+    </table>
+</div>
 
 </body>
 </html>
