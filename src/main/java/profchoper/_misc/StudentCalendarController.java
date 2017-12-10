@@ -6,9 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import profchoper._security.ProfChoperAuthFacade;
-import profchoper.bookingSlot.BookingSlot;
-import profchoper.bookingSlot.BookingSlotJS;
-import profchoper.bookingSlot.BookingSlotService;
+import profchoper.booking.BookingSlot;
+import profchoper.booking.BookingSlotJS;
+import profchoper.booking.BookingSlotService;
 import profchoper.calendar.WeekCalendar;
 import profchoper.calendar.WeekCalendarService;
 import profchoper.professor.Professor;
@@ -109,7 +109,7 @@ public class StudentCalendarController {
 
     @ResponseStatus(value = HttpStatus.OK)
     @PutMapping(value = "/student", params = {"action"})
-    public void cancelSlot(@RequestBody BookingSlotJS slotJS, @RequestParam String action) {
+    public StudentCalendarResponse cancelSlot(@RequestBody BookingSlotJS slotJS, @RequestParam String action) {
         // String studentEmail = authFacade.getAuthentication().getName();
         String studentEmail = "eric@mymail.sutd.edu.sg";
         Student student = studentService.getStudentByEmail(studentEmail);
@@ -122,6 +122,8 @@ public class StudentCalendarController {
 
         else if (action.equalsIgnoreCase("cancel"))
             bookingSlotService.cancelBookSlot(slot, student.getId());
+
+        return null;
     }
 
 }

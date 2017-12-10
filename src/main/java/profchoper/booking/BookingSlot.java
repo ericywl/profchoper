@@ -1,4 +1,4 @@
-package profchoper.bookingSlot;
+package profchoper.booking;
 
 
 import java.sql.Timestamp;

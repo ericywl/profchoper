@@ -1,8 +1,7 @@
-package profchoper.bookingSlot;
+package profchoper.booking;
 
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 
 public class BookingSlotJS {
     @NotNull

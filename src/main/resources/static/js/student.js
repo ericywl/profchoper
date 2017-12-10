@@ -332,7 +332,7 @@ function showSnackbar() {
     var snackbar = $("#snackbar");
     console.log("In snackbar");
     snackbar.addClass("show");
-    
+
     setTimeout(function () {
         snackbar.removeClass("show");
     }, 3000);
