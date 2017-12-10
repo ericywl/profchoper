@@ -76,7 +76,8 @@ public class StudentCalendarController {
     public String getStudentCalendar(@RequestParam String date, @RequestParam String course,
                                      @RequestParam String prof, Model model) {
 
-        String studentEmail = authFacade.getAuthentication().getName();
+        String studentEmail = "eric@mymail.sutd.edu.sg";
+        // String studentEmail = authFacade.getAuthentication().getName();
         Student student = studentService.getStudentByEmail(studentEmail);
 
         LocalDate startDateOfSchoolWeek = LocalDate.parse(date, dtf);

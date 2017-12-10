@@ -66,14 +66,14 @@ function courseTextOnClick() {
             }
 
             // Replacing prof choice text and dropdown menu list
-            $("#prof-choice-text").text("Choose prof");
+            $("#prof-choice-text").text("Choose Prof");
             $("#prof-dropdown-menu").empty().append(profListHtml);
             // Enable the prof button
             $(".prof").prop("disabled", false);
 
         } else {
             // Disabled the prof button
-            $("#prof-choice-text").text("Choose prof");
+            $("#prof-choice-text").text("Choose Prof");
             $(".prof").prop("disabled", true);
             console.log("Error getting prof list.");
         }
@@ -148,7 +148,7 @@ function btnOnClick() {
     var courseString = $("#course-choice-text").text();
     var courseId = courseString.substr(0, 2) + courseString.substr(3, 3);
 
-    if (profName === "Choose prof") {
+    if (profName === "Choose Prof") {
         const studentCalUrl = "/student/calendar?date=" + appendedDate
             + "&prof=null" + "&course=" + courseId;
 

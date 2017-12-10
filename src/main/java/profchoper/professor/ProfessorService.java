@@ -10,4 +10,6 @@ public interface ProfessorService {
     Professor getProfessorByAlias(String alias);
 
     Professor getProfessorByName(String name);
+
+    Professor getProfessorByEmail(String email);
 }

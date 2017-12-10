@@ -33,18 +33,6 @@ public class ProfCalendarController {
 
     @GetMapping("/prof")
     public String prof(Model model) {
-        LocalDate currDate = LocalDate.now();
-        if (currDate.getDayOfWeek().equals(DayOfWeek.SATURDAY)
-                || currDate.getDayOfWeek().equals(DayOfWeek.SUNDAY))
-            currDate = currDate.plus(3, ChronoUnit.DAYS);
-
-        LocalDate startDateOfSchoolWeek = currDate.with(DayOfWeek.MONDAY);
-        LocalDate startDateOfSchoolTerm = LocalDate.of(2017, 9, 11);
-
-        WeekCalendar wkCal = weekCalendarService
-                .getProfCalendar("oka", startDateOfSchoolTerm, startDateOfSchoolWeek);
-
-        model.addAttribute("calendar", wkCal.getMatrix());
         return "prof";
     }
 
