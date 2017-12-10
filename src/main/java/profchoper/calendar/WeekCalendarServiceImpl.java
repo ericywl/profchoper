@@ -20,19 +20,26 @@ import static profchoper._misc.Constant.*;
 public class WeekCalendarServiceImpl implements WeekCalendarService {
     @Autowired
     private BookingSlotService slotService;
+
     private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
 
+    // TODO: add studentId to week calendar methods (for viewing booked slots on calendar)
+
     @Override
-    public WeekCalendar getStudentCalendarByCourse(String courseId, LocalDate startDateOfSchoolTerm,
+    public WeekCalendar getStudentCalendarByCourse(int studentId, String courseId,
+                                                   LocalDate startDateOfSchoolTerm,
                                                    LocalDate startDateOfSchoolWeek) {
+
         List<List<String>> matrix = createCourseCalMatrix(courseId, startDateOfSchoolWeek);
 
         return new WeekCalendar(startDateOfSchoolTerm, startDateOfSchoolWeek, matrix);
     }
 
     @Override
-    public WeekCalendar getStudentCalendarByProf(String profAlias, LocalDate startDateOfSchoolTerm,
+    public WeekCalendar getStudentCalendarByProf(int studentId, String profAlias,
+                                                 LocalDate startDateOfSchoolTerm,
                                                  LocalDate startDateOfSchoolWeek) {
+
         List<List<String>> matrix = createProfCalMatrix(profAlias, startDateOfSchoolWeek, STUDENT);
 
         return new WeekCalendar(startDateOfSchoolTerm, startDateOfSchoolWeek, matrix);

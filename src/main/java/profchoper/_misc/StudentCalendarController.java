@@ -75,6 +75,9 @@ public class StudentCalendarController {
     public String getStudentCalendar(@RequestParam String date, @RequestParam String course,
                                      @RequestParam String prof, Model model) {
 
+        String studentEmail = authFacade.getAuthentication().getName();
+        Student student = studentService.getStudentByEmail(studentEmail);
+
         LocalDate startDateOfSchoolWeek = LocalDate.parse(date, dtf);
         LocalDate startDateOfSchoolTerm = LocalDate.of(2017, 9, 11);
 
@@ -82,24 +85,33 @@ public class StudentCalendarController {
 
         if (prof.equals("null")) {
             wkCal = weekCalendarService
-                    .getStudentCalendarByCourse(course, startDateOfSchoolTerm, startDateOfSchoolWeek);
+                    .getStudentCalendarByCourse(student.getId(), course, startDateOfSchoolTerm,
+                            startDateOfSchoolWeek);
 
         } else {
             wkCal = weekCalendarService
-                    .getStudentCalendarByProf(prof, startDateOfSchoolTerm, startDateOfSchoolWeek);
+                    .getStudentCalendarByProf(student.getId(), prof, startDateOfSchoolTerm,
+                            startDateOfSchoolWeek);
         }
 
         model.addAttribute("calendar", wkCal);
         return "fragments/student_cal";
     }
 
-    @PutMapping(value = "/student")
+    @PutMapping("/student/book")
     public boolean bookSlot(@RequestBody BookingSlot slot) {
-
         String studentEmail = authFacade.getAuthentication().getName();
         Student student = studentService.getStudentByEmail(studentEmail);
 
         return bookingSlotService.bookSlot(slot, student.getId());
+    }
+
+    @PutMapping("/student/cancel")
+    public boolean cancelSlot(@RequestBody BookingSlot slot) {
+        String studentEmail = authFacade.getAuthentication().getName();
+        Student student = studentService.getStudentByEmail(studentEmail);
+
+        return bookingSlotService.cancelBookSlot(slot, student.getId());
     }
 
 }
