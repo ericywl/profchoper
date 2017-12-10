@@ -1,4 +1,4 @@
-@font-face {
+    @font-face {
     font-family: Quicksand;
     src: url("https://fonts.gstatic.com/s/quicksand/v7/sKd0EMYPAh5PYCRKSryvW5Bw1xU1rKptJj_0jans920.woff2");
 }
@@ -32,6 +32,7 @@ h1 {
 #username, #password {
     width: 320px;
     height: 20px;
+    margin-top: -20px;
 }
 
 .h4{
@@ -40,7 +41,7 @@ h1 {
 
 #submit {
     margin-left: 60px;
-    width: 200px;
+    width: 300px;
     height: 40px;
     font-size: 15px;
     border-color: green;

@@ -63,6 +63,7 @@ public class ProfCalendarController {
                         startDateOfSchoolWeek);
 
         model.addAttribute("calendar", wkCal);
+        model.addAttribute("profName", prof.getName());
 
 
         return "prof";
