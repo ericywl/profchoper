@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>SUTD ProfChoper</title>
+</head>
+<body>
+
+<table class="week-cal" id="week-cal-table">
+    <tr>
+        <th>Time</th>
+        <th scope="col">Monday</th>
+        <th scope="col">Tuesday</th>
+        <th scope="col">Wednesday</th>
+        <th scope="col">Thursday</th>
+        <th scope="col">Friday</th>
+    </tr>
+
+    <tr class="week-cal-row" th:each="row, itrStat : ${calendar.getMatrix()}">
+        <th th:id="time + ${itrStat.index}" th:text="${row[0]}"></th>
+        <td th:id="${itrStat.index} + x0" th:text="${row[1]}" th:style="${row[1].equals('BOOKED')}
+                ? 'background: #1eaf47; color: white' : 'background: white; color: #111111'"></td>
+        <td th:id="${itrStat.index} + x1" th:text="${row[2]}" th:style="${row[2].equals('BOOKED')}
+                ? 'background: #1eaf47; color: white' : 'background: white; color: #111111'"></td>
+        <td th:id="${itrStat.index} + x2" th:text="${row[3]}" th:style="${row[3].equals('BOOKED')}
+                ? 'background: #1eaf47; color: white' : 'background: white; color: #111111'"></td>
+        <td th:id="${itrStat.index} + x3" th:text="${row[4]}" th:style="${row[4].equals('BOOKED')}
+                ? 'background: #1eaf47; color: white' : 'background: white; color: #111111'"></td>
+        <td th:id="${itrStat.index} + x4" th:text="${row[5]}" th:style="${row[5].equals('BOOKED')}
+                ? 'background: #1eaf47; color: white' : 'background: white; color: #111111'"></td>
+    </tr>
+</table>
+
+</body>
+</html>

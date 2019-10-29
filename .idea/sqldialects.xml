@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/src/main/java/profchoper/booking/BookingSlotRepository.java" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/profchoper/course/CourseRepository.java" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/profchoper/professor/ProfessorRepository.java" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/profchoper/student/StudentRepository.java" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/profchoper/student/StudentServiceImpl.java" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/profchoper/user/UserRepository.java" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/data.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/schema.sql" dialect="PostgreSQL" />
+  </component>
+</project>

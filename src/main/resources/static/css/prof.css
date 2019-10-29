@@ -1,0 +1,389 @@
+@font-face {
+    font-family: Quicksand;
+    src: url("https://fonts.gstatic.com/s/quicksand/v7/sKd0EMYPAh5PYCRKSryvW5Bw1xU1rKptJj_0jans920.woff2");
+}
+
+/* Main body*/
+html, body {
+    font-family: Quicksand, sans-serif;
+    height: 100%;
+    width: 100%;
+    font-size: 16px;
+}
+
+.modal {
+    text-align: center;
+    font-size: 20px;
+}
+
+@media screen and (min-width: 768px) {
+    .modal:before {
+        display: inline-block;
+        vertical-align: middle;
+        content: " ";
+        height: 100%;
+    }
+}
+
+.modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+}
+
+/* Remove bullets */
+ul {
+    list-style-type: none;
+}
+
+/* Nav bar props */
+.navbar {
+    width: 100%;
+    height: 10%;
+    padding: 5px;
+}
+
+.navbar-btn {
+    font-size: 20px;
+}
+
+.btn-lg {
+    color: green;
+    background: white;
+    margin: 15px auto 0 30px;
+}
+
+.btn-lg:hover {
+    color: darkgreen;
+}
+
+.btn-lg:focus {
+    color: green;
+}
+
+.profName {
+    font-size: 18px;
+    position: absolute;
+    right: 165px;
+    color: #888888;
+    margin-top: 28px;
+    overflow: hidden;
+}
+
+.profName:hover {
+    color: #eeeeee;
+}
+
+.logout {
+    margin: 20px auto 0 90px;
+    position: absolute;
+    right: 65px;
+    display: inline-block;
+    font-size: 16px;
+    overflow: hidden;
+}
+
+.h4 {
+    padding-left: 55px;
+    font-size: 3.5rem;
+}
+
+/* Whole calendar */
+#calendar {
+    width: 80%;
+    height: 60%;
+    margin: auto;
+    font-size: 16px;
+}
+
+/* Week header */
+#week-cal-header {
+    width: 100%;
+    height: 28%;
+    padding: 3% 5% 2% 5%;
+    background: darkgrey;
+    text-align: center;
+}
+
+#week-cal-header ul li {
+    color: white;
+    font-size: 26px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+/* Previous button inside month header */
+#week-cal-header .prev {
+    left: 18%;
+    font-size: 38px;
+    position: absolute;
+    color: white;
+}
+
+/* Next button */
+#week-cal-header .next {
+    right: 18%;
+    font-size: 38px;
+    position: absolute;
+    color: white;
+}
+
+#week-cal-header .prev:hover, #week-cal-header .next:hover {
+    margin-left: -10px;
+    margin-top: -10px;
+    font-size: 58px;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#week-cal-header .prev:active, #week-cal-header .next:active {
+    margin-left: -5px;
+    margin-top: -5px;
+    font-size: 48px;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Week calendar table */
+#week-cal-table {
+    width: 100%;
+    height: 60%;
+    table-layout: fixed;
+    margin-bottom: 5%;
+}
+
+th, td {
+    margin: auto;
+    text-align: center;
+    border-collapse: collapse;
+    outline: 1px solid #e3e3e3;
+    height: 55px;
+}
+
+td {
+    padding: 10px;
+}
+
+th {
+    background: #666;
+    color: white;
+    padding: 5px 10px;
+}
+
+.page-header {
+    margin: 8% 20px 20px 65px;
+}
+
+.page-header h1 {
+    font-size: 38px;
+}
+
+/* Notipending and cancel hover */
+.notipending:hover .notibtn, .notipending:hover .notibtnbook {
+    display: inline-block;
+    overflow: auto;
+}
+
+.notipending:hover span, .noticancel:hover span {
+    display: inline-block;
+}
+
+.notipending:hover hr, .noticancel:hover hr {
+    display: block;
+}
+
+.notipending:hover .notimsg, .noticancel:hover .notimsg {
+    display: block;
+}
+
+/* Pending */
+.notipending {
+    width: 90%;
+    height: 8%;
+    margin: 10px 6% 10px 4%;
+    background-color: white;
+    border: 2px solid #4286f4;
+    padding: .5% 1.5%;
+    text-align: center;
+}
+
+.notipending:hover {
+    background: #4286f4;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+}
+
+.notipending:hover .notitext {
+    margin-left: -80px;
+}
+
+/* Cancelled */
+.noticancel {
+    width: 90%;
+    height: 8%;
+    margin: 10px 6% 10px 4%;
+    background-color: white;
+    border: 2px solid #ed3b3b;
+    padding: .5% 1.5%;
+    text-align: center;
+}
+
+.noticancel:hover {
+    background: #ed3b3b;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+}
+
+.noticancel:hover .notitext {
+    margin-left: -80px;
+}
+
+/* General notification */
+hr {
+    display: none;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 20px 1em 0;
+    padding: 0;
+}
+
+.notistatus {
+    display: none;
+    float: left;
+}
+
+.notitext-container {
+    padding-top: 15px;
+    font-size: 1.2em;
+}
+
+.notibtnbook {
+    display: none;
+    position: absolute;
+    left: 77%;
+    overflow: auto;
+    padding: 5px 20px;
+    margin: -2px 1.5% 0;
+    font-size: 16px;
+}
+
+.notibtn {
+    display: none;
+    position: absolute;
+    left: 85%;
+    overflow: auto;
+    padding: 5px 20px;
+    margin: -2px 1.5% 0;
+    font-size: 16px;
+}
+
+.notimsg {
+    display: none;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+/* No appointment text */
+#nonoti {
+    text-align: center;
+    color: #a3a3a3;
+}
+
+/* Make it so the text can't be selected */
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+}
+
+/* Snackbar */
+#snackbar {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
+    font-size: 17px;
+}
+
+#snackbar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
+}
+
+@keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
+}
+
+#reject-alert {
+    font-size: 15px;
+    color: red;
+    float: left;
+}
+
+#booked-datetime, #booked-modal-text {
+    color: #1eaf47;
+}
+
+#pending-datetime, #pending-modal-text, #noti-reject-modal-text {
+    color: #4286f4;
+}

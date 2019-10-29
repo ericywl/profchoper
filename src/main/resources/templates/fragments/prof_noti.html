@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>SUTD ProfChoper</title>
+</head>
+<body>
+
+<!-- NOTIFICATIONS -->
+<div id="notifications" class="noselect">
+    <div class="page-header noti noselect">
+        <h1>Your schedules</h1>
+    </div>
+
+    <div id="nonoti" th:if="${#lists.isEmpty(bookings)}">
+        <h1>You do not have any appointment currently.</h1>
+    </div>
+
+    <th:block th:each="noti : ${bookings}">
+        <th:block th:switch="${noti.getBookStatus()}">
+            <th:block th:case="PENDING">
+                <!--if got notification-->
+                <div class="notipending noselect">
+                    <!--get slot info-->
+                    <p class="notitext-container">
+                        <span class="notistatus">Pending</span>
+                        <span class="notitext" th:text="${noti.toStringProf()}"></span>
+                        <a class="notibtnbook btn btn-success">Confirm</a>
+                        <a class="notibtn btn btn-danger">Reject</a>
+                    </p>
+                </div>
+            </th:block>
+
+            <th:block th:case="CANCELLED">
+                <!--if got notification-->
+                <div class="noticancel noselect">
+                    <!--get slot info-->
+                    <p class="notitext-container">
+                        <span class="notistatus">Cancelled</span>
+                        <span class="notitext" th:text="${noti.toStringProf()}"></span>
+                    </p>
+                </div>
+            </th:block>
+        </th:block>
+    </th:block>
+</div>
+
+</body>
+</html>

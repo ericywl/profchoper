@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>SUTD ProfChoper</title>
+</head>
+<body>
+
+<table class="week-cal" id="week-cal-table">
+    <tr>
+        <th>Time</th>
+        <th scope="col">Monday</th>
+        <th scope="col">Tuesday</th>
+        <th scope="col">Wednesday</th>
+        <th scope="col">Thursday</th>
+        <th scope="col">Friday</th>
+    </tr>
+
+    <!-- replace \n from backend to <br /> for html frontend -->
+    <!-- th:utext does not escape <br /> -->
+    <tr class="week-cal-row" th:each="row, itrStat : ${calendar.getMatrix()}">
+        <th th:id="time + ${itrStat.index}" th:text="${row[0]}"></th>
+        <td th:id="${itrStat.index} + x0"
+            th:utext="${#strings.replace(#strings.escapeXml(row[1]),'&#10;','&lt;br /&gt;')}"></td>
+        <td th:id="${itrStat.index} + x1"
+            th:utext="${#strings.replace(#strings.escapeXml(row[2]),'&#10;','&lt;br /&gt;')}"></td>
+        <td th:id="${itrStat.index} + x2"
+            th:utext="${#strings.replace(#strings.escapeXml(row[3]),'&#10;','&lt;br /&gt;')}"></td>
+        <td th:id="${itrStat.index} + x3"
+            th:utext="${#strings.replace(#strings.escapeXml(row[4]),'&#10;','&lt;br /&gt;')}"></td>
+        <td th:id="${itrStat.index} + x4"
+            th:utext="${#strings.replace(#strings.escapeXml(row[5]),'&#10;','&lt;br /&gt;')}"></td>
+    </tr>
+</table>
+
+</body>
+</html>

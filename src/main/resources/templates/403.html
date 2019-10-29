@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>SUTD ProfChoper</title>
+</head>
+<body>
+
+<div class="container">
+    <div class="starter-template" style="text-align: center; margin-top: 300px;">
+        <h1 style="font-size: 50px; color: #ed3b3b">403 - Access is denied</h1>
+        <div style="font-size: 32px">Hello '
+            <span th:inline="text" style="color: green;">[[${#httpServletRequest.remoteUser}]]</span>
+            ', you do not have permission to access this page.
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

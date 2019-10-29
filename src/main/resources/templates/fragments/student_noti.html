@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>SUTD ProfChoper</title>
+</head>
+<body>
+<!-- NOTIFICATIONS -->
+<div id="notifications" class="noselect">
+    <div id="nonoti" th:if="${#lists.isEmpty(bookings)}">
+        <h1>You do not have any appointment currently.</h1>
+    </div>
+
+    <th:block th:each="noti : ${bookings}">
+        <th:block th:switch="${noti.getBookStatus()}">
+
+            <th:block th:case="BOOKED">
+                <div class="noticonfirm noselect">
+                    <p class="notitext-container">
+                        <span class="notistatus">Confirmed</span>
+                        <span th:text="${noti.toStringStudent()} + ' at ' + ${noti.getLocation()}"
+                              class="notitext noselect">Test notification</span>
+                        <a class="notibtn btn btn-danger">Cancel Slot</a>
+                    </p>
+                    <!-- normal message
+
+                    <th:block th:if="not noti.MsgIsEmpty()">
+                    <hr>
+                    <p th:text="${noti.getMsg()}"class="noticancelmsg"></p>
+                    </th:block>
+                    -->
+                </div>
+            </th:block>
+
+            <th:block th:case="PENDING">
+                <div class="notipending noselect">
+                    <p class="notitext-container">
+                        <span class="notistatus">Pending</span>
+                        <span th:text="${noti.toStringStudent()}" class="notitext noselect">Test notification</span>
+                        <a class="notibtn btn btn-danger">Cancel Slot</a>
+                    </p>
+
+                    <!-- normal msg
+
+                    <th:block th:if="not noti.msgIsEmpty()">
+                    <hr>
+                    <p th:text="${noti.getMsg()}"class="noticancelmsg"></p>
+                    </th:block>
+                    -->
+                </div>
+            </th:block>
+
+            <th:block th:case="REJECTED">
+                <div class="noticancel noselect">
+                    <p class="notitext-container">
+                        <span class="notistatus">Cancelled</span>
+                        <span th:text="${noti.toStringStudent()}" class="notitext noselect">Test notification</span>
+                        <a class="notibtnbook btn btn-success" href="#calendar-header">Book Another</a>
+                    </p>
+
+                    <!-- cancel msg
+                    <th:block th:if="not noti.cancelMsgIsEmpty()">
+                    <hr>
+                    <p th:text="${noti.getCancelMsg()}"class="noticancelmsg"></p>
+                    </th:block>
+                    -->
+                </div>
+            </th:block>
+        </th:block>
+    </th:block>
+</div>
+</body>
+</html>
